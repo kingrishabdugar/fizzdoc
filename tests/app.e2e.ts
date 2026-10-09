@@ -1,10 +1,11 @@
 import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { expect, test, type Page } from '@playwright/test';
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { PAGES, SITE_LANGS } from '../src/seo';
 import { SITE, TOOLS } from '../src/site';
 
-const file = (name: string) => new URL(`./fixtures/${name}`, import.meta.url).pathname;
+const file = (name: string) => fileURLToPath(new URL(`./fixtures/${name}`, import.meta.url));
 const fixture = (name: string) => file(`${name}.pdf`);
 
 /** Records every request and console CSP violation, so tests can prove nothing leaves the page. */

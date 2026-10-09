@@ -3,16 +3,18 @@
 import { copyFile, mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { PDFDocument } from 'pdf-lib';
+import { strFromU8, unzipSync } from 'fflate';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { STAR_NOTE, createServer } from '../mcp/src/server';
 import { parseAudio } from '../src/engine/audio';
 
 let dir: string;
 let client: Client;
-const fixture = (name: string) => new URL(`./fixtures/${name}`, import.meta.url).pathname;
+const fixture = (name: string) => fileURLToPath(new URL(`./fixtures/${name}`, import.meta.url));
 const at = (name: string) => join(dir, name);
 
 async function call(name: string, args: Record<string, unknown>) {
@@ -27,7 +29,16 @@ const duration = async (path: string) => parseAudio(new Uint8Array(await readFil
 
 beforeAll(async () => {
   dir = await mkdtemp(join(tmpdir(), 'fizzdoc-mcp-'));
-  for (const name of ['form.pdf', 'links.pdf', 'bookmarks.pdf', 'user-password.pdf', 'tone.mp3', 'tone.m4a', 'tone-48k.mp3']) {
+  for (const name of [
+    'form.pdf',
+    'links.pdf',
+    'bookmarks.pdf',
+    'user-password.pdf',
+    'tone.mp3',
+    'tone.m4a',
+    'tone-48k.mp3',
+    'report.docx',
+  ]) {
     await copyFile(fixture(name), at(name));
   }
   // Pages 100, 200 and 300 points wide, so page order can be read back; plus an author to remove.
@@ -48,6 +59,7 @@ describe('fizzdoc MCP server', () => {
     expect(tools.map((t) => t.name).sort()).toEqual(
       [
         'audio_info',
+        'clean_office',
         'delete_pdf_pages',
         'extract_pdf_pages',
         'merge_audio',
@@ -162,5 +174,22 @@ describe('fizzdoc MCP server', () => {
     expect(mixed.text).toMatch(/different audio settings/);
     const bad = await call('trim_audio', { file: at('tone.mp3'), start: '5:00' });
     expect(bad.isError).toBe(true);
+  });
+
+  it('removes Office metadata and leaves the content in place', async () => {
+    const src = at('report.docx');
+    const entriesBefore = unzipSync(new Uint8Array(await readFile(src)));
+    const coreBefore = strFromU8(entriesBefore['docProps/core.xml'] ?? new Uint8Array());
+    expect(coreBefore).toMatch(/<dc:creator[^>]*>[^<]+<\/dc:creator>/);
+
+    const { isError, saved } = await call('clean_office', { file: src });
+    expect(isError).toBe(false);
+    expect(saved).toHaveLength(1);
+    expect(saved[0]).not.toBe(src);
+
+    const entriesAfter = unzipSync(new Uint8Array(await readFile(saved[0])));
+    const coreAfter = strFromU8(entriesAfter['docProps/core.xml'] ?? new Uint8Array());
+    expect(coreAfter).not.toMatch(/<dc:creator[^>]*>[^<]+<\/dc:creator>/);
+    expect(Object.keys(entriesAfter)).toContain('word/document.xml');
   });
 });

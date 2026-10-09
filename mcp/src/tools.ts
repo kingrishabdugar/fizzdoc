@@ -3,10 +3,12 @@
 // network: files are read from disk, processed in memory and written back as new files.
 import { existsSync } from 'node:fs';
 import { readFile, stat, writeFile } from 'node:fs/promises';
+import { File as NodeFile } from 'node:buffer';
 import { createRequire } from 'node:module';
 import { basename, dirname, extname, join, resolve } from 'node:path';
 import createQpdf from '@neslinesli93/qpdf-wasm';
 import { AudioError, extension, formatTime, framesBetween, parseAudio, parseTime, write, type Track } from '../../src/engine/audio';
+import { LocalError, cleanOffice as cleanOfficeEngine } from '../../src/engine/local';
 import { PdfError, countPages, runJob, type Job, type Qpdf } from '../../src/engine/pdf';
 import { UI, type UiKey } from '../../src/i18n';
 
@@ -38,6 +40,11 @@ export function describe(error: unknown): string {
     return error.code === 'BAD_RANGE' && error.pages ? `${text} This PDF has ${error.pages} pages.` : text;
   }
   if (error instanceof AudioError) return ui(`error.${error.code}`).replace('{detail}', error.detail);
+  if (error instanceof LocalError) {
+    return error.code === 'NOT_OFFICE'
+      ? 'This is not an Office file (.docx, .xlsx or .pptx).'
+      : `Could not process the Office file (${error.code}).`;
+  }
   return `Something went wrong: ${error instanceof Error ? error.message : String(error)}`;
 }
 
@@ -227,4 +234,27 @@ export async function mergeAudio(files: string[], output?: string): Promise<Resu
   const total = tracks.reduce((sum, [, x]) => sum + x.duration, 0);
   const written = await save(target(output, first, `${stem(first)}-merged.${extension(t)}`), blob);
   return { written: [written], summary: `${tracks.length} files joined · ${formatTime(total, false)}`, notes: [audioNote] };
+}
+
+// ---------------------------------------------------------------------------------------------
+// Office (ZIP packages; metadata removal touches only docProps/*.xml, so content is untouched)
+// ---------------------------------------------------------------------------------------------
+
+const OFFICE_TYPES: Record<string, string> = {
+  '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  '.xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+};
+
+/** Saves a copy of a .docx, .xlsx or .pptx without author, editor, company, title or thumbnail. */
+export async function cleanOffice(file: string, output?: string): Promise<Result> {
+  const path = await input(file);
+  const name = basename(path);
+  const type = OFFICE_TYPES[extname(path).toLowerCase()] ?? 'application/octet-stream';
+  // Node's File and the DOM File the engine was written for have the same shape; cast across.
+  type EngineFile = Parameters<typeof cleanOfficeEngine>[0];
+  const fileObj = new NodeFile([await readFile(path)], name, { type }) as unknown as EngineFile;
+  const result = await cleanOfficeEngine(fileObj);
+  const written = await save(target(output, path, result.name), result.blob);
+  return { written: [written], summary: result.summary, notes: [] };
 }
