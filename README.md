@@ -258,7 +258,6 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started. First-time contributors 
 - [ ] Fill PDF forms
 - [ ] More audio formats (WAV, OPUS, WebM) and conversion to MP3 or M4A
 - [ ] More tools in the MCP server: compress, convert, OCR, redact ([#61](https://github.com/kingrishabdugar/fizzdoc/issues/61))
-- [ ] Remove image background
 
 Vote with a 👍 on the [issues](https://github.com/kingrishabdugar/fizzdoc/issues) you want most.
 

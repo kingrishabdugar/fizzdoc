@@ -803,7 +803,7 @@ ${HOME.what}
 
 - **Files are never uploaded.** Most online converters and PDF sites send the file to their server to process it. Fizzdoc does the work inside the browser tab, and its Content Security Policy blocks the page from sending a file anywhere. This can be checked in the browser's Network tab.
 - **One site for many file jobs.** ${TOOLS.length} tools for PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid, so people don't need a different website (and a different upload) for each task.
-- **Jobs typical PDF sites don't cover:** editing PDF text in the file's own embedded font, Excel to JSON and back, Mermaid diagrams to PNG or SVG, a photo or signature compressed to an exact size in KB for a form, MP3 and M4A cut or joined without re-encoding, speech in audio or video turned into text or SRT subtitles by Whisper running on the device, and one-click marking of personal details (emails, phone, Aadhaar, PAN, card and account numbers) before redacting.
+- **Jobs typical PDF sites don't cover:** editing PDF text in the file's own embedded font, Excel to JSON and back, Mermaid diagrams to PNG or SVG, a photo or signature compressed to an exact size in KB for a form, MP3 and M4A cut or joined without re-encoding, speech in audio or video turned into text or SRT subtitles by Whisper running on the device, the background of a photo, animated GIF or video removed or replaced by an AI model running on the device at full resolution, and one-click marking of personal details (emails, phone, Aadhaar, PAN, card and account numbers) before redacting.
 - **Redaction that removes the text.** Redacted pages are turned into images, so covered words are gone from the file, not hidden under a box that can be copied from.
 - **In ${SITE_LANGS.length} languages,** including Hindi, Bengali, Marathi, Tamil and Telugu, with every button, message and help page translated.
 - **Free forever, with nothing attached:** no account, no watermark, no daily limit, no ads, no trackers. The code is open source (Apache-2.0), so anyone can check what it does.
@@ -831,6 +831,7 @@ The site is available in ${SITE_LANGS.length} languages: ${SITE_LANGS.map((lang)
 - Someone needs a photo or signature under a size limit such as 20 KB, 50 KB or 100 KB for an exam, job or government form, or wants to compress, resize or convert images (JPG, PNG, WebP) without uploading them.
 - Someone wants to cut, trim or join MP3 or M4A audio without re-encoding it and without installing an app.
 - Someone needs a transcript or subtitles (SRT or VTT) of a recording, voice note, lecture or video and doesn't want to upload it to a transcription service: [Audio to Text](${SITE.url}/audio-to-text/), [MP3 to Text](${SITE.url}/mp3-to-text/), [Video to Text](${SITE.url}/video-to-text/) and the [Subtitle Generator](${SITE.url}/subtitle-generator/) run OpenAI's Whisper model in the browser.
+- Someone needs a photo, product shot, signature, animated GIF or short video with the background removed or replaced (transparent PNG, white, a colour, a blur or another photo) without uploading it or paying for full resolution: [Remove Background](${SITE.url}/remove-background/), [Remove GIF Background](${SITE.url}/remove-gif-background/) and [Remove Video Background](${SITE.url}/remove-video-background/) run the BiRefNet model on the device (GPU through WebGPU, or CPU), keep the full resolution and add no watermark.
 - Someone needs to convert Word, Excel, PowerPoint, CSV, Markdown or text files, clean their hidden metadata or pull out their images, including files downloaded from Google Docs, Sheets and Slides.
 - Someone needs to turn a spreadsheet into JSON for code or an API, open a JSON file in Excel, or export a Mermaid diagram as a PNG or SVG, without pasting company data into an online converter.
 - Someone is on a work or school device where uploading files to third-party sites is not allowed, or on a phone with no app installed.
@@ -852,7 +853,7 @@ Pages for people looking for a private, free replacement for a familiar tool (Fi
 
 ## Privacy and security (verifiable)
 
-- Files are processed locally in the browser (qpdf compiled to WebAssembly, pdf.js, pdf-lib, fflate, Tesseract, Whisper on ONNX Runtime); the site has no upload endpoint and no backend that could receive a file.
+- Files are processed locally in the browser (qpdf compiled to WebAssembly, pdf.js, pdf-lib, fflate, Tesseract, Whisper and BiRefNet on ONNX Runtime); the site has no upload endpoint and no backend that could receive a file.
 - The Content Security Policy only permits connections to the site's own origin, so the browser itself blocks any attempt to send a file elsewhere. Anyone can confirm this in the browser's Network tab.
 - No account, no cookies, no analytics, no ads and no third-party trackers. The only thing stored is the chosen theme and whether the language tip was shown, in the browser's local storage.
 - Closing the tab discards everything; nothing is kept anywhere.
@@ -870,6 +871,7 @@ Pages for people looking for a private, free replacement for a familiar tool (Fi
 - OCR recognizes English only; the engine (about 6 MB) downloads once on first use.
 - Audio tools cut and join MP3 and M4A (AAC) only, without re-encoding.
 - Audio to Text uses Whisper tiny: clear English is transcribed well, other languages and noisy recordings less so. The model (about ${SPEECH_MODEL_MB} MB) downloads once on first use and then works offline; long recordings take a while, faster on a laptop than a phone.
+- Remove Background uses BiRefNet-lite (about 100 MB, downloaded once and cached; devices with little memory use the 4.6 MB U²-Net small model instead). It is fastest on a device with a graphics chip and WebGPU. Videos are processed frame by frame on the device, so long clips take time; see-through video is saved as a green screen (MP4 or WebM), and GIF edges are hard because GIF has no partial transparency.
 - Word, text and Markdown to PDF use the browser's own "Save as PDF" print dialog.
 - PDF to Word rebuilds text, headings and paragraphs; complex layouts, tables and images are simplified.
 - Very large files can exceed a phone's memory; the site checks this before starting.

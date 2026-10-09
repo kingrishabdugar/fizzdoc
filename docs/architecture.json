@@ -28,7 +28,8 @@
           "ocr",
           "editor",
           "device",
-          "speech"
+          "speech",
+          "bg"
         ],
         "note": "Files go from the visitor's device into the tab's engines and straight back. Nothing crosses the network."
       }
@@ -39,7 +40,7 @@
       "id": "registry",
       "type": "frontend",
       "label": "Tool registry",
-      "sublabel": "site.ts \u00b7 64 tools",
+      "sublabel": "site.ts \u00b7 67 tools",
       "pos": [
         40,
         90
@@ -188,6 +189,20 @@
         150,
         60
       ]
+    },
+    {
+      "id": "bg",
+      "type": "backend",
+      "label": "Background worker",
+      "sublabel": "BiRefNet \u00b7 WebGPU or WASM",
+      "pos": [
+        860,
+        1050
+      ],
+      "size": [
+        150,
+        60
+      ]
     }
   ],
   "boundaries": [
@@ -209,7 +224,8 @@
         "local",
         "ocr",
         "editor",
-        "speech"
+        "speech",
+        "bg"
       ]
     }
   ],
@@ -303,6 +319,16 @@
         825,
         826
       ]
+    },
+    {
+      "id": "app-bg",
+      "from": "app",
+      "to": "bg",
+      "label": "Worker",
+      "labelAt": [
+        825,
+        1066
+      ]
     }
   ],
   "cards": [
@@ -321,7 +347,8 @@
       "items": [
         "~15 KB app on first load",
         "Engines load only when a tool runs",
-        "OCR and speech models self-hosted, fetched once"
+        "AI models self-hosted, fetched once, cached",
+        "Background AI on the GPU (WebGPU), CPU fallback"
       ]
     },
     {

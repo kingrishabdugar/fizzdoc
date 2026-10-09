@@ -78,6 +78,7 @@ sequenceDiagram
 | `src/engine/ocr.ts` | English OCR for images and searchable PDFs | tesseract.js (self-hosted via `vite-plugins/ocr-assets.ts`), pdf-lib |
 | `src/engine/pdf-text.ts` | Rewrites changed lines inside the page content stream with the PDF's own font | pdf-lib |
 | `src/engine/background.ts`, `matte.ts` | Remove Background: BiRefNet-lite (512 px) in a worker on WebGPU or the CPU, U²-Net small for low-memory phones; the mask is fitted to the full-size photo with a fast guided filter and edge colours are cleaned (blur-fusion), so output keeps the photo's resolution | ONNX Runtime Web |
+| `src/engine/gif.ts`, `video-background.ts` | Remove GIF and Video Background: every frame goes through the same model; GIFs keep each frame's delay and loop, videos are re-encoded by the browser (WebCodecs) with the sound kept | gifuct-js, gifenc, Mediabunny |
 | `src/engine/transcribe.ts` | Speech to text, SRT and VTT with Whisper in a worker; model cached once in Cache Storage | transformers.js, ONNX Runtime |
 | `src/tools/edit-pdf.ts` | In-page PDF editor: change text, add text, white-out | pdf.js, pdf-lib, `pdf-text.ts` |
 | `src/tools/ocr-viewer.ts` | Image with selectable recognized text (Live Text style) | – |
