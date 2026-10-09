@@ -2,7 +2,7 @@
 // what goes behind (nothing, a colour, their own photo, or a blur), the size, and touches up any
 // spot the model missed. Built for big buttons and few decisions; everything stays on the device.
 import './remove-bg.css';
-import { compose, removeBackground, render, type Backdrop, type SaveFormat } from '../engine/background';
+import { compose, frameFor, removeBackground, render, subjectBox, type Backdrop, type Layout, type Look, type SaveFormat } from '../engine/background';
 import { decodeGif, encodeGif, type GifFrame } from '../engine/gif';
 import type { Output } from '../engine/local';
 import { t } from '../i18n';
@@ -87,9 +87,10 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   const backdrops = group(t('bg.background'));
   const choices = element('div', 'bg-choices');
   backdrops.append(choices);
+  const styleBox = group(t('bg.style'));
   const sizeBox = group(t('bg.size'));
   const touch = group(t('bg.touch'));
-  viewer.replaceChildren(stage, compare, note, backdrops, sizeBox, touch);
+  viewer.replaceChildren(stage, compare, note, backdrops, styleBox, sizeBox, touch);
 
   // Before the cut-out is ready, the photo itself is shown under the progress.
   const preview = canvas.getContext('2d')!;
@@ -156,7 +157,24 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   let ownPhoto: ImageBitmap | undefined;
   // Animations play in the preview; `shown` is the frame on screen.
   let shown = 0;
-  const draw = () => (animated ? compose(canvas, frames[shown].cut, frames[shown].photo, backdrop) : compose(canvas, cut, photo, backdrop));
+  // Finishing touches for still pictures: shadow, outline, and which part of the photo is shown.
+  let layout: Layout = 'photo';
+  let shadow = false;
+  let outline: string | undefined;
+  let frame: [number, number, number, number] = [0, 0, W, H];
+  const look = (): Look => ({ frame, shadow, outline });
+  /** Re-measures the subject (after a touch-up or a new crop) and resizes the preview to the frame. */
+  const reframe = () => {
+    frame = frameFor(layout, layout === 'photo' ? undefined : subjectBox(pixels, W, H), W, H);
+    const s = Math.min(1, PREVIEW / Math.max(frame[2], frame[3]));
+    const width = Math.max(1, Math.round(frame[2] * s));
+    const height = Math.max(1, Math.round(frame[3] * s));
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+  };
+  const draw = () => (animated ? compose(canvas, frames[shown].cut, frames[shown].photo, backdrop) : compose(canvas, cut, photo, backdrop, look()));
   let timer: ReturnType<typeof setTimeout> | undefined;
   const play = () => {
     draw();
@@ -248,13 +266,54 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   // Pages like "white background" start with that colour picked.
   (colors.get(preset.bg as 'white') ?? none).click();
 
+  // ---- Style: shadow, outline, crop ----
+  const toggle = (label: string, onChange: (on: boolean) => void) => {
+    const button = element('button', 'bg-btn', label);
+    button.type = 'button';
+    button.setAttribute('aria-pressed', 'false');
+    button.onclick = () => {
+      const on = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(on));
+      onChange(on);
+      draw();
+    };
+    return button;
+  };
+  const styleTools = element('div', 'bg-tools');
+  const cropSelect = element('select');
+  cropSelect.setAttribute('aria-label', t('bg.crop'));
+  cropSelect.append(new Option(t('bg.cropPhoto'), 'photo'), new Option(t('bg.cropSubject'), 'subject'), new Option(t('bg.cropSquare'), 'square'));
+  cropSelect.onchange = () => {
+    layout = cropSelect.value as Layout;
+    reframe();
+    fillSizes();
+    draw();
+  };
+  const cropLabel = element('label', 'bg-brush', t('bg.crop'));
+  cropLabel.append(cropSelect);
+  styleTools.append(
+    toggle(t('bg.shadow'), (on) => (shadow = on)),
+    toggle(t('bg.outline'), (on) => (outline = on ? '#ffffff' : undefined)),
+    cropLabel,
+  );
+  styleBox.append(styleTools);
+  styleBox.hidden = animated || !!info; // for still pictures
+
   // ---- Size ----
   const sizeSelect = element('select');
   sizeSelect.setAttribute('aria-label', t('bg.size'));
-  const widths = [2000, 1080, 600].filter((w) => w < W);
-  sizeSelect.append(new Option(t('bg.original', { w: W, h: H }), String(W)));
-  for (const w of widths) sizeSelect.append(new Option(t('bg.widthOption', { w, h: Math.round((H * w) / W) }), String(w)));
-  sizeSelect.append(new Option(t('bg.customSize'), 'custom'));
+  // Sizes follow the shown part of the photo (the whole photo, or the crop).
+  const fillSizes = () => {
+    const [, , fw, fh] = frame;
+    const kept = sizeSelect.value === 'custom' ? 'custom' : '';
+    sizeSelect.replaceChildren(new Option(t('bg.original', { w: fw, h: fh }), String(fw)));
+    for (const w of [2000, 1080, 600].filter((w) => w < fw)) sizeSelect.append(new Option(t('bg.widthOption', { w, h: Math.round((fh * w) / fw) }), String(w)));
+    sizeSelect.append(new Option(t('bg.customSize'), 'custom'));
+    sizeSelect.value = kept || String(fw);
+    widthInput.max = String(Math.max(fw * 4, 8000));
+    if (!kept) widthInput.value = String(fw);
+    updateSize();
+  };
   const widthInput = element('input');
   widthInput.type = 'number';
   widthInput.min = '16';
@@ -266,15 +325,16 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   const updateSize = () => {
     widthInput.hidden = sizeSelect.value !== 'custom';
     const w = outputWidth();
-    sizeNote.textContent = widthInput.hidden ? '' : `× ${Math.round((H * w) / W)} px`;
+    sizeNote.textContent = widthInput.hidden ? '' : `× ${Math.round((frame[3] * w) / frame[2])} px`;
   };
   sizeSelect.onchange = updateSize;
   widthInput.oninput = updateSize;
   sizeBox.append(sizeSelect, widthInput, sizeNote);
-  const outputWidth = () => {
+  function outputWidth() {
     const w = sizeSelect.value === 'custom' ? Math.round(Number(widthInput.value)) : Number(sizeSelect.value);
-    return Number.isFinite(w) && w >= 16 ? Math.min(w, Number(widthInput.max)) : W;
-  };
+    return Number.isFinite(w) && w >= 16 ? Math.min(w, Number(widthInput.max)) : frame[2];
+  }
+  fillSizes();
 
   // ---- Touch up ----
   touch.append(element('p', 'bg-hint', t('bg.touchHint')));
@@ -306,13 +366,35 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   const undo = element('button', 'bg-btn', t('ed.undo'));
   undo.type = 'button';
   undo.disabled = true;
-  tools.append(modeButton('erase'), modeButton('restore'), brushLabel, undo);
+  const redo = element('button', 'bg-btn', t('bg.redo'));
+  redo.type = 'button';
+  redo.disabled = true;
+  // Zoom, for careful work on small details (most useful on phones).
+  let zoom = 1;
+  let baseWidth = 0;
+  const zoomBy = (step: number) => {
+    if (zoom === 1) baseWidth = canvas.getBoundingClientRect().width;
+    zoom = Math.min(4, Math.max(1, zoom + step));
+    stage.classList.toggle('zoomed', zoom > 1);
+    canvas.style.width = zoom > 1 ? `${Math.round(baseWidth * zoom)}px` : '';
+    zoomOut.disabled = zoom === 1;
+    zoomIn.disabled = zoom === 4;
+  };
+  const zoomIn = element('button', 'bg-btn', t('ed.zoomIn'));
+  zoomIn.type = 'button';
+  zoomIn.onclick = () => zoomBy(1);
+  const zoomOut = element('button', 'bg-btn', t('ed.zoomOut'));
+  zoomOut.type = 'button';
+  zoomOut.disabled = true;
+  zoomOut.onclick = () => zoomBy(-1);
+  tools.append(modeButton('erase'), modeButton('restore'), brushLabel, undo, redo, zoomOut, zoomIn);
   touch.append(tools);
   touch.hidden = animated || !!info; // touch-ups are for still pictures
 
   // Each stroke remembers the 64×64 tiles it changed, so Undo restores just those.
   type Snapshot = Map<number, ImageData>;
   const history: Snapshot[] = [];
+  const future: Snapshot[] = [];
   let stroke: Snapshot | undefined;
   const tilesX = Math.ceil(W / TILE);
   const remember = (x0: number, y0: number, x1: number, y1: number) => {
@@ -336,13 +418,28 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     for (let row = 0; row < tile.height; row++) pixels.set(tile.data.subarray(row * tile.width * 4, (row + 1) * tile.width * 4), ((ty * TILE + row) * W + tx * TILE) * 4);
     cutContext.putImageData(tile, tx * TILE, ty * TILE);
   };
-  undo.onclick = () => {
-    const last = history.pop();
+  /** The tiles as they are now, for the same keys as `snapshot`. */
+  const current = (snapshot: Snapshot): Snapshot => {
+    const now: Snapshot = new Map();
+    for (const [key, tile] of snapshot) {
+      const tx = key % tilesX;
+      const ty = Math.floor(key / tilesX);
+      now.set(key, cutContext.getImageData(tx * TILE, ty * TILE, tile.width, tile.height));
+    }
+    return now;
+  };
+  const step = (from: Snapshot[], to: Snapshot[]) => {
+    const last = from.pop();
     if (!last) return;
+    to.push(current(last));
     for (const [key, tile] of last) putTile(key, tile);
     undo.disabled = !history.length;
+    redo.disabled = !future.length;
+    if (layout !== 'photo') reframe();
     draw();
   };
+  undo.onclick = () => step(history, future);
+  redo.onclick = () => step(future, history);
 
   /** One round dab of the brush at full-size coordinates, soft at its rim. */
   const dab = (cx: number, cy: number, radius: number) => {
@@ -384,10 +481,11 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     let last: [number, number] | undefined;
     const paint = (e: PointerEvent) => {
       const box = canvas.getBoundingClientRect();
-      const x = ((e.clientX - box.left) / box.width) * W;
-      const y = ((e.clientY - box.top) / box.height) * H;
+      const [fx, fy, fw, fh] = frame;
+      const x = fx + ((e.clientX - box.left) / box.width) * fw;
+      const y = fy + ((e.clientY - box.top) / box.height) * fh;
       // The brush size is set in screen pixels, so it feels the same at any zoom.
-      const radius = (Number(brush.value) / 2) * (W / box.width);
+      const radius = (Number(brush.value) / 2) * (fw / box.width);
       // Fill the gap between pointer events so fast strokes stay continuous.
       const steps = last ? Math.max(1, Math.ceil(Math.hypot(x - last[0], y - last[1]) / (radius / 3))) : 1;
       for (let i = 1; i <= steps; i++) dab(last ? last[0] + ((x - last[0]) * i) / steps : x, last ? last[1] + ((y - last[1]) * i) / steps : y, radius);
@@ -397,10 +495,18 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     paint(event);
     const end = () => {
       canvas.removeEventListener('pointermove', paint);
-      if (stroke?.size) history.push(stroke);
+      if (stroke?.size) {
+        history.push(stroke);
+        future.length = 0;
+      }
       if (history.length > 30) history.shift();
       stroke = undefined;
       undo.disabled = !history.length;
+      redo.disabled = !future.length;
+      if (layout !== 'photo') {
+        reframe();
+        draw();
+      }
     };
     canvas.addEventListener('pointermove', paint);
     canvas.addEventListener('pointerup', end, { once: true });
@@ -412,7 +518,9 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   const showOriginal = (on: boolean) => {
     if (on) {
       preview.clearRect(0, 0, canvas.width, canvas.height);
-      preview.drawImage(animated ? frames[shown].photo : photo, 0, 0, canvas.width, canvas.height);
+      const [fx, fy, fw] = animated ? [0, 0, W] : frame;
+      const s = canvas.width / fw;
+      preview.drawImage(animated ? frames[shown].photo : photo, -fx * s, -fy * s, W * s, H * s);
     } else draw();
     compare.classList.toggle('active', on);
   };
@@ -454,8 +562,8 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       }
       const chosen = (['png', 'jpg', 'webp'] as SaveFormat[]).find((f) => f === options.format) ?? (backdrop.kind === 'none' ? 'png' : 'jpg');
       const w = outputWidth();
-      const h = Math.max(1, Math.round((H * w) / W));
-      const blob = await render(cut, photo, backdrop, w, h, chosen);
+      const h = Math.max(1, Math.round((frame[3] * w) / frame[2]));
+      const blob = await render(cut, photo, backdrop, w, h, chosen, look());
       onProgress?.(1);
       return {
         blob,

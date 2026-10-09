@@ -1074,7 +1074,7 @@ test('removes a picture’s background on the device, keeps its full size, and p
         const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
         c.drawImage(bitmap, 0, 0);
         const at = (fx: number, fy: number) => [...c.getImageData(Math.floor(bitmap.width * fx), Math.floor(bitmap.height * fy), 1, 1).data];
-        return { width: bitmap.width, height: bitmap.height, corner: at(0.02, 0.02), centre: at(0.5, 0.5) };
+        return { width: bitmap.width, height: bitmap.height, corner: at(0.02, 0.02), centre: at(0.5, 0.5), below: at(0.5, 0.95) };
       },
       [[...bytes], type],
     );
@@ -1118,6 +1118,31 @@ test('removes a picture’s background on the device, keeps its full size, and p
   await page.getByRole('button', { name: 'Download image' }).click();
   await expect(page.locator('#status')).toContainText('900 × 600 px');
   expect((await sample((await downloadBytes(page)).bytes, 'image/png')).centre[3]).toBe(255);
+  // Redo brings the erased spot back, and Undo takes it away again.
+  await page.getByRole('button', { name: 'Redo' }).click();
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#status')).toContainText('900 × 600 px');
+  expect((await sample((await downloadBytes(page)).bytes, 'image/png')).centre[3]).toBeLessThan(20);
+  await page.getByRole('button', { name: 'Undo' }).click();
+  await page.getByRole('button', { name: 'Erase' }).click();
+
+  // Square crop for online shops: a white square around the subject, the subject in the middle.
+  await page.getByRole('button', { name: 'White' }).click();
+  await page.getByRole('combobox', { name: 'Crop' }).selectOption('square');
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#status')).toContainText('Done');
+  const square = await sample((await downloadBytes(page)).bytes, 'image/jpeg');
+  expect(square.width).toBe(square.height);
+  expect(square.width).toBeGreaterThan(360);
+  expect(square.width).toBeLessThan(460);
+  expect(square.centre[0]).toBeGreaterThan(150);
+  expect(square.below.slice(0, 3).every((v) => v > 245)).toBe(true);
+
+  // Shadow: the white just under the subject turns grey.
+  await page.getByRole('button', { name: 'Shadow' }).click();
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#status')).toContainText('Done');
+  expect((await sample((await downloadBytes(page)).bytes, 'image/jpeg')).below[0]).toBeLessThan(240);
 
   expect(seen.violations).toEqual([]);
   expect(seen.requests.filter((r) => !r.url.startsWith(page.url().split('/').slice(0, 3).join('/')) && !r.url.startsWith('blob:') && !r.url.startsWith('data:'))).toEqual([]);

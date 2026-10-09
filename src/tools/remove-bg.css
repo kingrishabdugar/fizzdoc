@@ -216,3 +216,16 @@
   align-items: center;
   gap: 8px;
 }
+
+/* Zoomed in for touch-ups: the picture grows and the stage scrolls both ways
+   ("safe" keeps the left and top edges reachable when the picture is wider than the stage). */
+.bg-stage.zoomed {
+  place-items: safe center;
+  overflow: auto;
+  max-height: min(75vh, 760px);
+}
+.bg-stage.zoomed .bg-canvas {
+  max-width: none;
+  max-height: none;
+  height: auto;
+}
