@@ -1283,6 +1283,38 @@ TOOLS.push(
     ],
     input: { accept: 'image/gif,.gif' },
   },
+  {
+    op: 'remove-bg',
+    format: 'image',
+    slug: 'whatsapp-sticker-maker',
+    name: 'WhatsApp Sticker Maker',
+    summary: 'Turn any photo into a sticker: background removed, white outline, ready for WhatsApp.',
+    action: 'Download sticker',
+    title: 'WhatsApp Sticker Maker Free — From Any Photo, No Upload | Fizzdoc',
+    description:
+      'Make a WhatsApp sticker from any photo for free: the background is removed on your device and you get a 512×512 WebP with a white outline. No upload.',
+    h1: 'Make a WhatsApp sticker from any photo',
+    lede: 'Choose a photo of a friend, a pet or yourself. The background disappears, a white sticker outline is added, and you get a WhatsApp-ready sticker: 512 × 512 WebP, clear background, under 100 KB. The AI runs on your own device.',
+    steps: [
+      'Choose a photo. The background is removed and the sticker outline is added.',
+      'Touch up any spot if needed, or turn the outline off.',
+      'Click “Download sticker”, or on a phone tap “Share to WhatsApp”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      [
+        'How do I add the sticker to WhatsApp?',
+        'On a phone, tap “Share to WhatsApp” and send it to any chat (a chat with yourself works too). Then tap the sticker in the chat and choose “Add to favourites” to keep it. On a computer, download the WebP file and send it from WhatsApp Web or Desktop.',
+      ],
+      [
+        'Is this made by WhatsApp?',
+        'No. Fizzdoc is an independent, free tool and is not affiliated with WhatsApp or Meta. WhatsApp is a trademark of its owner; the name is used here only to say what the stickers are for.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { format: 'sticker' },
+    input: { accept: 'image/*' },
+  },
 );
 
 // Popular searches that are the same job with a different file type get their own page and copy.
@@ -1760,6 +1792,13 @@ const KEYWORDS: Record<string, string[]> = {
     'change video background',
     'remove video background without green screen',
     'transparent background video',
+  ],
+  'whatsapp-sticker-maker': [
+    'whatsapp sticker maker',
+    'make sticker from photo',
+    'photo to whatsapp sticker',
+    'personal sticker maker online',
+    'transparent sticker webp 512',
   ],
   'remove-gif-background': [
     'remove gif background',

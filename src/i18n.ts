@@ -339,6 +339,8 @@ export const UI = {
   'bg.restore': 'Restore',
   'bg.brush': 'Brush size',
   'bg.redo': 'Redo',
+  'bg.shareSticker': 'Share to WhatsApp',
+  'bg.stickerNote': 'Sticker ready: 512 × 512, clear background, white outline. Save it, or share it straight to WhatsApp from your phone.',
   'bg.magicErase': 'Tap to remove',
   'bg.magicRestore': 'Tap to keep',
   'bg.magicHint': 'Faster: pick Tap to remove or Tap to keep, then tap a leftover patch or a missing part. The whole area of that colour is fixed at once.',

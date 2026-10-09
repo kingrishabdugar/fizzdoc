@@ -256,6 +256,8 @@
     "bg.restore": "Przywróć",
     "bg.brush": "Rozmiar pędzla",
     "bg.redo": "Ponów",
+    "bg.shareSticker": "Udostępnij w WhatsApp",
+    "bg.stickerNote": "Naklejka gotowa: 512 × 512, przezroczyste tło, biały obrys. Zapisz ją albo udostępnij z telefonu prosto do WhatsApp.",
     "bg.magicErase": "Dotknij, aby usunąć",
     "bg.magicRestore": "Dotknij, aby zachować",
     "bg.magicHint": "Szybciej: wybierz „Dotknij, aby usunąć” lub „Dotknij, aby zachować”, a potem dotknij resztki tła albo brakującego fragmentu. Cały obszar w tym kolorze poprawi się naraz.",
@@ -2940,6 +2942,45 @@
         "usuwanie tła animowanego gifa",
         "zmień tło gifa",
         "remove gif background"
+      ]
+    },
+    "whatsapp-sticker-maker": {
+      "name": "Kreator naklejek WhatsApp",
+      "summary": "Zrób naklejkę z dowolnego zdjęcia: bez tła, z białym obrysem, gotową do WhatsApp.",
+      "action": "Pobierz naklejkę",
+      "title": "Naklejki WhatsApp za Darmo — Z Dowolnego Zdjęcia | Fizzdoc",
+      "description": "Zrób za darmo naklejkę WhatsApp z dowolnego zdjęcia: tło jest usuwane na Twoim urządzeniu, a Ty dostajesz WebP 512×512 z białym obrysem. Nic nie jest wysyłane.",
+      "h1": "Zrób naklejkę WhatsApp z dowolnego zdjęcia",
+      "lede": "Wybierz zdjęcie przyjaciela, zwierzaka albo swoje. Tło znika, dochodzi biały obrys naklejki i dostajesz naklejkę gotową do WhatsApp: WebP 512 × 512, przezroczyste tło, poniżej 100 KB. AI działa na Twoim urządzeniu.",
+      "steps": [
+        "Wybierz zdjęcie. Tło zostaje usunięte, a obrys naklejki dodany.",
+        "W razie potrzeby popraw fragment albo wyłącz obrys.",
+        "Kliknij „Pobierz naklejkę” albo na telefonie „Udostępnij w WhatsApp”."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Jak dodać naklejkę do WhatsApp?",
+          "Na telefonie dotknij „Udostępnij w WhatsApp” i wyślij ją do dowolnego czatu (czat z samym sobą też działa). Potem dotknij naklejki w czacie i wybierz „Dodaj do ulubionych”. Na komputerze pobierz plik WebP i wyślij go przez WhatsApp Web lub Desktop."
+        ],
+        [
+          "Czy to narzędzie WhatsApp?",
+          "Nie. Fizzdoc to niezależne, darmowe narzędzie, niepowiązane z WhatsApp ani Meta. WhatsApp to znak towarowy jego właściciela; nazwa mówi tylko, do czego są naklejki."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "naklejki whatsapp kreator",
+        "naklejka z własnego zdjęcia",
+        "zdjęcie na naklejkę",
+        "robienie naklejek za darmo",
+        "przezroczysta naklejka webp"
       ]
     }
   }

@@ -256,6 +256,8 @@
     "bg.restore": "Khôi phục",
     "bg.brush": "Cỡ cọ",
     "bg.redo": "Làm lại",
+    "bg.shareSticker": "Chia sẻ lên WhatsApp",
+    "bg.stickerNote": "Nhãn dán đã xong: 512 × 512, nền trong suốt, viền trắng. Lưu lại, hoặc chia sẻ thẳng lên WhatsApp từ điện thoại.",
     "bg.magicErase": "Chạm để xóa",
     "bg.magicRestore": "Chạm để giữ",
     "bg.magicHint": "Nhanh hơn: chọn Chạm để xóa hoặc Chạm để giữ, rồi chạm vào phần nền còn sót hoặc phần bị mất. Cả vùng cùng màu được sửa ngay một lần.",
@@ -2940,6 +2942,45 @@
         "xóa nền gif động miễn phí",
         "đổi nền gif",
         "remove gif background"
+      ]
+    },
+    "whatsapp-sticker-maker": {
+      "name": "Tạo nhãn dán WhatsApp",
+      "summary": "Biến ảnh bất kỳ thành nhãn dán: xóa nền, viền trắng, sẵn sàng cho WhatsApp.",
+      "action": "Tải nhãn dán",
+      "title": "Tạo Sticker WhatsApp Miễn Phí — Từ Ảnh Bất Kỳ, Không Tải Lên | Fizzdoc",
+      "description": "Tạo sticker WhatsApp miễn phí từ ảnh bất kỳ: nền được xóa ngay trên thiết bị và bạn nhận file WebP 512×512 có viền trắng. Không tải lên gì cả.",
+      "h1": "Tạo sticker WhatsApp từ ảnh bất kỳ",
+      "lede": "Chọn ảnh bạn bè, thú cưng hoặc của chính bạn. Nền biến mất, viền sticker màu trắng được thêm vào, và bạn có sticker sẵn sàng cho WhatsApp: WebP 512 × 512, nền trong suốt, dưới 100 KB. AI chạy ngay trên thiết bị của bạn.",
+      "steps": [
+        "Chọn một ảnh. Nền được xóa và viền sticker được thêm vào.",
+        "Sửa lại chỗ nào đó nếu cần, hoặc tắt viền.",
+        "Bấm “Tải nhãn dán”, hoặc trên điện thoại chạm “Chia sẻ lên WhatsApp”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Làm sao thêm sticker vào WhatsApp?",
+          "Trên điện thoại, chạm “Chia sẻ lên WhatsApp” và gửi vào một cuộc trò chuyện bất kỳ (trò chuyện với chính mình cũng được). Sau đó chạm vào sticker và chọn “Thêm vào mục yêu thích”. Trên máy tính, tải file WebP rồi gửi từ WhatsApp Web hoặc Desktop."
+        ],
+        [
+          "Đây có phải công cụ của WhatsApp không?",
+          "Không. Fizzdoc là công cụ miễn phí, độc lập, không liên kết với WhatsApp hay Meta. WhatsApp là nhãn hiệu của chủ sở hữu; tên chỉ được dùng để cho biết sticker dùng cho đâu."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "tạo sticker whatsapp",
+        "sticker từ ảnh của mình",
+        "biến ảnh thành sticker",
+        "làm sticker miễn phí",
+        "sticker webp nền trong suốt"
       ]
     }
   }

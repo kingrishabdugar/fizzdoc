@@ -1160,6 +1160,49 @@ test('removes a picture’s background on the device, keeps its full size, and p
   expect(seen.requests.filter((r) => !r.url.startsWith(page.url().split('/').slice(0, 3).join('/')) && !r.url.startsWith('blob:') && !r.url.startsWith('data:'))).toEqual([]);
 });
 
+test('makes a WhatsApp sticker: 512×512 WebP, clear background, outline, under 100 KB', async ({ page }) => {
+  test.setTimeout(240_000);
+  const seen = watch(page);
+  await page.goto('/whatsapp-sticker-maker/');
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(900, 600);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#e8eef5';
+    c.fillRect(0, 0, 900, 600);
+    c.fillStyle = '#c0392b';
+    c.beginPath();
+    c.arc(450, 300, 170, 0, Math.PI * 2);
+    c.fill();
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  await expect(page.getByRole('button', { name: 'Outline' })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
+  await expect(page.getByRole('combobox', { name: 'Size' })).toBeHidden();
+  await page.getByRole('button', { name: 'Download sticker' }).click();
+  await expect(page.locator('#status')).toContainText('512 × 512 px');
+  const sticker = await downloadBytes(page);
+  expect(sticker.name).toBe('ball-sticker.webp');
+  expect(sticker.bytes.length).toBeLessThanOrEqual(100 * 1024);
+  const look = await page.evaluate(async (data) => {
+    const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/webp' }));
+    const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    c.drawImage(bitmap, 0, 0);
+    const at = (x: number, y: number) => [...c.getImageData(x, y, 1, 1).data];
+    // The white outline sits just outside the ball's left edge, half way down.
+    let outline = false;
+    for (let x = 0; x < bitmap.width / 2; x++) {
+      const [r, g, b, a] = at(x, bitmap.height / 2);
+      if (a > 200 && r > 230 && g > 230 && b > 230) outline = true;
+    }
+    return { size: [bitmap.width, bitmap.height], corner: at(2, 2)[3], centre: at(256, 256), outline };
+  }, [...sticker.bytes]);
+  expect(look.size).toEqual([512, 512]);
+  expect(look.corner).toBeLessThan(20);
+  expect(look.centre[3]).toBe(255);
+  expect(look.outline).toBe(true);
+  expect(seen.violations).toEqual([]);
+});
+
 test('shares Fizzdoc: the phone’s share sheet, or links to the big networks and a copy button', async ({ browser }) => {
   const context = await browser.newContext({ permissions: ['clipboard-read', 'clipboard-write'] });
   const page = await context.newPage();

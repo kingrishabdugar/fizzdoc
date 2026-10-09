@@ -256,6 +256,8 @@
     "bg.restore": "Pulihkan",
     "bg.brush": "Ukuran kuas",
     "bg.redo": "Ulangi",
+    "bg.shareSticker": "Bagikan ke WhatsApp",
+    "bg.stickerNote": "Stiker siap: 512 × 512, latar transparan, garis tepi putih. Simpan, atau bagikan langsung ke WhatsApp dari ponsel.",
     "bg.magicErase": "Ketuk untuk hapus",
     "bg.magicRestore": "Ketuk untuk simpan",
     "bg.magicHint": "Lebih cepat: pilih Ketuk untuk hapus atau Ketuk untuk simpan, lalu ketuk sisa latar atau bagian yang hilang. Seluruh area dengan warna itu langsung diperbaiki.",
@@ -2940,6 +2942,45 @@
         "hapus latar gif animasi gratis",
         "ganti background gif",
         "remove gif background"
+      ]
+    },
+    "whatsapp-sticker-maker": {
+      "name": "Pembuat stiker WhatsApp",
+      "summary": "Ubah foto apa pun jadi stiker: latar dihapus, garis tepi putih, siap untuk WhatsApp.",
+      "action": "Unduh stiker",
+      "title": "Buat Stiker WhatsApp Gratis — Dari Foto Apa Pun | Fizzdoc",
+      "description": "Buat stiker WhatsApp gratis dari foto apa pun: latar dihapus di perangkat Anda dan Anda mendapat WebP 512×512 dengan garis tepi putih. Tanpa unggah.",
+      "h1": "Buat stiker WhatsApp dari foto apa pun",
+      "lede": "Pilih foto teman, hewan peliharaan, atau diri sendiri. Latar menghilang, garis tepi stiker putih ditambahkan, dan Anda mendapat stiker siap WhatsApp: WebP 512 × 512, latar transparan, di bawah 100 KB. AI berjalan di perangkat Anda sendiri.",
+      "steps": [
+        "Pilih foto. Latar dihapus dan garis tepi stiker ditambahkan.",
+        "Perbaiki bagian tertentu bila perlu, atau matikan garis tepi.",
+        "Klik “Unduh stiker”, atau di ponsel ketuk “Bagikan ke WhatsApp”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Bagaimana cara menambahkan stiker ke WhatsApp?",
+          "Di ponsel, ketuk “Bagikan ke WhatsApp” lalu kirim ke chat mana saja (chat dengan diri sendiri juga bisa). Lalu ketuk stiker di chat dan pilih “Tambahkan ke favorit”. Di komputer, unduh file WebP dan kirim dari WhatsApp Web atau Desktop."
+        ],
+        [
+          "Apakah ini buatan WhatsApp?",
+          "Bukan. Fizzdoc adalah alat gratis yang independen dan tidak berafiliasi dengan WhatsApp atau Meta. WhatsApp adalah merek dagang pemiliknya; nama ini dipakai hanya untuk menyebut kegunaan stikernya."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "buat stiker whatsapp",
+        "stiker dari foto sendiri",
+        "foto jadi stiker",
+        "bikin stiker gratis",
+        "stiker webp transparan"
       ]
     }
   }

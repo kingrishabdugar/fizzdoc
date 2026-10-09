@@ -26,6 +26,9 @@ const PREVIEW = 1600;
 const TILE = 64;
 /** Longest side of the copy that "Tap to remove / keep" searches; plenty for picking an area. */
 const MAGIC = 1024;
+/** WhatsApp stickers: 512×512 WebP with a clear background, at most 100 KB. */
+const STICKER = 512;
+const STICKER_BYTES = 100 * 1024;
 
 const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = '') => {
   const node = document.createElement(tag);
@@ -57,6 +60,8 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     }
   }
   const animated = gifFrames.length > 1;
+  // The sticker maker page: square, outlined, clear background, saved as a WhatsApp-ready WebP.
+  const sticker = preset.format === 'sticker' && !animated;
   const W = photo.width;
   const H = photo.height;
 
@@ -301,6 +306,12 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   );
   styleBox.append(styleTools);
   styleBox.hidden = animated || !!info; // for still pictures
+  if (sticker) {
+    (styleTools.children[1] as HTMLButtonElement).click(); // outline on
+    cropSelect.value = 'square';
+    layout = 'square';
+    reframe();
+  }
 
   // ---- Size ----
   const sizeSelect = element('select');
@@ -338,6 +349,34 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     return Number.isFinite(w) && w >= 16 ? Math.min(w, Number(widthInput.max)) : frame[2];
   }
   fillSizes();
+
+  sizeBox.hidden = sticker; // stickers are always 512×512
+  /** The sticker as a WebP file: 512×512, the quality lowered step by step until it fits 100 KB. */
+  const makeSticker = async () => {
+    for (const quality of [0.92, 0.8, 0.7, 0.6, 0.5, 0.4]) {
+      const canvas = new OffscreenCanvas(STICKER, STICKER);
+      compose(canvas, cut, photo, backdrop, look());
+      const blob = await canvas.convertToBlob({ type: 'image/webp', quality });
+      if (blob.size <= STICKER_BYTES || quality === 0.4) return new File([blob], `${file.name.replace(/\.[^.]+$/, '')}-sticker.webp`, { type: 'image/webp' });
+    }
+    throw new Error('unreachable');
+  };
+  if (sticker) {
+    note.textContent = t('bg.stickerNote');
+    const probe = new File([new Uint8Array(1)], 'sticker.webp', { type: 'image/webp' });
+    if (navigator.canShare?.({ files: [probe] })) {
+      const share = element('button', 'bg-btn bg-share', t('bg.shareSticker'));
+      share.type = 'button';
+      share.onclick = async () => {
+        try {
+          await navigator.share({ files: [await makeSticker()] });
+        } catch {
+          // closed the share sheet: nothing to do
+        }
+      };
+      styleBox.append(share);
+    }
+  }
 
   // ---- Touch up ----
   touch.append(element('p', 'bg-hint', t('bg.touchHint')), element('p', 'bg-hint', t('bg.magicHint')));
@@ -634,6 +673,11 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
           name: `${base}-${backdrop.kind === 'none' ? 'no-bg' : 'new-bg'}.gif`,
           summary: `${w} × ${h} px`,
         };
+      }
+      if (sticker) {
+        const made = await makeSticker();
+        onProgress?.(1);
+        return { blob: made, name: made.name, summary: `${STICKER} × ${STICKER} px · ${Math.ceil(made.size / 1024)} KB` };
       }
       const chosen = (['png', 'jpg', 'webp'] as SaveFormat[]).find((f) => f === options.format) ?? (backdrop.kind === 'none' ? 'png' : 'jpg');
       const w = outputWidth();

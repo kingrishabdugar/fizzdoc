@@ -256,6 +256,8 @@
     "bg.restore": "Wiederherstellen",
     "bg.brush": "Pinselgröße",
     "bg.redo": "Wiederholen",
+    "bg.shareSticker": "Auf WhatsApp teilen",
+    "bg.stickerNote": "Sticker fertig: 512 × 512, transparenter Hintergrund, weißer Umriss. Speichern oder vom Handy direkt auf WhatsApp teilen.",
     "bg.magicErase": "Tippen zum Entfernen",
     "bg.magicRestore": "Tippen zum Behalten",
     "bg.magicHint": "Schneller: Wählen Sie „Tippen zum Entfernen“ oder „Tippen zum Behalten“ und tippen Sie auf einen Hintergrundrest oder ein fehlendes Stück. Der ganze Bereich in dieser Farbe wird auf einmal korrigiert.",
@@ -2940,6 +2942,45 @@
         "animiertes GIF Hintergrund entfernen",
         "GIF Hintergrund ändern",
         "remove gif background"
+      ]
+    },
+    "whatsapp-sticker-maker": {
+      "name": "WhatsApp-Sticker-Maker",
+      "summary": "Jedes Foto wird zum Sticker: Hintergrund weg, weißer Umriss, fertig für WhatsApp.",
+      "action": "Sticker herunterladen",
+      "title": "WhatsApp Sticker Erstellen Kostenlos — Aus Jedem Foto | Fizzdoc",
+      "description": "Erstellen Sie kostenlos einen WhatsApp-Sticker aus jedem Foto: Der Hintergrund wird auf Ihrem Gerät entfernt, Sie erhalten ein 512×512-WebP mit weißem Umriss.",
+      "h1": "Einen WhatsApp-Sticker aus jedem Foto machen",
+      "lede": "Wählen Sie ein Foto von Freunden, Ihrem Haustier oder sich selbst. Der Hintergrund verschwindet, ein weißer Sticker-Umriss kommt dazu, und Sie erhalten einen WhatsApp-fertigen Sticker: 512 × 512 WebP, transparenter Hintergrund, unter 100 KB. Die KI läuft auf Ihrem eigenen Gerät.",
+      "steps": [
+        "Wählen Sie ein Foto. Der Hintergrund wird entfernt und der Sticker-Umriss hinzugefügt.",
+        "Bessern Sie bei Bedarf Stellen aus oder schalten Sie den Umriss aus.",
+        "Klicken Sie auf „Sticker herunterladen“ oder tippen Sie am Handy auf „Auf WhatsApp teilen“."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Wie füge ich den Sticker zu WhatsApp hinzu?",
+          "Tippen Sie am Handy auf „Auf WhatsApp teilen“ und senden Sie ihn in einen beliebigen Chat (ein Chat mit sich selbst geht auch). Tippen Sie dann im Chat auf den Sticker und wählen Sie „Zu Favoriten hinzufügen“. Am Computer laden Sie die WebP-Datei herunter und senden sie über WhatsApp Web oder Desktop."
+        ],
+        [
+          "Ist das von WhatsApp?",
+          "Nein. Fizzdoc ist ein unabhängiges, kostenloses Werkzeug und nicht mit WhatsApp oder Meta verbunden. WhatsApp ist eine Marke ihres Inhabers; der Name sagt nur, wofür die Sticker gedacht sind."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "WhatsApp Sticker erstellen",
+        "Sticker aus eigenem Foto",
+        "Foto zu Sticker",
+        "Sticker selber machen kostenlos",
+        "transparenter Sticker webp"
       ]
     }
   }

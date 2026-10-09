@@ -248,6 +248,7 @@ function optionsHtml(c: Copy, tool: Tool) {
     <label>${esc(c.t('ws.look'))}<select name="look">${option('color', c.t('ws.lookColor'))}${option('gray', c.t('ws.lookGray'))}${option('scanned', c.t('ws.lookScanned'), tool.op === 'scan-pdf')}</select></label>${
       tool.op === 'redact-pdf' ? `\n    <label class="check"><input name="keepText" type="checkbox" checked> ${esc(c.t('ws.keepText'))}</label>` : ''
     }`;
+  if (tool.op === 'remove-bg' && tool.preset?.format === 'sticker') return '<input type="hidden" name="format" value="sticker">';
   if (tool.op === 'remove-bg')
     return `<label>${esc(c.t('ws.saveAs'))}<select name="format">${option('auto', c.t('ws.fmtAuto'))}${option('png', c.t('ws.fmtPng'))}${option('jpg', c.t('ws.fmtJpeg'))}${option('webp', c.t('ws.fmtWebp'))}</select></label>`;
   if (tool.op === 'mermaid-image')

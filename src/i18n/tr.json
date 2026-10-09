@@ -256,6 +256,8 @@
     "bg.restore": "Geri getir",
     "bg.brush": "Fırça boyutu",
     "bg.redo": "Yinele",
+    "bg.shareSticker": "WhatsApp’ta paylaş",
+    "bg.stickerNote": "Çıkartma hazır: 512 × 512, şeffaf arka plan, beyaz kenar. Kaydedin ya da telefondan doğrudan WhatsApp’ta paylaşın.",
     "bg.magicErase": "Dokun ve kaldır",
     "bg.magicRestore": "Dokun ve tut",
     "bg.magicHint": "Daha hızlı: Dokun ve kaldır ya da Dokun ve tut seçin, sonra kalan arka plan parçasına veya eksik kısma dokunun. O renkteki alanın tamamı tek seferde düzelir.",
@@ -2940,6 +2942,45 @@
         "hareketli gif arka planı silme",
         "gif arka planı değiştirme",
         "remove gif background"
+      ]
+    },
+    "whatsapp-sticker-maker": {
+      "name": "WhatsApp çıkartma yapıcı",
+      "summary": "Her fotoğrafı çıkartmaya çevirin: arka plan silinir, beyaz kenar eklenir, WhatsApp’a hazır.",
+      "action": "Çıkartmayı indir",
+      "title": "WhatsApp Çıkartma Yapma Ücretsiz — Her Fotoğraftan | Fizzdoc",
+      "description": "Her fotoğraftan ücretsiz WhatsApp çıkartması yapın: arka plan cihazınızda silinir ve beyaz kenarlı 512×512 WebP elde edersiniz. Hiçbir şey yüklenmez.",
+      "h1": "Her fotoğraftan WhatsApp çıkartması yapın",
+      "lede": "Bir arkadaşınızın, evcil hayvanınızın ya da kendinizin fotoğrafını seçin. Arka plan kaybolur, beyaz çıkartma kenarı eklenir ve WhatsApp’a hazır bir çıkartma elde edersiniz: 512 × 512 WebP, şeffaf arka plan, 100 KB’ın altında. Yapay zekâ kendi cihazınızda çalışır.",
+      "steps": [
+        "Bir fotoğraf seçin. Arka plan silinir ve çıkartma kenarı eklenir.",
+        "Gerekirse bir yeri düzeltin ya da kenarı kapatın.",
+        "“Çıkartmayı indir”e tıklayın ya da telefonda “WhatsApp’ta paylaş”a dokunun."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Çıkartmayı WhatsApp’a nasıl eklerim?",
+          "Telefonda “WhatsApp’ta paylaş”a dokunup herhangi bir sohbete gönderin (kendinizle sohbet de olur). Sonra sohbette çıkartmaya dokunup “Favorilere ekle”yi seçin. Bilgisayarda WebP dosyasını indirip WhatsApp Web veya Desktop’tan gönderin."
+        ],
+        [
+          "Bunu WhatsApp mı yapıyor?",
+          "Hayır. Fizzdoc bağımsız, ücretsiz bir araçtır; WhatsApp veya Meta ile bağlantısı yoktur. WhatsApp sahibinin ticari markasıdır; ad yalnızca çıkartmaların ne için olduğunu söylemek için kullanılır."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "whatsapp çıkartma yapma",
+        "kendi fotoğrafımdan çıkartma",
+        "fotoğrafı çıkartma yap",
+        "ücretsiz çıkartma oluştur",
+        "şeffaf çıkartma webp"
       ]
     }
   }

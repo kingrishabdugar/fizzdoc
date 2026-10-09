@@ -256,6 +256,8 @@
     "bg.restore": "Herstellen",
     "bg.brush": "Penseelgrootte",
     "bg.redo": "Opnieuw",
+    "bg.shareSticker": "Delen via WhatsApp",
+    "bg.stickerNote": "Sticker klaar: 512 × 512, transparante achtergrond, witte rand. Bewaar hem of deel hem op je telefoon meteen via WhatsApp.",
     "bg.magicErase": "Tik om te verwijderen",
     "bg.magicRestore": "Tik om te houden",
     "bg.magicHint": "Sneller: kies Tik om te verwijderen of Tik om te houden en tik op een restje achtergrond of een ontbrekend stuk. Het hele gebied in die kleur wordt in één keer hersteld.",
@@ -2940,6 +2942,45 @@
         "geanimeerde gif achtergrond verwijderen",
         "gif achtergrond veranderen",
         "remove gif background"
+      ]
+    },
+    "whatsapp-sticker-maker": {
+      "name": "WhatsApp-stickermaker",
+      "summary": "Maak van elke foto een sticker: achtergrond weg, witte rand, klaar voor WhatsApp.",
+      "action": "Sticker downloaden",
+      "title": "WhatsApp Sticker Maken Gratis — Van Elke Foto, Zonder Upload | Fizzdoc",
+      "description": "Maak gratis een WhatsApp-sticker van elke foto: de achtergrond wordt op je apparaat verwijderd en je krijgt een 512×512 WebP met witte rand. Geen upload.",
+      "h1": "Maak een WhatsApp-sticker van elke foto",
+      "lede": "Kies een foto van een vriend, je huisdier of jezelf. De achtergrond verdwijnt, er komt een witte stickerrand omheen en je krijgt een sticker die klaar is voor WhatsApp: 512 × 512 WebP, transparante achtergrond, onder 100 KB. De AI draait op je eigen apparaat.",
+      "steps": [
+        "Kies een foto. De achtergrond gaat weg en de stickerrand wordt toegevoegd.",
+        "Werk een plekje bij als dat nodig is, of zet de rand uit.",
+        "Klik op “Sticker downloaden” of tik op je telefoon op “Delen via WhatsApp”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Hoe zet ik de sticker in WhatsApp?",
+          "Tik op je telefoon op “Delen via WhatsApp” en stuur hem naar een chat (een chat met jezelf kan ook). Tik daarna in de chat op de sticker en kies “Toevoegen aan favorieten”. Op een computer download je het WebP-bestand en stuur je het via WhatsApp Web of Desktop."
+        ],
+        [
+          "Is dit van WhatsApp?",
+          "Nee. Fizzdoc is een onafhankelijke, gratis tool en hoort niet bij WhatsApp of Meta. WhatsApp is een merk van de eigenaar; de naam staat er alleen om te zeggen waar de stickers voor zijn."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "whatsapp sticker maken",
+        "sticker van eigen foto",
+        "foto naar sticker",
+        "gratis stickers maken",
+        "transparante sticker webp"
       ]
     }
   }
