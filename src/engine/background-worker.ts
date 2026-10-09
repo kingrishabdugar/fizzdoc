@@ -8,14 +8,15 @@
 import type * as Ort from 'onnxruntime-web';
 import { planesFromRGBA, refine } from './matte';
 
-export type BackgroundModel = 'birefnet-lite' | 'u2netp';
+export type BackgroundModel = 'birefnet-lite' | 'birefnet-lite-1024' | 'u2netp';
 /** `fast` asks for speed over the finest edges: animations use it, with many frames to do. */
-export type ToBackground = { type: 'run'; id: number; image: ImageBitmap; fast?: boolean } | { type: 'mask'; id: number; image: ImageBitmap; fast?: boolean };
+/** `sharp` asks for the 1024 px model on the graphics chip: finer hair and fur, for one photo at a time. */
+export type ToBackground = { type: 'run'; id: number; image: ImageBitmap; fast?: boolean; sharp?: boolean } | { type: 'mask'; id: number; image: ImageBitmap; fast?: boolean };
 export type FromBackground =
   | { type: 'setup'; loaded: number; total: number }
   | { type: 'progress'; id: number; fraction: number }
   /** The cut-out: the photo's pixels with the background made transparent, at full size. */
-  | { type: 'done'; id: number; width: number; height: number; rgba: ArrayBuffer; model: BackgroundModel }
+  | { type: 'done'; id: number; width: number; height: number; rgba: ArrayBuffer; model: BackgroundModel; gpu: boolean }
   /** Just the model's mask, for video and GIF frames that are refined by the caller. */
   | { type: 'mask'; id: number; size: number; mask: Float32Array; model: BackgroundModel }
   | { type: 'error'; id?: number; code: 'BG_SETUP_FAILED' | 'BACKGROUND_FAILED' };
@@ -28,6 +29,7 @@ const ORIGIN = self.location.origin;
 const MODELS: Record<BackgroundModel, { size: number; mean: number[]; std: number[]; logits: boolean }> = {
   // BiRefNet-lite returns logits; U²-Net small returns 0–1 values that rembg stretches to the full range.
   'birefnet-lite': { size: 512, mean: [0.485, 0.456, 0.406], std: [0.229, 0.224, 0.225], logits: true },
+  'birefnet-lite-1024': { size: 1024, mean: [0.485, 0.456, 0.406], std: [0.229, 0.224, 0.225], logits: true },
   u2netp: { size: 320, mean: [0.485, 0.456, 0.406], std: [0.229, 0.224, 0.225], logits: false },
 };
 /** Long side of the reduced copy the refinement works on; the result is applied at full size. */
@@ -157,7 +159,30 @@ async function predict(engine: Engine, image: ImageBitmap): Promise<Float32Array
  * Runs the model. If the graphics chip can't (an unusual GPU or driver), the same model runs on the
  * CPU; if that can't either (usually: not enough memory), the small model takes over.
  */
-async function maskOf(image: ImageBitmap, fast = false): Promise<{ mask: Float32Array; model: BackgroundModel }> {
+let sharpEngine: Promise<Engine> | undefined;
+
+/** The 1024 px model, only on a graphics chip; the normal engine is let go first to free memory. */
+async function sharpMaskOf(image: ImageBitmap): Promise<{ mask: Float32Array; model: BackgroundModel; gpu: boolean }> {
+  if (!(await gpuReady)) throw new Error('Sharper edges need a graphics chip');
+  if (!sharpEngine) {
+    const loaded = await engine?.catch(() => undefined);
+    await loaded?.session.release().catch(() => {});
+    engine = undefined;
+    sharpEngine = start('birefnet-lite-1024', true);
+  }
+  try {
+    const current = await sharpEngine;
+    if (!current.gpu) throw new Error('Sharper edges need a graphics chip');
+    return { mask: await predict(current, image), model: current.model, gpu: true };
+  } catch (error) {
+    const loaded = await sharpEngine.catch(() => undefined);
+    await loaded?.session.release().catch(() => {});
+    sharpEngine = undefined;
+    throw error;
+  }
+}
+
+async function maskOf(image: ImageBitmap, fast = false): Promise<{ mask: Float32Array; model: BackgroundModel; gpu: boolean }> {
   const fallbacks: [BackgroundModel, boolean][] = [];
   // Without a GPU the big model takes seconds per picture: fine for a photo, too slow for 40 frames.
   if (fast !== speedPick && !(await gpuReady)) {
@@ -183,7 +208,7 @@ async function maskOf(image: ImageBitmap, fast = false): Promise<{ mask: Float32
   if (current.model !== 'u2netp') fallbacks.push(['u2netp', false]);
   for (;;) {
     try {
-      return { mask: await predict(current, image), model: current.model };
+      return { mask: await predict(current, image), model: current.model, gpu: current.gpu };
     } catch (error) {
       const next = fallbacks.shift();
       if (!next) throw error;
@@ -215,11 +240,11 @@ function resizeMask(mask: Float32Array, size: number, w: number, h: number) {
   return out;
 }
 
-async function cutOut(id: number, image: ImageBitmap, fast?: boolean) {
+async function cutOut(id: number, image: ImageBitmap, fast?: boolean, sharp?: boolean) {
   const W = image.width;
   const H = image.height;
   post({ type: 'progress', id, fraction: 0.05 });
-  const { mask, model } = await maskOf(image, fast);
+  const { mask, model, gpu } = sharp ? await sharpMaskOf(image) : await maskOf(image, fast);
   post({ type: 'progress', id, fraction: 0.7 });
   // A reduced copy for the refinement, and the full-size pixels it is applied to.
   const scale = Math.min(1, (fast ? REFINE_SIZE_FAST : REFINE_SIZE) / Math.max(W, H));
@@ -235,12 +260,12 @@ async function cutOut(id: number, image: ImageBitmap, fast?: boolean) {
   image.close();
   const rgba = full.getImageData(0, 0, W, H).data;
   refine(rgba, W, H, small, resizeMask(mask, MODELS[model].size, w, h), MODELS[model].size);
-  post({ type: 'done', id, width: W, height: H, rgba: rgba.buffer as ArrayBuffer, model }, [rgba.buffer as ArrayBuffer]);
+  post({ type: 'done', id, width: W, height: H, rgba: rgba.buffer as ArrayBuffer, model, gpu }, [rgba.buffer as ArrayBuffer]);
 }
 
 self.onmessage = async ({ data }: MessageEvent<ToBackground>) => {
   try {
-    if (data.type === 'run') await cutOut(data.id, data.image, data.fast);
+    if (data.type === 'run') await cutOut(data.id, data.image, data.fast, data.sharp);
     else {
       const { mask, model } = await maskOf(data.image, data.fast);
       data.image.close();
@@ -248,7 +273,7 @@ self.onmessage = async ({ data }: MessageEvent<ToBackground>) => {
     }
   } catch (error) {
     console.error(error);
-    const setup = !(await engine?.then(() => true, () => false));
+    const setup = data.type === 'run' && data.sharp ? false : !(await engine?.then(() => true, () => false));
     if (setup) engine = undefined; // let the next try download again
     post({ type: 'error', id: data.id, code: setup ? 'BG_SETUP_FAILED' : 'BACKGROUND_FAILED' });
   }

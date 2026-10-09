@@ -6,7 +6,7 @@
 # when the model loads: the download is half the size, and it still runs on CPUs (WebAssembly),
 # which can't compute in 16-bit. The answers differ from the 32-bit model only in the 4th decimal.
 #
-# Run: pip install onnx numpy && python3 scripts/background-model.py
+# Run: pip install onnx numpy && python3 scripts/background-model.py [model name ...]
 #      (only needed when changing a model or its revision)
 import hashlib
 import json
@@ -23,6 +23,9 @@ PART = 20 * 1024 * 1024
 MODELS = [
     # BiRefNet-lite (MIT, ZhengPeng7/BiRefNet) exported at 512x512 so it fits in browser memory.
     ('birefnet-lite', 'studioludens/birefnet-lite-512', '4a3c40c36c94093cc1e724d9ea428b8fa4b57dc7', 'onnx/model.onnx', 'MIT', True),
+    # The same BiRefNet-lite (MIT) exported at 1024x1024 by onnx-community: sharper hair and fur,
+    # four times the work, so it is only offered on devices with a graphics chip (WebGPU).
+    ('birefnet-lite-1024', 'onnx-community/BiRefNet_lite-ONNX', 'de15b22ba131738a16dff04aab8bdf8dc32e3ac1', 'onnx/model.onnx', 'MIT', True),
     # U^2-Net small (Apache-2.0, xuebinqin/U-2-Net): the light fallback for phones with little memory.
     ('u2netp', 'BritishWerewolf/U-2-Netp', '7112208dbac3a3642496c8d54e2f0f9bb3dc1dc8', 'onnx/model.onnx', 'Apache-2.0', False),
 ]
@@ -47,7 +50,12 @@ def half_storage(model: onnx.ModelProto) -> onnx.ModelProto:
     return model
 
 
+import sys
+
+ONLY = set(sys.argv[1:])  # optional: model names to (re)build, e.g. birefnet-lite-1024
 for name, repo, revision, path, license_id, shrink in MODELS:
+    if ONLY and name not in ONLY:
+        continue
     folder = OUT / name
     shutil.rmtree(folder, ignore_errors=True)
     folder.mkdir(parents=True)

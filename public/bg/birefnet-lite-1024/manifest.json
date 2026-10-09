@@ -1,0 +1,20 @@
+{
+  "source": "https://huggingface.co/onnx-community/BiRefNet_lite-ONNX/tree/de15b22ba131738a16dff04aab8bdf8dc32e3ac1",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "model.onnx",
+      "size": 134913765,
+      "sha256": "1fe69e4defaa63c576d2a335e3fbf6129d0763b906091c59c839d06244b2b678",
+      "parts": [
+        "model.onnx.part0",
+        "model.onnx.part1",
+        "model.onnx.part2",
+        "model.onnx.part3",
+        "model.onnx.part4",
+        "model.onnx.part5",
+        "model.onnx.part6"
+      ]
+    }
+  ]
+}

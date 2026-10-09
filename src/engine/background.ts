@@ -6,6 +6,8 @@ import type { BackgroundModel, FromBackground, ToBackground } from './background
 export interface Hooks {
   /** Speed over the finest edges, for animations with many frames. */
   fast?: boolean;
+  /** The 1024 px model on the graphics chip, for finer hair and fur. */
+  sharp?: boolean;
   /** First-run download of the model and runtime: bytes so far and in total. */
   onSetup?: (loaded: number, total: number) => void;
   onProgress?: (fraction: number) => void;
@@ -49,15 +51,15 @@ function ask(message: Omit<ToBackground, 'id'>, hooks: Hooks): Promise<FromBackg
   const id = nextId++;
   return new Promise((resolve, reject) => {
     pending.set(id, { resolve, reject, hooks });
-    connect().postMessage({ ...message, id, fast: hooks.fast }, [message.image]);
+    connect().postMessage({ ...message, id, fast: hooks.fast, ...(message.type === 'run' ? { sharp: hooks.sharp } : {}) }, [message.image]);
   });
 }
 
 /** The picture with its background made transparent, at the picture's full size. */
-export async function removeBackground(image: ImageBitmap, hooks: Hooks = {}): Promise<{ cutout: ImageData; model: BackgroundModel }> {
+export async function removeBackground(image: ImageBitmap, hooks: Hooks = {}): Promise<{ cutout: ImageData; model: BackgroundModel; gpu: boolean }> {
   const answer = await ask({ type: 'run', image }, hooks);
   if (answer.type !== 'done') throw new LocalError('BACKGROUND_FAILED');
-  return { cutout: new ImageData(new Uint8ClampedArray(answer.rgba), answer.width, answer.height), model: answer.model };
+  return { cutout: new ImageData(new Uint8ClampedArray(answer.rgba), answer.width, answer.height), model: answer.model, gpu: answer.gpu };
 }
 
 /** Just the model's square mask (0–1), for video and GIF frames. */

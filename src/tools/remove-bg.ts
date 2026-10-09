@@ -29,6 +29,8 @@ const MAGIC = 1024;
 /** WhatsApp stickers: 512×512 WebP with a clear background, at most 100 KB. */
 const STICKER = 512;
 const STICKER_BYTES = 100 * 1024;
+/** Download size of the 1024 px model (public/bg/birefnet-lite-1024), shown before it is fetched. */
+const SHARP_MB = 135;
 
 const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = '') => {
   const node = document.createElement(tag);
@@ -118,6 +120,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   const frames: { photo: ImageBitmap; cut: ImageBitmap; delay: number }[] = [];
   let cutout!: ImageData;
   let model = '';
+  let gpu = false;
   if (animated) {
     for (const [i, frame] of gifFrames.entries()) {
       const framePhoto = await createImageBitmap(frame.image);
@@ -136,7 +139,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   } else {
     const started = performance.now();
     let ready = started; // when the one-time download finished
-    ({ cutout, model } = await removeBackground(await createImageBitmap(photo), {
+    ({ cutout, model, gpu } = await removeBackground(await createImageBitmap(photo), {
       fast: !!info,
       onSetup: (loaded, total) => {
         onSetup(loaded, total);
@@ -626,6 +629,42 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     canvas.addEventListener('pointerup', end, { once: true });
     canvas.addEventListener('pointercancel', end, { once: true });
   });
+
+  // ---- Sharper edges: the 1024 px model, offered when the photo was done on a graphics chip ----
+  if (!animated && !info && gpu && model === 'birefnet-lite') {
+    const sharp = element('button', 'bg-btn', t('bg.sharp'));
+    sharp.type = 'button';
+    sharp.setAttribute('aria-pressed', 'false');
+    const sharpNote = element('p', 'bg-hint', t('bg.sharpNote', { mb: SHARP_MB }));
+    sharp.onclick = async () => {
+      sharp.disabled = true;
+      busy.hidden = false;
+      busyText.textContent = t('bg.working', { pct: setBar(0) });
+      try {
+        const result = await removeBackground(await createImageBitmap(photo), {
+          sharp: true,
+          onSetup,
+          onProgress: (fraction) => {
+            busyText.textContent = t('bg.working', { pct: setBar(fraction) });
+          },
+        });
+        // The new cut-out replaces the old one; earlier touch-ups belonged to the old one.
+        pixels.set(result.cutout.data);
+        cutContext.putImageData(cutout, 0, 0);
+        history.length = 0;
+        future.length = 0;
+        undo.disabled = redo.disabled = true;
+        sharp.setAttribute('aria-pressed', 'true');
+        if (layout !== 'photo') reframe();
+        draw();
+      } catch {
+        note.textContent = t('bg.sharpFailed');
+        sharp.disabled = false;
+      }
+      busy.hidden = true;
+    };
+    touch.prepend(touch.querySelector('legend')!, sharp, sharpNote);
+  }
 
   // ---- Before and after ----
   compare.disabled = false;
