@@ -1126,6 +1126,18 @@ test('removes a picture’s background on the device, keeps its full size, and p
   await page.getByRole('button', { name: 'Undo' }).click();
   await page.getByRole('button', { name: 'Erase' }).click();
 
+  // Tap to remove: one tap on the ball takes the whole red area away; Undo brings it back.
+  await page.getByRole('button', { name: 'Tap to remove' }).click();
+  const shown = (await page.locator('.bg-canvas').boundingBox())!;
+  await page.mouse.click(shown.x + shown.width / 2, shown.y + shown.height / 2);
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#status')).toContainText('900 × 600 px');
+  const tapped = await sample((await downloadBytes(page)).bytes, 'image/png');
+  expect(tapped.centre[3]).toBeLessThan(20);
+  expect(tapped.below[3]).toBeLessThan(20);
+  await page.getByRole('button', { name: 'Undo' }).click();
+  await page.getByRole('button', { name: 'Tap to remove' }).click();
+
   // Square crop for online shops: a white square around the subject, the subject in the middle.
   await page.getByRole('button', { name: 'White' }).click();
   await page.getByRole('combobox', { name: 'Crop' }).selectOption('square');

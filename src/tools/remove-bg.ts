@@ -4,6 +4,7 @@
 import './remove-bg.css';
 import { compose, frameFor, removeBackground, render, subjectBox, type Backdrop, type Layout, type Look, type SaveFormat } from '../engine/background';
 import { decodeGif, encodeGif, type GifFrame } from '../engine/gif';
+import { areaBox, regionAt } from '../engine/magic';
 import type { Output } from '../engine/local';
 import { t } from '../i18n';
 
@@ -23,6 +24,8 @@ const SWATCHES: [key: 'white' | 'black' | 'blue' | 'red' | 'green' | 'gray', col
 /** Longest side of the on-screen preview; saving always works from the full-size cut-out. */
 const PREVIEW = 1600;
 const TILE = 64;
+/** Longest side of the copy that "Tap to remove / keep" searches; plenty for picking an area. */
+const MAGIC = 1024;
 
 const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = '') => {
   const node = document.createElement(tag);
@@ -337,11 +340,12 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   fillSizes();
 
   // ---- Touch up ----
-  touch.append(element('p', 'bg-hint', t('bg.touchHint')));
+  touch.append(element('p', 'bg-hint', t('bg.touchHint')), element('p', 'bg-hint', t('bg.magicHint')));
   const tools = element('div', 'bg-tools');
   const modes: HTMLButtonElement[] = [];
-  let mode: 'erase' | 'restore' | null = null;
-  const modeButton = (key: 'erase' | 'restore') => {
+  type Mode = 'erase' | 'restore' | 'magicErase' | 'magicRestore';
+  let mode: Mode | null = null;
+  const modeButton = (key: Mode) => {
     const button = element('button', 'bg-btn', t(`bg.${key}`));
     button.type = 'button';
     button.setAttribute('aria-pressed', 'false');
@@ -387,7 +391,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   zoomOut.type = 'button';
   zoomOut.disabled = true;
   zoomOut.onclick = () => zoomBy(-1);
-  tools.append(modeButton('erase'), modeButton('restore'), brushLabel, undo, redo, zoomOut, zoomIn);
+  tools.append(modeButton('magicErase'), modeButton('magicRestore'), modeButton('erase'), modeButton('restore'), brushLabel, undo, redo, zoomOut, zoomIn);
   touch.append(tools);
   touch.hidden = animated || !!info; // touch-ups are for still pictures
 
@@ -441,6 +445,83 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   undo.onclick = () => step(history, future);
   redo.onclick = () => step(future, history);
 
+  const loadOriginal = () => {
+    if (original) return;
+    const reader = new OffscreenCanvas(W, H).getContext('2d', { willReadFrequently: true })!;
+    reader.drawImage(photo, 0, 0);
+    original = reader.getImageData(0, 0, W, H).data;
+  };
+  /** Ends a change: it can be undone, the crop follows the subject, and the preview updates. */
+  const finish = () => {
+    if (stroke?.size) {
+      history.push(stroke);
+      future.length = 0;
+    }
+    if (history.length > 30) history.shift();
+    stroke = undefined;
+    undo.disabled = !history.length;
+    redo.disabled = !future.length;
+    if (layout !== 'photo') reframe();
+    draw();
+  };
+
+  // ---- Tap to remove / Tap to keep ----
+  let small: Uint8ClampedArray | undefined; // the photo at MAGIC size
+  const ms = Math.min(1, MAGIC / Math.max(W, H));
+  const mw = Math.max(1, Math.round(W * ms));
+  const mh = Math.max(1, Math.round(H * ms));
+  const magicTap = (x: number, y: number, keep: boolean) => {
+    if (!small) {
+      const reader = new OffscreenCanvas(mw, mh).getContext('2d', { willReadFrequently: true })!;
+      reader.drawImage(photo, 0, 0, mw, mh);
+      small = reader.getImageData(0, 0, mw, mh).data;
+    }
+    const shown = new OffscreenCanvas(mw, mh).getContext('2d', { willReadFrequently: true })!;
+    shown.drawImage(cut, 0, 0, mw, mh);
+    const alpha = shown.getImageData(0, 0, mw, mh).data;
+    // Remove works on what is still visible; Keep on what is (partly) gone.
+    const area = regionAt(small, mw, mh, x * ms, y * ms, 40, keep ? (i) => alpha[i * 4 + 3] < 250 : (i) => alpha[i * 4 + 3] > 8);
+    const box = areaBox(area, mw, mh);
+    if (!box) return;
+    const x0 = Math.max(0, Math.floor((box[0] - 1) / ms));
+    const y0 = Math.max(0, Math.floor((box[1] - 1) / ms));
+    const x1 = Math.min(W - 1, Math.ceil((box[0] + box[2] + 1) / ms));
+    const y1 = Math.min(H - 1, Math.ceil((box[1] + box[3] + 1) / ms));
+    stroke = new Map();
+    remember(x0, y0, x1, y1);
+    if (keep) loadOriginal();
+    // The small area, blended in at full size with soft (bilinear) edges.
+    const at = (sx: number, sy: number) => {
+      const cx = Math.min(mw - 1, Math.max(0, sx));
+      const cy = Math.min(mh - 1, Math.max(0, sy));
+      const ix = Math.min(mw - 2, Math.floor(cx));
+      const iy = Math.min(mh - 2, Math.floor(cy));
+      if (ix < 0 || iy < 0) return area[Math.round(cy) * mw + Math.round(cx)];
+      const fx = cx - ix;
+      const fy = cy - iy;
+      const i = iy * mw + ix;
+      return (area[i] * (1 - fx) + area[i + 1] * fx) * (1 - fy) + (area[i + mw] * (1 - fx) + area[i + mw + 1] * fx) * fy;
+    };
+    for (let y = y0; y <= y1; y++)
+      for (let x = x0; x <= x1; x++) {
+        const m = at((x + 0.5) * ms - 0.5, (y + 0.5) * ms - 0.5);
+        if (m <= 0) continue;
+        const o = (y * W + x) * 4;
+        if (!keep) pixels[o + 3] = Math.round(pixels[o + 3] * (1 - m));
+        else {
+          const a = Math.round(255 * m);
+          if (a > pixels[o + 3]) {
+            pixels[o] = original![o];
+            pixels[o + 1] = original![o + 1];
+            pixels[o + 2] = original![o + 2];
+            pixels[o + 3] = a;
+          }
+        }
+      }
+    cutContext.putImageData(cutout, 0, 0, x0, y0, x1 - x0 + 1, y1 - y0 + 1);
+    finish();
+  };
+
   /** One round dab of the brush at full-size coordinates, soft at its rim. */
   const dab = (cx: number, cy: number, radius: number) => {
     const x0 = Math.max(0, Math.floor(cx - radius));
@@ -449,11 +530,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     const y1 = Math.min(H - 1, Math.ceil(cy + radius));
     if (x1 < x0 || y1 < y0) return;
     remember(x0, y0, x1, y1);
-    if (mode === 'restore' && !original) {
-      const reader = new OffscreenCanvas(W, H).getContext('2d', { willReadFrequently: true })!;
-      reader.drawImage(photo, 0, 0);
-      original = reader.getImageData(0, 0, W, H).data;
-    }
+    if (mode === 'restore') loadOriginal();
     for (let y = y0; y <= y1; y++)
       for (let x = x0; x <= x1; x++) {
         const d = Math.hypot(x + 0.5 - cx, y + 0.5 - cy) / radius;
@@ -476,14 +553,23 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   canvas.addEventListener('pointerdown', (event) => {
     if (!mode || event.button !== 0) return;
     event.preventDefault();
+    const toPhoto = (e: PointerEvent) => {
+      const box = canvas.getBoundingClientRect();
+      const [fx, fy, fw, fh] = frame;
+      return [fx + ((e.clientX - box.left) / box.width) * fw, fy + ((e.clientY - box.top) / box.height) * fh];
+    };
+    if (mode === 'magicErase' || mode === 'magicRestore') {
+      const [x, y] = toPhoto(event);
+      if (x >= 0 && y >= 0 && x < W && y < H) magicTap(x, y, mode === 'magicRestore');
+      return;
+    }
     canvas.setPointerCapture(event.pointerId);
     stroke = new Map();
     let last: [number, number] | undefined;
     const paint = (e: PointerEvent) => {
       const box = canvas.getBoundingClientRect();
-      const [fx, fy, fw, fh] = frame;
-      const x = fx + ((e.clientX - box.left) / box.width) * fw;
-      const y = fy + ((e.clientY - box.top) / box.height) * fh;
+      const [, , fw] = frame;
+      const [x, y] = toPhoto(e);
       // The brush size is set in screen pixels, so it feels the same at any zoom.
       const radius = (Number(brush.value) / 2) * (fw / box.width);
       // Fill the gap between pointer events so fast strokes stay continuous.
@@ -495,18 +581,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     paint(event);
     const end = () => {
       canvas.removeEventListener('pointermove', paint);
-      if (stroke?.size) {
-        history.push(stroke);
-        future.length = 0;
-      }
-      if (history.length > 30) history.shift();
-      stroke = undefined;
-      undo.disabled = !history.length;
-      redo.disabled = !future.length;
-      if (layout !== 'photo') {
-        reframe();
-        draw();
-      }
+      finish();
     };
     canvas.addEventListener('pointermove', paint);
     canvas.addEventListener('pointerup', end, { once: true });
