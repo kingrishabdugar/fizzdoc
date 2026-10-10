@@ -232,7 +232,7 @@
     "bg.previewLabel": "La tua foto con il nuovo sfondo",
     "bg.preparing": "Preparazione dello strumento per togliere lo sfondo: {loaded} di {total} MB. Questo download avviene una sola volta.",
     "bg.working": "Rimozione dello sfondo… {pct}%",
-    "bg.lite": "Questo dispositivo ha poca memoria, quindi è stato usato un modello più leggero. Con un portatile i contorni vengono più puliti.",
+    "bg.lite": "Su questo dispositivo si usa un modello più leggero, così tutto resta fluido. Per bordi più puliti su capelli e pelo, usa un portatile o un computer.",
     "bg.compare": "Tieni premuto per vedere l’originale",
     "bg.background": "Sfondo",
     "bg.none": "Nessuno",

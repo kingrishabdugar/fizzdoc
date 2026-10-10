@@ -232,7 +232,7 @@
     "bg.previewLabel": "Ihr Foto mit dem neuen Hintergrund",
     "bg.preparing": "Der Hintergrund-Entferner wird vorbereitet: {loaded} von {total} MB. Dieser Download passiert nur einmal.",
     "bg.working": "Hintergrund wird entfernt… {pct} %",
-    "bg.lite": "Dieses Gerät hat wenig Speicher, deshalb wurde ein leichteres Modell verwendet. Ein Laptop liefert saubere Kanten.",
+    "bg.lite": "Auf diesem Gerät wird ein leichteres Modell verwendet, damit alles flüssig läuft. Für die saubersten Kanten bei Haaren und Fell nutzen Sie einen Laptop oder PC.",
     "bg.compare": "Gedrückt halten, um das Original zu sehen",
     "bg.background": "Hintergrund",
     "bg.none": "Keiner",

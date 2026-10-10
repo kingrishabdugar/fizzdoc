@@ -18,6 +18,10 @@ const pending = new Map<number, { resolve: (message: FromBackground) => void; re
 function connect() {
   if (worker) return worker;
   worker = new Worker(new URL('./background-worker.ts', import.meta.url), { type: 'module' });
+  // Leaving the page normally is not a crash.
+  addEventListener('pagehide', () => {
+    if (pending.size) remember(false);
+  });
   worker.onmessage = ({ data }: MessageEvent<FromBackground>) => {
     if (data.type === 'setup') {
       for (const job of pending.values()) job.hooks.onSetup?.(data.loaded, data.total);
@@ -45,11 +49,52 @@ function connect() {
   return worker;
 }
 
+// Set while the big model runs and cleared when it answers. If it is still set on the next visit, the
+// tab was killed mid-run (out of memory), so this device gets the small model from then on.
+const CRASHED = 'fizzdoc-bg-crashed';
+const MONTH = 30 * 24 * 3600 * 1000;
+const remember = (on: boolean) => {
+  try {
+    if (on) localStorage.setItem(CRASHED, String(Date.now()));
+    else localStorage.removeItem(CRASHED);
+  } catch {
+    // storage blocked: nothing to remember
+  }
+};
+
+/** Phones, and any device where the big model crashed the tab before, use the small model. */
+export function liteDevice(): boolean {
+  try {
+    const at = Number(localStorage.getItem(CRASHED));
+    if (at && Date.now() - at < MONTH) return true;
+  } catch {
+    // storage blocked: decide from the device alone
+  }
+  const nav = navigator as Navigator & { userAgentData?: { mobile?: boolean } };
+  return (
+    nav.userAgentData?.mobile === true ||
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+    (navigator.maxTouchPoints > 1 && Math.min(screen.width, screen.height) < 820) // iPads that say "Mac"
+  );
+}
+
 function ask(message: Omit<ToBackground, 'id'>, hooks: Hooks): Promise<FromBackground> {
   const id = nextId++;
+  const lite = liteDevice();
+  if (!lite) remember(true);
   return new Promise((resolve, reject) => {
-    pending.set(id, { resolve, reject, hooks });
-    connect().postMessage({ ...message, id, fast: hooks.fast }, [message.image]);
+    pending.set(id, {
+      resolve: (answer) => {
+        if (!lite) remember(false);
+        resolve(answer);
+      },
+      reject: (error) => {
+        if (!lite) remember(false);
+        reject(error);
+      },
+      hooks,
+    });
+    connect().postMessage({ ...message, id, fast: hooks.fast, lite }, [message.image]);
   });
 }
 

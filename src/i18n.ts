@@ -314,7 +314,7 @@ export const UI = {
   'bg.frame': 'Removing the background: frame {n} of {total}…',
   'bg.gifNote': 'Animated GIF: every frame is done, and it saves as a GIF. GIFs can’t have soft edges, so on “None” the outline looks a little sharper.',
   'bg.videoNote': 'This is the first frame. Pick a background, then save: every frame is done on this device, which takes about {min} min here. Keep this tab open.',
-  'bg.lite': 'This device has little memory, so a lighter model was used. A laptop gives cleaner edges.',
+  'bg.lite': 'A lighter model is used on this device so it runs smoothly. For the cleanest edges on hair and fur, use a laptop or desktop.',
   'bg.compare': 'Hold to see the original',
   'bg.background': 'Background',
   'bg.none': 'None',

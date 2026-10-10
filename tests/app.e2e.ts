@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { expect, test, type Page } from '@playwright/test';
+import { devices, expect, test, type Page } from '@playwright/test';
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { PAGES, SITE_LANGS } from '../src/seo';
 import { SITE, TOOLS } from '../src/site';
@@ -1122,6 +1122,37 @@ test('removes a picture’s background on the device, keeps its full size, and p
 
   expect(seen.violations).toEqual([]);
   expect(seen.requests.filter((r) => !r.url.startsWith(page.url().split('/').slice(0, 3).join('/')) && !r.url.startsWith('blob:') && !r.url.startsWith('data:'))).toEqual([]);
+});
+
+test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
+  test.setTimeout(240_000);
+  for (const phone of [true, false]) {
+    // A phone, and a laptop where the big model crashed the tab once before.
+    const context = await browser.newContext(phone ? { ...devices['Pixel 7'], baseURL } : { baseURL });
+    if (!phone) await context.addInitScript(() => localStorage.setItem('fizzdoc-bg-crashed', String(Date.now())));
+    const page = await context.newPage();
+    const fetched: string[] = [];
+    page.on('request', (request) => fetched.push(new URL(request.url()).pathname));
+    await page.goto('/remove-background/');
+    const photo = await page.evaluate(async () => {
+      const canvas = new OffscreenCanvas(600, 400);
+      const c = canvas.getContext('2d')!;
+      c.fillStyle = '#e8eef5';
+      c.fillRect(0, 0, 600, 400);
+      c.fillStyle = '#c0392b';
+      c.beginPath();
+      c.arc(300, 200, 110, 0, Math.PI * 2);
+      c.fill();
+      return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+    });
+    await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+    await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 200_000 });
+    expect(fetched.some((path) => path.startsWith('/bg/u2netp/'))).toBe(true);
+    expect(fetched.filter((path) => path.startsWith('/bg/birefnet') || path.startsWith('/bg/ort/'))).toEqual([]);
+    await page.getByRole('button', { name: 'Download image' }).click();
+    await expect(page.locator('#status')).toContainText('600 × 400 px');
+    await context.close();
+  }
 });
 
 test('shares Fizzdoc: the phone’s share sheet, or links to the big networks and a copy button', async ({ browser }) => {

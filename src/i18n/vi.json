@@ -232,7 +232,7 @@
     "bg.previewLabel": "Ảnh của bạn với nền mới",
     "bg.preparing": "Đang chuẩn bị công cụ xóa nền: {loaded} trên {total} MB. Lần tải này chỉ diễn ra một lần.",
     "bg.working": "Đang xóa nền… {pct}%",
-    "bg.lite": "Thiết bị này ít bộ nhớ, nên đã dùng mô hình nhẹ hơn. Máy tính xách tay cho viền sạch hơn.",
+    "bg.lite": "Thiết bị này dùng mô hình nhẹ hơn để chạy mượt. Muốn viền tóc và lông sạch nhất, hãy dùng laptop hoặc máy tính.",
     "bg.compare": "Nhấn giữ để xem ảnh gốc",
     "bg.background": "Nền",
     "bg.none": "Không",

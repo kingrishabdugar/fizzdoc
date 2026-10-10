@@ -232,7 +232,7 @@
     "bg.previewLabel": "Foto Anda dengan latar belakang baru",
     "bg.preparing": "Menyiapkan penghapus latar belakang: {loaded} dari {total} MB. Unduhan ini hanya sekali.",
     "bg.working": "Menghapus latar belakang… {pct}%",
-    "bg.lite": "Perangkat ini memorinya sedikit, jadi dipakai model yang lebih ringan. Laptop memberi tepi yang lebih bersih.",
+    "bg.lite": "Di perangkat ini dipakai model yang lebih ringan agar berjalan lancar. Untuk tepi rambut dan bulu yang paling rapi, gunakan laptop atau komputer.",
     "bg.compare": "Tahan untuk melihat aslinya",
     "bg.background": "Latar belakang",
     "bg.none": "Tidak ada",
