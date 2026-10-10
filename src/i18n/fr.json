@@ -232,7 +232,7 @@
     "bg.previewLabel": "Votre photo avec son nouveau fond",
     "bg.preparing": "Préparation de l’outil de suppression du fond : {loaded} sur {total} Mo. Ce téléchargement n’a lieu qu’une seule fois.",
     "bg.working": "Suppression du fond… {pct} %",
-    "bg.lite": "Cet appareil a peu de mémoire, un modèle plus léger a donc été utilisé. Un ordinateur portable donne des contours plus nets.",
+    "bg.lite": "Un modèle plus léger est utilisé sur cet appareil pour qu’il reste fluide. Pour des bords plus nets sur les cheveux et les poils, utilisez un ordinateur.",
     "bg.compare": "Maintenez appuyé pour voir l’original",
     "bg.background": "Fond",
     "bg.none": "Aucun",

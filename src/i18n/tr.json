@@ -232,7 +232,7 @@
     "bg.previewLabel": "Fotoğrafınız yeni arka planıyla",
     "bg.preparing": "Arka plan silici hazırlanıyor: {total} MB'ın {loaded} MB'ı. Bu indirme yalnızca bir kez yapılır.",
     "bg.working": "Arka plan siliniyor… %{pct}",
-    "bg.lite": "Bu cihazın belleği az, bu yüzden daha hafif bir model kullanıldı. Dizüstü bilgisayarda kenarlar daha temiz çıkar.",
+    "bg.lite": "Bu cihazda her şey akıcı çalışsın diye daha hafif bir model kullanılır. Saç ve tüylerde en temiz kenarlar için dizüstü ya da masaüstü bilgisayar kullanın.",
     "bg.compare": "Orijinali görmek için basılı tutun",
     "bg.background": "Arka plan",
     "bg.none": "Yok",

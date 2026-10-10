@@ -232,7 +232,7 @@
     "bg.previewLabel": "Sua foto com o novo fundo",
     "bg.preparing": "Preparando o removedor de fundo: {loaded} de {total} MB. Este download acontece só uma vez.",
     "bg.working": "Removendo o fundo… {pct}%",
-    "bg.lite": "Este aparelho tem pouca memória, então foi usado um modelo mais leve. Um notebook dá bordas mais limpas.",
+    "bg.lite": "Neste aparelho é usado um modelo mais leve para funcionar sem travar. Para bordas mais limpas em cabelo e pelos, use um notebook ou computador.",
     "bg.compare": "Segure para ver o original",
     "bg.background": "Fundo",
     "bg.none": "Nenhum",

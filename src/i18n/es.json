@@ -232,7 +232,7 @@
     "bg.previewLabel": "Tu foto con su nuevo fondo",
     "bg.preparing": "Preparando el quitafondos: {loaded} de {total} MB. Esta descarga solo se hace una vez.",
     "bg.working": "Quitando el fondo… {pct}%",
-    "bg.lite": "Este dispositivo tiene poca memoria, así que se usó un modelo más ligero. Un ordenador portátil da bordes más limpios.",
+    "bg.lite": "En este dispositivo se usa un modelo más ligero para que funcione con fluidez. Para los bordes más limpios en pelo y pelaje, usa un portátil o un ordenador.",
     "bg.compare": "Mantén pulsado para ver el original",
     "bg.background": "Fondo",
     "bg.none": "Ninguno",

@@ -232,7 +232,7 @@
     "bg.previewLabel": "Twoje zdjęcie z nowym tłem",
     "bg.preparing": "Przygotowywanie narzędzia do usuwania tła: {loaded} z {total} MB. To pobieranie odbywa się tylko raz.",
     "bg.working": "Usuwanie tła… {pct}%",
-    "bg.lite": "To urządzenie ma mało pamięci, więc użyto lżejszego modelu. Na laptopie krawędzie wychodzą czystsze.",
+    "bg.lite": "Na tym urządzeniu używany jest lżejszy model, żeby wszystko działało płynnie. Najczystsze krawędzie włosów i sierści uzyskasz na laptopie lub komputerze.",
     "bg.compare": "Przytrzymaj, aby zobaczyć oryginał",
     "bg.background": "Tło",
     "bg.none": "Brak",

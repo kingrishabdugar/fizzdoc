@@ -232,7 +232,7 @@
     "bg.previewLabel": "Jouw foto met de nieuwe achtergrond",
     "bg.preparing": "De achtergrondverwijderaar wordt klaargemaakt: {loaded} van {total} MB. Deze download gebeurt maar één keer.",
     "bg.working": "Achtergrond wordt verwijderd… {pct}%",
-    "bg.lite": "Dit apparaat heeft weinig geheugen, dus er is een lichter model gebruikt. Op een laptop worden de randen netter.",
+    "bg.lite": "Op dit apparaat wordt een lichter model gebruikt, zodat alles soepel loopt. Voor de netste randen bij haar en vacht gebruik je een laptop of computer.",
     "bg.compare": "Houd ingedrukt om het origineel te zien",
     "bg.background": "Achtergrond",
     "bg.none": "Geen",
