@@ -629,7 +629,7 @@ TOOLS.push(
       'Reduce PDF file size in your browser by recompressing oversized images. Text stays selectable and sharp. Nothing is uploaded; free and open source.',
     h1: 'Compress a PDF — without uploading it',
     lede: 'Make a PDF small enough to email or upload to a portal. Fizzdoc recompresses oversized photos and scans and leaves text and vector graphics untouched.',
-    steps: ['Add one PDF file.', 'Choose Balanced or Strong compression.', 'Click “Compress PDF” and download the smaller file.'],
+    steps: ['Add one PDF file.', 'Choose how much to compress: Light, Balanced, Strong or Extreme.', 'Click “Compress PDF” and download the smaller file.'],
     faq: [
       PRIVACY_FAQ[0],
       [

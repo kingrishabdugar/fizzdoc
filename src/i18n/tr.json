@@ -93,6 +93,10 @@
     "ws.compression": "Sıkıştırma",
     "ws.balanced": "Dengeli — en iyi kalite",
     "ws.strong": "Güçlü — en küçük dosya",
+    "ws.levelLow": "Hafif — en iyi kalite",
+    "ws.levelMedium": "Dengeli — önerilen",
+    "ws.levelHigh": "Güçlü — daha küçük dosya",
+    "ws.levelExtreme": "Aşırı — en küçük dosya",
     "ws.saveAs": "Farklı kaydet",
     "ws.fmtOriginal": "Her dosyayla aynı format",
     "ws.fmtJpeg": "JPG — fotoğraflar, her yerde açılır",
@@ -741,7 +745,7 @@
       "lede": "Bir PDF'i e-postayla göndermeye ya da bir portale yüklemeye yetecek kadar küçültün. Fizzdoc aşırı büyük fotoğraf ve taramaları yeniden sıkıştırır, metne ve vektör grafiklere dokunmaz.",
       "steps": [
         "Bir PDF dosyası ekleyin.",
-        "Dengeli veya Güçlü sıkıştırmayı seçin.",
+        "Ne kadar sıkıştırılacağını seçin: Hafif, Dengeli, Güçlü veya Aşırı.",
         "“PDF'i Sıkıştır”a tıklayın ve daha küçük dosyayı indirin."
       ],
       "faq": [

@@ -93,6 +93,10 @@
     "ws.compression": "Compresión",
     "ws.balanced": "Equilibrada — mejor calidad",
     "ws.strong": "Fuerte — archivo más pequeño",
+    "ws.levelLow": "Ligera — mejor calidad",
+    "ws.levelMedium": "Equilibrada — recomendada",
+    "ws.levelHigh": "Fuerte — archivo más pequeño",
+    "ws.levelExtreme": "Extrema — el archivo más pequeño",
     "ws.saveAs": "Guardar como",
     "ws.fmtOriginal": "Mismo formato que cada archivo",
     "ws.fmtJpeg": "JPG — fotos, se abre en cualquier sitio",
@@ -741,7 +745,7 @@
       "lede": "Haz que un PDF sea lo bastante pequeño para enviarlo por correo o subirlo a un portal. Fizzdoc recomprime fotos y escaneos pesados y deja intactos el texto y los gráficos vectoriales.",
       "steps": [
         "Añade un archivo PDF.",
-        "Elige compresión Equilibrada o Fuerte.",
+        "Elige cuánto comprimir: Ligera, Equilibrada, Fuerte o Extrema.",
         "Haz clic en «Comprimir PDF» y descarga el archivo más ligero."
       ],
       "faq": [

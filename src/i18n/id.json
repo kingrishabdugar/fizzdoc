@@ -93,6 +93,10 @@
     "ws.compression": "Kompresi",
     "ws.balanced": "Seimbang — kualitas terbaik",
     "ws.strong": "Kuat — ukuran file terkecil",
+    "ws.levelLow": "Ringan — kualitas terbaik",
+    "ws.levelMedium": "Seimbang — disarankan",
+    "ws.levelHigh": "Kuat — file lebih kecil",
+    "ws.levelExtreme": "Ekstrem — file terkecil",
     "ws.saveAs": "Simpan sebagai",
     "ws.fmtOriginal": "Format sama seperti tiap file",
     "ws.fmtJpeg": "JPG — foto, bisa dibuka di mana saja",
@@ -741,7 +745,7 @@
       "lede": "Perkecil PDF agar cukup ringan untuk dikirim lewat email atau diunggah ke portal. Fizzdoc mengompresi ulang foto dan scan yang terlalu besar, tanpa menyentuh teks dan grafik vektor.",
       "steps": [
         "Tambahkan satu file PDF.",
-        "Pilih kompresi Seimbang atau Kuat.",
+        "Pilih seberapa kuat kompresinya: Ringan, Seimbang, Kuat, atau Ekstrem.",
         "Klik “Kompres PDF” dan unduh file yang lebih kecil."
       ],
       "faq": [

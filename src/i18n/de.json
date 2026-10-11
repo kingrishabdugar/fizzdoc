@@ -93,6 +93,10 @@
     "ws.compression": "Komprimierung",
     "ws.balanced": "Ausgewogen — beste Qualität",
     "ws.strong": "Stark — kleinste Datei",
+    "ws.levelLow": "Leicht — beste Qualität",
+    "ws.levelMedium": "Ausgewogen — empfohlen",
+    "ws.levelHigh": "Stark — kleinere Datei",
+    "ws.levelExtreme": "Extrem — kleinste Datei",
     "ws.saveAs": "Speichern als",
     "ws.fmtOriginal": "Gleiches Format wie jede Datei",
     "ws.fmtJpeg": "JPG — Fotos, öffnet überall",
@@ -741,7 +745,7 @@
       "lede": "Machen Sie ein PDF klein genug zum Versenden per E-Mail oder für ein Upload-Portal. Fizzdoc komprimiert übergroße Fotos und Scans neu und lässt Text sowie Vektorgrafiken unangetastet.",
       "steps": [
         "Eine PDF-Datei hinzufügen.",
-        "Ausgewogene oder starke Komprimierung wählen.",
+        "Stärke der Komprimierung wählen: Leicht, Ausgewogen, Stark oder Extrem.",
         "Auf „PDF komprimieren“ klicken und die kleinere Datei herunterladen."
       ],
       "faq": [

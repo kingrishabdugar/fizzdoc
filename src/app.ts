@@ -132,7 +132,10 @@ function setUp(op: ToolOp) {
       (await import('./engine/stamp')).watermarkPdf(f[0], { text: o.text ?? '', opacity: (number(o.opacity) ?? 20) / 100 }),
     'office-clean': async (f) => (await import('./engine/local')).cleanOffice(f[0]),
     'office-images': async (f) => (await import('./engine/local')).extractOfficeImages(f[0]),
-    'compress-pdf': async (f, o) => (await import('./engine/compress')).compressPdf(f[0], { level: o.level === 'strong' ? 'strong' : 'light' }),
+    'compress-pdf': async (f, o) => {
+      const { PDF_LEVELS, compressPdf } = await import('./engine/compress');
+      return compressPdf(f[0], { level: o.level && o.level in PDF_LEVELS ? (o.level as keyof typeof PDF_LEVELS) : 'medium' });
+    },
     'office-compress': async (f, o) => (await import('./engine/compress')).compressOffice(f[0], { level: o.level === 'strong' ? 'strong' : 'light' }),
     'image-convert': async (f, o) =>
       (await import('./engine/compress')).convertImages(f, {
