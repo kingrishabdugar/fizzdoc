@@ -39,7 +39,7 @@
     "prepack": "npm run build && cp ../LICENSE ../NOTICE ."
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.31.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@neslinesli93/qpdf-wasm": "0.3.0",
     "zod": "^4.6.5"
   }
