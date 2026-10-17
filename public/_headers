@@ -10,6 +10,10 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# The service worker doesn't follow the page's CSP, so it gets its own: it may only fetch from this site.
+/sw.js
+  Content-Security-Policy: default-src 'none'; connect-src 'self'
+
 # The fizzdoc.pages.dev address and its preview builds are copies of fizzdoc.com; keep them out
 # of search results so fizzdoc.com gets all the credit.
 https://:project.pages.dev/*

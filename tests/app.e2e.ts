@@ -62,6 +62,30 @@ test('merges two PDFs locally without sending any file data', async ({ page, bas
   expect(seen.violations).toEqual([]);
 });
 
+test('works with the internet off: a page opened before loads again and its tool runs', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ serviceWorkers: 'allow' });
+  const requests: string[] = [];
+  context.on('request', (r) => requests.push(r.url())); // includes the service worker's own requests
+  const page = await context.newPage();
+  await page.goto('/merge-pdf/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(async () => !!(await caches.match(location.href)))).toBe(true);
+
+  await context.setOffline(true);
+  await page.reload();
+  await page.locator('#file-input').setInputFiles([fixture('form'), fixture('bookmarks')]);
+  await page.getByRole('button', { name: 'Merge PDFs' }).click();
+  await expect(page.locator('#status')).toContainText('Done — 6 pages');
+  expect((await downloadBytes(page)).bytes.subarray(0, 5).toString()).toBe('%PDF-');
+
+  // A page never opened can't come from anywhere.
+  await expect(page.goto('/split-pdf/')).rejects.toThrow();
+
+  const origin = new URL(baseURL!).origin;
+  for (const url of requests) if (!/^(blob|data):/.test(url)) expect(new URL(url).origin, url).toBe(origin);
+  await context.close();
+});
+
 test('shows real progress and a prefilled problem report without the file name', async ({ page }) => {
   // Remember the highest percentage the bar reached; small jobs finish too fast to catch otherwise.
   await page.addInitScript(() => {
