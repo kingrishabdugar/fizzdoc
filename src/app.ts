@@ -664,3 +664,5 @@ setUpEffects();
 setUpSearch();
 const op = document.body.dataset.tool as ToolOp | '';
 if (op) setUp(op);
+// Offline use: keeps every opened page and the tools' code on the device (src/sw.js).
+if (import.meta.env.PROD && 'serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
