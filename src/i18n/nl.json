@@ -175,6 +175,8 @@
     "error.PROCESSING_FAILED": "Er ging iets mis tijdens de verwerking. Je originele bestand is ongewijzigd.",
     "offline.needed": "Je bent offline en deze tool staat nog niet op dit apparaat. Hij heeft één keer internet nodig: maak verbinding en probeer het opnieuw.",
     "offline.ready": "Klaar: deze tool werkt nu op dit apparaat, ook met wifi of mobiele data uit.",
+    "offline.install": "Fizzdoc installeren",
+    "offline.iosSteps": "Om Fizzdoc op iPhone of iPad te installeren, tik je op de knop Deel en daarna op ‘Zet op beginscherm’.",
     "error.NO_PASSWORD": "Voer het wachtwoord in dat je wilt toevoegen.",
     "error.PASSWORDS_DIFFER": "De twee wachtwoorden komen niet overeen.",
     "error.NOT_OFFICE": "Dit bestand is geen geldig Word-, Excel- of PowerPoint-document.",
