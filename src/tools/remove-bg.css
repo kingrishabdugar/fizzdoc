@@ -229,3 +229,12 @@
   max-height: none;
   height: auto;
 }
+
+/* Sticker Maker: how to turn the saved file into a WhatsApp sticker. */
+.wa-steps p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+.wa-steps .bg-share {
+  margin-top: 10px;
+}

@@ -269,7 +269,7 @@
     "bg.sharp": "Feinere Kanten (Haare, Fell)",
     "bg.sharpNote": "Rechnet genauer auf Ihrem Grafikchip. Beim ersten Mal werden etwa {mb} MB geladen.",
     "bg.sharpFailed": "Feinere Kanten haben auf diesem Gerät nicht geklappt, daher bleibt das erste Ergebnis.",
-    "bg.shareSticker": "Auf WhatsApp teilen",
+    "bg.shareSticker": "In Fotos speichern",
     "st.text": "Text",
     "st.hint": "Zieh den Text auf dem Bild an seinen Platz. Mit zwei Fingern zusammenziehen oder die Regler nutzen, um ihn zu vergrößern und zu drehen.",
     "st.add": "Text hinzufügen",
@@ -292,7 +292,12 @@
     "st.size": "Größe",
     "st.turn": "Drehen",
     "st.delete": "Text löschen",
-    "bg.stickerNote": "Sticker fertig: 512 × 512, transparenter Hintergrund, weißer Umriss. Speichern oder vom Handy direkt auf WhatsApp teilen.",
+    "bg.stickerNote": "Sticker fertig: 512 × 512, transparenter Hintergrund, weißer Umriss.",
+    "wa.title": "Zu WhatsApp hinzufügen",
+    "wa.why": "Keine Website kann einen Sticker direkt in WhatsApp einfügen: Eine geteilte Datei kommt als Foto an. Den letzten Schritt erledigt WhatsApp selbst mit seiner Sticker-Funktion und legt den Sticker danach bei Ihren Stickern ab.",
+    "wa.android": "Android: Laden Sie den Sticker herunter. Öffnen Sie in WhatsApp einen beliebigen Chat (ein Chat mit sich selbst geht auch), tippen Sie auf das Emoji-Symbol, dann auf Sticker › Erstellen und wählen Sie den Sticker aus Ihren Fotos. Tippen Sie auf Senden.",
+    "wa.iphone": "iPhone (iOS 17 oder neuer): Tippen Sie auf „In Fotos speichern“ und speichern Sie das Bild. Öffnen Sie in WhatsApp einen beliebigen Chat, tippen Sie auf Sticker › Sticker erstellen › Foto verwenden und wählen Sie das Bild aus. Tippen Sie auf Senden.",
+    "wa.computer": "Am Computer: Laden Sie den Sticker herunter, schicken Sie ihn an Ihr Handy und folgen Sie dort den Schritten oben.",
     "bg.magicErase": "Tippen zum Entfernen",
     "bg.magicRestore": "Tippen zum Behalten",
     "bg.magicHint": "Schneller: Wählen Sie „Tippen zum Entfernen“ oder „Tippen zum Behalten“ und tippen Sie auf einen Hintergrundrest oder ein fehlendes Stück. Der ganze Bereich in dieser Farbe wird auf einmal korrigiert.",
@@ -2989,8 +2994,8 @@
       "lede": "Wählen Sie ein Foto von Freunden, Ihrem Haustier oder sich selbst. Der Hintergrund verschwindet, ein weißer Sticker-Umriss kommt dazu, und Sie erhalten einen WhatsApp-fertigen Sticker: 512 × 512 WebP, transparenter Hintergrund, unter 100 KB. Die KI läuft auf Ihrem eigenen Gerät.",
       "steps": [
         "Wählen Sie ein Foto. Der Hintergrund wird entfernt und der Sticker-Umriss hinzugefügt.",
-        "Bessern Sie bei Bedarf Stellen aus oder schalten Sie den Umriss aus.",
-        "Klicken Sie auf „Sticker herunterladen“ oder tippen Sie am Handy auf „Auf WhatsApp teilen“."
+        "Fügen Sie bei Bedarf Text oder Emojis hinzu, bessern Sie Stellen aus oder schalten Sie den Umriss aus.",
+        "Laden Sie den Sticker herunter (am iPhone tippen Sie auf „In Fotos speichern“). Öffnen Sie dann in WhatsApp Sticker › Erstellen und wählen Sie ihn aus."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Wie füge ich den Sticker zu WhatsApp hinzu?",
-          "Tippen Sie am Handy auf „Auf WhatsApp teilen“ und senden Sie ihn in einen beliebigen Chat (ein Chat mit sich selbst geht auch). Tippen Sie dann im Chat auf den Sticker und wählen Sie „Zu Favoriten hinzufügen“. Am Computer laden Sie die WebP-Datei herunter und senden sie über WhatsApp Web oder Desktop."
+          "Keine Website kann Sticker direkt zu WhatsApp hinzufügen, deshalb erledigt WhatsApp den letzten Schritt selbst mit seiner Sticker-Funktion. Unter Android laden Sie den Sticker herunter, tippen dann in einem beliebigen Chat auf das Emoji-Symbol › Sticker › Erstellen und wählen ihn aus Ihren Fotos. Am iPhone (iOS 17 oder neuer) tippen Sie auf „In Fotos speichern“, dann in einem Chat auf Sticker › Sticker erstellen › Foto verwenden und wählen das Bild aus. Tippen Sie auf Senden, und WhatsApp legt den Sticker bei Ihren Stickern ab. Am Computer schicken Sie die Datei an Ihr Handy und erledigen es dort."
         ],
         [
           "Ist das von WhatsApp?",

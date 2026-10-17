@@ -745,7 +745,7 @@ export function renderPage(template: string, page: Page, withCsp: boolean, stars
     .replaceAll('{{home}}', c.link())
     .replace(/\{\{t:([\w.]+)\}\}/g, (_, key: UiKey) => esc(c.t(key)))
     .replaceAll('<!--stars-->', stars ? `<span class="star-count">${formatStars(stars)}</span>` : '')
-    .replace('data-tool=""', `data-tool="${page.tool?.op ?? ''}"${page.tool ? ` data-format="${page.tool.format}"` : ''}`);
+    .replace('data-tool=""', `data-tool="${page.tool?.op ?? ''}"${page.tool ? ` data-format="${page.tool.format}" data-page="${page.tool.slug}"` : ''}`);
 }
 
 export const fileName = (page: Page) => (page.path === '/' ? 'index.html' : `${page.path.slice(1)}index.html`);

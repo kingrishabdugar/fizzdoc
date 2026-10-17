@@ -1297,14 +1297,14 @@ TOOLS.push(
     lede: 'Choose a photo of a friend, a pet or yourself. The background disappears, a white sticker outline is added, and you get a WhatsApp-ready sticker: 512 × 512 WebP, clear background, under 100 KB. The AI runs on your own device.',
     steps: [
       'Choose a photo. The background is removed and the sticker outline is added.',
-      'Touch up any spot if needed, or turn the outline off.',
-      'Click “Download sticker”, or on a phone tap “Share to WhatsApp”.',
+      'Add text or emoji if you like, touch up any spot, or turn the outline off.',
+      'Download the sticker (on iPhone, tap “Save to Photos”), then in WhatsApp open Stickers › Create and pick it.',
     ],
     faq: [
       PRIVACY_FAQ[0],
       [
         'How do I add the sticker to WhatsApp?',
-        'On a phone, tap “Share to WhatsApp” and send it to any chat (a chat with yourself works too). Then tap the sticker in the chat and choose “Add to favourites” to keep it. On a computer, download the WebP file and send it from WhatsApp Web or Desktop.',
+        'No website can add stickers to WhatsApp directly, so WhatsApp’s own sticker maker does the last step. On Android, download the sticker, then in any chat tap the emoji button › Stickers › Create and pick it from your photos. On iPhone (iOS 17 or later), tap “Save to Photos”, then in a chat tap Stickers › Create sticker › Use a photo and pick it. Tap Send, and WhatsApp keeps it in your sticker tray. On a computer, send the file to your phone and do it there.',
       ],
       [
         'Is this made by WhatsApp?',

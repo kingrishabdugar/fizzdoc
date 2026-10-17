@@ -269,7 +269,7 @@
     "bg.sharp": "Bordes más finos (pelo, pelaje)",
     "bg.sharpNote": "Hace una pasada más detallada en tu tarjeta gráfica. La primera vez descarga unos {mb} MB.",
     "bg.sharpFailed": "Los bordes más finos no funcionaron en este dispositivo, así que se mantiene el primer resultado.",
-    "bg.shareSticker": "Compartir en WhatsApp",
+    "bg.shareSticker": "Guardar en Fotos",
     "st.text": "Texto",
     "st.hint": "Arrastra el texto sobre la imagen. Pellizca con dos dedos, o usa los controles, para cambiar su tamaño y girarlo.",
     "st.add": "Añadir texto",
@@ -292,7 +292,12 @@
     "st.size": "Tamaño",
     "st.turn": "Girar",
     "st.delete": "Borrar texto",
-    "bg.stickerNote": "Sticker listo: 512 × 512, fondo transparente y contorno blanco. Guárdalo o compártelo directo a WhatsApp desde el móvil.",
+    "bg.stickerNote": "Sticker listo: 512 × 512, fondo transparente y contorno blanco.",
+    "wa.title": "Añádelo a WhatsApp",
+    "wa.why": "Ninguna web puede poner un sticker directamente en WhatsApp: un archivo compartido llega como foto. El propio creador de stickers de WhatsApp hace el último paso y luego guarda el sticker en tu bandeja de stickers.",
+    "wa.android": "Android: descarga el sticker. En WhatsApp, abre cualquier chat (un chat contigo mismo sirve), toca el botón de emojis, luego Stickers › Crear y elige el sticker entre tus fotos. Toca Enviar.",
+    "wa.iphone": "iPhone (iOS 17 o posterior): toca “Guardar en Fotos” y guarda la imagen. En WhatsApp, abre cualquier chat, toca Stickers › Crear sticker › Usar una foto y elígela. Toca Enviar.",
+    "wa.computer": "En el ordenador: descarga el sticker, envíalo a tu móvil y sigue allí los pasos de arriba.",
     "bg.magicErase": "Toca para quitar",
     "bg.magicRestore": "Toca para conservar",
     "bg.magicHint": "Más rápido: elige Toca para quitar o Toca para conservar y toca un resto de fondo o una parte que falta. Toda la zona de ese color se corrige de una vez.",
@@ -2989,8 +2994,8 @@
       "lede": "Elige una foto de un amigo, tu mascota o tú. El fondo desaparece, se añade un contorno blanco de sticker y obtienes un sticker listo para WhatsApp: WebP de 512 × 512, fondo transparente, menos de 100 KB. La IA funciona en tu propio dispositivo.",
       "steps": [
         "Elige una foto. Se quita el fondo y se añade el contorno del sticker.",
-        "Retoca alguna zona si hace falta, o quita el contorno.",
-        "Pulsa “Descargar sticker” o, en el móvil, “Compartir en WhatsApp”."
+        "Añade texto o emojis si quieres, retoca cualquier zona o quita el contorno.",
+        "Descarga el sticker (en el iPhone, toca “Guardar en Fotos”) y luego, en WhatsApp, abre Stickers › Crear y elígelo."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "¿Cómo añado el sticker a WhatsApp?",
-          "En el móvil, pulsa “Compartir en WhatsApp” y envíalo a cualquier chat (un chat contigo mismo sirve). Luego toca el sticker en el chat y elige “Añadir a favoritos”. En el ordenador, descarga el archivo WebP y envíalo desde WhatsApp Web o Desktop."
+          "Ninguna web puede añadir stickers a WhatsApp directamente, así que el propio creador de stickers de WhatsApp hace el último paso. En Android, descarga el sticker y luego, en cualquier chat, toca el botón de emojis › Stickers › Crear y elígelo entre tus fotos. En el iPhone (iOS 17 o posterior), toca “Guardar en Fotos” y luego, en un chat, toca Stickers › Crear sticker › Usar una foto y elígelo. Toca Enviar y WhatsApp lo guarda en tu bandeja de stickers. En el ordenador, envía el archivo a tu móvil y hazlo allí."
         ],
         [
           "¿Esto lo hace WhatsApp?",
