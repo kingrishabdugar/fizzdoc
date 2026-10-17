@@ -29,7 +29,7 @@ interface Manifest {
 /** Downloads whatever isn't cached yet, reporting bytes as they arrive. */
 async function setUp(cache: Cache) {
   const manifest: Manifest = await (await fetch(`${BASE}${MODEL}/manifest.json`)).json();
-  const wasmSize = Number((await fetch(WASM, { method: 'HEAD' })).headers.get('content-length')) || 14_300_000;
+  const wasmSize = 14_300_000; // for the progress bar only; the host sends no Content-Length to read it from
   const wanted = [
     ...manifest.files.map((file) => ({ url: `${BASE}${MODEL}/${file.path}`, size: file.size, parts: file.parts.map((p) => `${BASE}${MODEL}/${p}`) })),
     { url: WASM, size: wasmSize, parts: [WASM] },

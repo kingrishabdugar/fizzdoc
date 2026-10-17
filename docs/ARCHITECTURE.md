@@ -71,7 +71,7 @@ sequenceDiagram
 | `vite.config.ts` | Serves pages in dev, emits one HTML file per tool at build | `seo.ts` |
 | `src/app.ts` | Page controller: file intake, validation, job dispatch, result | engine types |
 | `src/effects.ts` | Optional visual touches; transform/opacity only, honours reduced motion | – |
-| `src/sw.js` | Service worker, written to `/sw.js` by the build: pages network-first, tool code kept on the device, models passed through | – |
+| `src/sw.js` | Service worker, written to `/sw.js` by the build: pages network-first, tool code kept on the device, model and runtime binaries (.onnx, .wasm) passed through to their tools' own caches | – |
 | `src/engine/worker.ts` | Worker entry: loads qpdf, mounts files, relays password prompts | `pdf.ts`, qpdf-wasm |
 | `src/engine/pdf.ts` | Environment-agnostic qpdf runner: preflight, fidelity warnings, command | – |
 | `src/engine/local.ts` | Jobs that don't need qpdf: Office metadata/images, JPG→PDF, PDF→JPG | fflate, pdf-lib, pdf.js |

@@ -1,7 +1,8 @@
 // Keeps Fizzdoc working with the internet off. The build writes this file to /sw.js with ASSETS filled in.
 // - Pages: from the network when online, so they are always fresh; from the cache when offline.
 // - theme.js and the hashed files under /assets/ (the code of every tool): kept on the device when this worker installs.
-// - The speech and background models are never stored here; their tools keep them in their own caches.
+// - The speech and background model and runtime files (.onnx, .wasm) are never stored here; their tools keep
+//   them in their own caches. Their small files (model lists, runtime loaders) are kept like any other file.
 const ASSETS = [/* ASSETS */];
 // The "needs the internet once" message and the home link, per language: { en: { needed, home, link }, hi: … }.
 const OFFLINE = {/* OFFLINE */};
@@ -37,7 +38,7 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== location.origin || request.headers.has('range')) return;
-  if (url.pathname.startsWith('/bg/') || url.pathname.startsWith('/whisper/')) return;
+  if (/^\/(bg|whisper)\/.*\.(onnx|wasm)(\.part\d+)?$/.test(url.pathname)) return;
   if (request.mode === 'navigate') event.respondWith(networkFirst(event, PAGES, pageKey(request.url)));
   else if (url.pathname.startsWith('/assets/')) event.respondWith(cacheFirst(event));
   else event.respondWith(networkFirst(event, SHELL, request));
