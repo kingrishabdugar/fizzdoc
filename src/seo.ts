@@ -477,8 +477,14 @@ function examplesHtml(c: Copy, tool: Tool) {
 }
 
 // English reads "How to merge PDF"; other languages use their own pattern with the tool's name.
-const howTo = (c: Copy, tool: Tool) =>
-  c.lang === 'en' ? `How to ${tool.name[0].toLowerCase()}${tool.name.slice(1)}` : c.t('tool.how', { tool: tool.name });
+// English "How to" headings: a name that starts with a verb reads on ("How to merge PDF"), "X to Y"
+// names are conversions ("How to convert PDF to JPG"), and the rest are used ("How to use OCR PDF").
+const VERB = /^(Add|Compress|Convert|Cut|Delete|Edit|Extract|Merge|Protect|Redact|Remove|Reorder|Resize|Rotate|Split|Unlock|Watermark) /;
+const howTo = (c: Copy, tool: Tool) => {
+  if (c.lang !== 'en') return c.t('tool.how', { tool: tool.name });
+  if (VERB.test(tool.name)) return `How to ${tool.name[0].toLowerCase()}${tool.name.slice(1)}`;
+  return / to /.test(tool.name) ? `How to convert ${tool.name}` : `How to use ${tool.name}`;
+};
 
 // Every tool linked from every page's footer, grouped by format: helps visitors and crawlers alike.
 const footerHtml = (c: Copy) =>

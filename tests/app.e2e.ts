@@ -1194,6 +1194,15 @@ test('ripples on background clicks only', async ({ page }) => {
   await expect(page.locator('.tap-ripple')).toHaveCount(0);
 });
 
+test('English “How to” headings read as sentences', async ({ request }) => {
+  for (const [path, heading] of [
+    ['/merge-pdf/', 'How to merge PDF'],
+    ['/pdf-to-jpg/', 'How to convert PDF to JPG'],
+    ['/whatsapp-sticker-maker/', 'How to use WhatsApp Sticker Maker'],
+  ])
+    expect(await (await request.get(path)).text()).toContain(`<h2 id="how">${heading}</h2>`);
+});
+
 for (const { path, tool } of PAGES) {
   test(`serves search-ready HTML at ${path}`, async ({ request }) => {
     const html = await (await request.get(path)).text();
