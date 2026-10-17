@@ -273,6 +273,7 @@
     "st.text": "Text",
     "st.hint": "Zieh den Text auf dem Bild an seinen Platz. Mit zwei Fingern zusammenziehen oder die Regler nutzen, um ihn zu vergrößern und zu drehen.",
     "st.add": "Text hinzufügen",
+    "st.addEmoji": "Emoji hinzufügen",
     "st.sample": "Hallo!",
     "st.textLabel": "Dein Text",
     "st.style": "Schriftstil",

@@ -273,6 +273,7 @@
     "st.text": "Testo",
     "st.hint": "Trascina il testo sull’immagine. Pizzica con due dita, o usa i cursori, per ridimensionarlo e ruotarlo.",
     "st.add": "Aggiungi testo",
+    "st.addEmoji": "Aggiungi un’emoji",
     "st.sample": "Ciao!",
     "st.textLabel": "Il tuo testo",
     "st.style": "Stile del carattere",

@@ -273,6 +273,7 @@
     "st.text": "Texto",
     "st.hint": "Arrastra el texto sobre la imagen. Pellizca con dos dedos, o usa los controles, para cambiar su tamaño y girarlo.",
     "st.add": "Añadir texto",
+    "st.addEmoji": "Añadir un emoji",
     "st.sample": "¡Hola!",
     "st.textLabel": "Tu texto",
     "st.style": "Estilo de letra",

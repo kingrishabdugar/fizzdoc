@@ -273,6 +273,7 @@
     "st.text": "Teks",
     "st.hint": "Seret teks di atas gambar. Cubit dengan dua jari, atau pakai penggeser, untuk mengubah ukuran dan memutarnya.",
     "st.add": "Tambah teks",
+    "st.addEmoji": "Tambah emoji",
     "st.sample": "Halo!",
     "st.textLabel": "Teks kamu",
     "st.style": "Gaya huruf",

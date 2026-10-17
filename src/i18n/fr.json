@@ -273,6 +273,7 @@
     "st.text": "Texte",
     "st.hint": "Faites glisser le texte sur l’image. Pincez avec deux doigts, ou utilisez les curseurs, pour le redimensionner et le faire pivoter.",
     "st.add": "Ajouter du texte",
+    "st.addEmoji": "Ajouter un emoji",
     "st.sample": "Salut !",
     "st.textLabel": "Votre texte",
     "st.style": "Style de police",

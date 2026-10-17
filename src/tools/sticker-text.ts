@@ -1,4 +1,4 @@
-// Words on a WhatsApp sticker: text in fun fonts that can be dragged, resized and turned on the picture.
+// Words and emoji on a WhatsApp sticker: layers that can be dragged, resized and turned on the picture.
 // The Sticker Maker draws it over the cut-out, both in the preview and in the saved 512×512 sticker.
 import '@fontsource/bangers/400.css';
 import '@fontsource/kalam/700.css';
@@ -14,9 +14,12 @@ const STYLES = {
   cozy: { weight: 700, family: "'Kalam', 'Baloo 2 Variable', sans-serif" },
   big: { weight: 700, family: "'Teko', 'Baloo 2 Variable', sans-serif" },
   serious: { weight: 700, family: "'Inter Variable', 'Baloo 2 Variable', sans-serif" },
+  // Emoji are drawn with the device's own colour emoji font.
+  emoji: { weight: 400, family: "'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif" },
 } as const;
 type Style = keyof typeof STYLES;
 const COLORS = { white: '#ffffff', black: '#111111', green: '#25d366', yellow: '#ffd60a', red: '#ff3b30', blue: '#2f80ed' } as const;
+const EMOJI = ['😂', '🤣', '😍', '🥰', '😎', '🥳', '😭', '😡', '🤔', '🙏', '👍', '👏', '🔥', '💯', '❤️', '🎉'];
 
 /** One piece of text. Position and size are fractions of the sticker's width, so the preview and the 512 px file match. */
 interface Words {
@@ -69,7 +72,7 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
       context.lineJoin = 'round';
       // A thick contrasting edge, as on printed stickers, so the words read on any chat background.
       context.lineWidth = px * 0.2;
-      context.strokeStyle = words.color === COLORS.white ? COLORS.black : COLORS.white;
+      context.strokeStyle = words.color === COLORS.white && words.style !== 'emoji' ? COLORS.black : COLORS.white;
       context.fillStyle = words.color;
       const top = -((rows.length - 1) * px * 1.05) / 2;
       rows.forEach((row, i) => context.strokeText(row, 0, top + i * px * 1.05));
@@ -96,7 +99,7 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
   const styleRow = element('div', 'st-row');
   styleRow.setAttribute('role', 'group');
   styleRow.setAttribute('aria-label', t('st.style'));
-  const styleButtons = (Object.keys(STYLES) as Style[]).map((style) => {
+  const styleButtons = (Object.keys(STYLES) as Style[]).filter((style) => style !== 'emoji').map((style) => {
     const button = element('button', 'bg-btn st-style', t(`st.${style}` as UiKey));
     button.type = 'button';
     button.dataset.style = style;
@@ -134,13 +137,25 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
   remove.type = 'button';
   const controls = element('div', 'st-controls');
   controls.append(input, styleRow, colorRow, size.wrap, turn.wrap, remove);
-  panel.append(add, controls);
+  const emojiRow = element('div', 'st-row');
+  emojiRow.setAttribute('role', 'group');
+  emojiRow.setAttribute('aria-label', t('st.addEmoji'));
+  emojiRow.append(
+    ...EMOJI.map((emoji) => {
+      const button = element('button', 'bg-btn st-emoji', emoji);
+      button.type = 'button';
+      button.onclick = () => place({ text: emoji, style: 'emoji', color: COLORS.white, x: 0.8, y: 0.2, size: 0.2, angle: 0 });
+      return button;
+    }),
+  );
+  panel.append(add, emojiRow, controls);
 
   /** Reflects the selected layer in the panel; with nothing selected, only "Add text" is offered. */
   const sync = () => {
     controls.hidden = !selected;
     canvas.classList.toggle('st-has-text', layers.length > 0);
     if (!selected) return;
+    styleRow.hidden = colorRow.hidden = selected.style === 'emoji'; // an emoji keeps its own colours
     input.value = selected.text;
     for (const button of styleButtons) button.setAttribute('aria-pressed', String(button.dataset.style === selected.style));
     colorButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(Object.values(COLORS)[i] === selected!.color)));
@@ -161,11 +176,13 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
     sync();
     redraw();
   }
-  add.onclick = () => {
-    const words: Words = { text: t('st.sample'), style: 'funny', color: COLORS.white, x: 0.5, y: 0.84, size: 0.14, angle: 0 };
+  const place = (words: Words) => {
     layers.push(words);
     select(words);
     ready(words);
+  };
+  add.onclick = () => {
+    place({ text: t('st.sample'), style: 'funny', color: COLORS.white, x: 0.5, y: 0.84, size: 0.14, angle: 0 });
     input.select();
     input.focus();
   };

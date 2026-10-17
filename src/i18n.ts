@@ -356,6 +356,7 @@ export const UI = {
   'st.text': 'Text',
   'st.hint': 'Drag the text on the picture. Pinch with two fingers, or use the sliders, to resize and turn it.',
   'st.add': 'Add text',
+  'st.addEmoji': 'Add an emoji',
   'st.sample': 'Hello!',
   'st.textLabel': 'Your text',
   'st.style': 'Font style',

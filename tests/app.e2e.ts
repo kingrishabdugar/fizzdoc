@@ -1480,7 +1480,7 @@ test('makes a WhatsApp sticker: 512×512 WebP, clear background, outline, under 
   expect(seen.violations).toEqual([]);
 });
 
-test('sticker text: words in a fun font, dragged into place, end up in the saved sticker', async ({ browser, baseURL }) => {
+test('sticker text and emoji: words in a fun font, dragged into place, and an emoji end up in the saved sticker', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   const context = await browser.newContext({ baseURL });
   // The small background model keeps this test quick; the text works the same on both.
@@ -1512,6 +1512,9 @@ test('sticker text: words in a fun font, dragged into place, end up in the saved
   await page.mouse.down();
   await page.mouse.move(box.x + box.width * 0.22, box.y + box.height * 0.13, { steps: 8 });
   await page.mouse.up();
+  // An emoji lands in the top-right corner, with its own colours (no style or colour choices).
+  await page.getByRole('group', { name: 'Add an emoji' }).getByRole('button', { name: '🔥' }).click();
+  await expect(page.getByRole('group', { name: 'Font style' })).toBeHidden();
 
   await page.getByRole('button', { name: 'Download sticker' }).click();
   await expect(page.locator('#status')).toContainText('512 × 512 px');
@@ -1525,10 +1528,15 @@ test('sticker text: words in a fun font, dragged into place, end up in the saved
     const pixels = c.getImageData(40, 30, 150, 70).data;
     let yellow = 0;
     for (let i = 0; i < pixels.length; i += 4) if (pixels[i] > 220 && pixels[i + 1] > 180 && pixels[i + 2] < 90 && pixels[i + 3] > 200) yellow++;
-    return { size: [bitmap.width, bitmap.height], yellow };
+    // The emoji, top right, also clear of the ball.
+    const corner = c.getImageData(420, 55, 45, 40).data;
+    let emoji = 0;
+    for (let i = 3; i < corner.length; i += 4) if (corner[i] > 200) emoji++;
+    return { size: [bitmap.width, bitmap.height], yellow, emoji };
   }, [...sticker.bytes]);
   expect(found.size).toEqual([512, 512]);
   expect(found.yellow).toBeGreaterThan(50);
+  expect(found.emoji).toBeGreaterThan(200);
   await context.close();
 });
 

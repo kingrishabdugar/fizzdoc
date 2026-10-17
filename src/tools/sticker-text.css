@@ -44,6 +44,11 @@
 .st-style[data-style='serious'] {
   font-weight: 700;
 }
+.st-emoji {
+  min-width: 48px;
+  padding: 0 8px;
+  font-size: 1.5rem;
+}
 .st-swatch {
   width: 44px;
   height: 44px;
