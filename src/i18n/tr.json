@@ -273,6 +273,7 @@
     "st.text": "Metin",
     "st.hint": "Metni resmin üzerinde sürükleyin. Boyutunu değiştirmek ve döndürmek için iki parmakla sıkıştırın ya da kaydırıcıları kullanın.",
     "st.add": "Metin ekle",
+    "st.addEmoji": "Emoji ekle",
     "st.sample": "Merhaba!",
     "st.textLabel": "Metniniz",
     "st.style": "Yazı tipi stili",

@@ -273,6 +273,7 @@
     "st.text": "Tekst",
     "st.hint": "Przeciągnij tekst na obrazku. Zsuń dwa palce albo użyj suwaków, żeby zmienić rozmiar i obrócić tekst.",
     "st.add": "Dodaj tekst",
+    "st.addEmoji": "Dodaj emoji",
     "st.sample": "Cześć!",
     "st.textLabel": "Twój tekst",
     "st.style": "Styl czcionki",

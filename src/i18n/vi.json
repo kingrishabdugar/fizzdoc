@@ -273,6 +273,7 @@
     "st.text": "Chữ",
     "st.hint": "Kéo chữ trên ảnh. Chụm hai ngón tay, hoặc dùng thanh trượt, để đổi cỡ và xoay chữ.",
     "st.add": "Thêm chữ",
+    "st.addEmoji": "Thêm biểu tượng cảm xúc",
     "st.sample": "Xin chào!",
     "st.textLabel": "Chữ của bạn",
     "st.style": "Kiểu chữ",
