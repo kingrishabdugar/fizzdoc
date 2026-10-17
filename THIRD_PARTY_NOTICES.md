@@ -18,6 +18,10 @@ The deployed site ships these third-party components in `assets/`:
 | BiRefNet-lite background model (ZhengPeng7/BiRefNet; 512 px ONNX export by studioludens and 1024 px export by onnx-community, weights stored as 16-bit) and U²-Net small (xuebinqin/U-2-Net; ONNX by BritishWerewolf), run with ONNX Runtime Web's WebGPU build (Remove Background page only) | MIT (BiRefNet, ONNX Runtime); Apache-2.0 (U²-Net) | https://github.com/ZhengPeng7/BiRefNet, https://github.com/xuebinqin/U-2-Net, https://github.com/microsoft/onnxruntime |
 | gifuct-js 2.1.2 and gifenc 1.0.3 (Remove GIF Background page only); Mediabunny 1.61.3 (Remove Video Background page only) | MIT (gifuct-js, gifenc); MPL-2.0 (Mediabunny, used unmodified) | https://github.com/matt-way/gifuct-js, https://github.com/mattdesl/gifenc, https://github.com/Vanilagy/mediabunny |
 | Inter typeface (@fontsource-variable/inter) | SIL Open Font License 1.1 | https://rsms.me/inter |
+| Bangers typeface (@fontsource/bangers, WhatsApp Sticker Maker text) | SIL Open Font License 1.1 | https://github.com/googlefonts/bangers |
+| Baloo 2 typeface (@fontsource-variable/baloo-2, WhatsApp Sticker Maker text) | SIL Open Font License 1.1 | https://github.com/EkType/Baloo2 |
+| Kalam typeface (@fontsource/kalam, WhatsApp Sticker Maker text) | SIL Open Font License 1.1 | https://github.com/itfoundry/kalam |
+| Teko typeface (@fontsource/teko, WhatsApp Sticker Maker text) | SIL Open Font License 1.1 | https://github.com/googlefonts/teko |
 | Archify (generator and runtime of `public/architecture.html`) | MIT | https://github.com/tt-a1i/archify |
 | JetBrains Mono typeface (embedded in `public/architecture.html`) | SIL Open Font License 1.1 | https://github.com/JetBrains/JetBrainsMono |
 

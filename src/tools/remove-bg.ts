@@ -39,6 +39,8 @@ const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', 
   return node;
 };
 
+type StickerText = ReturnType<typeof import('./sticker-text').stickerText>;
+
 export async function openBackgroundEditor(file: File, viewer: HTMLElement, preset: Record<string, string> = {}): Promise<BackgroundEditor> {
   // Videos: the first frame is the preview; the whole video is done when it's saved.
   const video = file.type.startsWith('video/') || /\.(mp4|m4v|mov|webm|mkv)$/i.test(file.name) ? await import('../engine/video-background') : undefined;
@@ -185,7 +187,13 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       canvas.height = height;
     }
   };
-  const draw = () => (animated ? compose(canvas, frames[shown].cut, frames[shown].photo, backdrop) : compose(canvas, cut, photo, backdrop, look()));
+  // The Sticker Maker's text, drawn over the cut-out (see sticker-text.ts).
+  let text: StickerText | undefined;
+  const draw = () => {
+    if (animated) return compose(canvas, frames[shown].cut, frames[shown].photo, backdrop);
+    compose(canvas, cut, photo, backdrop, look());
+    text?.draw(preview, canvas.width, canvas.height, true);
+  };
   let timer: ReturnType<typeof setTimeout> | undefined;
   const play = () => {
     draw();
@@ -356,15 +364,19 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   sizeBox.hidden = sticker; // stickers are always 512×512
   /** The sticker as a WebP file: 512×512, the quality lowered step by step until it fits 100 KB. */
   const makeSticker = async () => {
+    await document.fonts.ready;
     for (const quality of [0.92, 0.8, 0.7, 0.6, 0.5, 0.4]) {
       const canvas = new OffscreenCanvas(STICKER, STICKER);
       compose(canvas, cut, photo, backdrop, look());
+      text?.draw(canvas.getContext('2d')!, STICKER, STICKER);
       const blob = await canvas.convertToBlob({ type: 'image/webp', quality });
       if (blob.size <= STICKER_BYTES || quality === 0.4) return new File([blob], `${file.name.replace(/\.[^.]+$/, '')}-sticker.webp`, { type: 'image/webp' });
     }
     throw new Error('unreachable');
   };
   if (sticker) {
+    text = (await import('./sticker-text')).stickerText(canvas, draw, () => stage.classList.contains('painting'));
+    note.after(text.panel);
     note.textContent = t('bg.stickerNote');
     const probe = new File([new Uint8Array(1)], 'sticker.webp', { type: 'image/webp' });
     if (navigator.canShare?.({ files: [probe] })) {
