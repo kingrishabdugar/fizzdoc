@@ -1421,6 +1421,58 @@ test('makes a WhatsApp sticker: 512×512 WebP, clear background, outline, under 
   expect(seen.violations).toEqual([]);
 });
 
+test('sticker text: words in a fun font, dragged into place, end up in the saved sticker', async ({ browser, baseURL }) => {
+  test.setTimeout(240_000);
+  const context = await browser.newContext({ baseURL });
+  // The small background model keeps this test quick; the text works the same on both.
+  await context.addInitScript(() => localStorage.setItem('fizzdoc-bg-crashed', String(Date.now())));
+  const page = await context.newPage();
+  await page.goto('/whatsapp-sticker-maker/');
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(900, 600);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#e8eef5';
+    c.fillRect(0, 0, 900, 600);
+    c.fillStyle = '#c0392b';
+    c.beginPath();
+    c.arc(450, 300, 170, 0, Math.PI * 2);
+    c.fill();
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  await expect(page.getByRole('button', { name: 'Outline' })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
+
+  await page.getByRole('button', { name: 'Add text' }).click();
+  await page.getByRole('textbox', { name: 'Your text' }).fill('LOL');
+  await page.getByRole('button', { name: 'BIG' }).click();
+  await page.getByRole('button', { name: 'Yellow' }).click();
+  await expect(page.getByRole('button', { name: 'BIG' })).toHaveAttribute('aria-pressed', 'true');
+  // The new text sits low in the middle; drag it to the top-left corner, clear of the ball.
+  const box = (await page.locator('.bg-canvas').boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.84);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.22, box.y + box.height * 0.13, { steps: 8 });
+  await page.mouse.up();
+
+  await page.getByRole('button', { name: 'Download sticker' }).click();
+  await expect(page.locator('#status')).toContainText('512 × 512 px');
+  const sticker = await downloadBytes(page);
+  expect(sticker.bytes.length).toBeLessThanOrEqual(100 * 1024);
+  const found = await page.evaluate(async (data) => {
+    const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/webp' }));
+    const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    c.drawImage(bitmap, 0, 0);
+    // Yellow letters where the text was dropped, in a corner the ball doesn't reach.
+    const pixels = c.getImageData(40, 30, 150, 70).data;
+    let yellow = 0;
+    for (let i = 0; i < pixels.length; i += 4) if (pixels[i] > 220 && pixels[i + 1] > 180 && pixels[i + 2] < 90 && pixels[i + 3] > 200) yellow++;
+    return { size: [bitmap.width, bitmap.height], yellow };
+  }, [...sticker.bytes]);
+  expect(found.size).toEqual([512, 512]);
+  expect(found.yellow).toBeGreaterThan(50);
+  await context.close();
+});
+
 test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   for (const phone of [true, false]) {

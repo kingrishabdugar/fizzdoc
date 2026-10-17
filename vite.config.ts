@@ -113,6 +113,7 @@ export default defineConfig({
   // Remove Background imports the real WebGPU build by its own name, 'ort-webgpu'.
   resolve: { alias: { 'onnxruntime-web/webgpu': 'onnxruntime-web/wasm', 'ort-webgpu': ORT_WEBGPU } },
   worker: { format: 'es' },
-  build: { target: 'es2022' },
+  // Fonts are always files: the CSP (default-src 'self') rightly refuses fonts from data: URLs.
+  build: { target: 'es2022', assetsInlineLimit: (file) => (/\.(woff2?|ttf|otf)$/.test(file) ? false : undefined) },
   test: { include: ['tests/**/*.test.ts'] },
 });

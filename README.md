@@ -304,6 +304,7 @@ Fizzdoc would not exist without these open-source projects and the people who ma
 | [Whisper](https://github.com/openai/whisper) and [Transformers.js](https://github.com/huggingface/transformers.js) | Speech to text, on the device | [OpenAI](https://github.com/openai) and [Hugging Face](https://github.com/huggingface) |
 | [fflate](https://github.com/101arrowz/fflate) | Reads and writes Word, Excel, PowerPoint and ZIP files | [@101arrowz](https://github.com/101arrowz) |
 | [Inter](https://github.com/rsms/inter) | The typeface | [@rsms](https://github.com/rsms) |
+| [Bangers](https://github.com/googlefonts/bangers), [Baloo 2](https://github.com/EkType/Baloo2), [Kalam](https://github.com/itfoundry/kalam) and [Teko](https://github.com/googlefonts/teko) | The sticker text styles, with Hindi letters in Baloo 2, Kalam and Teko | Vernon Adams, [Ek Type](https://github.com/EkType) and [Indian Type Foundry](https://github.com/itfoundry) |
 | [Archify](https://github.com/tt-a1i/archify) | Generates the interactive architecture map | [@tt-a1i](https://github.com/tt-a1i) |
 
 Built and tested with [Vite](https://github.com/vitejs/vite), [TypeScript](https://github.com/microsoft/TypeScript), [Vitest](https://github.com/vitest-dev/vitest) and [Playwright](https://github.com/microsoft/playwright). Full license details are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
