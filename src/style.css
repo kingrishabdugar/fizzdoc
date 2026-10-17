@@ -1985,7 +1985,7 @@ dialog p {
    the intro as a sent message, and the preview shown on a chat background, the way the sticker will look. */
 [data-page='whatsapp-sticker-maker'] {
   --accent: #008069;
-  --accent-2: #00a884;
+  --accent-2: #005c4b; /* darker end, so white button text stays readable (AA) */
   --chat: light-dark(#efeae2, #0b141a);
   --chat-dots: light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.05));
   --bubble: light-dark(#d9fdd3, #005c4b);
