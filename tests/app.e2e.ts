@@ -34,6 +34,22 @@ async function fingerOn(page: Page) {
   };
 }
 
+/** A red ball on a pale background (600 x 400 PNG), drawn in the page: a clear subject for Remove Background. */
+async function ballPhoto(page: Page) {
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(600, 400);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#e8eef5';
+    c.fillRect(0, 0, 600, 400);
+    c.fillStyle = '#c0392b';
+    c.beginPath();
+    c.arc(300, 200, 110, 0, Math.PI * 2);
+    c.fill();
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  return { name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) };
+}
+
 async function downloadBytes(page: Page) {
   const [download] = await Promise.all([page.waitForEvent('download'), page.locator('#download').click()]);
   return { name: download.suggestedFilename(), bytes: readFileSync((await download.path())!) };
@@ -149,6 +165,49 @@ test('offers "Install Fizzdoc" where the browser can install it, and the Add to 
   await expect(ios.locator('#install-tip')).toContainText('Add to Home Screen');
   expect(await ios.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await phone.close();
+});
+
+test('offline, Remove Background works on a phone after one online run', async ({ browser, baseURL }) => {
+  test.setTimeout(300_000);
+  const context = await browser.newContext({ ...devices['Pixel 7'], baseURL, serviceWorkers: 'allow' });
+  const page = await context.newPage();
+  await page.goto('/remove-background/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload(); // the service worker is in charge from here on
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 200_000 });
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device');
+
+  await context.setOffline(true);
+  await page.reload();
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 120_000 });
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#status')).toContainText('600 × 400 px');
+  await context.close();
+});
+
+test('offline, Audio to Text works after one online run', async ({ browser, baseURL }) => {
+  test.setTimeout(300_000);
+  const context = await browser.newContext({ baseURL, serviceWorkers: 'allow' });
+  const page = await context.newPage();
+  const transcribe = async () => {
+    await page.locator('#file-input').setInputFiles(file('speech.wav'));
+    await page.locator('select[name="language"]').selectOption('english');
+    await page.getByRole('button', { name: 'Transcribe' }).click();
+    await expect(page.locator('#status')).toContainText('Done — TXT', { timeout: 150_000 });
+    await expect(page.locator('.transcript-preview')).toContainText('ask not what your country can do for you');
+  };
+  await page.goto('/audio-to-text/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload();
+  await transcribe();
+  await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device');
+  await context.setOffline(true);
+  await page.reload();
+  await transcribe();
+  await context.close();
 });
 
 test('shows real progress and a prefilled problem report without the file name', async ({ page }) => {
@@ -1431,18 +1490,7 @@ test('phones use the small background model, so the big one never loads and the 
     const fetched: string[] = [];
     page.on('request', (request) => fetched.push(new URL(request.url()).pathname));
     await page.goto('/remove-background/');
-    const photo = await page.evaluate(async () => {
-      const canvas = new OffscreenCanvas(600, 400);
-      const c = canvas.getContext('2d')!;
-      c.fillStyle = '#e8eef5';
-      c.fillRect(0, 0, 600, 400);
-      c.fillStyle = '#c0392b';
-      c.beginPath();
-      c.arc(300, 200, 110, 0, Math.PI * 2);
-      c.fill();
-      return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
-    });
-    await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+    await page.locator('#file-input').setInputFiles(await ballPhoto(page));
     await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 200_000 });
     expect(fetched.some((path) => path.startsWith('/bg/u2netp/'))).toBe(true);
     expect(fetched.filter((path) => path.startsWith('/bg/birefnet') || path.startsWith('/bg/ort/'))).toEqual([]);

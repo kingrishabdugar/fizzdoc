@@ -556,13 +556,9 @@ function setUp(op: ToolOp) {
     result.hidden = false;
   }
 
-  /**
-   * After a tool's first run with the service worker in charge, everything it needs is on this device, so
-   * say once that it works offline. Audio to Text and Remove Background still ask the network for their
-   * model lists on every run, so they aren't offline-ready yet.
-   */
+  /** After a tool's first run with the service worker in charge, everything it needs is on this device, so say once that it works offline. */
   function noteOfflineReady() {
-    if (!navigator.serviceWorker?.controller || op === 'transcribe' || op === 'remove-bg') return;
+    if (!navigator.serviceWorker?.controller) return;
     try {
       if (localStorage.getItem(`fizzdoc-offline-${op}`)) return;
       localStorage.setItem(`fizzdoc-offline-${op}`, '1');
