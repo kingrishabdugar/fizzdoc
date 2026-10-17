@@ -184,7 +184,7 @@ When something genuinely can't be carried over (a digital signature, accessibili
   <a href="https://fizzdoc.com/architecture.html">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/assets/architecture-dark.png">
-      <img src="docs/assets/architecture-light.png" width="900" alt="Fizzdoc architecture: a build step prerenders static pages to Cloudflare Pages; in the browser tab, the page controller hands files to the qpdf worker, pdf.js / pdf-lib / fflate, the OCR engine and the Whisper speech worker, and the result is saved straight back to the visitor's device">
+      <img src="docs/assets/architecture-light.png" width="900" alt="Fizzdoc architecture: a build step prerenders static pages to Cloudflare Pages; a service worker keeps an offline copy; in the browser tab, the page controller hands files to the qpdf worker, pdf.js / pdf-lib / fflate, the OCR engine and the Whisper speech worker, and the result is saved straight back to the visitor's device">
     </picture>
   </a>
 </p>

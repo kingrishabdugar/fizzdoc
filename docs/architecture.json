@@ -13,6 +13,7 @@
           "registry",
           "build",
           "host",
+          "sw",
           "app"
         ],
         "note": "One registry of tools becomes prerendered, search-ready pages on a static host."
@@ -72,6 +73,20 @@
       "pos": [
         310,
         330
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "sw",
+      "type": "backend",
+      "label": "Service worker",
+      "sublabel": "sw.js \u00b7 offline copy",
+      "pos": [
+        310,
+        570
       ],
       "size": [
         140,
@@ -247,10 +262,21 @@
       "label": "HTML \u00b7 sitemap"
     },
     {
-      "id": "host-app",
+      "id": "host-sw",
       "from": "host",
-      "to": "app",
+      "to": "sw",
       "label": "GET only",
+      "variant": "emphasis",
+      "labelAt": [
+        380,
+        404
+      ]
+    },
+    {
+      "id": "sw-app",
+      "from": "sw",
+      "to": "app",
+      "label": "cached files",
       "variant": "emphasis"
     },
     {
@@ -338,7 +364,8 @@
       "items": [
         "No upload endpoint exists",
         "CSP blocks every other origin",
-        "Worker terminated after each job"
+        "Worker terminated after each job",
+        "Opened tools keep working offline"
       ]
     },
     {
