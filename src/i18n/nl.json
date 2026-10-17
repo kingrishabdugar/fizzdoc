@@ -93,6 +93,10 @@
     "ws.compression": "Compressie",
     "ws.balanced": "Gebalanceerd — beste kwaliteit",
     "ws.strong": "Sterk — kleinste bestand",
+    "ws.levelLow": "Licht — beste kwaliteit",
+    "ws.levelMedium": "Gebalanceerd — aanbevolen",
+    "ws.levelHigh": "Sterk — kleiner bestand",
+    "ws.levelExtreme": "Extreem — kleinste bestand",
     "ws.saveAs": "Opslaan als",
     "ws.fmtOriginal": "Zelfde formaat als elk bestand",
     "ws.fmtJpeg": "JPG — foto's, overal te openen",
@@ -741,7 +745,7 @@
       "lede": "Maak een PDF klein genoeg om te e-mailen of naar een portaal te uploaden. Fizzdoc comprimeert te grote foto's en scans opnieuw en laat tekst en vectorafbeeldingen ongemoeid.",
       "steps": [
         "Voeg één PDF-bestand toe.",
-        "Kies Gebalanceerd of Sterke compressie.",
+        "Kies hoe sterk je comprimeert: Licht, Gebalanceerd, Sterk of Extreem.",
         "Klik op “PDF comprimeren” en download het kleinere bestand."
       ],
       "faq": [

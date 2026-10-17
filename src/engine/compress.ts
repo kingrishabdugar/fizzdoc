@@ -11,6 +11,16 @@ export interface Level {
 const LONG_SIDE = { light: 2000, strong: 1400 } as const;
 const QUALITY = { light: 0.8, strong: 0.6 } as const;
 
+export type PdfLevel = 'low' | 'medium' | 'high' | 'extreme';
+
+/** Per level: the most pixels per inch of page an image keeps, and the JPEG quality it is saved at. */
+export const PDF_LEVELS: Record<PdfLevel, { dpi: number; quality: number }> = {
+  low: { dpi: 200, quality: 0.85 },
+  medium: { dpi: 150, quality: 0.75 },
+  high: { dpi: 110, quality: 0.6 },
+  extreme: { dpi: 72, quality: 0.45 },
+};
+
 function formatSize(size: number) {
   return size < 1024 * 1024 ? `${Math.max(1, Math.round(size / 1024))} KB` : `${(size / (1024 * 1024)).toFixed(1)} MB`;
 }
@@ -64,7 +74,7 @@ export const browserCodec: ImageCodec = {
  * result. Exported (bytes in, bytes out, codec injectable) so this logic is testable without a
  * browser; `compressPdf` below is the thin wrapper the app actually calls.
  */
-export async function compressPdfBytes(input: Uint8Array, level: Level['level'], codec: ImageCodec = browserCodec): Promise<Uint8Array> {
+export async function compressPdfBytes(input: Uint8Array, level: PdfLevel, codec: ImageCodec = browserCodec): Promise<Uint8Array> {
   const { PDFArray, PDFDocument, PDFName, PDFNumber, PDFRawStream } = await import('pdf-lib');
   let pdf;
   try {
@@ -75,8 +85,13 @@ export async function compressPdfBytes(input: Uint8Array, level: Level['level'],
     throw new LocalError(/is encrypted/.test((error as Error).message) ? 'PDF_PASSWORD' : 'INVALID_PDF');
   }
 
-  const maxSide = LONG_SIDE[level];
-  const quality = QUALITY[level];
+  // An image can't show more detail than its page holds at the level's DPI, so its long side is capped
+  // there (A4 at 150 DPI: 1754 px). This uses the largest page, not the size each image is drawn at;
+  // reading the placement from the content streams would shrink images drawn small even further.
+  const { dpi, quality } = PDF_LEVELS[level];
+  const pages = pdf.getPages();
+  const longestPage = pages.length ? Math.max(...pages.map((page) => Math.max(...Object.values(page.getSize())))) : 842;
+  const maxSide = Math.round((longestPage / 72) * dpi);
   const context = pdf.context;
   const SUBTYPE = PDFName.of('Subtype'), IMAGE = PDFName.of('Image'), FILTER = PDFName.of('Filter');
   const DCT = PDFName.of('DCTDecode'), FLATE = PDFName.of('FlateDecode');
@@ -165,7 +180,7 @@ export async function compressPdfBytes(input: Uint8Array, level: Level['level'],
 }
 
 /** Recompresses the JPEG and simple raster images embedded in a PDF; text stays selectable. */
-export async function compressPdf(file: File, options: Level, codec: ImageCodec = browserCodec): Promise<Output> {
+export async function compressPdf(file: File, options: { level: PdfLevel }, codec: ImageCodec = browserCodec): Promise<Output> {
   const input = await bytes(file);
   const output = await compressPdfBytes(input, options.level, codec);
   const smaller = output.length < input.length;

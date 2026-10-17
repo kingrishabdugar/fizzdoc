@@ -265,7 +265,9 @@ function optionsHtml(c: Copy, tool: Tool) {
   if (tool.op === 'pdf-to-jpg')
     return `<label>${esc(c.t('ws.quality'))}<select name="dpi">${option('72', c.t('ws.dpiLow'))}${option('150', c.t('ws.dpiStandard'), true)}${option('300', c.t('ws.dpiHigh'))}</select></label>`;
   if (tool.op === 'excel-to-json') return `<label class="check"><input name="header" type="checkbox" checked> ${esc(c.t('ws.header'))}</label>`;
-  if (tool.op === 'compress-pdf' || tool.op === 'office-compress')
+  if (tool.op === 'compress-pdf')
+    return `<label>${esc(c.t('ws.compression'))}<select name="level">${option('low', c.t('ws.levelLow'))}${option('medium', c.t('ws.levelMedium'), true)}${option('high', c.t('ws.levelHigh'))}${option('extreme', c.t('ws.levelExtreme'))}</select></label>`;
+  if (tool.op === 'office-compress')
     return `<label>${esc(c.t('ws.compression'))}<select name="level">${option('light', c.t('ws.balanced'))}${option('strong', c.t('ws.strong'))}</select></label>`;
   if (mode === 'compress') {
     // "Under 100 KB" as asked by exam, job and government forms; filled in on the fixed-size pages.

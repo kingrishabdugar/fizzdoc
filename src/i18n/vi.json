@@ -93,6 +93,10 @@
     "ws.compression": "Mức nén",
     "ws.balanced": "Cân bằng — chất lượng tốt nhất",
     "ws.strong": "Nén mạnh — tệp nhỏ nhất",
+    "ws.levelLow": "Nhẹ — chất lượng tốt nhất",
+    "ws.levelMedium": "Cân bằng — khuyên dùng",
+    "ws.levelHigh": "Nén mạnh — tệp nhỏ hơn",
+    "ws.levelExtreme": "Tối đa — tệp nhỏ nhất",
     "ws.saveAs": "Lưu dưới dạng",
     "ws.fmtOriginal": "Giữ nguyên định dạng của từng tệp",
     "ws.fmtJpeg": "JPG — dùng cho ảnh, mở được ở mọi nơi",
@@ -741,7 +745,7 @@
       "lede": "Làm nhỏ một PDF đủ để gửi email hoặc tải lên một cổng thông tin. Fizzdoc nén lại ảnh chụp và bản quét quá lớn, giữ nguyên văn bản và hình vector.",
       "steps": [
         "Thêm một tệp PDF.",
-        "Chọn mức nén Cân bằng hoặc Nén mạnh.",
+        "Chọn mức nén: Nhẹ, Cân bằng, Nén mạnh hoặc Tối đa.",
         "Bấm “Nén PDF” và tải xuống tệp nhỏ hơn."
       ],
       "faq": [

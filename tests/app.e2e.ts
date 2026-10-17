@@ -234,29 +234,60 @@ test('compresses a PDF and reports the saving', async ({ page }) => {
   expect((await downloadBytes(page)).name).toBe('text-only-compressed.pdf');
 });
 
-test('compresses photos that carry a colour profile, as browsers save them', async ({ page }) => {
+/** A 600 × 450 pt page filled with the 1800 × 1350 photo, tagged with a colour profile the way browsers save PDFs. */
+async function profiledPhotoPdf() {
   const pdf = await PDFDocument.create();
   const image = await pdf.embedJpg(readFileSync(file('big-photo.jpg')));
   pdf.addPage([600, 450]).drawImage(image, { x: 0, y: 0, width: 600, height: 450 });
   await pdf.flush();
   const profile = pdf.context.register(pdf.context.stream(new Uint8Array(16), { N: 3 }));
   (pdf.context.lookup(image.ref) as PDFRawStream).dict.set(PDFName.of('ColorSpace'), pdf.context.obj(['ICCBased', profile]));
-  const input = Buffer.from(await pdf.save());
+  return Buffer.from(await pdf.save());
+}
+
+const imageOf = (pdf: PDFDocument) =>
+  (pdf.context.enumerateIndirectObjects().find(([, o]) => o instanceof PDFRawStream && o.dict.lookup(PDFName.of('Subtype')) === PDFName.of('Image'))![1] as PDFRawStream).dict;
+
+test('compresses photos that carry a colour profile, as browsers save them', async ({ page }) => {
+  const input = await profiledPhotoPdf();
 
   await page.goto('/compress-pdf/');
   await page.locator('#file-input').setInputFiles({ name: 'profiled.pdf', mimeType: 'application/pdf', buffer: input });
-  await page.locator('[name=level]').selectOption('strong');
+  await page.locator('[name=level]').selectOption('high');
   await page.getByRole('button', { name: 'Compress PDF' }).click();
   await expect(page.locator('#status')).toContainText('smaller');
   const { bytes } = await downloadBytes(page);
   expect(bytes.length).toBeLessThan(input.length / 2);
   const output = await PDFDocument.load(bytes);
   expect(output.getPageCount()).toBe(1);
-  const [, photo] = output.context.enumerateIndirectObjects().find(([, o]) => o instanceof PDFRawStream && o.dict.lookup(PDFName.of('Subtype')) === PDFName.of('Image'))!;
-  const dict = (photo as PDFRawStream).dict;
+  const dict = imageOf(output);
   expect(dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
-  expect(dict.lookup(PDFName.of('Width'))?.toString()).toBe('1400'); // strong caps the long side at 1400 px
+  expect(dict.lookup(PDFName.of('Width'))?.toString()).toBe('917'); // Strong keeps 110 DPI: a 600 pt (8.3 inch) page holds 917 px
   expect(dict.lookup(PDFName.of('ColorSpace'))?.toString()).toMatch(/ICCBased/);
+});
+
+test('offers four compression levels, Balanced by default, each one smaller than the last', async ({ page }) => {
+  const input = await profiledPhotoPdf();
+  await page.goto('/compress-pdf/');
+  const level = page.locator('[name=level]');
+  await expect(level).toHaveValue('medium');
+  await expect(level.locator('option')).toHaveText(['Light — best quality', 'Balanced — recommended', 'Strong — smaller file', 'Extreme — smallest file']);
+  await page.locator('#file-input').setInputFiles({ name: 'profiled.pdf', mimeType: 'application/pdf', buffer: input });
+  const sizes: number[] = [];
+  const widths: string[] = [];
+  for (const value of ['low', 'medium', 'high', 'extreme']) {
+    await level.selectOption(value);
+    await page.getByRole('button', { name: 'Compress PDF' }).click();
+    // This photo is already compressed, so Light may not beat it; then the original is kept, never a bigger file.
+    await expect(page.locator('#status')).toContainText(value === 'low' ? /smaller|Already optimized/ : 'smaller');
+    const { bytes } = await downloadBytes(page);
+    sizes.push(bytes.length);
+    widths.push(imageOf(await PDFDocument.load(bytes)).lookup(PDFName.of('Width'))!.toString());
+  }
+  expect(['1667', '1800']).toContain(widths[0]); // 200 DPI on a 600 pt page, or the untouched 1800 px original
+  expect(widths.slice(1)).toEqual(['1250', '917', '600']); // 150, 110 and 72 DPI
+  expect(sizes[0]).toBeLessThanOrEqual(input.length);
+  for (let i = 1; i < sizes.length; i++) expect(sizes[i]).toBeLessThan(sizes[i - 1]);
 });
 
 test('resizes and converts images with the chosen options', async ({ page }) => {

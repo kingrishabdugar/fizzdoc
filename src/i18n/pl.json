@@ -93,6 +93,10 @@
     "ws.compression": "Kompresja",
     "ws.balanced": "Zrównoważona — najlepsza jakość",
     "ws.strong": "Mocna — najmniejszy plik",
+    "ws.levelLow": "Lekka — najlepsza jakość",
+    "ws.levelMedium": "Zrównoważona — zalecana",
+    "ws.levelHigh": "Mocna — mniejszy plik",
+    "ws.levelExtreme": "Ekstremalna — najmniejszy plik",
     "ws.saveAs": "Zapisz jako",
     "ws.fmtOriginal": "Taki sam format jak każdy plik",
     "ws.fmtJpeg": "JPG — zdjęcia, otwiera się wszędzie",
@@ -741,7 +745,7 @@
       "lede": "Zmniejsz PDF na tyle, by dało się go wysłać mailem albo dodać do portalu. Fizzdoc kompresuje zbyt duże zdjęcia i skany, a tekst i grafikę wektorową zostawia nietknięte.",
       "steps": [
         "Dodaj jeden plik PDF.",
-        "Wybierz kompresję Zrównoważoną albo Mocną.",
+        "Wybierz siłę kompresji: Lekka, Zrównoważona, Mocna albo Ekstremalna.",
         "Kliknij „Kompresuj PDF” i pobierz mniejszy plik."
       ],
       "faq": [
