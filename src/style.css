@@ -364,9 +364,34 @@ main {
     max-width: 84px;
   }
 }
+.install-btn[hidden] {
+  display: none;
+}
+.install-tip {
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 /* The smallest phones: the theme already follows the device, so its switch gives way to sharing. */
 @media (max-width: 380px) {
-  .site-header .theme-toggle:not(.share-btn) {
+  .site-header .theme-toggle:not(.share-btn):not(.install-btn) {
+    display: none;
+  }
+}
+/* Phones with the install button: the theme switch, and on the smallest ones the brand name, make room. */
+@media (max-width: 440px) {
+  .site-header .install-btn:not([hidden]) ~ .theme-toggle {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .site-header:has(.install-btn:not([hidden])) .brand > span:last-child {
     display: none;
   }
 }

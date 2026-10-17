@@ -12,8 +12,14 @@ const ANY = { ignoreVary: true };
 
 // Hashed names never change content, so files kept by an earlier version are reused, not downloaded again.
 // Old files are not deleted: pages cached by an earlier version still need them.
+// The home page is the installed app's start page, so it is kept too (fresh with each version).
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(SHELL).then((cache) => Promise.all(ASSETS.map(async (url) => (await cache.match(url, ANY)) || cache.add(url)))));
+  event.waitUntil(
+    Promise.all([
+      caches.open(SHELL).then((cache) => Promise.all(ASSETS.map(async (url) => (await cache.match(url, ANY)) || cache.add(url)))),
+      caches.open(PAGES).then((cache) => cache.add('/')),
+    ]),
+  );
 });
 
 self.addEventListener('activate', (event) => {

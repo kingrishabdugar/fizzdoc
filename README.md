@@ -213,7 +213,7 @@ There isn't one. Your browser does the work, so Fizzdoc is just static files tha
 <details>
 <summary><strong>Does it work offline or on a phone?</strong></summary>
 
-It works in any modern browser on phones, tablets and desktops. Open a tool once while online and it keeps working with Wi-Fi or mobile data turned off. Audio to Text and Remove Background will follow, and installing Fizzdoc as an app is coming next ([#110](https://github.com/kingrishabdugar/fizzdoc/issues/110)).
+It works in any modern browser on phones, tablets and desktops. Open a tool once while online and it keeps working with Wi-Fi or mobile data turned off. You can also install it as an app: the install button in the header on Chrome and Edge, or Share → Add to Home Screen on iPhone and iPad. Audio to Text and Remove Background will follow ([#110](https://github.com/kingrishabdugar/fizzdoc/issues/110)).
 </details>
 
 <details>
@@ -257,7 +257,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started. First-time contributors 
 
 ## 🗺️ Roadmap
 
-- [ ] Install as an app, and Audio to Text and Remove Background offline ([#110](https://github.com/kingrishabdugar/fizzdoc/issues/110))
+- [ ] Audio to Text and Remove Background offline ([#110](https://github.com/kingrishabdugar/fizzdoc/issues/110))
 - [ ] Sign PDF (draw or type a signature)
 - [ ] Page thumbnails with drag-and-drop reordering
 - [ ] OCR in more languages, downloaded on demand

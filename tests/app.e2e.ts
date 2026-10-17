@@ -87,6 +87,11 @@ test('works with the internet off: a page opened before loads again and its tool
   await expect(page.locator('html')).toHaveAttribute('lang', 'hi');
   await expect(page.getByRole('link')).toHaveAttribute('href', '/hi/');
 
+  // The home page, where an installed app opens, is kept even if it was never visited.
+  await page.goto('/');
+  await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.locator('body')).not.toContainText('isn’t on this device yet');
+
   const origin = new URL(baseURL!).origin;
   for (const url of requests) if (!/^(blob|data):/.test(url)) expect(new URL(url).origin, url).toBe(origin);
   await context.close();
@@ -117,6 +122,33 @@ test('offline, a tool whose files never reached the device says it needs the int
   await recognize();
   await expect(page.locator('#status')).toContainText('words recognized');
   await context.close();
+});
+
+test('offers "Install Fizzdoc" where the browser can install it, and the Add to Home Screen steps on iPhone', async ({ browser, baseURL }) => {
+  const desktop = await browser.newContext({ baseURL });
+  const page = await desktop.newPage();
+  await page.goto('/merge-pdf/');
+  const install = page.getByRole('button', { name: 'Install Fizzdoc' });
+  await expect(install).toBeHidden();
+  // Chrome and Edge announce that the site can be installed; the button then opens their own prompt.
+  await page.evaluate(() =>
+    dispatchEvent(Object.assign(new Event('beforeinstallprompt', { cancelable: true }), { prompt: async () => ((window as unknown as { prompted: boolean }).prompted = true) })),
+  );
+  await install.click();
+  expect(await page.evaluate(() => (window as unknown as { prompted?: boolean }).prompted)).toBe(true);
+  await expect(install).toBeHidden(); // a prompt can be shown only once
+  await desktop.close();
+
+  const { defaultBrowserType: _, ...iPhone } = devices['iPhone 13'];
+  const phone = await browser.newContext({ ...iPhone, baseURL });
+  const ios = await phone.newPage();
+  await ios.goto('/hi/merge-pdf/');
+  const button = ios.getByRole('button', { name: 'Fizzdoc इंस्टॉल करें' });
+  await button.click();
+  await expect(ios.locator('#install-tip')).toBeVisible();
+  await expect(ios.locator('#install-tip')).toContainText('Add to Home Screen');
+  expect(await ios.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await phone.close();
 });
 
 test('shows real progress and a prefilled problem report without the file name', async ({ page }) => {
