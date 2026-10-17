@@ -10,6 +10,7 @@ const textFile = (name: string, content: string) => new File([content], name, { 
 const unzip = async (blob: Blob) => unzipSync(new Uint8Array(await blob.arrayBuffer()));
 
 describe('pdfToText', () => {
+  // The first pdf.js test also pays for loading pdf.js, which can pass 5 s on a busy machine.
   it('reconstructs reading order, headings, paragraphs, lists and page breaks (txt)', async () => {
     const result = await pdfToText(file('rich-text.pdf'), { format: 'txt' });
     expect(result.name).toBe('rich-text.txt');
@@ -24,7 +25,7 @@ describe('pdfToText', () => {
     expect(text).toContain('First item');
     expect(text).toContain('Page two content.');
     expect(result.summary).toMatch(/^2 pages · \d+ words$/);
-  });
+  }, 30_000);
 
   it('marks headings and list items in markdown, and separates pages with a rule', async () => {
     const result = await pdfToText(file('rich-text.pdf'), { format: 'md' });

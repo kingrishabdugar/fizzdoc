@@ -90,8 +90,9 @@ describe('compressPdfBytes', () => {
       const pdf = await PDFDocument.create();
       pdf.addPage([72, 36]); // 1 × 0.5 inch
       pdf.addPage([144, 72]); // 2 × 1 inch: the largest page
-      pdf.context.register(pdf.context.stream(zlibSync(new Uint8Array(1000 * 500 * 3).fill(128)), {
-        Type: 'XObject', Subtype: 'Image', Width: 1000, Height: 500, ColorSpace: 'DeviceRGB', BitsPerComponent: 8, Filter: 'FlateDecode',
+      // A thin strip keeps the test fast; at 500 px it is still wider than every level's cap (at most 400 px).
+      pdf.context.register(pdf.context.stream(zlibSync(new Uint8Array(500 * 10 * 3).fill(128)), {
+        Type: 'XObject', Subtype: 'Image', Width: 500, Height: 10, ColorSpace: 'DeviceRGB', BitsPerComponent: 8, Filter: 'FlateDecode',
       }));
       const image = findImage(await PDFDocument.load(await compressPdfBytes(await pdf.save(), level, fakeCodec(true))));
       sides[level] = (image.dict.lookup(PDFName.of('Width')) as PDFNumber).asNumber();
