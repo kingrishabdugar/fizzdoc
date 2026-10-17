@@ -26,6 +26,10 @@ async function fingerOn(page: Page) {
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [from] });
     for (let i = 1; i <= 8; i++)
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: from.x + ((to.x - from.x) * i) / 8, y: from.y + ((to.y - from.y) * i) / 8 }] });
+    // Rest the finger before lifting it, as people do. Lifting it mid-move flings the page, and the
+    // browser then treats the next tap as "stop scrolling" rather than a click.
+    await page.waitForTimeout(150);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [to] });
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   };
 }
@@ -495,9 +499,11 @@ test('scrolls the redact pages with a finger, and draws with one after “Draw b
   const draw = page.getByRole('button', { name: 'Draw boxes' });
   await draw.tap();
   await expect(draw).toHaveAttribute('aria-pressed', 'true');
+  // Tapping the button scrolled it into view, so bring the page back before drawing on it.
+  await page.locator('.redact-overlay').first().scrollIntoViewIfNeeded();
   const sheet = (await page.locator('.redact-overlay').first().boundingBox())!;
   const visible = (await scroll.boundingBox())!;
-  const start = { x: sheet.x + 40, y: Math.max(sheet.y, visible.y) + 20 };
+  const start = { x: sheet.x + 40, y: Math.max(sheet.y, visible.y, 0) + 20 };
   await drag(start, { x: start.x + 150, y: start.y + 60 });
   await expect(page.locator('.redact-count')).toHaveText('Marked areas: 1');
   await context.close();
