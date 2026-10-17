@@ -160,6 +160,10 @@ function setUp(op: ToolOp) {
         f[0]?.name,
       ),
     'word-to-pdf': async (f) => (await import('./engine/office')).docxToHtml(f[0]),
+    'word-export': async (f, o) => {
+      if (o.format === 'md') return (await import('./engine/office-markdown')).docxToMarkdown(f[0]);
+      return (await import('./engine/office')).docxToHtmlFile(f[0]);
+    },
     'pdf-to-word': async (f) => (await import('./engine/office')).pdfToDocx(f[0]),
     'pdf-to-powerpoint': async (f) => (await import('./engine/office')).pdfToPptx(f[0]),
     'ocr-pdf': async (f) => (await import('./engine/ocr')).ocrPdf(f[0], progressLabel),

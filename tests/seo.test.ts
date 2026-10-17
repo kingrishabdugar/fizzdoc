@@ -33,7 +33,10 @@ const catalog = (lang: string) =>
 describe("search copy", () => {
   const sets: [string, Record<string, Entry>][] = [
     ["en", Object.fromEntries(TOOLS.map((t) => [t.slug, t]))],
-    ...LANGS.map((l): [string, Record<string, Entry>] => [l, catalog(l)]),
+    ...LANGS.map((l): [string, Record<string, Entry>] => {
+      const translated = catalog(l);
+      return [l, Object.fromEntries(TOOLS.map((tool) => [tool.slug, { ...tool, ...translated[tool.slug] }]))];
+    }),
   ];
   it.each(sets)(
     "%s: every tool has a search-ready title, description and five search phrases",
