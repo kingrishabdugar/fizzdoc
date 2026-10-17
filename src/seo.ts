@@ -54,6 +54,10 @@ function copy(lang: Lang) {
 }
 export type Copy = ReturnType<typeof copy>;
 
+/** What the service worker says, in each language, when a page that was never opened is asked for offline. */
+export const offlineText = () =>
+  Object.fromEntries(SITE_LANGS.map((lang) => [lang, { needed: esc(copy(lang).t('offline.needed')), home: esc(copy(lang).t('nav.home')), link: pathOf(lang) }]));
+
 // The page may only talk to its own origin: the privacy promise, enforced by the browser.
 const CSP = [
   "default-src 'self'",

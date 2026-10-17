@@ -77,12 +77,45 @@ test('works with the internet off: a page opened before loads again and its tool
   await page.getByRole('button', { name: 'Merge PDFs' }).click();
   await expect(page.locator('#status')).toContainText('Done — 6 pages');
   expect((await downloadBytes(page)).bytes.subarray(0, 5).toString()).toBe('%PDF-');
+  await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device with Wi-Fi or mobile data turned off.');
 
-  // A page never opened can't come from anywhere.
-  await expect(page.goto('/split-pdf/')).rejects.toThrow();
+  // A page never opened says so plainly, in its own language, with a link home.
+  await page.goto('/split-pdf/');
+  await expect(page.locator('body')).toContainText('You’re offline, and this tool isn’t on this device yet.');
+  await expect(page.getByRole('link', { name: 'Fizzdoc home' })).toHaveAttribute('href', '/');
+  await page.goto('/hi/split-pdf/');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'hi');
+  await expect(page.getByRole('link')).toHaveAttribute('href', '/hi/');
 
   const origin = new URL(baseURL!).origin;
   for (const url of requests) if (!/^(blob|data):/.test(url)) expect(new URL(url).origin, url).toBe(origin);
+  await context.close();
+});
+
+test('offline, a tool whose files never reached the device says it needs the internet once, and works after one use', async ({ browser }) => {
+  const context = await browser.newContext({ serviceWorkers: 'allow' });
+  const page = await context.newPage();
+  const recognize = async () => {
+    await page.locator('#file-input').setInputFiles(file('photo.png'));
+    await page.getByRole('button', { name: 'Recognize text' }).click();
+  };
+  await page.goto('/image-to-text/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(async () => !!(await caches.match(location.href)))).toBe(true);
+
+  // The OCR engine's files (6 MB) are fetched on first use, so offline they aren't there yet.
+  await context.setOffline(true);
+  await page.reload();
+  await recognize();
+  await expect(page.locator('#status')).toHaveText('You’re offline, and this tool isn’t on this device yet. It needs the internet once: connect and try again.');
+
+  await context.setOffline(false);
+  await recognize();
+  await expect(page.locator('#status')).toContainText('words recognized');
+  await context.setOffline(true);
+  await page.reload();
+  await recognize();
+  await expect(page.locator('#status')).toContainText('words recognized');
   await context.close();
 });
 

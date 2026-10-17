@@ -173,6 +173,8 @@
     "error.NO_PAGES_LEFT": "Questo rimuoverebbe tutte le pagine. Mantienine almeno una.",
     "error.WRONG_FILE_COUNT": "Aggiungi il numero di file richiesto da questo strumento.",
     "error.PROCESSING_FAILED": "Qualcosa è andato storto durante l'elaborazione. Il tuo file originale non è stato cambiato.",
+    "offline.needed": "Sei offline e questo strumento non è ancora su questo dispositivo. Serve internet una volta: connettiti e riprova.",
+    "offline.ready": "Pronto: questo strumento ora funziona su questo dispositivo anche con Wi-Fi o dati mobili spenti.",
     "error.NO_PASSWORD": "Digita la password che vuoi aggiungere.",
     "error.PASSWORDS_DIFFER": "Le due password non coincidono.",
     "error.NOT_OFFICE": "Questo file non è un documento Word, Excel o PowerPoint valido.",

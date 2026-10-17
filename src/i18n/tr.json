@@ -173,6 +173,8 @@
     "error.NO_PAGES_LEFT": "Bu, tüm sayfaları kaldırır. En az bir sayfa bırakın.",
     "error.WRONG_FILE_COUNT": "Bu aracın ihtiyaç duyduğu sayıda dosya ekleyin.",
     "error.PROCESSING_FAILED": "İşlenirken bir sorun oluştu. Orijinal dosyanız değişmedi.",
+    "offline.needed": "Çevrimdışısınız ve bu araç henüz bu cihazda değil. Bir kez internet gerekiyor: bağlanın ve yeniden deneyin.",
+    "offline.ready": "Hazır: bu araç artık Wi-Fi veya mobil veri kapalıyken de bu cihazda çalışıyor.",
     "error.NO_PASSWORD": "Eklemek istediğiniz parolayı yazın.",
     "error.PASSWORDS_DIFFER": "İki parola birbiriyle eşleşmiyor.",
     "error.NOT_OFFICE": "Bu dosya geçerli bir Word, Excel veya PowerPoint belgesi değil.",

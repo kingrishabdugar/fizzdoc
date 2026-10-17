@@ -173,6 +173,8 @@
     "error.NO_PAGES_LEFT": "Isso removeria todas as páginas. Mantenha pelo menos uma.",
     "error.WRONG_FILE_COUNT": "Adicione a quantidade de arquivos que esta ferramenta precisa.",
     "error.PROCESSING_FAILED": "Algo deu errado durante o processamento. Seu arquivo original não foi alterado.",
+    "offline.needed": "Você está offline e esta ferramenta ainda não está neste dispositivo. Ela precisa da internet uma vez: conecte-se e tente de novo.",
+    "offline.ready": "Pronto: esta ferramenta agora funciona neste dispositivo com o Wi-Fi ou os dados móveis desligados.",
     "error.NO_PASSWORD": "Digite a senha que você quer adicionar.",
     "error.PASSWORDS_DIFFER": "As duas senhas não coincidem.",
     "error.NOT_OFFICE": "Este arquivo não é um documento válido do Word, Excel ou PowerPoint.",

@@ -19,7 +19,9 @@ type LocalJob = (files: File[], options: Options) => Promise<Output | Printable>
 
 type Failure = ErrorCode | LocalError['code'] | 'ENGINE_FAILED' | 'PASSWORDS_DIFFER';
 
-const errorText = (code: Failure, vars?: Record<string, string | number>) => t(`error.${code}` as UiKey, vars);
+/** Offline, a generic failure almost always means the tool's files never reached this device. */
+const errorText = (code: Failure, vars?: Record<string, string | number>) =>
+  !navigator.onLine && (code === 'PROCESSING_FAILED' || code === 'ENGINE_FAILED') ? t('offline.needed') : t(`error.${code}` as UiKey, vars);
 
 const SUFFIX: Record<Op, string> = {
   merge: 'merged',
@@ -458,6 +460,7 @@ function setUp(op: ToolOp) {
         return item;
       }),
     );
+    noteOfflineReady();
   }
 
   function show(blob: Blob, name: string, summary: string) {
@@ -553,6 +556,22 @@ function setUp(op: ToolOp) {
     result.hidden = false;
   }
 
+  /**
+   * After a tool's first run with the service worker in charge, everything it needs is on this device, so
+   * say once that it works offline. Audio to Text and Remove Background still ask the network for their
+   * model lists on every run, so they aren't offline-ready yet.
+   */
+  function noteOfflineReady() {
+    if (!navigator.serviceWorker?.controller || op === 'transcribe' || op === 'remove-bg') return;
+    try {
+      if (localStorage.getItem(`fizzdoc-offline-${op}`)) return;
+      localStorage.setItem(`fizzdoc-offline-${op}`, '1');
+    } catch {
+      return; // storage blocked: skip the note rather than repeat it every time
+    }
+    warnings.append(Object.assign(document.createElement('li'), { textContent: t('offline.ready') }));
+  }
+
   // Local jobs can't be interrupted mid-way, so Cancel lets go of them and ignores their result.
   let localJob = 0;
   async function runLocal(job: LocalJob) {
@@ -568,6 +587,7 @@ function setUp(op: ToolOp) {
       else {
         show(output.blob, output.name, output.summary);
         warnings.replaceChildren(...(output.notes ?? []).map((key) => Object.assign(document.createElement('li'), { textContent: t(key as UiKey) })));
+        noteOfflineReady();
       }
     } catch (error) {
       if (id === localJob) fail(error);
