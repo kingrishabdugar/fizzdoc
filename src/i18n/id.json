@@ -173,6 +173,8 @@
     "error.NO_PAGES_LEFT": "Itu akan menghapus semua halaman. Sisakan setidaknya satu halaman.",
     "error.WRONG_FILE_COUNT": "Tambahkan jumlah file yang dibutuhkan alat ini.",
     "error.PROCESSING_FAILED": "Terjadi kesalahan saat memproses. File asli Anda tidak berubah.",
+    "offline.needed": "Kamu sedang offline, dan alat ini belum ada di perangkat ini. Alat ini butuh internet sekali: sambungkan lalu coba lagi.",
+    "offline.ready": "Siap: alat ini sekarang berfungsi di perangkat ini meski Wi-Fi atau data seluler dimatikan.",
     "error.NO_PASSWORD": "Masukkan kata sandi yang ingin Anda tambahkan.",
     "error.PASSWORDS_DIFFER": "Kedua kata sandi tidak cocok.",
     "error.NOT_OFFICE": "File ini bukan dokumen Word, Excel, atau PowerPoint yang valid.",

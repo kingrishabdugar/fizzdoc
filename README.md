@@ -59,6 +59,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | 🆓 **Free forever** | No account, no daily limits, no watermark, no premium tier |
 | 🌍 **16 languages** | Including Hindi, Bengali, Marathi, Tamil and Telugu |
 | 📱 **Nothing to install** | Any modern browser, on phones too |
+| ✈️ **Works with the internet off** | Open a tool once, then turn off Wi-Fi or mobile data: it keeps working, an easy way to check that nothing is uploaded |
 | 📖 **Open source** | Apache-2.0, every line on GitHub |
 
 <p align="center">
@@ -212,7 +213,7 @@ There isn't one. Your browser does the work, so Fizzdoc is just static files tha
 <details>
 <summary><strong>Does it work offline or on a phone?</strong></summary>
 
-It works in any modern browser on phones, tablets and desktops. An installable offline app is on the roadmap.
+It works in any modern browser on phones, tablets and desktops. Open a tool once while online and it keeps working with Wi-Fi or mobile data turned off. Audio to Text and Remove Background will follow, and installing Fizzdoc as an app is coming next ([#110](https://github.com/kingrishabdugar/fizzdoc/issues/110)).
 </details>
 
 <details>
@@ -256,7 +257,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started. First-time contributors 
 
 ## 🗺️ Roadmap
 
-- [ ] Installable offline app (PWA)
+- [ ] Install as an app, and Audio to Text and Remove Background offline ([#110](https://github.com/kingrishabdugar/fizzdoc/issues/110))
 - [ ] Sign PDF (draw or type a signature)
 - [ ] Page thumbnails with drag-and-drop reordering
 - [ ] OCR in more languages, downloaded on demand

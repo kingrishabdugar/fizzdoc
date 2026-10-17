@@ -3,6 +3,8 @@
 // - theme.js and the hashed files under /assets/ (the code of every tool): kept on the device when this worker installs.
 // - The speech and background models are never stored here; their tools keep them in their own caches.
 const ASSETS = [/* ASSETS */];
+// The "needs the internet once" message and the home link, per language: { en: { needed, home, link }, hi: … }.
+const OFFLINE = {/* OFFLINE */};
 const SHELL = 'fizzdoc-shell';
 const PAGES = 'fizzdoc-pages';
 // Responses vary only by Accept-Encoding/Origin, which don't change what a file contains.
@@ -50,8 +52,20 @@ async function networkFirst(event, name, key) {
   } catch (error) {
     const cached = await caches.match(key, ANY);
     if (cached) return cached;
+    if (event.request.mode === 'navigate') return offlinePage(new URL(event.request.url));
     throw error;
   }
+}
+
+// A page that was never opened: say so plainly, in the page's language, instead of the browser's error page.
+function offlinePage(url) {
+  const first = url.pathname.split('/')[1];
+  const lang = first in OFFLINE ? first : 'en';
+  const { needed, home, link } = OFFLINE[lang];
+  const html = `<!doctype html><html lang="${lang}"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fizzdoc</title>
+<style>body{max-width:32rem;margin:20vh auto;padding:0 24px;font:18px/1.6 system-ui,sans-serif;color:#18181b;background:#fafafa}a{color:#4f46e5}@media (prefers-color-scheme:dark){body{color:#f4f4f5;background:#09090b}a{color:#a5b4fc}}</style>
+<p>${needed}</p><p><a href="${link}">${home}</a></p>`;
+  return new Response(html, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
 }
 
 async function cacheFirst(event) {

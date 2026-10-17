@@ -222,6 +222,8 @@ export const UI = {
   'error.NO_PAGES_LEFT': 'That would remove every page. Keep at least one.',
   'error.WRONG_FILE_COUNT': 'Add the number of files this tool needs.',
   'error.PROCESSING_FAILED': 'Something went wrong while processing. Your original file is unchanged.',
+  'offline.needed': 'You’re offline, and this tool isn’t on this device yet. It needs the internet once: connect and try again.',
+  'offline.ready': 'Ready: this tool now works on this device with Wi-Fi or mobile data turned off.',
   'error.NO_PASSWORD': 'Type the password you want to add.',
   'error.PASSWORDS_DIFFER': 'The two passwords do not match.',
   'error.NOT_OFFICE': 'This file is not a valid Word, Excel or PowerPoint document.',

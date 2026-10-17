@@ -1,7 +1,7 @@
 /// <reference types="vitest/config" />
 import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin, type Rollup } from 'vite';
-import { PAGES, SITE_LANGS, fileName, llms, llmsFor, llmsFull, notFoundPage, renderPage, robots, sitemap } from './src/seo.ts';
+import { PAGES, SITE_LANGS, fileName, llms, llmsFor, llmsFull, notFoundPage, offlineText, renderPage, robots, sitemap } from './src/seo.ts';
 import { SITE } from './src/site.ts';
 import { ocrAssets } from './vite-plugins/ocr-assets.ts';
 import { whisperAssets } from './vite-plugins/whisper-assets.ts';
@@ -101,7 +101,7 @@ function serviceWorker(): Plugin {
         .filter((item) => item.fileName.startsWith('assets/') && sizeOf(item) <= 5 * 1024 * 1024)
         .map((item) => `/${item.fileName}`)
         .sort()];
-      const source = readFileSync('src/sw.js', 'utf8').replace('[/* ASSETS */]', JSON.stringify(assets));
+      const source = readFileSync('src/sw.js', 'utf8').replace('[/* ASSETS */]', JSON.stringify(assets)).replace('{/* OFFLINE */}', JSON.stringify(offlineText()));
       this.emitFile({ type: 'asset', fileName: 'sw.js', source });
     },
   };

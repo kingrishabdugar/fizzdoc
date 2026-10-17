@@ -29,6 +29,11 @@ async function withWorker<T>(
   onProgress: ((fraction: number) => void) | undefined,
   run: (worker: Tesseract.Worker) => Promise<T>,
 ): Promise<T> {
+  // Offline, tesseract.js waits forever for files it can't load, so stop at once when they aren't on this device.
+  if (navigator.onLine === false) {
+    for (const name of ['worker.min.js', 'tesseract-core-simd-lstm.js', 'tesseract-core-simd-lstm.wasm', 'eng.traineddata.gz'])
+      if (!(await caches.match(ocrAsset(name), { ignoreVary: true }))) throw new Error(`${name} is not on this device`);
+  }
   const { createWorker } = await import('tesseract.js');
   const worker = await createWorker('eng', 1 /* OEM.LSTM_ONLY */, {
     workerPath: ocrAsset('worker.min.js'),
