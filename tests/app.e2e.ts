@@ -1617,6 +1617,9 @@ test('photo editor: crops to a square, turns, applies a look and adds text, then
   await page.getByRole('button', { name: 'Turn right' }).click();
   // Light: a sideways drag on the photo changes the chosen slider (brightness); the ruler says so.
   await page.getByRole('tab', { name: 'Light and colour' }).click();
+  // The preview redraws on the next frame: wait until it is square before aiming at it.
+  await expect.poll(() => page.locator('.bg-canvas').evaluate((c: HTMLCanvasElement) => c.width === c.height)).toBe(true);
+  await page.locator('.bg-canvas').scrollIntoViewIfNeeded();
   const box = (await page.locator('.bg-canvas').boundingBox())!;
   await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
   await page.mouse.down();

@@ -357,7 +357,8 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   viewer.replaceChildren(top, stage, tabList, ...TABS.map((key) => panels[key]));
   show('looks');
   sync();
-  viewer.scrollIntoView({ block: 'start' });
+  // Bring the editor into view once the page around it has settled (the file list and options appear too).
+  requestAnimationFrame(() => requestAnimationFrame(() => viewer.scrollIntoView({ block: 'start', behavior: 'instant' })));
 
   return {
     async save(options) {

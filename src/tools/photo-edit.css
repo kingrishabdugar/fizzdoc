@@ -17,14 +17,13 @@
   grid-template-areas: 'top' 'stage' 'panel' 'tabs';
   grid-template-rows: auto minmax(0, 1fr) clamp(168px, 30svh, 232px) auto;
   gap: 0;
-  height: calc(100svh - 76px);
+  height: calc(100svh - 92px); /* the page keeps 80px clear under its header when scrolling to the editor */
   min-height: 540px;
   overflow: hidden;
   border: 1px solid #27272a;
   border-radius: 16px;
   background: #121214;
   color: var(--text);
-  scroll-margin-top: 68px;
 }
 @media (min-width: 960px) {
   .bg-editor.pe-editor {
@@ -91,17 +90,25 @@
 
 /* ---- The photo ---- */
 .pe-editor .bg-stage {
+  position: relative;
+  display: block;
   grid-area: stage;
   min-height: 0;
-  padding: 8px;
+  padding: 0;
   overflow: hidden;
   border: 0;
   border-radius: 0;
   background: #0a0a0b; /* flat and neutral, so colours are judged true */
 }
+/* The photo always fits the stage, centred, whatever its shape: the stage's height comes from the grid. */
 .pe-editor .bg-canvas {
-  max-width: 100%;
-  max-height: 100%;
+  position: absolute;
+  inset: 8px;
+  width: auto;
+  height: auto;
+  max-width: calc(100% - 16px);
+  max-height: calc(100% - 16px);
+  margin: auto;
   border-radius: 2px;
 }
 .pe-editor[data-tab='crop'] .bg-canvas.pe-movable,
