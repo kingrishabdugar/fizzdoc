@@ -1,0 +1,34 @@
+/* Photo Editor: the looks show the photo itself; sliders get room for their label. */
+.pe-looks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+}
+.pe-look {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 0;
+  padding: 6px;
+  font-size: 0.9rem;
+}
+.pe-look canvas {
+  width: 100%;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.pe-slider {
+  justify-content: space-between;
+  width: 100%;
+}
+.pe-slider input {
+  flex: 1;
+  max-width: 320px;
+  accent-color: var(--accent);
+}
+/* With a frame to move, a finger drags the photo instead of scrolling the page. */
+.bg-canvas.pe-movable {
+  touch-action: none;
+  cursor: grab;
+}

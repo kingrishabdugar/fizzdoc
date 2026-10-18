@@ -1591,6 +1591,48 @@ test('sticker on iPhone: “Save to Photos” hands a 512×512 PNG to the share 
   await context.close();
 });
 
+test('photo editor: crops to a square, turns, applies a look and adds text, then saves at full size', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/photo-editor/');
+  // A 900 × 600 photo: red on the left half, blue on the right.
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(900, 600);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#d02020';
+    c.fillRect(0, 0, 450, 600);
+    c.fillStyle = '#2040d0';
+    c.fillRect(450, 0, 450, 600);
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  await page.locator('#file-input').setInputFiles({ name: 'halves.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  await page.getByRole('button', { name: 'Square' }).click();
+  await expect(page.getByRole('button', { name: 'Square' })).toHaveAttribute('aria-pressed', 'true');
+  // A quarter turn to the right puts the red half on top.
+  await page.getByRole('button', { name: 'Turn right' }).click();
+  await page.getByRole('button', { name: 'B&W' }).click();
+  await page.getByRole('button', { name: 'Add text' }).click();
+  await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');
+  await page.getByRole('button', { name: 'Download photo' }).click();
+  await expect(page.locator('#status')).toContainText('600 × 600 px');
+  const saved = await downloadBytes(page);
+  expect(saved.name).toBe('halves-edited.png');
+  const look = await page.evaluate(async (data) => {
+    const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/png' }));
+    const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    c.drawImage(bitmap, 0, 0);
+    const at = (x: number, y: number) => [...c.getImageData(x, y, 1, 1).data];
+    return { size: [bitmap.width, bitmap.height], top: at(300, 60), bottom: at(300, 300) };
+  }, [...saved.bytes]);
+  expect(look.size).toEqual([600, 600]);
+  // Black and white: grey everywhere; red (top) and blue (bottom) become different greys.
+  for (const [r, g, b] of [look.top, look.bottom]) {
+    expect(Math.abs(r - g)).toBeLessThan(3);
+    expect(Math.abs(g - b)).toBeLessThan(3);
+  }
+  expect(Math.abs(look.top[0] - look.bottom[0])).toBeGreaterThan(5);
+  expect(seen.violations).toEqual([]);
+});
+
 test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   for (const phone of [true, false]) {

@@ -14,6 +14,7 @@ export type ToolOp =
   | 'edit-pdf'
   | 'redact-pdf'
   | 'remove-bg'
+  | 'photo-edit'
   | 'scan-pdf'
   | 'ocr-pdf'
   | 'pdf-to-word'
@@ -1315,6 +1316,37 @@ TOOLS.push(
     preset: { format: 'sticker' },
     input: { accept: 'image/*' },
   },
+  {
+    op: 'photo-edit',
+    format: 'image',
+    slug: 'photo-editor',
+    name: 'Photo Editor',
+    summary: 'Crop, turn, brighten and add words or emoji to a photo, right in your browser.',
+    action: 'Download photo',
+    title: 'Free Online Photo Editor — Crop, Adjust, Add Text, No Upload | Fizzdoc',
+    description:
+      'Edit photos free in your browser: crop to square or story size, turn, flip, fix brightness and colour, add a look, text or emoji. Nothing is uploaded.',
+    h1: 'Edit a photo in your browser',
+    lede: 'Crop to a square or a story, turn and flip, fix brightness, contrast and colour, pick a one-tap look, and add words or emoji. Everyday photo edits, done on your own device, saved at full size.',
+    steps: [
+      'Choose a photo.',
+      'Crop, turn, adjust the light and colour, pick a look, or add text and emoji. The preview updates as you go.',
+      'Pick the size and format, then click “Download photo”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      [
+        'Does editing lower the quality?',
+        'No more than saving does. Every change is drawn again from your original photo, so edits never pile up, and the photo is saved at its full size unless you pick a smaller one. JPG and WebP are saved at high quality; PNG is lossless.',
+      ],
+      [
+        'Is the location from my phone photo kept?',
+        'No. The saved photo is a new file with only the picture in it, so hidden details such as the GPS location, the date and the phone model are left out.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    input: { accept: 'image/*' },
+  },
 );
 
 // Popular searches that are the same job with a different file type get their own page and copy.
@@ -1792,6 +1824,13 @@ const KEYWORDS: Record<string, string[]> = {
     'change video background',
     'remove video background without green screen',
     'transparent background video',
+  ],
+  'photo-editor': [
+    'free online photo editor',
+    'crop photo to square',
+    'add text to photo',
+    'photo filters online',
+    'edit photo without uploading',
   ],
   'whatsapp-sticker-maker': [
     'whatsapp sticker maker',

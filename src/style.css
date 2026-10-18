@@ -2089,3 +2089,42 @@ dialog p {
   color: light-dark(#15803d, #4ade80);
   font-weight: 600;
 }
+
+/* Photo Editor: a warm marigold accent (white text on it passes AA), a soft warm band behind the heading,
+   and crop marks on the heading's corners, like a photo being framed. */
+[data-page='photo-editor'] {
+  --accent: #a15c00;
+  --accent-2: #874d00;
+  --accent-soft: light-dark(#fff4e2, #2b1d0a);
+}
+[data-page='photo-editor'] .hero-tool {
+  margin-top: 16px;
+  padding: 40px 16px 32px;
+  border-radius: 28px;
+  background: var(--accent-soft);
+}
+[data-page='photo-editor'] .hero-tool h1 {
+  position: relative;
+  padding: 6px 14px;
+}
+[data-page='photo-editor'] .hero-tool h1::before,
+[data-page='photo-editor'] .hero-tool h1::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--accent);
+  pointer-events: none;
+}
+[data-page='photo-editor'] .hero-tool h1::before {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+[data-page='photo-editor'] .hero-tool h1::after {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
