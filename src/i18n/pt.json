@@ -271,6 +271,35 @@
     "bg.sharpNote": "Faz uma passada mais detalhada na sua placa de vídeo. Na primeira vez, baixa cerca de {mb} MB.",
     "bg.sharpFailed": "As bordas mais nítidas não funcionaram neste aparelho, então o primeiro resultado foi mantido.",
     "bg.shareSticker": "Salvar em Fotos",
+    "pe.preview": "Prévia da foto editada",
+    "pe.crop": "Cortar e girar",
+    "pe.shape": "Formato",
+    "pe.original": "Original",
+    "pe.square": "Quadrado",
+    "pe.portrait": "Retrato 4:5",
+    "pe.wide": "Paisagem 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Arraste a foto para escolher o que fica no enquadramento.",
+    "pe.turn": "Girar e espelhar",
+    "pe.left": "Girar para a esquerda",
+    "pe.right": "Girar para a direita",
+    "pe.flipH": "Espelhar na horizontal",
+    "pe.flipV": "Espelhar na vertical",
+    "pe.light": "Luz e cor",
+    "pe.brightness": "Brilho",
+    "pe.contrast": "Contraste",
+    "pe.saturation": "Saturação",
+    "pe.warmth": "Calor",
+    "pe.reset": "Redefinir",
+    "pe.looks": "Filtros",
+    "pe.bw": "P&B",
+    "pe.vivid": "Vívido",
+    "pe.warm": "Quente",
+    "pe.cool": "Frio",
+    "pe.fade": "Desbotado",
+    "pe.sepia": "Sépia",
+    "pe.noir": "Noir",
     "st.text": "Texto",
     "st.hint": "Arraste o texto sobre a imagem. Faça o gesto de pinça com dois dedos, ou use os controles, para mudar o tamanho e girar.",
     "st.add": "Adicionar texto",
@@ -3023,6 +3052,45 @@
         "foto para figurinha",
         "fazer figurinhas grátis",
         "figurinha webp transparente"
+      ]
+    },
+    "photo-editor": {
+      "name": "Editor de Fotos",
+      "summary": "Corte, gire, clareie e adicione texto ou emoji a uma foto, direto no navegador.",
+      "action": "Baixar foto",
+      "title": "Editor de Fotos Grátis — Cortar, Ajustar, Texto, Sem Upload | Fizzdoc",
+      "description": "Edite fotos grátis no navegador: corte em quadrado ou tamanho de story, gire, espelhe, ajuste brilho e cor, adicione filtro, texto ou emoji. Nada é enviado.",
+      "h1": "Edite uma foto no seu navegador",
+      "lede": "Corte em quadrado ou no formato de story, gire e espelhe, ajuste brilho, contraste e cor, escolha um filtro com um toque e adicione texto ou emoji. Edições do dia a dia, feitas no seu próprio aparelho e salvas no tamanho original.",
+      "steps": [
+        "Escolha uma foto.",
+        "Corte, gire, ajuste a luz e a cor, escolha um filtro ou adicione texto e emoji. A prévia muda enquanto você edita.",
+        "Escolha o tamanho e o formato e clique em “Baixar foto”."
+      ],
+      "faq": [
+        [
+          "Meus arquivos são enviados para algum lugar?",
+          "Não. O Fizzdoc faz todo o trabalho dentro da aba do seu navegador, usando mecanismos de código aberto compilados para WebAssembly e JavaScript. Seu arquivo é lido do seu dispositivo, processado localmente, e o resultado é salvo direto de volta nele. Você pode conferir por conta própria: abra as ferramentas de desenvolvedor do navegador, vá até a aba Rede e rode uma tarefa — nenhuma requisição leva seu arquivo."
+        ],
+        [
+          "Editar a foto diminui a qualidade?",
+          "Não mais do que salvar. Cada mudança é desenhada de novo a partir da sua foto original, então as edições nunca se acumulam, e a foto é salva no tamanho original, a menos que você escolha um menor. JPG e WebP são salvos em alta qualidade; PNG não tem perda de qualidade."
+        ],
+        [
+          "A localização da foto do meu celular é mantida?",
+          "Não. A foto salva é um arquivo novo só com a imagem, então detalhes escondidos como a localização GPS, a data e o modelo do celular ficam de fora."
+        ],
+        [
+          "O Fizzdoc é gratuito?",
+          "Sim, e vai continuar sendo grátis: sem cadastro, sem marca d'água, sem limite diário e sem plano premium. O Fizzdoc é open source sob a licença Apache-2.0, então qualquer um pode rodar sua própria cópia."
+        ]
+      ],
+      "keywords": [
+        "editor de fotos online grátis",
+        "cortar foto quadrada",
+        "colocar texto na foto",
+        "filtros para fotos online",
+        "editar foto sem fazer upload"
       ]
     }
   }

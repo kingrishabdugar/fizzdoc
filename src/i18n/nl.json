@@ -271,6 +271,35 @@
     "bg.sharpNote": "Doet een gedetailleerdere ronde op je grafische chip. De eerste keer wordt zo’n {mb} MB gedownload.",
     "bg.sharpFailed": "Scherpere randen lukten niet op dit apparaat, dus het eerste resultaat blijft staan.",
     "bg.shareSticker": "Opslaan in Foto’s",
+    "pe.preview": "Voorbeeld van de bewerkte foto",
+    "pe.crop": "Bijsnijden en draaien",
+    "pe.shape": "Vorm",
+    "pe.original": "Origineel",
+    "pe.square": "Vierkant",
+    "pe.portrait": "Staand 4:5",
+    "pe.wide": "Breed 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Sleep de foto om te kiezen wat er in beeld blijft.",
+    "pe.turn": "Draaien en spiegelen",
+    "pe.left": "Linksom draaien",
+    "pe.right": "Rechtsom draaien",
+    "pe.flipH": "Horizontaal spiegelen",
+    "pe.flipV": "Verticaal spiegelen",
+    "pe.light": "Licht en kleur",
+    "pe.brightness": "Helderheid",
+    "pe.contrast": "Contrast",
+    "pe.saturation": "Verzadiging",
+    "pe.warmth": "Warmte",
+    "pe.reset": "Terugzetten",
+    "pe.looks": "Filters",
+    "pe.bw": "Zwart-wit",
+    "pe.vivid": "Levendig",
+    "pe.warm": "Warm",
+    "pe.cool": "Koel",
+    "pe.fade": "Vervaagd",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
     "st.text": "Tekst",
     "st.hint": "Sleep de tekst over de afbeelding. Knijp met twee vingers, of gebruik de schuifjes, om hem groter te maken en te draaien.",
     "st.add": "Tekst toevoegen",
@@ -3023,6 +3052,45 @@
         "foto naar sticker",
         "gratis stickers maken",
         "transparante sticker webp"
+      ]
+    },
+    "photo-editor": {
+      "name": "Foto-editor",
+      "summary": "Snijd een foto bij, draai hem, maak hem lichter en zet er tekst of emoji op, direct in je browser.",
+      "action": "Foto downloaden",
+      "title": "Foto Bewerken Gratis — Bijsnijden, Tekst, Zonder Uploaden | Fizzdoc",
+      "description": "Bewerk foto's gratis in je browser: bijsnijden tot vierkant of story, draaien, spiegelen, helderheid en kleur, een filter, tekst of emoji. Niets wordt geüpload.",
+      "h1": "Bewerk een foto in je browser",
+      "lede": "Snijd bij tot een vierkant of een story, draai en spiegel, pas helderheid, contrast en kleur aan, kies met één tik een filter en zet er tekst of emoji op. Alledaagse fotobewerkingen, gedaan op je eigen apparaat en opgeslagen op volle grootte.",
+      "steps": [
+        "Kies een foto.",
+        "Snijd bij, draai, pas licht en kleur aan, kies een filter of voeg tekst en emoji toe. Het voorbeeld verandert meteen mee.",
+        "Kies het formaat en het bestandstype en klik dan op “Foto downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Gaat de kwaliteit achteruit door het bewerken?",
+          "Niet meer dan door het opslaan zelf. Elke wijziging wordt opnieuw getekend vanuit je originele foto, dus bewerkingen stapelen zich nooit op, en de foto wordt op volle grootte opgeslagen, tenzij je een kleiner formaat kiest. JPG en WebP worden in hoge kwaliteit opgeslagen; PNG is verliesvrij."
+        ],
+        [
+          "Blijft de locatie van mijn telefoonfoto bewaard?",
+          "Nee. De opgeslagen foto is een nieuw bestand met alleen de afbeelding erin, dus verborgen gegevens zoals de GPS-locatie, de datum en het telefoonmodel worden weggelaten."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "foto bewerken online gratis",
+        "foto bijsnijden vierkant",
+        "tekst op foto zetten",
+        "foto filters online",
+        "foto bewerken zonder uploaden"
       ]
     }
   }

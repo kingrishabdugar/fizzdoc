@@ -271,6 +271,35 @@
     "bg.sharpNote": "Dokładniejsze przetwarzanie na karcie graficznej. Za pierwszym razem pobiera około {mb} MB.",
     "bg.sharpFailed": "Ostrzejsze krawędzie nie zadziałały na tym urządzeniu, więc zostaje pierwszy wynik.",
     "bg.shareSticker": "Zapisz w Zdjęciach",
+    "pe.preview": "Podgląd edytowanego zdjęcia",
+    "pe.crop": "Kadrowanie i obrót",
+    "pe.shape": "Kształt",
+    "pe.original": "Oryginał",
+    "pe.square": "Kwadrat",
+    "pe.portrait": "Pionowy 4:5",
+    "pe.wide": "Szeroki 16:9",
+    "pe.story": "Relacja 9:16",
+    "pe.zoom": "Powiększenie",
+    "pe.dragHint": "Przeciągnij zdjęcie, aby wybrać, co zostanie w kadrze.",
+    "pe.turn": "Obrót i odbicie",
+    "pe.left": "Obróć w lewo",
+    "pe.right": "Obróć w prawo",
+    "pe.flipH": "Odbij w poziomie",
+    "pe.flipV": "Odbij w pionie",
+    "pe.light": "Światło i kolor",
+    "pe.brightness": "Jasność",
+    "pe.contrast": "Kontrast",
+    "pe.saturation": "Nasycenie",
+    "pe.warmth": "Ciepło",
+    "pe.reset": "Resetuj",
+    "pe.looks": "Filtry",
+    "pe.bw": "Czarno-biały",
+    "pe.vivid": "Żywy",
+    "pe.warm": "Ciepły",
+    "pe.cool": "Chłodny",
+    "pe.fade": "Wyblakły",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
     "st.text": "Tekst",
     "st.hint": "Przeciągnij tekst na obrazku. Zsuń dwa palce albo użyj suwaków, żeby zmienić rozmiar i obrócić tekst.",
     "st.add": "Dodaj tekst",
@@ -3023,6 +3052,45 @@
         "zdjęcie na naklejkę",
         "robienie naklejek za darmo",
         "przezroczysta naklejka webp"
+      ]
+    },
+    "photo-editor": {
+      "name": "Edytor zdjęć",
+      "summary": "Przytnij, obróć i rozjaśnij zdjęcie oraz dodaj do niego napis lub emoji, prosto w przeglądarce.",
+      "action": "Pobierz zdjęcie",
+      "title": "Edytor Zdjęć za Darmo — Kadruj, Dodaj Tekst, Bez Wysyłania | Fizzdoc",
+      "description": "Edytuj zdjęcia za darmo w przeglądarce: kadruj do kwadratu lub relacji, obracaj, odbijaj, popraw jasność i kolor, dodaj filtr, tekst lub emoji. Bez wysyłania.",
+      "h1": "Edytuj zdjęcie w przeglądarce",
+      "lede": "Wykadruj do kwadratu lub relacji, obróć i odbij, popraw jasność, kontrast i kolor, wybierz filtr jednym dotknięciem i dodaj napis lub emoji. Codzienna edycja zdjęć na Twoim własnym urządzeniu, zapisywana w pełnym rozmiarze.",
+      "steps": [
+        "Wybierz zdjęcie.",
+        "Kadruj, obracaj, dostosuj światło i kolor, wybierz filtr albo dodaj tekst i emoji. Podgląd zmienia się na bieżąco.",
+        "Wybierz rozmiar i format, a potem kliknij „Pobierz zdjęcie”."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Czy edycja obniża jakość?",
+          "Nie bardziej niż samo zapisanie. Każda zmiana jest rysowana od nowa z oryginalnego zdjęcia, więc poprawki nigdy się nie nawarstwiają, a zdjęcie zapisuje się w pełnym rozmiarze, chyba że wybierzesz mniejszy. JPG i WebP są zapisywane w wysokiej jakości; PNG jest bezstratny."
+        ],
+        [
+          "Czy lokalizacja ze zdjęcia z telefonu zostaje zachowana?",
+          "Nie. Zapisane zdjęcie to nowy plik, w którym jest tylko sam obraz, więc ukryte dane, takie jak lokalizacja GPS, data i model telefonu, są pomijane."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "edytor zdjęć online za darmo",
+        "przytnij zdjęcie do kwadratu",
+        "dodaj napis do zdjęcia",
+        "filtry do zdjęć online",
+        "edycja zdjęć bez wysyłania"
       ]
     }
   }

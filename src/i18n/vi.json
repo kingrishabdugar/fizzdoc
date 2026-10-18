@@ -271,6 +271,35 @@
     "bg.sharpNote": "Xử lý kỹ hơn trên chip đồ họa của bạn. Lần đầu sẽ tải khoảng {mb} MB.",
     "bg.sharpFailed": "Viền sắc nét hơn không chạy được trên thiết bị này, nên kết quả đầu tiên được giữ lại.",
     "bg.shareSticker": "Lưu vào Ảnh",
+    "pe.preview": "Xem trước ảnh đã chỉnh",
+    "pe.crop": "Cắt và xoay",
+    "pe.shape": "Khung hình",
+    "pe.original": "Gốc",
+    "pe.square": "Vuông",
+    "pe.portrait": "Dọc 4:5",
+    "pe.wide": "Ngang 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Thu phóng",
+    "pe.dragHint": "Kéo ảnh để chọn phần được giữ lại trong khung.",
+    "pe.turn": "Xoay và lật",
+    "pe.left": "Xoay trái",
+    "pe.right": "Xoay phải",
+    "pe.flipH": "Lật ngang",
+    "pe.flipV": "Lật dọc",
+    "pe.light": "Ánh sáng và màu",
+    "pe.brightness": "Độ sáng",
+    "pe.contrast": "Độ tương phản",
+    "pe.saturation": "Độ bão hòa",
+    "pe.warmth": "Độ ấm",
+    "pe.reset": "Đặt lại",
+    "pe.looks": "Bộ lọc",
+    "pe.bw": "Đen trắng",
+    "pe.vivid": "Rực rỡ",
+    "pe.warm": "Ấm",
+    "pe.cool": "Lạnh",
+    "pe.fade": "Phai màu",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
     "st.text": "Chữ",
     "st.hint": "Kéo chữ trên ảnh. Chụm hai ngón tay, hoặc dùng thanh trượt, để đổi cỡ và xoay chữ.",
     "st.add": "Thêm chữ",
@@ -3023,6 +3052,45 @@
         "biến ảnh thành sticker",
         "làm sticker miễn phí",
         "sticker webp nền trong suốt"
+      ]
+    },
+    "photo-editor": {
+      "name": "Chỉnh sửa ảnh",
+      "summary": "Cắt, xoay, làm sáng và thêm chữ hoặc biểu tượng cảm xúc vào ảnh, ngay trong trình duyệt.",
+      "action": "Tải ảnh xuống",
+      "title": "Chỉnh Sửa Ảnh Miễn Phí — Cắt, Thêm Chữ, Không Tải Lên | Fizzdoc",
+      "description": "Chỉnh ảnh miễn phí ngay trong trình duyệt: cắt vuông hoặc khung story, xoay, lật, chỉnh độ sáng và màu, thêm bộ lọc, chữ hoặc emoji. Không tải lên gì cả.",
+      "h1": "Chỉnh sửa ảnh ngay trong trình duyệt",
+      "lede": "Cắt ảnh vuông hoặc khung story, xoay và lật, chỉnh độ sáng, độ tương phản và màu sắc, chọn bộ lọc chỉ với một chạm, rồi thêm chữ hoặc biểu tượng cảm xúc. Những chỉnh sửa ảnh hằng ngày, làm ngay trên thiết bị của bạn, lưu với kích thước đầy đủ.",
+      "steps": [
+        "Chọn một bức ảnh.",
+        "Cắt, xoay, chỉnh ánh sáng và màu, chọn bộ lọc, hoặc thêm chữ và biểu tượng cảm xúc. Bản xem trước cập nhật ngay khi bạn chỉnh.",
+        "Chọn kích thước và định dạng, rồi nhấp “Tải ảnh xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Chỉnh sửa có làm giảm chất lượng ảnh không?",
+          "Không hơn việc lưu ảnh thông thường. Mọi thay đổi đều được vẽ lại từ ảnh gốc của bạn, nên các chỉnh sửa không bao giờ chồng chất lên nhau, và ảnh được lưu ở kích thước đầy đủ trừ khi bạn chọn cỡ nhỏ hơn. JPG và WebP được lưu ở chất lượng cao; PNG không mất chất lượng."
+        ],
+        [
+          "Vị trí trong ảnh chụp bằng điện thoại có được giữ lại không?",
+          "Không. Ảnh được lưu là một tệp mới chỉ chứa hình ảnh, nên các thông tin ẩn như vị trí GPS, ngày tháng và mẫu điện thoại đều được bỏ đi."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "chỉnh sửa ảnh online miễn phí",
+        "cắt ảnh vuông",
+        "chèn chữ vào ảnh",
+        "bộ lọc ảnh online",
+        "chỉnh ảnh không cần tải lên"
       ]
     }
   }
