@@ -292,6 +292,7 @@
     "pe.saturation": "Saturation",
     "pe.warmth": "Chaleur",
     "pe.reset": "Réinitialiser",
+    "pe.swipeHint": "Faites glisser sur la photo vers la gauche ou la droite pour le modifier.",
     "pe.looks": "Filtres",
     "pe.bw": "N&B",
     "pe.vivid": "Vif",

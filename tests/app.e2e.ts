@@ -1605,11 +1605,32 @@ test('photo editor: crops to a square, turns, applies a look and adds text, then
     return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
   });
   await page.locator('#file-input').setInputFiles({ name: 'halves.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  // Looks is the first tab; arrow keys move between tabs.
+  await expect(page.getByRole('tab', { name: 'Looks' })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('button', { name: 'B&W' }).click();
+  await page.getByRole('tab', { name: 'Looks' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('tab', { name: 'Crop and turn' })).toHaveAttribute('aria-selected', 'true');
   await page.getByRole('button', { name: 'Square' }).click();
   await expect(page.getByRole('button', { name: 'Square' })).toHaveAttribute('aria-pressed', 'true');
   // A quarter turn to the right puts the red half on top.
   await page.getByRole('button', { name: 'Turn right' }).click();
-  await page.getByRole('button', { name: 'B&W' }).click();
+  // Light: a sideways drag on the photo changes the chosen slider (brightness); the ruler says so.
+  await page.getByRole('tab', { name: 'Light and colour' }).click();
+  const box = (await page.locator('.bg-canvas').boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.5, { steps: 4 });
+  await page.mouse.up();
+  await expect(page.getByRole('slider', { name: 'Brightness' })).toHaveAttribute('aria-valuetext', '+20');
+  await page.getByRole('button', { name: 'Reset' }).click();
+  await expect(page.getByRole('slider', { name: 'Brightness' })).toHaveAttribute('aria-valuetext', '0');
+  // Hold to compare.
+  const compare = page.getByRole('button', { name: 'Hold to see the original' });
+  await compare.dispatchEvent('pointerdown');
+  await expect(compare).toHaveAttribute('aria-pressed', 'true');
+  await compare.dispatchEvent('pointerup');
+  await page.getByRole('tab', { name: 'Text' }).click();
   await page.getByRole('button', { name: 'Add text' }).click();
   await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');
   await page.getByRole('button', { name: 'Download photo' }).click();

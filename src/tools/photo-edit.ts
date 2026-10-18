@@ -1,5 +1,7 @@
 // Photo Editor: frame the photo in a shape, turn and flip it, set light and colour, pick a look, add words
 // and emoji, then save. Every change redraws from the original photo, so edits never pile up blur.
+// Layout: a dark editing area with the photo always in view, a bar of tabs (Looks, Crop, Light, Text) and
+// one panel at a time. Edits show as they are made; there is no apply step.
 import './remove-bg.css';
 import './photo-edit.css';
 import { FILTERS, NONE, adjustPixels, combine, fit, frame, turned, type Adjust, type Filter } from '../engine/photo';
@@ -17,7 +19,23 @@ const PREVIEW = 1200;
 const SHAPES = { original: 0, square: 1, portrait: 4 / 5, wide: 16 / 9, story: 9 / 16 } as const;
 type Shape = keyof typeof SHAPES;
 const SLIDERS = ['brightness', 'contrast', 'saturation', 'warmth'] as const;
+type Slider = (typeof SLIDERS)[number];
 const SIZES = [100, 75, 50, 25];
+const TABS = ['looks', 'crop', 'light', 'text'] as const;
+type Tab = (typeof TABS)[number];
+
+// Our own line icons, drawn like the site's tool icons.
+const svg = (paths: string) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+const ICONS = {
+  looks: '<circle cx="9" cy="9" r="5"/><circle cx="15" cy="9" r="5"/><circle cx="12" cy="15" r="5"/>',
+  crop: '<path d="M7 3v14h14M3 7h14v14"/>',
+  light: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  text: '<path d="M5 7V5h14v2M12 5v14M9 19h6"/>',
+  compare: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 3v18"/>',
+  save: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+};
+const LABELS: Record<Tab, UiKey> = { looks: 'pe.looks', crop: 'pe.crop', light: 'pe.light', text: 'st.text' };
 
 const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = '') => {
   const node = document.createElement(tag);
@@ -30,6 +48,13 @@ const button = (label: string, className = 'bg-btn') => {
   node.type = 'button';
   return node;
 };
+/** A button with one of the icons above and a visible label. */
+const iconButton = (icon: keyof typeof ICONS, label: string, className: string) => {
+  const node = button('', className);
+  node.innerHTML = svg(ICONS[icon]);
+  node.append(element('span', '', label));
+  return node;
+};
 
 export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<PhotoEditor> {
   let photo: ImageBitmap;
@@ -40,11 +65,14 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     throw new LocalError('BAD_IMAGE');
   }
   const state = { shape: 'original' as Shape, zoom: 1, cx: 0.5, cy: 0.5, turns: 0, flipX: false, flipY: false, look: 'original' as Filter, own: { ...NONE } as Adjust };
+  let tab: Tab = 'looks';
+  let chosen: Slider = 'brightness'; // the slider shown on phones, and the one a sideways swipe changes
   /** The kept part of the turned photo: [x, y, width, height] in photo pixels. */
   const kept = () => {
     const [tw, th] = turned(photo.width, photo.height, state.turns);
     return { tw, th, box: frame(tw, th, SHAPES[state.shape], state.zoom, state.cx, state.cy) };
   };
+  const number = new Intl.NumberFormat(document.documentElement.lang || undefined, { signDisplay: 'exceptZero' });
 
   viewer.classList.add('bg-editor', 'pe-editor');
   const stage = element('div', 'bg-stage');
@@ -52,7 +80,6 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   canvas.setAttribute('role', 'img');
   canvas.setAttribute('aria-label', t('pe.preview'));
   stage.append(canvas);
-  const compare = button(t('bg.compare'), 'bg-btn bg-compare');
   let text: ReturnType<typeof import('./sticker-text').stickerText> | undefined;
   let original = false;
 
@@ -81,7 +108,8 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
       adjustPixels(pixels.data, adjust);
       context.putImageData(pixels, 0, 0);
     }
-    text?.draw(context, target.width, target.height, target === canvas);
+    // The text's selection box only shows while the Text tab is open.
+    text?.draw(context, target.width, target.height, target === canvas && tab === 'text');
   };
   // Sliders fire fast: draw at most once a frame.
   let queued = false;
@@ -94,94 +122,91 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     });
   };
 
-  const group = (title: string) => {
-    const box = element('fieldset', 'bg-group');
-    box.append(element('legend', '', title));
-    return box;
-  };
-  const row = (label: string) => {
-    const node = element('div', 'bg-tools');
+  const row = (label: string, className = 'bg-tools') => {
+    const node = element('div', className);
     node.setAttribute('role', 'group');
     node.setAttribute('aria-label', label);
     return node;
   };
-  const slider = (label: string, min: number, max: number, step: number, onInput: (value: number) => void) => {
+  /** A ruler: the browser's own range input (so keys and screen readers work), with its name and a big signed value. */
+  const slider = (label: string, min: number, max: number, step: number, show: (value: number) => string, onInput: (value: number) => void) => {
     const range = element('input');
     range.type = 'range';
     range.min = String(min);
     range.max = String(max);
     range.step = String(step);
     range.setAttribute('aria-label', label);
-    range.oninput = () => onInput(Number(range.value));
-    const wrap = element('label', 'bg-brush pe-slider', label);
-    wrap.append(range);
-    return { range, wrap };
+    const value = element('span', 'pe-value');
+    value.setAttribute('aria-hidden', 'true'); // the range announces itself through aria-valuetext
+    const head = element('span', 'pe-slider-head');
+    head.append(element('span', 'pe-name', label), value);
+    const wrap = element('label', 'pe-slider');
+    wrap.append(head, range);
+    const set = (v: number) => {
+      range.value = String(v);
+      value.textContent = show(v);
+      range.setAttribute('aria-valuetext', value.textContent);
+      // -1…1 for the fill from the middle (or 0…1 from the start for Zoom).
+      range.style.setProperty('--v', String(min < 0 ? v / max : (v - min) / (max - min)));
+    };
+    range.oninput = () => {
+      set(Number(range.value));
+      onInput(Number(range.value));
+    };
+    return { range, wrap, set };
   };
 
-  // ---- Crop and turn ----
-  const cropBox = group(t('pe.crop'));
-  const shapeRow = row(t('pe.shape'));
-  const shapeButtons = (Object.keys(SHAPES) as Shape[]).map((shape) => {
-    const node = button(t(`pe.${shape}` as UiKey));
-    node.onclick = () => {
-      Object.assign(state, { shape, zoom: 1, cx: 0.5, cy: 0.5 });
-      sync();
-    };
+  // ---- Top bar: hold to compare, and save ----
+  const top = element('div', 'pe-top');
+  const compare = iconButton('compare', t('bg.compare'), 'bg-btn pe-compare');
+  const save = iconButton('save', t('ws.download'), 'pe-save');
+  save.onclick = () => document.getElementById('run')?.click(); // the page's own save, with its progress and result
+  top.append(compare, save);
+
+  // ---- Tabs ----
+  const tabList = element('div', 'pe-tabs');
+  tabList.setAttribute('role', 'tablist');
+  const panels = {} as Record<Tab, HTMLElement>;
+  const tabButtons = TABS.map((key) => {
+    const node = iconButton(key, t(LABELS[key]), 'pe-tab');
+    node.id = `pe-tab-${key}`;
+    node.setAttribute('role', 'tab');
+    node.setAttribute('aria-controls', `pe-${key}`);
+    node.onclick = () => show(key);
+    const panel = element('div', 'pe-panel');
+    panel.id = `pe-${key}`;
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', node.id);
+    panels[key] = panel;
     return node;
   });
-  shapeRow.append(...shapeButtons);
-  const zoom = slider(t('pe.zoom'), 1, 3, 0.05, (value) => {
-    state.zoom = value;
-    sync();
+  tabList.append(...tabButtons);
+  // Arrow keys move between tabs.
+  tabList.addEventListener('keydown', (event) => {
+    const at = TABS.indexOf(tab);
+    const next = { ArrowRight: at + 1, ArrowLeft: at - 1, Home: 0, End: TABS.length - 1 }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    show(TABS[(next + TABS.length) % TABS.length]);
+    tabButtons[TABS.indexOf(tab)].focus();
   });
-  const turnRow = row(t('pe.turn'));
-  const left = button(t('pe.left'));
-  left.onclick = () => {
-    state.turns = (state.turns + 3) % 4;
-    sync();
-  };
-  const right = button(t('pe.right'));
-  right.onclick = () => {
-    state.turns = (state.turns + 1) % 4;
-    sync();
-  };
-  const flipH = button(t('pe.flipH'));
-  flipH.onclick = () => {
-    state.flipX = !state.flipX;
-    sync();
-  };
-  const flipV = button(t('pe.flipV'));
-  flipV.onclick = () => {
-    state.flipY = !state.flipY;
-    sync();
-  };
-  turnRow.append(left, right, flipH, flipV);
-  const dragHint = element('p', 'bg-hint', t('pe.dragHint'));
-  cropBox.append(shapeRow, zoom.wrap, dragHint, turnRow);
+  function show(key: Tab) {
+    tab = key;
+    viewer.dataset.tab = key;
+    TABS.forEach((k, i) => {
+      tabButtons[i].setAttribute('aria-selected', String(k === key));
+      tabButtons[i].tabIndex = k === key ? 0 : -1;
+      panels[k].hidden = k !== key;
+    });
+    draw();
+  }
 
-  // ---- Light and colour ----
-  const lightBox = group(t('pe.light'));
-  const sliders = SLIDERS.map((key) =>
-    slider(t(`pe.${key}` as UiKey), -100, 100, 1, (value) => {
-      state.own[key] = value;
-      draw();
-    }),
-  );
-  const reset = button(t('pe.reset'));
-  reset.onclick = () => {
-    state.own = { ...NONE };
-    sync();
-  };
-  lightBox.append(...sliders.map((s) => s.wrap), reset);
-
-  // ---- Looks: each button shows the photo with that look ----
-  const looksBox = group(t('pe.looks'));
-  const lookRow = row(t('pe.looks'));
-  lookRow.classList.add('pe-looks');
+  // ---- Looks: each one shows the photo with that look ----
+  const lookRow = row(t('pe.looks'), 'pe-looks');
   const lookButtons = (Object.keys(FILTERS) as Filter[]).map((look) => {
-    const node = button('', 'bg-btn pe-look');
+    const node = button('', 'pe-look');
     const thumb = element('canvas');
-    [thumb.width, thumb.height] = fit(photo.width, photo.height, 96);
+    [thumb.width, thumb.height] = fit(photo.width, photo.height, 160);
     const context = thumb.getContext('2d')!;
     context.drawImage(photo, 0, 0, thumb.width, thumb.height);
     const pixels = context.getImageData(0, 0, thumb.width, thumb.height);
@@ -195,62 +220,127 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     return node;
   });
   lookRow.append(...lookButtons);
-  looksBox.append(lookRow);
+  panels.looks.append(lookRow);
 
-  // ---- Size ----
-  const sizeBox = group(t('bg.size'));
+  // ---- Crop and turn, and the size, which follows the crop ----
+  const shapeRow = row(t('pe.shape'), 'pe-chips');
+  const shapeButtons = (Object.keys(SHAPES) as Shape[]).map((shape) => {
+    const node = button(t(`pe.${shape}` as UiKey));
+    node.onclick = () => {
+      Object.assign(state, { shape, zoom: 1, cx: 0.5, cy: 0.5 });
+      sync();
+    };
+    return node;
+  });
+  shapeRow.append(...shapeButtons);
+  const zoom = slider(t('pe.zoom'), 1, 3, 0.05, (v) => `${v.toFixed(1)}×`, (value) => {
+    state.zoom = value;
+    sync();
+  });
+  zoom.wrap.classList.add('from-start');
+  const dragHint = element('p', 'bg-hint', t('pe.dragHint'));
+  const turnRow = row(t('pe.turn'), 'pe-chips');
+  const turnButton = (label: UiKey, act: () => void) => {
+    const node = button(t(label));
+    node.onclick = () => {
+      act();
+      sync();
+    };
+    return node;
+  };
+  const flipH = turnButton('pe.flipH', () => (state.flipX = !state.flipX));
+  const flipV = turnButton('pe.flipV', () => (state.flipY = !state.flipY));
+  turnRow.append(turnButton('pe.left', () => (state.turns = (state.turns + 3) % 4)), turnButton('pe.right', () => (state.turns = (state.turns + 1) % 4)), flipH, flipV);
   const sizeSelect = element('select');
   sizeSelect.setAttribute('aria-label', t('bg.size'));
-  sizeBox.append(sizeSelect);
+  const sizeLabel = element('label', 'pe-size', t('bg.size'));
+  sizeLabel.append(sizeSelect);
+  panels.crop.append(shapeRow, zoom.wrap, dragHint, turnRow, sizeLabel);
+
+  // ---- Light and colour: on phones one ruler at a time, picked with the chips; on laptops all four ----
+  const chipRow = row(t('pe.light'), 'pe-chips pe-light-chips');
+  const chips = SLIDERS.map((key) => {
+    const node = button(t(`pe.${key}` as UiKey));
+    node.onclick = () => {
+      chosen = key;
+      sync();
+    };
+    return node;
+  });
+  const reset = button(t('pe.reset'));
+  reset.onclick = () => {
+    state.own = { ...NONE };
+    sync();
+  };
+  chipRow.append(...chips, reset);
+  const sliders = SLIDERS.map((key) =>
+    slider(t(`pe.${key}` as UiKey), -100, 100, 1, (v) => number.format(v), (value) => {
+      state.own[key] = value;
+      draw();
+    }),
+  );
+  panels.light.append(chipRow, ...sliders.map((s) => s.wrap), element('p', 'bg-hint pe-swipe-hint', t('pe.swipeHint')));
 
   /** Reflects the state in the controls and redraws. */
   function sync() {
     shapeButtons.forEach((node, i) => node.setAttribute('aria-pressed', String(Object.keys(SHAPES)[i] === state.shape)));
     lookButtons.forEach((node, i) => node.setAttribute('aria-pressed', String(Object.keys(FILTERS)[i] === state.look)));
+    chips.forEach((node, i) => node.setAttribute('aria-pressed', String(SLIDERS[i] === chosen)));
+    sliders.forEach((s, i) => {
+      s.set(state.own[SLIDERS[i]]);
+      s.wrap.classList.toggle('on', SLIDERS[i] === chosen);
+    });
     flipH.setAttribute('aria-pressed', String(state.flipX));
     flipV.setAttribute('aria-pressed', String(state.flipY));
-    zoom.range.value = String(state.zoom);
-    sliders.forEach((s, i) => (s.range.value = String(state.own[SLIDERS[i]])));
+    zoom.set(state.zoom);
     const movable = state.shape !== 'original' || state.zoom > 1;
     dragHint.hidden = !movable;
     canvas.classList.toggle('pe-movable', movable);
     // Sizes follow the kept part of the photo.
     const [, , w, h] = kept().box;
-    const chosen = sizeSelect.value || '100';
+    const picked = sizeSelect.value || '100';
     sizeSelect.replaceChildren(
       ...SIZES.map((pct) => {
         const [sw, sh] = fit(w, h, Math.round((Math.max(w, h) * pct) / 100));
         return new Option(t(pct === 100 ? 'bg.original' : 'bg.widthOption', { w: sw, h: sh }), String(pct));
       }),
     );
-    sizeSelect.value = chosen;
+    sizeSelect.value = picked;
     draw();
   }
 
-  // ---- Move the photo inside the frame by dragging (unless a text layer took the touch) ----
-  let pan: { x: number; y: number; cx: number; cy: number } | undefined;
+  // ---- Dragging on the photo: Crop moves the photo in the frame, Light changes the chosen slider, Text moves words ----
+  let drag: { x: number; y: number; cx: number; cy: number; value: number } | undefined;
   const clamp = (value: number, half: number) => Math.min(1 - half, Math.max(half, value));
-  const startPan = (event: PointerEvent) => {
-    if (event.defaultPrevented || event.button !== 0 || !canvas.classList.contains('pe-movable')) return;
+  const startDrag = (event: PointerEvent) => {
+    if (event.defaultPrevented || event.button !== 0) return; // a text layer took it
+    if (tab === 'crop' ? !canvas.classList.contains('pe-movable') : tab !== 'light') return;
     event.preventDefault();
     canvas.setPointerCapture(event.pointerId);
-    pan = { x: event.clientX, y: event.clientY, cx: state.cx, cy: state.cy };
+    drag = { x: event.clientX, y: event.clientY, cx: state.cx, cy: state.cy, value: state.own[chosen] };
   };
   canvas.addEventListener('pointermove', (event) => {
-    if (!pan) return;
+    if (!drag) return;
     const rect = canvas.getBoundingClientRect();
-    const { tw, th, box } = kept();
-    const [, , w, h] = box;
-    // Dragging the photo right shows more of its left side: the frame's centre moves the other way.
-    state.cx = clamp(pan.cx - ((event.clientX - pan.x) / rect.width) * (w / tw), w / tw / 2);
-    state.cy = clamp(pan.cy - ((event.clientY - pan.y) / rect.height) * (h / th), h / th / 2);
+    if (tab === 'light') {
+      // The photo's full width is the whole range, -100 to +100.
+      state.own[chosen] = Math.round(Math.min(100, Math.max(-100, drag.value + ((event.clientX - drag.x) / rect.width) * 200)));
+      sliders[SLIDERS.indexOf(chosen)].set(state.own[chosen]);
+    } else {
+      const { tw, th, box } = kept();
+      const [, , w, h] = box;
+      // Dragging the photo right shows more of its left side: the frame's centre moves the other way.
+      state.cx = clamp(drag.cx - ((event.clientX - drag.x) / rect.width) * (w / tw), w / tw / 2);
+      state.cy = clamp(drag.cy - ((event.clientY - drag.y) / rect.height) * (h / th), h / th / 2);
+    }
     draw();
   });
-  for (const type of ['pointerup', 'pointercancel']) canvas.addEventListener(type, () => (pan = undefined));
+  for (const type of ['pointerup', 'pointercancel']) canvas.addEventListener(type, () => (drag = undefined));
 
+  // ---- Hold to see the original ----
   const showOriginal = (on: boolean) => {
     original = on;
-    compare.classList.toggle('active', on);
+    compare.setAttribute('aria-pressed', String(on));
     draw();
   };
   compare.addEventListener('pointerdown', () => showOriginal(true));
@@ -261,10 +351,13 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   compare.addEventListener('keyup', () => showOriginal(false));
 
   // The text layers come from the Sticker Maker; registered first, so a touch on a layer moves the layer.
-  text = (await import('./sticker-text')).stickerText(canvas, draw, () => false);
-  canvas.addEventListener('pointerdown', startPan);
-  viewer.replaceChildren(stage, compare, cropBox, lightBox, looksBox, text.panel, sizeBox);
+  text = (await import('./sticker-text')).stickerText(canvas, draw, () => tab !== 'text');
+  panels.text.append(text.panel);
+  canvas.addEventListener('pointerdown', startDrag);
+  viewer.replaceChildren(top, stage, tabList, ...TABS.map((key) => panels[key]));
+  show('looks');
   sync();
+  viewer.scrollIntoView({ block: 'start' });
 
   return {
     async save(options) {

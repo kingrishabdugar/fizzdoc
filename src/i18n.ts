@@ -376,6 +376,7 @@ export const UI = {
   'pe.saturation': 'Saturation',
   'pe.warmth': 'Warmth',
   'pe.reset': 'Reset',
+  'pe.swipeHint': 'Drag sideways on the photo to change it.',
   'pe.looks': 'Looks',
   'pe.bw': 'B&W',
   'pe.vivid': 'Vivid',
