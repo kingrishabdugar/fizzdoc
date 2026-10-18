@@ -178,12 +178,63 @@ const toolGroups = (c: Copy) => `${toolGroup(c, 'pdf')}
 
 const CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 
-const proofHtml = (c: Copy) => `
+// The open-source engines a tool runs on, named on its page. Without a tool (home, comparisons), the main ones.
+const ENGINE = {
+  qpdf: 'https://qpdf.readthedocs.io/',
+  'pdf.js': 'https://mozilla.github.io/pdf.js/',
+  'pdf-lib': 'https://pdf-lib.js.org/',
+  BiRefNet: 'https://github.com/ZhengPeng7/BiRefNet',
+  'ONNX Runtime': 'https://onnxruntime.ai/',
+  Whisper: 'https://github.com/openai/whisper',
+  'Transformers.js': 'https://huggingface.co/docs/transformers.js',
+  'tesseract.js': 'https://tesseract.projectnaptha.com/',
+  Mermaid: 'https://mermaid.js.org/',
+  fflate: 'https://github.com/101arrowz/fflate',
+  'gifuct-js': 'https://github.com/matt-way/gifuct-js',
+  gifenc: 'https://github.com/mattdesl/gifenc',
+  Mediabunny: 'https://mediabunny.dev/',
+  Canvas: 'https://developer.mozilla.org/docs/Web/API/Canvas_API',
+  'Web Audio': 'https://developer.mozilla.org/docs/Web/API/Web_Audio_API',
+} as const;
+type Engine = keyof typeof ENGINE;
+const PDF_ENGINES: Engine[] = ['qpdf', 'pdf.js', 'pdf-lib'];
+const OP_ENGINES: Partial<Record<ToolOp, Engine[]>> = {
+  'remove-bg': ['BiRefNet', 'ONNX Runtime'],
+  transcribe: ['Whisper', 'Transformers.js'],
+  'image-ocr': ['tesseract.js'],
+  'ocr-pdf': ['tesseract.js', 'pdf.js', 'pdf-lib'],
+  'mermaid-image': ['Mermaid'],
+  'image-convert': ['Canvas', 'fflate'],
+  'audio-split': ['Web Audio', 'fflate'],
+  'audio-merge': ['Web Audio', 'fflate'],
+  // Word, Excel and PowerPoint files are ZIP archives of XML.
+  'office-clean': ['fflate'],
+  'office-images': ['fflate'],
+  'office-compress': ['fflate'],
+  'word-to-pdf': ['fflate'],
+  'excel-to-csv': ['fflate'],
+  'csv-to-excel': ['fflate'],
+  'excel-to-json': ['fflate'],
+  'json-to-excel': ['fflate'],
+};
+function enginesHtml(tool?: Tool) {
+  const names: Engine[] = !tool
+    ? [...PDF_ENGINES, 'ONNX Runtime', 'Whisper']
+    : tool.slug === 'remove-gif-background'
+      ? ['BiRefNet', 'ONNX Runtime', 'gifuct-js', 'gifenc']
+      : tool.slug === 'remove-video-background'
+        ? ['BiRefNet', 'ONNX Runtime', 'Mediabunny']
+        : (OP_ENGINES[tool.op] ?? PDF_ENGINES);
+  const links = names.map((name) => `<a href="${ENGINE[name]}">${name}</a>`);
+  return links.length > 1 ? `${links.slice(0, -1).join(', ')} &amp; ${links.at(-1)}` : links[0];
+}
+
+const proofHtml = (c: Copy, tool?: Tool) => `
 <section class="section proof" aria-labelledby="proof">
   <div class="section-head"><h2 id="proof">${esc(c.t('proof.title'))}</h2><p>${esc(c.t('proof.lede'))}</p></div>
   <ul class="proof-grid">
     ${(['noUpload', 'csp', 'check'] as const).map((k) => `<li>${CHECK}<strong>${esc(c.t(`proof.${k}`))}</strong><span>${esc(c.t(`proof.${k}Text`))}</span></li>`).join('\n    ')}
-    <li>${CHECK}<strong>${esc(c.t('proof.open'))}</strong><span>${esc(c.t('proof.openText')).replace('{github}', `<a href="${SITE.repo}">GitHub</a>`).replace('{engines}', '<a href="https://qpdf.readthedocs.io/">qpdf</a>, <a href="https://mozilla.github.io/pdf.js/">pdf.js</a> &amp; <a href="https://pdf-lib.js.org/">pdf-lib</a>')}</span></li>
+    <li>${CHECK}<strong>${esc(c.t('proof.open'))}</strong><span>${esc(c.t('proof.openText')).replace('{github}', `<a href="${SITE.repo}">GitHub</a>`).replace('{engines}', enginesHtml(tool))}</span></li>
   </ul>
 </section>`;
 
@@ -444,7 +495,7 @@ ${workspaceHtml(c, tool)}
   ${tool.keywords?.length ? `<div class="uses"><h3>${esc(c.t('tool.uses'))}</h3><ul>${tool.keywords.map((k) => `<li>${esc(k)}</li>`).join('')}</ul></div>` : ''}
 </section>
 ${examplesHtml(c, tool)}
-${proofHtml(c)}
+${proofHtml(c, tool)}
 ${faqHtml(c, tool.faq)}
 <section class="section" aria-labelledby="more">
   <div class="section-head"><h2 id="more">${esc(c.t('tool.more'))}</h2></div>
