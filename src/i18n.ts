@@ -224,6 +224,7 @@ export const UI = {
   'error.PROCESSING_FAILED': 'Something went wrong while processing. Your original file is unchanged.',
   'offline.needed': 'You’re offline, and this tool isn’t on this device yet. It needs the internet once: connect and try again.',
   'offline.ready': 'Ready: this tool now works on this device with Wi-Fi or mobile data turned off.',
+  'offline.badge': 'Works offline',
   'offline.install': 'Install Fizzdoc',
   'offline.iosSteps': 'To install Fizzdoc on iPhone or iPad, tap the Share button, then “Add to Home Screen”.',
   'error.NO_PASSWORD': 'Type the password you want to add.',

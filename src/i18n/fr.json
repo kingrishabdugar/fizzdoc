@@ -175,6 +175,7 @@
     "error.PROCESSING_FAILED": "Une erreur s'est produite pendant le traitement. Votre fichier d'origine n'a pas changé.",
     "offline.needed": "Vous êtes hors ligne et cet outil n’est pas encore sur cet appareil. Il a besoin d’internet une fois : connectez-vous et réessayez.",
     "offline.ready": "Prêt : cet outil fonctionne maintenant sur cet appareil avec le Wi-Fi ou les données mobiles coupés.",
+    "offline.badge": "Fonctionne hors ligne",
     "offline.install": "Installer Fizzdoc",
     "offline.iosSteps": "Pour installer Fizzdoc sur iPhone ou iPad, touchez le bouton Partager, puis « Sur l’écran d’accueil ».",
     "error.NO_PASSWORD": "Saisissez le mot de passe que vous voulez ajouter.",

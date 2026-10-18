@@ -420,7 +420,7 @@ ${faqHtml(c, home.faq)}`;
   <span class="tool-mark" aria-hidden="true">${icon(tool.op)}</span>
   <h1>${esc(tool.h1)}</h1>
   <p class="lede">${esc(tool.lede)}</p>
-  <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>${esc(c.t('tool.eyebrow'))}</p>
+  <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>${esc(c.t('tool.eyebrow'))}<span id="offline-badge" class="offline-badge" hidden> · ✓ ${esc(c.t('offline.badge'))}</span></p>
 </section>
 ${workspaceHtml(c, tool)}
 <section class="section" aria-labelledby="how">

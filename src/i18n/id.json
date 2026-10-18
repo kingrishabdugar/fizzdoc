@@ -175,6 +175,7 @@
     "error.PROCESSING_FAILED": "Terjadi kesalahan saat memproses. File asli Anda tidak berubah.",
     "offline.needed": "Kamu sedang offline, dan alat ini belum ada di perangkat ini. Alat ini butuh internet sekali: sambungkan lalu coba lagi.",
     "offline.ready": "Siap: alat ini sekarang berfungsi di perangkat ini meski Wi-Fi atau data seluler dimatikan.",
+    "offline.badge": "Bisa dipakai offline",
     "offline.install": "Pasang Fizzdoc",
     "offline.iosSteps": "Untuk memasang Fizzdoc di iPhone atau iPad, ketuk tombol Bagikan, lalu “Tambah ke Layar Utama”.",
     "error.NO_PASSWORD": "Masukkan kata sandi yang ingin Anda tambahkan.",

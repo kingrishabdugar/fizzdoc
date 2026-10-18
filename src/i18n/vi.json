@@ -175,6 +175,7 @@
     "error.PROCESSING_FAILED": "Đã xảy ra lỗi trong quá trình xử lý. Tệp gốc của bạn không bị thay đổi.",
     "offline.needed": "Bạn đang ngoại tuyến và công cụ này chưa có trên thiết bị. Công cụ cần internet một lần: hãy kết nối rồi thử lại.",
     "offline.ready": "Sẵn sàng: công cụ này giờ chạy trên thiết bị này cả khi tắt Wi-Fi hoặc dữ liệu di động.",
+    "offline.badge": "Dùng được khi ngoại tuyến",
     "offline.install": "Cài đặt Fizzdoc",
     "offline.iosSteps": "Để cài Fizzdoc trên iPhone hoặc iPad, chạm vào nút Chia sẻ, rồi chọn “Thêm vào MH chính”.",
     "error.NO_PASSWORD": "Nhập mật khẩu bạn muốn thêm.",

@@ -27,6 +27,8 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
       await self.registration.navigationPreload?.enable();
+      // Take charge of the open page now, so its first run can already say the tool works offline.
+      await self.clients.claim();
       // The page that installed this worker loaded before it existed, so keep that page now.
       const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
       await Promise.all(clients.map((client) => fetch(client.url).then((response) => keep(PAGES, pageKey(client.url), response), () => {})));
