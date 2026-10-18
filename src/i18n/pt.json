@@ -269,7 +269,7 @@
     "bg.sharp": "Bordas mais nítidas (cabelo, pelos)",
     "bg.sharpNote": "Faz uma passada mais detalhada na sua placa de vídeo. Na primeira vez, baixa cerca de {mb} MB.",
     "bg.sharpFailed": "As bordas mais nítidas não funcionaram neste aparelho, então o primeiro resultado foi mantido.",
-    "bg.shareSticker": "Compartilhar no WhatsApp",
+    "bg.shareSticker": "Salvar em Fotos",
     "st.text": "Texto",
     "st.hint": "Arraste o texto sobre a imagem. Faça o gesto de pinça com dois dedos, ou use os controles, para mudar o tamanho e girar.",
     "st.add": "Adicionar texto",
@@ -292,7 +292,12 @@
     "st.size": "Tamanho",
     "st.turn": "Girar",
     "st.delete": "Apagar texto",
-    "bg.stickerNote": "Figurinha pronta: 512 × 512, fundo transparente e contorno branco. Salve ou compartilhe direto no WhatsApp pelo celular.",
+    "bg.stickerNote": "Figurinha pronta: 512 × 512, fundo transparente e contorno branco.",
+    "wa.title": "Adicione ao WhatsApp",
+    "wa.why": "Nenhum site consegue colocar uma figurinha direto no WhatsApp: um arquivo compartilhado chega como foto. O próprio criador de figurinhas do WhatsApp faz o último passo e depois guarda a figurinha na sua bandeja de figurinhas.",
+    "wa.android": "Android: baixe a figurinha. No WhatsApp, abra qualquer conversa (uma conversa com você mesmo serve), toque no botão de emoji, depois em Figurinhas › Criar e escolha a figurinha nas suas fotos. Toque em Enviar.",
+    "wa.iphone": "iPhone (iOS 17 ou mais recente): toque em “Salvar em Fotos” e salve a imagem. No WhatsApp, abra qualquer conversa, toque em Figurinhas › Criar figurinha › Usar uma foto e escolha a imagem. Toque em Enviar.",
+    "wa.computer": "No computador: baixe a figurinha, envie para o seu celular e siga os passos acima por lá.",
     "bg.magicErase": "Toque para remover",
     "bg.magicRestore": "Toque para manter",
     "bg.magicHint": "Mais rápido: escolha Toque para remover ou Toque para manter e toque numa sobra de fundo ou numa parte que faltou. Toda a área dessa cor é corrigida de uma vez.",
@@ -2989,8 +2994,8 @@
       "lede": "Escolha uma foto de um amigo, do seu pet ou sua. O fundo some, um contorno branco de figurinha é adicionado e você recebe uma figurinha pronta para o WhatsApp: WebP 512 × 512, fundo transparente, menos de 100 KB. A IA roda no seu próprio aparelho.",
       "steps": [
         "Escolha uma foto. O fundo é removido e o contorno da figurinha é adicionado.",
-        "Retoque alguma área se precisar, ou desligue o contorno.",
-        "Clique em “Baixar figurinha” ou, no celular, em “Compartilhar no WhatsApp”."
+        "Adicione texto ou emoji se quiser, retoque qualquer área ou desligue o contorno.",
+        "Baixe a figurinha (no iPhone, toque em “Salvar em Fotos”) e depois, no WhatsApp, abra Figurinhas › Criar e escolha a figurinha."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Como adiciono a figurinha ao WhatsApp?",
-          "No celular, toque em “Compartilhar no WhatsApp” e envie para qualquer conversa (uma conversa com você mesmo serve). Depois toque na figurinha e escolha “Adicionar aos favoritos”. No computador, baixe o arquivo WebP e envie pelo WhatsApp Web ou Desktop."
+          "Nenhum site consegue adicionar figurinhas direto no WhatsApp, então o próprio criador de figurinhas do WhatsApp faz o último passo. No Android, baixe a figurinha e, em qualquer conversa, toque no botão de emoji › Figurinhas › Criar e escolha a figurinha nas suas fotos. No iPhone (iOS 17 ou mais recente), toque em “Salvar em Fotos” e, numa conversa, toque em Figurinhas › Criar figurinha › Usar uma foto e escolha a imagem. Toque em Enviar, e o WhatsApp guarda a figurinha na sua bandeja de figurinhas. No computador, envie o arquivo para o seu celular e faça isso por lá."
         ],
         [
           "Isto é feito pelo WhatsApp?",

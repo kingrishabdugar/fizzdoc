@@ -269,7 +269,7 @@
     "bg.sharp": "Viền sắc nét hơn (tóc, lông)",
     "bg.sharpNote": "Xử lý kỹ hơn trên chip đồ họa của bạn. Lần đầu sẽ tải khoảng {mb} MB.",
     "bg.sharpFailed": "Viền sắc nét hơn không chạy được trên thiết bị này, nên kết quả đầu tiên được giữ lại.",
-    "bg.shareSticker": "Chia sẻ lên WhatsApp",
+    "bg.shareSticker": "Lưu vào Ảnh",
     "st.text": "Chữ",
     "st.hint": "Kéo chữ trên ảnh. Chụm hai ngón tay, hoặc dùng thanh trượt, để đổi cỡ và xoay chữ.",
     "st.add": "Thêm chữ",
@@ -292,7 +292,12 @@
     "st.size": "Cỡ chữ",
     "st.turn": "Xoay",
     "st.delete": "Xóa chữ",
-    "bg.stickerNote": "Nhãn dán đã xong: 512 × 512, nền trong suốt, viền trắng. Lưu lại, hoặc chia sẻ thẳng lên WhatsApp từ điện thoại.",
+    "bg.stickerNote": "Nhãn dán đã xong: 512 × 512, nền trong suốt, viền trắng.",
+    "wa.title": "Thêm vào WhatsApp",
+    "wa.why": "Không trang web nào có thể đưa nhãn dán thẳng vào WhatsApp: tệp được chia sẻ sẽ đến dưới dạng ảnh. Công cụ tạo nhãn dán của chính WhatsApp làm bước cuối, rồi giữ nhãn dán trong mục nhãn dán của bạn.",
+    "wa.android": "Android: tải nhãn dán xuống. Trong WhatsApp, mở một cuộc trò chuyện bất kỳ (trò chuyện với chính mình cũng được), chạm nút biểu tượng cảm xúc, rồi chạm Nhãn dán › Tạo, và chọn nhãn dán từ ảnh của bạn. Chạm Gửi.",
+    "wa.iphone": "iPhone (iOS 17 trở lên): chạm “Lưu vào Ảnh” và lưu hình ảnh. Trong WhatsApp, mở một cuộc trò chuyện bất kỳ, chạm Nhãn dán › Tạo nhãn dán › Dùng ảnh, rồi chọn ảnh đó. Chạm Gửi.",
+    "wa.computer": "Trên máy tính: tải nhãn dán xuống, gửi sang điện thoại, rồi làm các bước trên ở đó.",
     "bg.magicErase": "Chạm để xóa",
     "bg.magicRestore": "Chạm để giữ",
     "bg.magicHint": "Nhanh hơn: chọn Chạm để xóa hoặc Chạm để giữ, rồi chạm vào phần nền còn sót hoặc phần bị mất. Cả vùng cùng màu được sửa ngay một lần.",
@@ -2989,8 +2994,8 @@
       "lede": "Chọn ảnh bạn bè, thú cưng hoặc của chính bạn. Nền biến mất, viền sticker màu trắng được thêm vào, và bạn có sticker sẵn sàng cho WhatsApp: WebP 512 × 512, nền trong suốt, dưới 100 KB. AI chạy ngay trên thiết bị của bạn.",
       "steps": [
         "Chọn một ảnh. Nền được xóa và viền sticker được thêm vào.",
-        "Sửa lại chỗ nào đó nếu cần, hoặc tắt viền.",
-        "Bấm “Tải nhãn dán”, hoặc trên điện thoại chạm “Chia sẻ lên WhatsApp”."
+        "Thêm chữ hoặc biểu tượng cảm xúc nếu muốn, sửa lại chỗ nào đó, hoặc tắt viền.",
+        "Tải sticker xuống (trên iPhone, chạm “Lưu vào Ảnh”), rồi trong WhatsApp mở Nhãn dán › Tạo và chọn sticker đó."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Làm sao thêm sticker vào WhatsApp?",
-          "Trên điện thoại, chạm “Chia sẻ lên WhatsApp” và gửi vào một cuộc trò chuyện bất kỳ (trò chuyện với chính mình cũng được). Sau đó chạm vào sticker và chọn “Thêm vào mục yêu thích”. Trên máy tính, tải file WebP rồi gửi từ WhatsApp Web hoặc Desktop."
+          "Không trang web nào có thể thêm sticker thẳng vào WhatsApp, nên bước cuối do công cụ tạo sticker của chính WhatsApp đảm nhận. Trên Android, tải sticker xuống, rồi trong một cuộc trò chuyện bất kỳ chạm nút biểu tượng cảm xúc › Nhãn dán › Tạo và chọn sticker từ ảnh của bạn. Trên iPhone (iOS 17 trở lên), chạm “Lưu vào Ảnh”, rồi trong một cuộc trò chuyện chạm Nhãn dán › Tạo nhãn dán › Dùng ảnh và chọn ảnh đó. Chạm Gửi, và WhatsApp sẽ giữ sticker trong mục sticker của bạn. Trên máy tính, gửi tệp sang điện thoại rồi làm ở đó."
         ],
         [
           "Đây có phải công cụ của WhatsApp không?",

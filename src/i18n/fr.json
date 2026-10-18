@@ -269,7 +269,7 @@
     "bg.sharp": "Bords plus nets (cheveux, poils)",
     "bg.sharpNote": "Fait un passage plus détaillé sur votre puce graphique. La première fois, environ {mb} Mo sont téléchargés.",
     "bg.sharpFailed": "Les bords plus nets n’ont pas fonctionné sur cet appareil, le premier résultat est donc conservé.",
-    "bg.shareSticker": "Partager sur WhatsApp",
+    "bg.shareSticker": "Enregistrer dans Photos",
     "st.text": "Texte",
     "st.hint": "Faites glisser le texte sur l’image. Pincez avec deux doigts, ou utilisez les curseurs, pour le redimensionner et le faire pivoter.",
     "st.add": "Ajouter du texte",
@@ -292,7 +292,12 @@
     "st.size": "Taille",
     "st.turn": "Rotation",
     "st.delete": "Supprimer le texte",
-    "bg.stickerNote": "Sticker prêt : 512 × 512, fond transparent, contour blanc. Enregistrez-le ou partagez-le directement sur WhatsApp depuis votre téléphone.",
+    "bg.stickerNote": "Sticker prêt : 512 × 512, fond transparent, contour blanc.",
+    "wa.title": "Ajoutez-le à WhatsApp",
+    "wa.why": "Aucun site ne peut mettre un sticker directement dans WhatsApp : un fichier partagé arrive sous forme de photo. Le créateur de stickers intégré à WhatsApp fait la dernière étape, puis range le sticker parmi vos stickers.",
+    "wa.android": "Android : téléchargez le sticker. Dans WhatsApp, ouvrez n’importe quelle discussion (une discussion avec vous-même suffit), touchez le bouton emoji, puis Stickers › Créer, et choisissez le sticker dans vos photos. Touchez Envoyer.",
+    "wa.iphone": "iPhone (iOS 17 ou plus récent) : touchez « Enregistrer dans Photos » et enregistrez l’image. Dans WhatsApp, ouvrez n’importe quelle discussion, touchez Stickers › Créer un sticker › Utiliser une photo, puis choisissez-la. Touchez Envoyer.",
+    "wa.computer": "Sur ordinateur : téléchargez le sticker, envoyez-le sur votre téléphone et suivez là-bas les étapes ci-dessus.",
     "bg.magicErase": "Toucher pour retirer",
     "bg.magicRestore": "Toucher pour garder",
     "bg.magicHint": "Plus rapide : choisissez Toucher pour retirer ou Toucher pour garder, puis touchez un reste de fond ou une partie manquante. Toute la zone de cette couleur est corrigée d’un coup.",
@@ -2989,8 +2994,8 @@
       "lede": "Choisissez la photo d’un ami, de votre animal ou de vous. Le fond disparaît, un contour blanc de sticker est ajouté et vous obtenez un sticker prêt pour WhatsApp : WebP 512 × 512, fond transparent, moins de 100 Ko. L’IA tourne sur votre propre appareil.",
       "steps": [
         "Choisissez une photo. Le fond est retiré et le contour du sticker ajouté.",
-        "Retouchez une zone si besoin, ou désactivez le contour.",
-        "Cliquez sur « Télécharger le sticker » ou, sur téléphone, « Partager sur WhatsApp »."
+        "Ajoutez du texte ou un emoji si vous voulez, retouchez une zone ou désactivez le contour.",
+        "Téléchargez le sticker (sur iPhone, touchez « Enregistrer dans Photos »), puis, dans WhatsApp, ouvrez Stickers › Créer et choisissez-le."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Comment ajouter le sticker à WhatsApp ?",
-          "Sur téléphone, touchez « Partager sur WhatsApp » et envoyez-le dans n’importe quelle discussion (une discussion avec vous-même suffit). Touchez ensuite le sticker et choisissez « Ajouter aux favoris ». Sur ordinateur, téléchargez le fichier WebP et envoyez-le depuis WhatsApp Web ou Desktop."
+          "Aucun site ne peut ajouter des stickers à WhatsApp directement, c’est donc le créateur de stickers intégré à WhatsApp qui fait la dernière étape. Sur Android, téléchargez le sticker, puis, dans n’importe quelle discussion, touchez le bouton emoji › Stickers › Créer et choisissez-le dans vos photos. Sur iPhone (iOS 17 ou plus récent), touchez « Enregistrer dans Photos », puis, dans une discussion, touchez Stickers › Créer un sticker › Utiliser une photo et choisissez-le. Touchez Envoyer, et WhatsApp le range parmi vos stickers. Sur ordinateur, envoyez le fichier sur votre téléphone et faites-le là-bas."
         ],
         [
           "Est-ce fait par WhatsApp ?",

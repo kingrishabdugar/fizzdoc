@@ -1980,3 +1980,106 @@ dialog p {
 .share-nudge {
   margin-top: 14px;
 }
+
+/* WhatsApp Sticker Maker: WhatsApp's greens, a chat-wallpaper hero with the heading drawn as a sticker,
+   the intro as a sent message, and the preview shown on a chat background, the way the sticker will look. */
+[data-page='whatsapp-sticker-maker'] {
+  --accent: #008069;
+  --accent-2: #005c4b; /* darker end, so white button text stays readable (AA) */
+  --chat: light-dark(#efeae2, #0b141a);
+  --chat-dots: light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.05));
+  --bubble: light-dark(#d9fdd3, #005c4b);
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool,
+[data-page='whatsapp-sticker-maker'] .bg-stage {
+  background: radial-gradient(circle, var(--chat-dots) 1.5px, transparent 2px) 0 0 / 22px 22px, var(--chat);
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool {
+  position: relative;
+  margin-top: 16px;
+  padding: 40px 16px 32px;
+  border-radius: 28px;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool h1 {
+  max-width: 16ch;
+  color: #111b21;
+  font-weight: 800;
+  rotate: -2deg;
+  text-shadow:
+    3px 0 #fff, -3px 0 #fff, 0 3px #fff, 0 -3px #fff, 2px 2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff,
+    0 6px 14px rgb(0 0 0 / 0.25);
+}
+[data-page='whatsapp-sticker-maker'] .tool-mark {
+  border: 3px solid #fff;
+  rotate: 6deg;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool .lede {
+  position: relative;
+  max-width: 560px;
+  padding: 10px 14px 22px;
+  border-radius: 12px 0 12px 12px;
+  background: var(--bubble);
+  color: var(--text);
+  text-align: start;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 0.13);
+}
+/* The bubble's tail, and the two blue "read" ticks. */
+[data-page='whatsapp-sticker-maker'] .hero-tool .lede::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  border: 8px solid transparent;
+  border-top-color: var(--bubble);
+  border-left-color: var(--bubble);
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool .lede::after {
+  content: '✓✓' / '';
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  color: #53bdeb;
+  font-size: 0.8rem;
+  letter-spacing: -0.3em;
+}
+/* Two emoji stickers stuck on the corners of the hero. */
+[data-page='whatsapp-sticker-maker'] .hero-tool::before,
+[data-page='whatsapp-sticker-maker'] .hero-tool::after {
+  position: absolute;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1;
+  filter: drop-shadow(2px 0 #fff) drop-shadow(-2px 0 #fff) drop-shadow(0 2px #fff) drop-shadow(0 -2px #fff) drop-shadow(0 4px 6px rgb(0 0 0 / 0.2));
+  animation: sticker-wobble 3s ease-in-out infinite alternate;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool::before {
+  content: '😂' / '';
+  top: 18px;
+  left: 6%;
+  rotate: -14deg;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool::after {
+  content: '🔥' / '';
+  right: 6%;
+  bottom: 22px;
+  rotate: 12deg;
+  animation-delay: -1.5s;
+}
+@keyframes sticker-wobble {
+  to {
+    translate: 0 -6px;
+    scale: 1.06;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-page='whatsapp-sticker-maker'] .hero-tool::before,
+  [data-page='whatsapp-sticker-maker'] .hero-tool::after {
+    animation: none;
+  }
+}
+@media (max-width: 560px) {
+  /* Phones: the stickers move to the top corners, clear of the text. */
+  [data-page='whatsapp-sticker-maker'] .hero-tool::after {
+    top: 18px;
+    bottom: auto;
+  }
+}

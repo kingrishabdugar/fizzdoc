@@ -269,7 +269,7 @@
     "bg.sharp": "Scherpere randen (haar, vacht)",
     "bg.sharpNote": "Doet een gedetailleerdere ronde op je grafische chip. De eerste keer wordt zo’n {mb} MB gedownload.",
     "bg.sharpFailed": "Scherpere randen lukten niet op dit apparaat, dus het eerste resultaat blijft staan.",
-    "bg.shareSticker": "Delen via WhatsApp",
+    "bg.shareSticker": "Opslaan in Foto’s",
     "st.text": "Tekst",
     "st.hint": "Sleep de tekst over de afbeelding. Knijp met twee vingers, of gebruik de schuifjes, om hem groter te maken en te draaien.",
     "st.add": "Tekst toevoegen",
@@ -292,7 +292,12 @@
     "st.size": "Grootte",
     "st.turn": "Draaien",
     "st.delete": "Tekst verwijderen",
-    "bg.stickerNote": "Sticker klaar: 512 × 512, transparante achtergrond, witte rand. Bewaar hem of deel hem op je telefoon meteen via WhatsApp.",
+    "bg.stickerNote": "Sticker klaar: 512 × 512, transparante achtergrond, witte rand.",
+    "wa.title": "Voeg hem toe aan WhatsApp",
+    "wa.why": "Geen enkele website kan een sticker rechtstreeks in WhatsApp zetten: een gedeeld bestand komt aan als foto. De eigen stickermaker van WhatsApp doet de laatste stap en bewaart de sticker daarna bij je stickers.",
+    "wa.android": "Android: download de sticker. Open in WhatsApp een chat (een chat met jezelf kan ook), tik op de emojiknop, dan op Stickers › Maken, en kies de sticker uit je foto’s. Tik op Verzenden.",
+    "wa.iphone": "iPhone (iOS 17 of nieuwer): tik op “Opslaan in Foto’s” en bewaar de afbeelding. Open in WhatsApp een chat, tik op Stickers › Sticker maken › Foto gebruiken en kies de afbeelding. Tik op Verzenden.",
+    "wa.computer": "Op een computer: download de sticker, stuur hem naar je telefoon en volg daar de stappen hierboven.",
     "bg.magicErase": "Tik om te verwijderen",
     "bg.magicRestore": "Tik om te houden",
     "bg.magicHint": "Sneller: kies Tik om te verwijderen of Tik om te houden en tik op een restje achtergrond of een ontbrekend stuk. Het hele gebied in die kleur wordt in één keer hersteld.",
@@ -2989,8 +2994,8 @@
       "lede": "Kies een foto van een vriend, je huisdier of jezelf. De achtergrond verdwijnt, er komt een witte stickerrand omheen en je krijgt een sticker die klaar is voor WhatsApp: 512 × 512 WebP, transparante achtergrond, onder 100 KB. De AI draait op je eigen apparaat.",
       "steps": [
         "Kies een foto. De achtergrond gaat weg en de stickerrand wordt toegevoegd.",
-        "Werk een plekje bij als dat nodig is, of zet de rand uit.",
-        "Klik op “Sticker downloaden” of tik op je telefoon op “Delen via WhatsApp”."
+        "Voeg tekst of emoji toe als je wilt, werk een plekje bij of zet de rand uit.",
+        "Download de sticker (tik op een iPhone op “Opslaan in Foto’s”), open dan in WhatsApp Stickers › Maken en kies hem."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Hoe zet ik de sticker in WhatsApp?",
-          "Tik op je telefoon op “Delen via WhatsApp” en stuur hem naar een chat (een chat met jezelf kan ook). Tik daarna in de chat op de sticker en kies “Toevoegen aan favorieten”. Op een computer download je het WebP-bestand en stuur je het via WhatsApp Web of Desktop."
+          "Geen enkele website kan stickers rechtstreeks aan WhatsApp toevoegen, dus de eigen stickermaker van WhatsApp doet de laatste stap. Op Android download je de sticker, tik je in een chat op de emojiknop › Stickers › Maken en kies je hem uit je foto’s. Op een iPhone (iOS 17 of nieuwer) tik je op “Opslaan in Foto’s”, daarna in een chat op Stickers › Sticker maken › Foto gebruiken en kies je hem. Tik op Verzenden en WhatsApp bewaart hem bij je stickers. Op een computer stuur je het bestand naar je telefoon en doe je het daar."
         ],
         [
           "Is dit van WhatsApp?",

@@ -269,7 +269,7 @@
     "bg.sharp": "Tepi lebih tajam (rambut, bulu)",
     "bg.sharpNote": "Menjalankan proses lebih detail di chip grafis Anda. Pertama kali mengunduh sekitar {mb} MB.",
     "bg.sharpFailed": "Tepi lebih tajam tidak berhasil di perangkat ini, jadi hasil pertama dipertahankan.",
-    "bg.shareSticker": "Bagikan ke WhatsApp",
+    "bg.shareSticker": "Simpan ke Foto",
     "st.text": "Teks",
     "st.hint": "Seret teks di atas gambar. Cubit dengan dua jari, atau pakai penggeser, untuk mengubah ukuran dan memutarnya.",
     "st.add": "Tambah teks",
@@ -292,7 +292,12 @@
     "st.size": "Ukuran",
     "st.turn": "Putar",
     "st.delete": "Hapus teks",
-    "bg.stickerNote": "Stiker siap: 512 × 512, latar transparan, garis tepi putih. Simpan, atau bagikan langsung ke WhatsApp dari ponsel.",
+    "bg.stickerNote": "Stiker siap: 512 × 512, latar transparan, garis tepi putih.",
+    "wa.title": "Tambahkan ke WhatsApp",
+    "wa.why": "Tidak ada situs web yang bisa memasukkan stiker langsung ke WhatsApp: file yang dibagikan akan masuk sebagai foto. Pembuat stiker milik WhatsApp sendiri yang mengerjakan langkah terakhir, lalu menyimpan stiker di daftar stiker Anda.",
+    "wa.android": "Android: unduh stiker. Di WhatsApp, buka chat mana saja (chat dengan diri sendiri juga bisa), ketuk tombol emoji, lalu Stiker › Buat, dan pilih stiker dari foto Anda. Ketuk Kirim.",
+    "wa.iphone": "iPhone (iOS 17 atau lebih baru): ketuk “Simpan ke Foto” lalu simpan gambarnya. Di WhatsApp, buka chat mana saja, ketuk Stiker › Buat stiker › Gunakan foto, lalu pilih gambar tersebut. Ketuk Kirim.",
+    "wa.computer": "Di komputer: unduh stiker, kirim ke ponsel Anda, lalu ikuti langkah di atas pada ponsel itu.",
     "bg.magicErase": "Ketuk untuk hapus",
     "bg.magicRestore": "Ketuk untuk simpan",
     "bg.magicHint": "Lebih cepat: pilih Ketuk untuk hapus atau Ketuk untuk simpan, lalu ketuk sisa latar atau bagian yang hilang. Seluruh area dengan warna itu langsung diperbaiki.",
@@ -2989,8 +2994,8 @@
       "lede": "Pilih foto teman, hewan peliharaan, atau diri sendiri. Latar menghilang, garis tepi stiker putih ditambahkan, dan Anda mendapat stiker siap WhatsApp: WebP 512 × 512, latar transparan, di bawah 100 KB. AI berjalan di perangkat Anda sendiri.",
       "steps": [
         "Pilih foto. Latar dihapus dan garis tepi stiker ditambahkan.",
-        "Perbaiki bagian tertentu bila perlu, atau matikan garis tepi.",
-        "Klik “Unduh stiker”, atau di ponsel ketuk “Bagikan ke WhatsApp”."
+        "Tambahkan teks atau emoji bila ingin, perbaiki bagian tertentu, atau matikan garis tepi.",
+        "Unduh stiker (di iPhone, ketuk “Simpan ke Foto”), lalu di WhatsApp buka Stiker › Buat dan pilih stikernya."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Bagaimana cara menambahkan stiker ke WhatsApp?",
-          "Di ponsel, ketuk “Bagikan ke WhatsApp” lalu kirim ke chat mana saja (chat dengan diri sendiri juga bisa). Lalu ketuk stiker di chat dan pilih “Tambahkan ke favorit”. Di komputer, unduh file WebP dan kirim dari WhatsApp Web atau Desktop."
+          "Tidak ada situs web yang bisa menambahkan stiker langsung ke WhatsApp, jadi langkah terakhir dilakukan oleh pembuat stiker milik WhatsApp sendiri. Di Android, unduh stiker, lalu di chat mana saja ketuk tombol emoji › Stiker › Buat dan pilih stiker dari foto Anda. Di iPhone (iOS 17 atau lebih baru), ketuk “Simpan ke Foto”, lalu di chat ketuk Stiker › Buat stiker › Gunakan foto dan pilih stikernya. Ketuk Kirim, dan WhatsApp menyimpannya di daftar stiker Anda. Di komputer, kirim file ke ponsel Anda lalu lakukan langkahnya di sana."
         ],
         [
           "Apakah ini buatan WhatsApp?",

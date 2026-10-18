@@ -1441,20 +1441,12 @@ test('makes a WhatsApp sticker: 512×512 WebP, clear background, outline, under 
   test.setTimeout(240_000);
   const seen = watch(page);
   await page.goto('/whatsapp-sticker-maker/');
-  const photo = await page.evaluate(async () => {
-    const canvas = new OffscreenCanvas(900, 600);
-    const c = canvas.getContext('2d')!;
-    c.fillStyle = '#e8eef5';
-    c.fillRect(0, 0, 900, 600);
-    c.fillStyle = '#c0392b';
-    c.beginPath();
-    c.arc(450, 300, 170, 0, Math.PI * 2);
-    c.fill();
-    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
-  });
-  await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
   await expect(page.getByRole('button', { name: 'Outline' })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
   await expect(page.getByRole('combobox', { name: 'Size' })).toBeHidden();
+  // No website can add a sticker to WhatsApp, so the page shows WhatsApp's own steps instead of a share button.
+  await expect(page.getByText('Add it to WhatsApp')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Save to Photos' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Download sticker' }).click();
   await expect(page.locator('#status')).toContainText('512 × 512 px');
   const sticker = await downloadBytes(page);
@@ -1487,18 +1479,7 @@ test('sticker text and emoji: words in a fun font, dragged into place, and an em
   await context.addInitScript(() => localStorage.setItem('fizzdoc-bg-crashed', String(Date.now())));
   const page = await context.newPage();
   await page.goto('/whatsapp-sticker-maker/');
-  const photo = await page.evaluate(async () => {
-    const canvas = new OffscreenCanvas(900, 600);
-    const c = canvas.getContext('2d')!;
-    c.fillStyle = '#e8eef5';
-    c.fillRect(0, 0, 900, 600);
-    c.fillStyle = '#c0392b';
-    c.beginPath();
-    c.arc(450, 300, 170, 0, Math.PI * 2);
-    c.fill();
-    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
-  });
-  await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
   await expect(page.getByRole('button', { name: 'Outline' })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
 
   await page.getByRole('button', { name: 'Add text' }).click();
@@ -1537,6 +1518,33 @@ test('sticker text and emoji: words in a fun font, dragged into place, and an em
   expect(found.size).toEqual([512, 512]);
   expect(found.yellow).toBeGreaterThan(50);
   expect(found.emoji).toBeGreaterThan(200);
+  await context.close();
+});
+
+test('sticker on iPhone: “Save to Photos” hands a 512×512 PNG to the share sheet', async ({ browser, baseURL }) => {
+  test.setTimeout(240_000);
+  const context = await browser.newContext({
+    baseURL,
+    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
+  });
+  await context.addInitScript(() => {
+    localStorage.setItem('fizzdoc-bg-crashed', String(Date.now()));
+    // The share sheet, as Safari offers it: record what would be shared.
+    Object.defineProperty(navigator, 'canShare', { value: () => true });
+    Object.defineProperty(navigator, 'share', {
+      value: async ({ files }: { files: File[] }) => {
+        const bitmap = await createImageBitmap(files[0]);
+        (window as unknown as { shared: unknown }).shared = { name: files[0].name, type: files[0].type, size: [bitmap.width, bitmap.height] };
+      },
+    });
+  });
+  const page = await context.newPage();
+  await page.goto('/whatsapp-sticker-maker/');
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await page.getByRole('button', { name: 'Save to Photos' }).click({ timeout: 200_000 });
+  await expect
+    .poll(() => page.evaluate(() => (window as unknown as { shared?: unknown }).shared))
+    .toEqual({ name: 'ball-sticker.png', type: 'image/png', size: [512, 512] });
   await context.close();
 });
 

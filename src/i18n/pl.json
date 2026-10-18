@@ -269,7 +269,7 @@
     "bg.sharp": "Ostrzejsze krawędzie (włosy, sierść)",
     "bg.sharpNote": "Dokładniejsze przetwarzanie na karcie graficznej. Za pierwszym razem pobiera około {mb} MB.",
     "bg.sharpFailed": "Ostrzejsze krawędzie nie zadziałały na tym urządzeniu, więc zostaje pierwszy wynik.",
-    "bg.shareSticker": "Udostępnij w WhatsApp",
+    "bg.shareSticker": "Zapisz w Zdjęciach",
     "st.text": "Tekst",
     "st.hint": "Przeciągnij tekst na obrazku. Zsuń dwa palce albo użyj suwaków, żeby zmienić rozmiar i obrócić tekst.",
     "st.add": "Dodaj tekst",
@@ -292,7 +292,12 @@
     "st.size": "Rozmiar",
     "st.turn": "Obrót",
     "st.delete": "Usuń tekst",
-    "bg.stickerNote": "Naklejka gotowa: 512 × 512, przezroczyste tło, biały obrys. Zapisz ją albo udostępnij z telefonu prosto do WhatsApp.",
+    "bg.stickerNote": "Naklejka gotowa: 512 × 512, przezroczyste tło, biały obrys.",
+    "wa.title": "Dodaj ją do WhatsApp",
+    "wa.why": "Żadna strona internetowa nie może dodać naklejki prosto do WhatsApp: udostępniony plik trafia tam jako zdjęcie. Ostatni krok wykonuje kreator naklejek w samym WhatsApp, który potem zapisuje ją wśród Twoich naklejek.",
+    "wa.android": "Android: pobierz naklejkę. W WhatsApp otwórz dowolny czat (czat z samym sobą też działa), dotknij przycisku emoji, potem Naklejki › Utwórz i wybierz naklejkę ze swoich zdjęć. Dotknij Wyślij.",
+    "wa.iphone": "iPhone (iOS 17 lub nowszy): dotknij „Zapisz w Zdjęciach” i zapisz obrazek. W WhatsApp otwórz dowolny czat, dotknij Naklejki › Utwórz naklejkę › Użyj zdjęcia i wybierz go. Dotknij Wyślij.",
+    "wa.computer": "Na komputerze: pobierz naklejkę, wyślij ją na telefon i wykonaj tam powyższe kroki.",
     "bg.magicErase": "Dotknij, aby usunąć",
     "bg.magicRestore": "Dotknij, aby zachować",
     "bg.magicHint": "Szybciej: wybierz „Dotknij, aby usunąć” lub „Dotknij, aby zachować”, a potem dotknij resztki tła albo brakującego fragmentu. Cały obszar w tym kolorze poprawi się naraz.",
@@ -2989,8 +2994,8 @@
       "lede": "Wybierz zdjęcie przyjaciela, zwierzaka albo swoje. Tło znika, dochodzi biały obrys naklejki i dostajesz naklejkę gotową do WhatsApp: WebP 512 × 512, przezroczyste tło, poniżej 100 KB. AI działa na Twoim urządzeniu.",
       "steps": [
         "Wybierz zdjęcie. Tło zostaje usunięte, a obrys naklejki dodany.",
-        "W razie potrzeby popraw fragment albo wyłącz obrys.",
-        "Kliknij „Pobierz naklejkę” albo na telefonie „Udostępnij w WhatsApp”."
+        "Jeśli chcesz, dodaj tekst lub emoji, popraw dowolny fragment albo wyłącz obrys.",
+        "Pobierz naklejkę (na iPhonie dotknij „Zapisz w Zdjęciach”), a potem w WhatsApp otwórz Naklejki › Utwórz i wybierz ją."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Jak dodać naklejkę do WhatsApp?",
-          "Na telefonie dotknij „Udostępnij w WhatsApp” i wyślij ją do dowolnego czatu (czat z samym sobą też działa). Potem dotknij naklejki w czacie i wybierz „Dodaj do ulubionych”. Na komputerze pobierz plik WebP i wyślij go przez WhatsApp Web lub Desktop."
+          "Żadna strona internetowa nie może dodać naklejek bezpośrednio do WhatsApp, więc ostatni krok wykonuje kreator naklejek w samym WhatsApp. Na Androidzie pobierz naklejkę, a potem w dowolnym czacie dotknij przycisku emoji › Naklejki › Utwórz i wybierz ją ze swoich zdjęć. Na iPhonie (iOS 17 lub nowszy) dotknij „Zapisz w Zdjęciach”, a potem w czacie dotknij Naklejki › Utwórz naklejkę › Użyj zdjęcia i wybierz ją. Dotknij Wyślij, a WhatsApp zapisze ją wśród Twoich naklejek. Na komputerze wyślij plik na telefon i zrób to tam."
         ],
         [
           "Czy to narzędzie WhatsApp?",

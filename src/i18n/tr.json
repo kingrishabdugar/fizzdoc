@@ -269,7 +269,7 @@
     "bg.sharp": "Daha keskin kenarlar (saç, tüy)",
     "bg.sharpNote": "Grafik çipinizde daha ayrıntılı bir geçiş yapar. İlk seferde yaklaşık {mb} MB indirir.",
     "bg.sharpFailed": "Daha keskin kenarlar bu cihazda çalışmadı, bu yüzden ilk sonuç korundu.",
-    "bg.shareSticker": "WhatsApp’ta paylaş",
+    "bg.shareSticker": "Fotoğraflar’a kaydet",
     "st.text": "Metin",
     "st.hint": "Metni resmin üzerinde sürükleyin. Boyutunu değiştirmek ve döndürmek için iki parmakla sıkıştırın ya da kaydırıcıları kullanın.",
     "st.add": "Metin ekle",
@@ -292,7 +292,12 @@
     "st.size": "Boyut",
     "st.turn": "Döndür",
     "st.delete": "Metni sil",
-    "bg.stickerNote": "Çıkartma hazır: 512 × 512, şeffaf arka plan, beyaz kenar. Kaydedin ya da telefondan doğrudan WhatsApp’ta paylaşın.",
+    "bg.stickerNote": "Çıkartma hazır: 512 × 512, şeffaf arka plan, beyaz kenar.",
+    "wa.title": "WhatsApp’a ekleyin",
+    "wa.why": "Hiçbir web sitesi çıkartmayı doğrudan WhatsApp’a ekleyemez: paylaşılan dosya fotoğraf olarak ulaşır. Son adımı WhatsApp’ın kendi çıkartma oluşturucusu yapar ve ardından çıkartmayı çıkartmalarınız arasında saklar.",
+    "wa.android": "Android: çıkartmayı indirin. WhatsApp’ta herhangi bir sohbeti açın (kendinizle sohbet de olur), emoji düğmesine, ardından Çıkartmalar › Oluştur’a dokunun ve çıkartmayı fotoğraflarınızdan seçin. Gönder’e dokunun.",
+    "wa.iphone": "iPhone (iOS 17 veya üstü): “Fotoğraflar’a kaydet”e dokunun ve resmi kaydedin. WhatsApp’ta herhangi bir sohbeti açın, Çıkartmalar › Çıkartma oluştur › Fotoğraf kullan’a dokunun ve resmi seçin. Gönder’e dokunun.",
+    "wa.computer": "Bilgisayarda: çıkartmayı indirin, telefonunuza gönderin ve yukarıdaki adımları orada uygulayın.",
     "bg.magicErase": "Dokun ve kaldır",
     "bg.magicRestore": "Dokun ve tut",
     "bg.magicHint": "Daha hızlı: Dokun ve kaldır ya da Dokun ve tut seçin, sonra kalan arka plan parçasına veya eksik kısma dokunun. O renkteki alanın tamamı tek seferde düzelir.",
@@ -2989,8 +2994,8 @@
       "lede": "Bir arkadaşınızın, evcil hayvanınızın ya da kendinizin fotoğrafını seçin. Arka plan kaybolur, beyaz çıkartma kenarı eklenir ve WhatsApp’a hazır bir çıkartma elde edersiniz: 512 × 512 WebP, şeffaf arka plan, 100 KB’ın altında. Yapay zekâ kendi cihazınızda çalışır.",
       "steps": [
         "Bir fotoğraf seçin. Arka plan silinir ve çıkartma kenarı eklenir.",
-        "Gerekirse bir yeri düzeltin ya da kenarı kapatın.",
-        "“Çıkartmayı indir”e tıklayın ya da telefonda “WhatsApp’ta paylaş”a dokunun."
+        "İsterseniz metin veya emoji ekleyin, bir yeri düzeltin ya da kenarı kapatın.",
+        "Çıkartmayı indirin (iPhone’da “Fotoğraflar’a kaydet”e dokunun), sonra WhatsApp’ta Çıkartmalar › Oluştur’u açın ve çıkartmayı seçin."
       ],
       "faq": [
         [
@@ -2999,7 +3004,7 @@
         ],
         [
           "Çıkartmayı WhatsApp’a nasıl eklerim?",
-          "Telefonda “WhatsApp’ta paylaş”a dokunup herhangi bir sohbete gönderin (kendinizle sohbet de olur). Sonra sohbette çıkartmaya dokunup “Favorilere ekle”yi seçin. Bilgisayarda WebP dosyasını indirip WhatsApp Web veya Desktop’tan gönderin."
+          "Hiçbir web sitesi çıkartmaları WhatsApp’a doğrudan ekleyemez, bu yüzden son adımı WhatsApp’ın kendi çıkartma oluşturucusu yapar. Android’de çıkartmayı indirin, sonra herhangi bir sohbette emoji düğmesi › Çıkartmalar › Oluştur’a dokunun ve çıkartmayı fotoğraflarınızdan seçin. iPhone’da (iOS 17 veya üstü) “Fotoğraflar’a kaydet”e dokunun, sonra bir sohbette Çıkartmalar › Çıkartma oluştur › Fotoğraf kullan’a dokunun ve çıkartmayı seçin. Gönder’e dokunun; WhatsApp çıkartmayı çıkartmalarınız arasında saklar. Bilgisayarda dosyayı telefonunuza gönderin ve işlemi orada yapın."
         ],
         [
           "Bunu WhatsApp mı yapıyor?",
