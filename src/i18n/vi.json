@@ -11,7 +11,7 @@
     "footer.about": "Công cụ xử lý tài liệu riêng tư. Tệp của bạn được xử lý ngay trên thiết bị và không bao giờ được tải lên.",
     "footer.license": "Mã nguồn mở (Apache-2.0)",
     "footer.licenses": "Giấy phép bên thứ ba",
-    "footer.builtOn": "Xây dựng trên qpdf, pdf.js và pdf-lib",
+    "footer.builtOn": "Xây dựng trên qpdf, pdf.js, pdf-lib, ONNX Runtime và Whisper",
     "star.title": "Miễn phí và mã nguồn mở. Mãi mãi.",
     "star.text": "Không quảng cáo, không cần tài khoản, không có máy chủ nào nhìn thấy tệp của bạn. Nếu Fizzdoc giúp bạn tiết kiệm thời gian, một ngôi sao trên GitHub sẽ giúp nhiều người khác tìm thấy nó hơn.",
     "star.button": "Gắn sao cho Fizzdoc trên GitHub",

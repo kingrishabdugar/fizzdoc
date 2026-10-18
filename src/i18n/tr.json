@@ -11,7 +11,7 @@
     "footer.about": "Gizliliğe önem veren belge araçları. Dosyalarınız cihazınızda işlenir ve asla yüklenmez.",
     "footer.license": "Açık kaynak (Apache-2.0)",
     "footer.licenses": "Üçüncü taraf lisansları",
-    "footer.builtOn": "qpdf, pdf.js ve pdf-lib üzerine inşa edilmiştir",
+    "footer.builtOn": "qpdf, pdf.js, pdf-lib, ONNX Runtime ve Whisper üzerine inşa edilmiştir",
     "star.title": "Ücretsiz ve açık kaynak. Sonsuza dek.",
     "star.text": "Reklam yok, hesap yok, dosyalarınıza bakan sunucu yok. Fizzdoc zamandan kazandırdıysa, GitHub'da bir yıldız daha çok kişinin onu bulmasına yardımcı olur.",
     "star.button": "Fizzdoc'u GitHub'da yıldızla",

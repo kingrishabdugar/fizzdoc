@@ -255,8 +255,11 @@ test('alternative pages describe only Fizzdoc, link to the matching tools and sa
   await page.locator('.tool-grid a', { hasText: 'Merge PDF' }).click();
   await expect(page).toHaveURL(/\/merge-pdf\/$/);
 
+  // Image and audio jobs too, not only PDF.
+  await page.goto('/remove-bg-alternative/');
+  await expect(page.locator('.tool-grid a', { hasText: 'Remove Background' }).first()).toHaveAttribute('href', '/remove-background/');
   await page.goto('/alternatives/');
-  await expect(page.locator('section:has(#compare) .proof-grid a')).toHaveCount(7);
+  await expect(page.locator('section:has(#compare) .proof-grid a')).toHaveCount(12);
   await page.goto('/hi/');
   await expect(page.locator('footer a[href="/alternatives/"]')).toHaveText('जाने-पहचाने टूल्स के विकल्प');
 });

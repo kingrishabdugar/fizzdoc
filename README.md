@@ -211,6 +211,12 @@ There isn't one. Your browser does the work, so Fizzdoc is just static files tha
 </details>
 
 <details>
+<summary><strong>Is it a free alternative to iLovePDF, Smallpdf, remove.bg or TinyPNG?</strong></summary>
+
+It does the same everyday jobs, free and without uploading your files. There's a page for each, listing the Fizzdoc tools for the jobs people usually go there for: [iLovePDF](https://fizzdoc.com/ilovepdf-alternative/) · [Smallpdf](https://fizzdoc.com/smallpdf-alternative/) · [Adobe Acrobat online](https://fizzdoc.com/adobe-acrobat-online-alternative/) · [PDF24](https://fizzdoc.com/pdf24-alternative/) · [Sejda](https://fizzdoc.com/sejda-alternative/) · [remove.bg](https://fizzdoc.com/remove-bg-alternative/) · [Pixelcut](https://fizzdoc.com/pixelcut-alternative/) · [Photoroom](https://fizzdoc.com/photoroom-alternative/) · [iLoveIMG](https://fizzdoc.com/iloveimg-alternative/) · [TinyPNG](https://fizzdoc.com/tinypng-alternative/) · [CloudConvert](https://fizzdoc.com/cloudconvert-alternative/) · [MP3Cut](https://fizzdoc.com/mp3cut-alternative/). Fizzdoc is independent and not affiliated with any of them; the names belong to their owners.
+</details>
+
+<details>
 <summary><strong>Does it work offline or on a phone?</strong></summary>
 
 It works in any modern browser on phones, tablets and desktops. Open a tool once while online and it keeps working with Wi-Fi or mobile data turned off. You can also install it as an app: the install button in the header on Chrome and Edge, or Share → Add to Home Screen on iPhone and iPad. Audio to Text, OCR and Remove Background need one online run to download their model, then work offline too.

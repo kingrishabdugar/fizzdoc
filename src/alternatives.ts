@@ -102,6 +102,67 @@ export const ALTERNATIVES: Alternative[] = [
     ],
   },
   {
+    slug: 'remove-bg-alternative',
+    brand: 'remove.bg',
+    title: 'Free remove.bg Alternative — Full Resolution, No Upload | Fizzdoc',
+    description:
+      'A free remove.bg alternative: remove backgrounds from photos, GIFs and videos in your browser, saved at full resolution with no watermark. No upload.',
+    h1: 'A private, free alternative to remove.bg',
+    lede: 'Remove the background from a photo, an animated GIF or a short video with an AI model that runs on your own device. Keep it clear, or put white, a colour, a blur or another photo behind, and save it at the photo’s own resolution. Free, with no credits and no upload.',
+    tools: ['remove-background', 'remove-gif-background', 'remove-video-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image'],
+    faq: [
+      HOW_PRIVATE,
+      ['Is the result full resolution?', 'Yes. The model looks at a small copy of your photo, then Fizzdoc fits the cut-out to every pixel of the original, so you save it at the photo’s own size. There are no credits and no paid HD download.'],
+      ['Does it work on a phone?', 'Yes. Phones use a smaller model (4.6 MB) so the tab doesn’t run out of memory; edges on hair are a little softer than on a laptop. After the first run the model is kept on the device, and it works with the internet off.'],
+      NOT_AFFILIATED('remove.bg'),
+    ],
+  },
+  {
+    slug: 'pixelcut-alternative',
+    brand: 'Pixelcut',
+    title: 'Free Pixelcut Alternative — Product Photos, No Upload | Fizzdoc',
+    description:
+      'A free Pixelcut alternative for product photos: remove the background, add white or a colour behind, a shadow and a square crop, all in your browser.',
+    h1: 'A private, free alternative to Pixelcut',
+    lede: 'Make clean product photos without uploading them. Remove the background, put white, a colour or a blur behind, add a soft shadow, and crop to a square around the product for shop listings, all on your device.',
+    tools: ['remove-background', 'compress-image', 'compress-image-to-100kb', 'resize-image', 'convert-image', 'remove-video-background', 'whatsapp-sticker-maker'],
+    faq: [
+      HOW_PRIVATE,
+      ['Can I make square photos for an online shop?', 'Yes. After the background is removed, choose Crop › Square (online shops): the photo is cropped to a square around the product, with some space around it. Pick White under Background, turn on Shadow, and save it as JPG or PNG.'],
+      NOT_AFFILIATED('Pixelcut'),
+    ],
+  },
+  {
+    slug: 'photoroom-alternative',
+    brand: 'Photoroom',
+    title: 'Free Photoroom Alternative — Background Remover, No Upload | Fizzdoc',
+    description:
+      'A free Photoroom alternative: cut out products and people, swap the background for white, a colour, a blur or a photo, and save at full size. No upload.',
+    h1: 'A private, free alternative to Photoroom',
+    lede: 'Cut out a product, a person or a pet and swap the background for white, any colour, a blur of the original or another photo. Add a shadow or an outline, fix edges with a tap, and save at full resolution, with no account and no upload.',
+    tools: ['remove-background', 'remove-gif-background', 'remove-video-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image'],
+    faq: [
+      HOW_PRIVATE,
+      ['Can I put my own photo behind the cut-out?', 'Yes. Choose Your photo under Background and pick any picture from your device; it fills the space behind your subject. You can also blur the original background instead of removing it.'],
+      NOT_AFFILIATED('Photoroom'),
+    ],
+  },
+  {
+    slug: 'iloveimg-alternative',
+    brand: 'iLoveIMG',
+    title: 'Free iLoveIMG Alternative — Compress & Resize, No Upload | Fizzdoc',
+    description:
+      'A free iLoveIMG alternative: compress, resize and convert images, remove backgrounds and pull out text, all in your browser. Your photos stay on your device.',
+    h1: 'A private, free alternative to iLoveIMG',
+    lede: 'Compress photos to an exact size such as 50 KB, resize them, convert between JPG, PNG and WebP, remove backgrounds and pull text out of pictures, without uploading a single photo.',
+    tools: ['compress-image', 'compress-image-to-50kb', 'compress-image-to-20kb', 'resize-image', 'convert-image', 'png-to-jpg', 'jpg-to-png', 'webp-to-jpg', 'remove-background', 'image-to-text', 'jpg-to-pdf', 'whatsapp-sticker-maker'],
+    faq: [
+      HOW_PRIVATE,
+      ['Can I work on many images at once?', 'Yes. Compress, resize and convert take as many images as you like; they are done one after another on your device and saved together in a ZIP.'],
+      NOT_AFFILIATED('iLoveIMG'),
+    ],
+  },
+  {
     slug: 'pdf24-alternative',
     brand: 'PDF24',
     title: 'PDF24 Alternative Online — Free, No Upload | Fizzdoc',
@@ -131,13 +192,28 @@ export const ALTERNATIVES: Alternative[] = [
       NOT_AFFILIATED('Adobe'),
     ],
   },
+  {
+    slug: 'mp3cut-alternative',
+    brand: 'MP3Cut',
+    title: 'Free MP3Cut Alternative — Cut MP3 Without Re-encoding | Fizzdoc',
+    description:
+      'A free MP3Cut alternative: cut, split and join MP3 and M4A files in your browser without re-encoding, so the sound quality stays the same. No upload.',
+    h1: 'A private, free alternative to MP3Cut',
+    lede: 'Trim a song, cut a ringtone, split a long recording into parts or join several files into one. MP3 and M4A are cut without re-encoding, so the sound is exactly the same as before, and nothing is uploaded.',
+    tools: ['split-audio', 'merge-audio', 'audio-to-text', 'mp3-to-text', 'video-to-text', 'subtitle-generator'],
+    faq: [
+      HOW_PRIVATE,
+      ['Which audio files work?', 'MP3 and M4A, including iPhone voice memos and most music files. They are cut between the file’s own audio frames without re-encoding, so the result sounds exactly like the original. WAV, OPUS and others are planned.'],
+      NOT_AFFILIATED('MP3Cut'),
+    ],
+  },
 ];
 
 export const ALTERNATIVES_HUB = {
   slug: 'alternatives',
-  title: 'Free Private Alternatives to iLovePDF, Smallpdf & More | Fizzdoc',
+  title: 'Free Private Alternatives to iLovePDF, remove.bg & More | Fizzdoc',
   description:
-    'Compare Fizzdoc with iLovePDF, Smallpdf, Sejda, CloudConvert, TinyPNG, PDF24 and Adobe online: same everyday tools, free, and your files are never uploaded.',
+    'Fizzdoc next to iLovePDF, Smallpdf, remove.bg, Pixelcut, iLoveIMG, CloudConvert, MP3Cut and more: the same everyday jobs, free, with no upload.',
   h1: 'Private, free alternatives for everyday file jobs',
   lede: 'Fizzdoc does everyday PDF, image, Office and audio jobs inside your browser, free and without uploading your files. If you usually use one of these services for a job, here is the Fizzdoc tool for it.',
   faq: [
