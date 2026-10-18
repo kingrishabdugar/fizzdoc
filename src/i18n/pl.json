@@ -42,6 +42,8 @@
     "search.count": "{n} pasujących narzędzi",
     "search.none": "Brak pasującego narzędzia. Spróbuj „pdf”, „obraz” lub „audio”.",
     "home.chip": "Przetwarzane na tym urządzeniu",
+    "home.createTitle": "Edytuj i twórz",
+    "home.createLede": "Popraw zdjęcie, zrób kolaż, usuń tło albo zrób z niego naklejkę, wszystko na twoim urządzeniu.",
     "home.toolsTitle": "Każde narzędzie domyślnie prywatne",
     "home.toolsLede": "Wybierz narzędzie. Twój plik jest przetwarzany na tym urządzeniu i nigdy nie trafia na serwer.",
     "home.whatTitle": "Czym jest {name}?",

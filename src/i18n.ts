@@ -74,6 +74,8 @@ export const UI = {
   'search.count': '{n} matching tools',
   'search.none': 'No tool matches that. Try “pdf”, “image” or “audio”.',
   'home.chip': 'Processed on this device',
+  'home.createTitle': 'Edit and create',
+  'home.createLede': 'Fix a photo, make a collage, cut out the background or turn it into a sticker, all on your device.',
   'home.toolsTitle': 'Every tool, private by default',
   'home.toolsLede': 'Pick a tool. Your file is processed on this device and never touches a server.',
   'home.whatTitle': 'What is {name}?',

@@ -42,6 +42,8 @@
     "search.count": "{n} herramientas coincidentes",
     "search.none": "Ninguna herramienta coincide. Prueba «pdf», «imagen» o «audio».",
     "home.chip": "Procesado en este dispositivo",
+    "home.createTitle": "Editar y crear",
+    "home.createLede": "Arregla una foto, haz un collage, quita el fondo o conviértela en sticker, todo en tu dispositivo.",
     "home.toolsTitle": "Todas las herramientas, privadas por defecto",
     "home.toolsLede": "Elige una herramienta. Tu archivo se procesa en este dispositivo y nunca pasa por un servidor.",
     "home.whatTitle": "¿Qué es {name}?",

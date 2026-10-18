@@ -42,6 +42,8 @@
     "search.count": "{n} ferramentas correspondentes",
     "search.none": "Nenhuma ferramenta corresponde. Tente “pdf”, “imagem” ou “áudio”.",
     "home.chip": "Processado neste dispositivo",
+    "home.createTitle": "Editar e criar",
+    "home.createLede": "Arrume uma foto, faça uma colagem, remova o fundo ou transforme em figurinha, tudo no seu aparelho.",
     "home.toolsTitle": "Todas as ferramentas, privadas por padrão",
     "home.toolsLede": "Escolha uma ferramenta. Seu arquivo é processado neste dispositivo e nunca passa por um servidor.",
     "home.whatTitle": "O que é {name}?",
