@@ -301,6 +301,16 @@
     "pe.fade": "Soluk",
     "pe.sepia": "Sepya",
     "pe.noir": "Noir",
+    "co.preview": "Kolajın önizlemesi",
+    "co.layout": "Düzen",
+    "co.photo": "Fotoğraf",
+    "co.space": "Boşluk",
+    "co.gap": "Aralık",
+    "co.corners": "Yuvarlak köşeler",
+    "co.a4": "A4 baskı",
+    "co.max": "Yalnızca ilk 9 fotoğraf kullanılır.",
+    "co.order": "Fotoğrafların yerini değiştirmek için yukarıdaki listede sıralarını değiştirin.",
+    "co.tapHint": "Seçmek için bir fotoğrafa dokunun, sonra çerçevesinde kaydırmak için sürükleyin.",
     "st.text": "Metin",
     "st.hint": "Metni resmin üzerinde sürükleyin. Boyutunu değiştirmek ve döndürmek için iki parmakla sıkıştırın ya da kaydırıcıları kullanın.",
     "st.add": "Metin ekle",
@@ -3069,6 +3079,49 @@
         "fotoğrafı çıkartma yap",
         "ücretsiz çıkartma oluştur",
         "şeffaf çıkartma webp"
+      ]
+    },
+    "collage-maker": {
+      "name": "Kolaj Yapıcı",
+      "summary": "2 ila 9 fotoğrafı aralık, yuvarlak köşeler ve yazıyla tek bir resimde birleştirin.",
+      "action": "Kolajı indir",
+      "title": "Ücretsiz Fotoğraf Kolajı Yapma — Yükleme Yok, Filigran Yok | Fizzdoc",
+      "description": "Tarayıcıda ücretsiz fotoğraf kolajı yapın: 2 ila 9 fotoğraf için düzen seçin, aralığı, köşeleri ve boyutu ayarlayın, yazı ekleyin. Yükleme, kayıt, filigran yok.",
+      "h1": "Fotoğraflarınızı yüklemeden kolaj yapın",
+      "lede": "2 ila 9 fotoğraf seçin, bir düzen ve bir şekil (kare, hikaye, A4 ve daha fazlası) seçin, her fotoğrafı kendi çerçevesinde kaydırıp yakınlaştırın; aralık, yuvarlak köşeler, arka plan rengi ve yazı ekleyin. Her şey kendi cihazınızda yapılır.",
+      "steps": [
+        "2 ila 9 fotoğraf seçin. Listedeki sıra, kolajdaki sıradır.",
+        "Bir düzen ve şekil seçin, her fotoğrafı kaydırıp yakınlaştırın; aralığı, köşeleri, arka planı ve yazıyı ayarlayın.",
+        "Boyutu ve formatı seçin, sonra “Kolajı indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Bir kolajda kaç fotoğraf olabilir?",
+          "1 ile 9 arası. Her fotoğraf sayısının kendi düzenleri vardır: yan yana, alt alta, büyük bir fotoğrafla birkaç küçük fotoğraf ya da ızgara gibi. 9'dan fazla eklerseniz ilk 9 fotoğraf kullanılır."
+        ],
+        [
+          "Her fotoğrafı kaydırabilir veya yakınlaştırabilir miyim?",
+          "Evet. Fotoğraf sekmesini açın, seçmek için bir fotoğrafa dokunun, sonra çerçevede neyin görüneceğini seçmek için sürükleyin ve yaklaşmak için Yakınlaştırma kaydırıcısını kullanın. Fotoğrafların yerini değiştirmek için dosya listesindeki sıralarını değiştirin."
+        ],
+        [
+          "Hangi boyutlarda kaydedebilirim?",
+          "Sosyal medya için Kare, Dikey 4:5 ve Hikaye 9:16, ayrıca Geniş 16:9 ve yazdırmak için A4 baskı: kısa kenarda 1080 veya 2160 px, A4 için ise 300 dpi'da 2480 px. JPG, PNG veya WebP olarak, filigransız."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "fotoğraf kolajı yapma",
+        "ücretsiz kolaj yapma",
+        "fotoğraf birleştirme",
+        "online kolaj yapma",
+        "filigransız kolaj yapma"
       ]
     },
     "photo-editor": {

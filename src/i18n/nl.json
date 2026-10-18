@@ -301,6 +301,16 @@
     "pe.fade": "Vervaagd",
     "pe.sepia": "Sepia",
     "pe.noir": "Noir",
+    "co.preview": "Voorbeeld van de collage",
+    "co.layout": "Indeling",
+    "co.photo": "Foto",
+    "co.space": "Ruimte",
+    "co.gap": "Tussenruimte",
+    "co.corners": "Ronde hoeken",
+    "co.a4": "A4-afdruk",
+    "co.max": "Alleen de eerste 9 foto's worden gebruikt.",
+    "co.order": "Wil je foto's verwisselen? Verander dan hun volgorde in de lijst hierboven.",
+    "co.tapHint": "Tik op een foto om hem te kiezen en sleep dan om hem in zijn vak te verplaatsen.",
     "st.text": "Tekst",
     "st.hint": "Sleep de tekst over de afbeelding. Knijp met twee vingers, of gebruik de schuifjes, om hem groter te maken en te draaien.",
     "st.add": "Tekst toevoegen",
@@ -3069,6 +3079,49 @@
         "foto naar sticker",
         "gratis stickers maken",
         "transparante sticker webp"
+      ]
+    },
+    "collage-maker": {
+      "name": "Collagemaker",
+      "summary": "Zet 2 tot 9 foto's in één afbeelding, met tussenruimte, ronde hoeken en tekst.",
+      "action": "Collage downloaden",
+      "title": "Gratis Fotocollage Maken — Zonder Upload, Zonder Watermerk | Fizzdoc",
+      "description": "Maak gratis een fotocollage in je browser: indeling voor 2 tot 9 foto's, tussenruimte, hoeken, formaat en tekst naar keuze. Geen upload, account of watermerk.",
+      "h1": "Maak een fotocollage zonder je foto's te uploaden",
+      "lede": "Kies 2 tot 9 foto's, kies een indeling en een vorm (vierkant, story, A4 en meer), verplaats en zoom elke foto in zijn vak, en voeg tussenruimte, ronde hoeken, een achtergrondkleur en tekst toe. Alles gebeurt op je eigen apparaat.",
+      "steps": [
+        "Kies 2 tot 9 foto's. De volgorde in de lijst is de volgorde in de collage.",
+        "Kies een indeling en een vorm, verplaats en zoom elke foto, en stel tussenruimte, hoeken, achtergrond en tekst in.",
+        "Kies het formaat en het bestandstype en klik dan op “Collage downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Hoeveel foto's kan een collage hebben?",
+          "Van 1 tot 9. Elk aantal foto's heeft eigen indelingen, zoals naast elkaar, onder elkaar, één grote foto met kleinere foto's, of een raster. Voeg je er meer dan 9 toe, dan worden de eerste 9 gebruikt."
+        ],
+        [
+          "Kan ik elke foto verplaatsen of erop inzoomen?",
+          "Ja. Open Foto, tik op een foto om hem te kiezen, sleep hem om te kiezen wat er in zijn vak te zien is en gebruik Zoom om dichterbij te komen. Wil je foto's verwisselen? Verander dan hun volgorde in de bestandenlijst."
+        ],
+        [
+          "Welke formaten kan ik opslaan?",
+          "Vierkant, Staand 4:5 en Story 9:16 voor sociale media, Breed 16:9, en A4-afdruk om te printen: 1080 of 2160 px aan de korte zijde, of 2480 px voor A4 bij 300 dpi. Als JPG, PNG of WebP, zonder watermerk."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "fotocollage maken",
+        "collage maken gratis",
+        "foto's samenvoegen",
+        "collage maker online",
+        "fotocollage zonder watermerk"
       ]
     },
     "photo-editor": {

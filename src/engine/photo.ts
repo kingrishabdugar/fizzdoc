@@ -88,3 +88,33 @@ export function frame(w: number, h: number, ratio: number, zoom: number, cx: num
   const y = Math.min(h - fh, Math.max(0, Math.round(cy * h - fh / 2)));
   return [x, y, fw, fh];
 }
+
+/** A collage cell as fractions of the collage: [x, y, width, height]. */
+export type Cell = [number, number, number, number];
+
+/** Equal cells: `counts` photos per row, or per column when `columns` is set. */
+export const cells = (counts: number[], columns = false): Cell[] =>
+  counts.flatMap((n, r) =>
+    Array.from({ length: n }, (_, i): Cell => (columns ? [r / counts.length, i / n, 1 / counts.length, 1 / n] : [i / n, r / counts.length, 1 / n, 1 / counts.length])),
+  );
+
+/** A cell in pixels on a W×H collage, with the same gap between cells and around the edge. */
+export const place = ([x, y, w, h]: Cell, W: number, H: number, gap: number): Cell => [
+  gap + x * (W - gap),
+  gap + y * (H - gap),
+  w * (W - gap) - gap,
+  h * (H - gap) - gap,
+];
+
+/** The layouts offered for each number of photos, the first being the default: [photos per row (or column), columns?]. */
+export const LAYOUTS: Record<number, [number[], boolean?][]> = {
+  1: [[[1]]],
+  2: [[[2]], [[1, 1]]],
+  3: [[[3]], [[1, 1, 1]], [[1, 2]], [[1, 2], true]],
+  4: [[[2, 2]], [[4]], [[1, 3]], [[1, 3], true]],
+  5: [[[2, 3]], [[3, 2]], [[2, 1, 2]]],
+  6: [[[3, 3]], [[2, 2, 2]]],
+  7: [[[3, 4]], [[2, 3, 2]]],
+  8: [[[4, 4]], [[2, 2, 2, 2]]],
+  9: [[[3, 3, 3]], [[4, 1, 4]]],
+};

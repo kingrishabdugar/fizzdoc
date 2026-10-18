@@ -86,6 +86,7 @@ sequenceDiagram
 | `src/tools/edit-pdf.ts` | In-page PDF editor: change text, add text, white-out | pdf.js, pdf-lib, `pdf-text.ts` |
 | `src/tools/ocr-viewer.ts` | Image with selectable recognized text (Live Text style) | – |
 | `src/tools/photo-edit.ts`, `src/engine/photo.ts` | Photo Editor: crop shapes with drag-to-frame, turn and flip, light and colour as plain pixel maths, one-tap looks, text and emoji layers (shared with the Sticker Maker), saved at full size | Canvas |
+| `src/tools/collage.ts` | Collage Maker: 1 to 9 photos in equal-cell layouts (`cells`/`place` in `photo.ts`), each moved and zoomed in its frame; previews use small copies, saving decodes one photo at a time at full size. Shares its tabs, rulers and icons with the Photo Editor (`editor-ui.ts`) | Canvas |
 
 ## Design decisions
 

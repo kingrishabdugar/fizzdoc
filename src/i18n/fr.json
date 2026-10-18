@@ -301,6 +301,16 @@
     "pe.fade": "Délavé",
     "pe.sepia": "Sépia",
     "pe.noir": "Noir",
+    "co.preview": "Aperçu du collage",
+    "co.layout": "Disposition",
+    "co.photo": "Photo",
+    "co.space": "Espace",
+    "co.gap": "Espacement",
+    "co.corners": "Coins arrondis",
+    "co.a4": "Impression A4",
+    "co.max": "Seules les 9 premières photos sont utilisées.",
+    "co.order": "Pour échanger des photos, changez leur ordre dans la liste ci-dessus.",
+    "co.tapHint": "Touchez une photo pour la choisir, puis faites-la glisser pour la déplacer dans son cadre.",
     "st.text": "Texte",
     "st.hint": "Faites glisser le texte sur l’image. Pincez avec deux doigts, ou utilisez les curseurs, pour le redimensionner et le faire pivoter.",
     "st.add": "Ajouter du texte",
@@ -3069,6 +3079,49 @@
         "photo en sticker whatsapp",
         "faire des stickers gratuit",
         "sticker webp transparent"
+      ]
+    },
+    "collage-maker": {
+      "name": "Créateur de collage",
+      "summary": "Réunissez 2 à 9 photos en une seule image, avec un espacement, des coins arrondis et du texte.",
+      "action": "Télécharger le collage",
+      "title": "Créer un Collage Photo Gratuit — Sans Envoi ni Filigrane | Fizzdoc",
+      "description": "Créez un collage photo gratuit dans le navigateur : disposition pour 2 à 9 photos, espacement, coins, taille et texte. Sans envoi, inscription ni filigrane.",
+      "h1": "Créez un collage photo sans envoyer vos photos",
+      "lede": "Choisissez 2 à 9 photos, une disposition et un format (carré, story, A4 et plus), déplacez et agrandissez chaque photo dans son cadre, puis ajoutez un espacement, des coins arrondis, une couleur de fond et du texte. Tout se passe sur votre appareil.",
+      "steps": [
+        "Choisissez 2 à 9 photos. L’ordre de la liste est l’ordre dans le collage.",
+        "Choisissez une disposition et un format, déplacez et agrandissez chaque photo, et réglez l’espacement, les coins, le fond et le texte.",
+        "Choisissez la taille et le format, puis cliquez sur « Télécharger le collage »."
+      ],
+      "faq": [
+        [
+          "Mes fichiers sont-ils envoyés quelque part ?",
+          "Non. Fizzdoc effectue tout le travail dans votre onglet de navigateur, grâce à des moteurs open source compilés en WebAssembly et en JavaScript. Votre fichier est lu depuis votre appareil, traité localement, puis le résultat est enregistré directement sur votre appareil. Vous pouvez le vérifier vous-même : ouvrez les outils de développement de votre navigateur, allez dans l'onglet Réseau et lancez une opération — aucune requête ne transporte votre fichier."
+        ],
+        [
+          "Combien de photos peut contenir un collage ?",
+          "De 1 à 9. Chaque nombre de photos a ses propres dispositions, par exemple côte à côte, l’une au-dessus de l’autre, une grande photo avec des plus petites, ou une grille. Si vous en ajoutez plus de 9, les 9 premières sont utilisées."
+        ],
+        [
+          "Puis-je déplacer ou agrandir chaque photo ?",
+          "Oui. Ouvrez « Photo », touchez une photo pour la choisir, puis faites-la glisser pour régler ce qui apparaît dans son cadre, et utilisez « Zoom » pour vous rapprocher. Pour échanger des photos, changez leur ordre dans la liste des fichiers."
+        ],
+        [
+          "Quelles tailles puis-je enregistrer ?",
+          "« Carré », « Portrait 4:5 » et « Story 9:16 » pour les réseaux sociaux, « Paysage 16:9 » et « Impression A4 » : 1080 ou 2160 px sur le petit côté, ou 2480 px pour l’A4 à 300 dpi. En JPG, PNG ou WebP, sans filigrane."
+        ],
+        [
+          "Est-ce que Fizzdoc est gratuit ?",
+          "Oui, et ça restera gratuit : pas d'inscription, pas de filigrane, pas de limite quotidienne et pas d'offre premium. Fizzdoc est open source sous licence Apache-2.0, donc n'importe qui peut faire tourner sa propre copie."
+        ]
+      ],
+      "keywords": [
+        "faire un collage photo",
+        "collage photo en ligne gratuit",
+        "montage photo plusieurs photos",
+        "assembler des photos",
+        "pêle-mêle photo"
       ]
     },
     "photo-editor": {

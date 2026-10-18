@@ -301,6 +301,16 @@
     "pe.fade": "Pudar",
     "pe.sepia": "Sepia",
     "pe.noir": "Noir",
+    "co.preview": "Pratinjau kolase",
+    "co.layout": "Tata letak",
+    "co.photo": "Foto",
+    "co.space": "Spasi",
+    "co.gap": "Jarak",
+    "co.corners": "Sudut bulat",
+    "co.a4": "Cetak A4",
+    "co.max": "Hanya 9 foto pertama yang dipakai.",
+    "co.order": "Untuk menukar foto, ubah urutannya di daftar di atas.",
+    "co.tapHint": "Ketuk foto untuk memilihnya, lalu seret untuk menggesernya di dalam bingkainya.",
     "st.text": "Teks",
     "st.hint": "Seret teks di atas gambar. Cubit dengan dua jari, atau pakai penggeser, untuk mengubah ukuran dan memutarnya.",
     "st.add": "Tambah teks",
@@ -3069,6 +3079,49 @@
         "foto jadi stiker",
         "bikin stiker gratis",
         "stiker webp transparan"
+      ]
+    },
+    "collage-maker": {
+      "name": "Pembuat Kolase",
+      "summary": "Gabungkan 2 sampai 9 foto jadi satu gambar, dengan jarak, sudut bulat, dan teks.",
+      "action": "Unduh kolase",
+      "title": "Buat Kolase Foto Gratis — Tanpa Unggah, Tanpa Watermark | Fizzdoc",
+      "description": "Buat kolase foto gratis di browser: pilih tata letak untuk 2 sampai 9 foto, atur jarak, sudut, dan ukuran, tambah teks. Tanpa unggah, daftar, atau watermark.",
+      "h1": "Buat kolase foto tanpa mengunggah foto Anda",
+      "lede": "Pilih 2 sampai 9 foto, pilih tata letak dan bentuk (persegi, story, A4, dan lainnya), geser dan zoom setiap foto di dalam bingkainya, lalu tambahkan jarak, sudut bulat, warna latar, dan teks. Semuanya dikerjakan di perangkat Anda sendiri.",
+      "steps": [
+        "Pilih 2 sampai 9 foto. Urutan di daftar adalah urutan di kolase.",
+        "Pilih tata letak dan bentuk, geser dan zoom setiap foto, lalu atur jarak, sudut, latar, dan teks.",
+        "Pilih ukuran dan format, lalu klik “Unduh kolase”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Berapa banyak foto dalam satu kolase?",
+          "Dari 1 sampai 9. Setiap jumlah foto punya tata letaknya sendiri, seperti berdampingan, atas-bawah, satu foto besar dengan beberapa foto kecil, atau grid. Jika Anda menambahkan lebih dari 9, yang dipakai adalah 9 foto pertama."
+        ],
+        [
+          "Bisakah saya menggeser atau memperbesar setiap foto?",
+          "Bisa. Buka Foto, ketuk sebuah foto untuk memilihnya, lalu seret untuk memilih bagian yang terlihat di bingkainya, dan pakai Zoom untuk memperbesar. Untuk menukar foto, ubah urutannya di daftar file."
+        ],
+        [
+          "Ukuran apa saja yang bisa saya simpan?",
+          "Persegi, Potret 4:5, dan Story 9:16 untuk media sosial, Lebar 16:9, serta Cetak A4 untuk dicetak: 1080 atau 2160 px di sisi pendek, atau 2480 px untuk A4 pada 300 dpi. Dalam format JPG, PNG, atau WebP, tanpa watermark."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "buat kolase foto",
+        "kolase foto online gratis",
+        "gabungkan foto jadi satu",
+        "bikin kolase foto",
+        "kolase foto tanpa watermark"
       ]
     },
     "photo-editor": {

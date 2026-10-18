@@ -1671,6 +1671,52 @@ test('photo editor: crops to a square, turns, applies a look and adds text, then
   expect(seen.violations).toEqual([]);
 });
 
+test('collage maker: four photos in a 2×2 grid, in list order, then reordered, saved at 1080 px', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/collage-maker/');
+  const solid = async (color: string) => {
+    const bytes = await page.evaluate(async (fill) => {
+      const canvas = new OffscreenCanvas(400, 300);
+      const c = canvas.getContext('2d')!;
+      c.fillStyle = fill;
+      c.fillRect(0, 0, 400, 300);
+      return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+    }, color);
+    return { name: `${color.slice(1)}.png`, mimeType: 'image/png', buffer: Buffer.from(bytes) };
+  };
+  await page.locator('#file-input').setInputFiles([await solid('#ff0000'), await solid('#00ff00'), await solid('#0000ff'), await solid('#ffff00')]);
+  await expect(page.getByRole('tab', { name: 'Layout' })).toHaveAttribute('aria-selected', 'true');
+  // Photo: a finger moves the picked photo (no page scroll), and each photo can be picked with a button too.
+  await page.getByRole('tab', { name: 'Photo' }).click();
+  await expect(page.locator('.bg-canvas')).toHaveCSS('touch-action', 'none');
+  await page.getByRole('group', { name: 'Photo' }).getByRole('button', { name: '2. 00ff00.png' }).click();
+  await expect(page.getByRole('button', { name: '2. 00ff00.png' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('tab', { name: 'Space' }).click();
+  await page.getByRole('slider', { name: 'Gap' }).fill('0');
+  await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');
+  const quadrants = async () => {
+    await page.getByRole('button', { name: 'Download collage' }).click();
+    await expect(page.locator('#status')).toContainText('1080 × 1080 px');
+    const saved = await downloadBytes(page);
+    expect(saved.name).toBe('collage.png');
+    return page.evaluate(async (data) => {
+      const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/png' }));
+      const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+      c.drawImage(bitmap, 0, 0);
+      const at = (x: number, y: number) => [...c.getImageData(x, y, 1, 1).data.slice(0, 3)].map((v) => (v > 127 ? 1 : 0)).join('');
+      return { size: [bitmap.width, bitmap.height], cells: [at(270, 270), at(810, 270), at(270, 810), at(810, 810)] };
+    }, [...saved.bytes]);
+  };
+  const first = await quadrants();
+  expect(first.size).toEqual([1080, 1080]);
+  // Red, green, blue, yellow: in the order of the file list.
+  expect(first.cells).toEqual(['100', '010', '001', '110']);
+  // Moving the first photo down swaps the first two cells.
+  await page.locator('#file-list li').first().getByRole('button', { name: 'Move down' }).click();
+  await expect.poll(async () => (await quadrants()).cells).toEqual(['010', '100', '001', '110']);
+  expect(seen.violations).toEqual([]);
+});
+
 test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   for (const phone of [true, false]) {

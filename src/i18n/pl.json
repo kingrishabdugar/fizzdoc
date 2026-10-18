@@ -301,6 +301,16 @@
     "pe.fade": "Wyblakły",
     "pe.sepia": "Sepia",
     "pe.noir": "Noir",
+    "co.preview": "Podgląd kolażu",
+    "co.layout": "Układ",
+    "co.photo": "Zdjęcie",
+    "co.space": "Odstępy",
+    "co.gap": "Odstęp",
+    "co.corners": "Zaokrąglone rogi",
+    "co.a4": "Wydruk A4",
+    "co.max": "Używanych jest tylko pierwszych 9 zdjęć.",
+    "co.order": "Aby zamienić zdjęcia miejscami, zmień ich kolejność na liście powyżej.",
+    "co.tapHint": "Dotknij zdjęcia, aby je wybrać, a potem przeciągnij, aby przesunąć je w ramce.",
     "st.text": "Tekst",
     "st.hint": "Przeciągnij tekst na obrazku. Zsuń dwa palce albo użyj suwaków, żeby zmienić rozmiar i obrócić tekst.",
     "st.add": "Dodaj tekst",
@@ -3069,6 +3079,49 @@
         "zdjęcie na naklejkę",
         "robienie naklejek za darmo",
         "przezroczysta naklejka webp"
+      ]
+    },
+    "collage-maker": {
+      "name": "Kreator kolaży",
+      "summary": "Połącz od 2 do 9 zdjęć w jeden obraz, z odstępem, zaokrąglonymi rogami i tekstem.",
+      "action": "Pobierz kolaż",
+      "title": "Kolaż ze Zdjęć za Darmo — Bez Wysyłania i Znaku Wodnego | Fizzdoc",
+      "description": "Zrób za darmo kolaż w przeglądarce: wybierz układ dla 2 do 9 zdjęć, ustaw odstęp, rogi i rozmiar, dodaj tekst. Bez wysyłania, rejestracji i znaku wodnego.",
+      "h1": "Zrób kolaż ze zdjęć bez ich wysyłania",
+      "lede": "Wybierz od 2 do 9 zdjęć, wybierz układ i kształt (kwadrat, relacja, A4 i inne), przesuń i powiększ każde zdjęcie w jego ramce oraz dodaj odstęp, zaokrąglone rogi, kolor tła i tekst. Wszystko dzieje się na Twoim urządzeniu.",
+      "steps": [
+        "Wybierz od 2 do 9 zdjęć. Kolejność na liście to kolejność w kolażu.",
+        "Wybierz układ i kształt, przesuń i powiększ każde zdjęcie oraz ustaw odstęp, rogi, tło i tekst.",
+        "Wybierz rozmiar i format, a potem kliknij „Pobierz kolaż”."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Ile zdjęć może mieć kolaż?",
+          "Od 1 do 9. Każda liczba zdjęć ma własne układy, na przykład obok siebie, jedno pod drugim, jedno duże zdjęcie z mniejszymi albo siatka. Jeśli dodasz więcej niż 9, użytych zostanie pierwszych 9."
+        ],
+        [
+          "Czy mogę przesunąć lub powiększyć każde zdjęcie?",
+          "Tak. Otwórz „Zdjęcie”, dotknij zdjęcia, aby je wybrać, a potem przeciągnij je, aby wybrać, co widać w ramce, i użyj suwaka „Powiększenie”, aby je przybliżyć. Aby zamienić zdjęcia miejscami, zmień ich kolejność na liście plików."
+        ],
+        [
+          "Jakie rozmiary mogę zapisać?",
+          "„Kwadrat”, „Pionowy 4:5” i „Relacja 9:16” do mediów społecznościowych, „Szeroki 16:9” oraz „Wydruk A4” do druku: 1080 lub 2160 px na krótszym boku albo 2480 px dla A4 przy 300 dpi. Jako JPG, PNG lub WebP, bez znaku wodnego."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "kolaż ze zdjęć",
+        "kolaż zdjęć online za darmo",
+        "połącz zdjęcia w jedno",
+        "fotokolaż online",
+        "kolaż bez znaku wodnego"
       ]
     },
     "photo-editor": {

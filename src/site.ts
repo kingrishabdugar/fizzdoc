@@ -15,6 +15,7 @@ export type ToolOp =
   | 'redact-pdf'
   | 'remove-bg'
   | 'photo-edit'
+  | 'collage'
   | 'scan-pdf'
   | 'ocr-pdf'
   | 'pdf-to-word'
@@ -1321,6 +1322,41 @@ TOOLS.push(
     input: { accept: 'image/*' },
   },
   {
+    op: 'collage',
+    format: 'image',
+    slug: 'collage-maker',
+    name: 'Collage Maker',
+    summary: 'Put 2 to 9 photos in one picture, with a gap, round corners and text.',
+    action: 'Download collage',
+    title: 'Free Photo Collage Maker — No Upload, No Watermark | Fizzdoc',
+    description:
+      'Make a photo collage free in your browser: pick a layout for 2 to 9 photos, set the gap, corners and size, add text. No upload, no sign-up, no watermark.',
+    h1: 'Make a photo collage without uploading your photos',
+    lede: 'Choose 2 to 9 photos, pick a layout and a shape (square, story, A4 and more), move and zoom each photo in its frame, and add a gap, round corners, a background colour and text. It all happens on your device.',
+    steps: [
+      'Choose 2 to 9 photos. The order of the list is the order in the collage.',
+      'Pick a layout and a shape, move and zoom each photo, and set the gap, corners, background and text.',
+      'Pick the size and format, then click “Download collage”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      [
+        'How many photos can a collage have?',
+        'From 1 to 9. Each number of photos has its own layouts, such as side by side, stacked, one big photo with smaller ones, or a grid. If you add more than 9, the first 9 are used.',
+      ],
+      [
+        'Can I move or zoom each photo?',
+        'Yes. Open Photo, tap a photo to pick it, then drag it to choose what shows in its frame, and use Zoom to get closer. To swap photos, change their order in the file list.',
+      ],
+      [
+        'What sizes can I save?',
+        'Square, Portrait 4:5 and Story 9:16 for social media, Wide 16:9, and A4 for printing: 1080 or 2160 px on the short side, or 2480 px for A4 at 300 dpi. As JPG, PNG or WebP, with no watermark.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    input: { accept: 'image/*', multiple: true },
+  },
+  {
     op: 'photo-edit',
     format: 'image',
     slug: 'photo-editor',
@@ -1832,6 +1868,13 @@ const KEYWORDS: Record<string, string[]> = {
     'change video background',
     'remove video background without green screen',
     'transparent background video',
+  ],
+  'collage-maker': [
+    'photo collage maker',
+    'collage maker online free',
+    'combine photos into one',
+    'picture grid maker',
+    'photo collage without watermark',
   ],
   'photo-editor': [
     'free online photo editor',

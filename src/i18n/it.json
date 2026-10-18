@@ -301,6 +301,16 @@
     "pe.fade": "Sbiadito",
     "pe.sepia": "Seppia",
     "pe.noir": "Noir",
+    "co.preview": "Anteprima del collage",
+    "co.layout": "Layout",
+    "co.photo": "Foto",
+    "co.space": "Spazio",
+    "co.gap": "Spaziatura",
+    "co.corners": "Angoli arrotondati",
+    "co.a4": "Stampa A4",
+    "co.max": "Vengono usate solo le prime 9 foto.",
+    "co.order": "Per scambiare le foto, cambia il loro ordine nell’elenco qui sopra.",
+    "co.tapHint": "Tocca una foto per sceglierla, poi trascinala per spostarla nella sua cornice.",
     "st.text": "Testo",
     "st.hint": "Trascina il testo sull’immagine. Pizzica con due dita, o usa i cursori, per ridimensionarlo e ruotarlo.",
     "st.add": "Aggiungi testo",
@@ -3069,6 +3079,49 @@
         "foto in sticker",
         "fare sticker gratis",
         "sticker webp trasparente"
+      ]
+    },
+    "collage-maker": {
+      "name": "Crea Collage",
+      "summary": "Unisci da 2 a 9 foto in un’unica immagine, con spaziatura, angoli arrotondati e testo.",
+      "action": "Scarica collage",
+      "title": "Crea Collage di Foto Gratis — Senza Upload né Filigrana | Fizzdoc",
+      "description": "Crea un collage di foto gratis nel browser: layout da 2 a 9 foto, spaziatura, angoli, dimensione e testo. Senza upload, registrazione né filigrana.",
+      "h1": "Crea un collage di foto senza caricare le tue foto",
+      "lede": "Scegli da 2 a 9 foto, un layout e un formato (quadrato, storia, A4 e altri), sposta e ingrandisci ogni foto nella sua cornice e aggiungi spaziatura, angoli arrotondati, un colore di sfondo e testo. Tutto avviene sul tuo dispositivo.",
+      "steps": [
+        "Scegli da 2 a 9 foto. L’ordine dell’elenco è l’ordine nel collage.",
+        "Scegli un layout e un formato, sposta e ingrandisci ogni foto e regola spaziatura, angoli, sfondo e testo.",
+        "Scegli la dimensione e il formato, poi clicca su “Scarica collage”."
+      ],
+      "faq": [
+        [
+          "I miei file vengono caricati da qualche parte?",
+          "No. Fizzdoc esegue il lavoro direttamente nella scheda del browser, usando motori open source compilati in WebAssembly e JavaScript. Il file viene letto dal tuo dispositivo, elaborato in locale, e il risultato viene salvato di nuovo sul tuo dispositivo. Puoi verificarlo tu stesso: apri gli strumenti per sviluppatori del browser, vai alla scheda Rete ed esegui un'operazione — nessuna richiesta trasporta il tuo file."
+        ],
+        [
+          "Quante foto può avere un collage?",
+          "Da 1 a 9. Ogni numero di foto ha i suoi layout, come affiancate, una sopra l’altra, una foto grande con altre più piccole o una griglia. Se ne aggiungi più di 9, vengono usate le prime 9."
+        ],
+        [
+          "Posso spostare o ingrandire ogni foto?",
+          "Sì. Apri “Foto”, tocca una foto per sceglierla, poi trascinala per decidere cosa si vede nella cornice e usa “Zoom” per avvicinarti. Per scambiare le foto, cambia il loro ordine nell’elenco dei file."
+        ],
+        [
+          "Quali dimensioni posso salvare?",
+          "“Quadrato”, “Verticale 4:5” e “Storia 9:16” per i social, “Orizzontale 16:9” e “Stampa A4”: 1080 o 2160 px sul lato corto, oppure 2480 px per l’A4 a 300 dpi. In JPG, PNG o WebP, senza filigrana."
+        ],
+        [
+          "Fizzdoc è gratuito?",
+          "Sì, e resterà gratuito: niente registrazione, niente filigrana, nessun limite giornaliero e nessun piano premium. Fizzdoc è open source con licenza Apache-2.0, quindi chiunque può eseguire la propria copia."
+        ]
+      ],
+      "keywords": [
+        "creare collage foto",
+        "collage foto online gratis",
+        "unire foto in una",
+        "collage foto senza filigrana",
+        "mettere più foto in una"
       ]
     },
     "photo-editor": {

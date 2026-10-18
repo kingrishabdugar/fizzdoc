@@ -93,12 +93,14 @@ function setUp(op: ToolOp) {
   const busy = () => !!worker || localBusy;
   let printFrame: HTMLIFrameElement | undefined;
   // The on-page editors (Edit PDF, Redact PDF) follow the chosen file.
-  type Editor = { save(options: Options, onProgress: (fraction: number) => void): Promise<Output>; destroy(): void };
+  // update() is for editors that use the whole list (the Collage Maker): it follows adds, removals and reordering.
+  type Editor = { save(options: Options, onProgress: (fraction: number) => void): Promise<Output>; destroy(): void; update?(files: File[]): void };
   const EDITORS: Partial<Record<ToolOp, (file: File, viewer: HTMLElement) => Promise<Editor>>> = {
     'edit-pdf': async (file, view) => (await import('./tools/edit-pdf')).openEditor(file, view),
     'audio-split': async (file, view) => (await import('./tools/audio-split')).openSplitter(file, view),
     'remove-bg': async (file, view) => (await import('./tools/remove-bg')).openBackgroundEditor(file, view, options()),
     'photo-edit': async (file, view) => (await import('./tools/photo-edit')).openPhotoEditor(file, view),
+    collage: async (_, view) => (await import('./tools/collage')).openCollage(files, view),
     'redact-pdf': async (file, view) => {
       const redactor = await (await import('./tools/redact-pdf')).openRedactor(file, view);
       return { save: (o, onProgress) => redactor.save(rasterOptions(o), onProgress), destroy: redactor.destroy };
@@ -193,6 +195,7 @@ function setUp(op: ToolOp) {
     'redact-pdf': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'remove-bg': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'photo-edit': async (_, o) => (await editor!.ready).save(o, progressLabel),
+    collage: async (_, o) => (await editor!.ready).save(o, progressLabel),
     'audio-split': async () => (await editor!.ready).save({}, progressLabel),
     'audio-merge': async (f) => {
       const { parseAudio, write, formatTime, extension } = await import('./engine/audio');
@@ -210,7 +213,10 @@ function setUp(op: ToolOp) {
   /** The editor follows the chosen file: opening a new one replaces it, removing it closes it. */
   function syncEditor() {
     const open = EDITORS[op];
-    if (!open || editor?.file === files[0]) return;
+    if (!open) return;
+    // The collage follows the whole list in place: adding, removing or reordering photos.
+    if (op === 'collage' && editor && files.length) return void editor.ready.then((e) => e.update?.(files), () => {});
+    if (editor?.file === files[0]) return;
     editor?.ready.then((e) => e.destroy(), () => {});
     viewer!.replaceChildren();
     editor = undefined;
