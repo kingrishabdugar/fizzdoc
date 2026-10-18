@@ -11,7 +11,7 @@
     "footer.about": "প্রাইভেট ডকুমেন্ট টুল। আপনার ফাইল আপনার ডিভাইসেই প্রসেস হয়, কখনও আপলোড হয় না।",
     "footer.license": "ওপেন সোর্স (Apache-2.0)",
     "footer.licenses": "থার্ড-পার্টি লাইসেন্স",
-    "footer.builtOn": "qpdf, pdf.js ও pdf-lib দিয়ে তৈরি",
+    "footer.builtOn": "qpdf, pdf.js, pdf-lib, ONNX Runtime ও Whisper দিয়ে তৈরি",
     "star.title": "সম্পূর্ণ ফ্রি ও ওপেন সোর্স। চিরকালের জন্য।",
     "star.text": "কোনো বিজ্ঞাপন নেই, অ্যাকাউন্ট নেই, আপনার ফাইলের দিকে তাকিয়ে থাকা কোনো সার্ভারও নেই। Fizzdoc যদি আপনার সময় বাঁচিয়ে থাকে, তাহলে GitHub-এ একটা স্টার দিলে আরও মানুষ এটা খুঁজে পাবে।",
     "star.button": "GitHub-এ Fizzdoc-কে স্টার দিন",

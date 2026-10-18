@@ -34,7 +34,7 @@ export const UI = {
   'footer.about': 'Private document tools. Your files are processed on your device and never uploaded.',
   'footer.license': 'Open source (Apache-2.0)',
   'footer.licenses': 'Third-party licenses',
-  'footer.builtOn': 'Built on qpdf, pdf.js and pdf-lib',
+  'footer.builtOn': 'Built on qpdf, pdf.js, pdf-lib, ONNX Runtime and Whisper',
   'footer.madeBy': 'Designed and built by',
   'footer.feedback': 'Report a bug or suggest a tool',
   'footer.compare': 'Alternatives to familiar tools',

@@ -11,7 +11,7 @@
     "footer.about": "खासगी डॉक्युमेंट टूल्स. तुमच्या फाइल्स तुमच्याच डिव्हाइसवर प्रोसेस होतात आणि कधीही अपलोड होत नाहीत.",
     "footer.license": "ओपन सोर्स (Apache-2.0)",
     "footer.licenses": "थर्ड-पार्टी परवाने",
-    "footer.builtOn": "qpdf, pdf.js आणि pdf-lib वर तयार",
+    "footer.builtOn": "qpdf, pdf.js, pdf-lib, ONNX Runtime आणि Whisper वर तयार",
     "star.title": "कायमचे मोफत आणि ओपन सोर्स.",
     "star.text": "कोणत्याही जाहिराती नाहीत, अकाउंट नाही, तुमच्या फाइल्सकडे पाहणारा कोणताही सर्व्हर नाही. Fizzdoc मुळे तुमचा वेळ वाचला असेल, तर GitHub वरचा एक स्टार अजून लोकांपर्यंत पोहोचायला मदत करतो.",
     "star.button": "GitHub वर Fizzdoc ला स्टार करा",

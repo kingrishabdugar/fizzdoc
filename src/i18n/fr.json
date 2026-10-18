@@ -11,7 +11,7 @@
     "footer.about": "Des outils de documents privés. Vos fichiers sont traités sur votre appareil et ne sont jamais envoyés en ligne.",
     "footer.license": "Open source (Apache-2.0)",
     "footer.licenses": "Licences tierces",
-    "footer.builtOn": "Construit avec qpdf, pdf.js et pdf-lib",
+    "footer.builtOn": "Construit avec qpdf, pdf.js, pdf-lib, ONNX Runtime et Whisper",
     "star.title": "Gratuit et open source. Pour toujours.",
     "star.text": "Pas de publicité, pas de compte, pas de serveur qui regarde vos fichiers. Si Fizzdoc vous a fait gagner du temps, une star sur GitHub aide d'autres personnes à le trouver.",
     "star.button": "Mettre une star à Fizzdoc sur GitHub",

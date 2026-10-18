@@ -11,7 +11,7 @@
     "footer.about": "Alat dokumen yang privat. File Anda diproses di perangkat Anda dan tidak pernah diunggah.",
     "footer.license": "Open source (Apache-2.0)",
     "footer.licenses": "Lisensi pihak ketiga",
-    "footer.builtOn": "Dibangun dengan qpdf, pdf.js, dan pdf-lib",
+    "footer.builtOn": "Dibangun dengan qpdf, pdf.js, pdf-lib, ONNX Runtime, dan Whisper",
     "star.title": "Gratis dan open source. Selamanya.",
     "star.text": "Tanpa iklan, tanpa akun, tanpa server yang mengintip file Anda. Jika Fizzdoc menghemat waktu Anda, beri bintang di GitHub agar lebih banyak orang menemukannya.",
     "star.button": "Beri Bintang Fizzdoc di GitHub",
