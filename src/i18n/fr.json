@@ -3042,6 +3042,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Fond Blanc",
+      "summary": "Mettez un fond blanc net derrière n’importe quelle photo, en une seule étape.",
+      "action": "Télécharger l’image",
+      "title": "Mettre un Fond Blanc sur une Photo Gratuit — Sans Envoi | Fizzdoc",
+      "description": "Mettez un fond blanc sur une photo gratuitement, sur votre appareil, pour boutiques en ligne, profils et formulaires. Taille réelle, sans filigrane ni envoi.",
+      "h1": "Mettez le fond d’une photo en blanc",
+      "lede": "Choisissez une photo et son fond devient blanc uni tout seul : pour les annonces de boutiques en ligne, les photos de profil et les formulaires. L’IA tourne sur votre propre appareil, et la photo garde sa pleine résolution.",
+      "steps": [
+        "Choisissez une photo. Le fond est supprimé et remplacé par du blanc tout de suite.",
+        "Retouchez un endroit si besoin, ajoutez une ombre ou recadrez en carré pour les boutiques en ligne.",
+        "Choisissez la taille, puis cliquez sur « Télécharger l’image »."
+      ],
+      "faq": [
+        [
+          "Mes fichiers sont-ils envoyés quelque part ?",
+          "Non. Fizzdoc effectue tout le travail dans votre onglet de navigateur, grâce à des moteurs open source compilés en WebAssembly et en JavaScript. Votre fichier est lu depuis votre appareil, traité localement, puis le résultat est enregistré directement sur votre appareil. Vous pouvez le vérifier vous-même : ouvrez les outils de développement de votre navigateur, allez dans l'onglet Réseau et lancez une opération — aucune requête ne transporte votre fichier."
+        ],
+        [
+          "Le blanc est-il un blanc pur ?",
+          "Oui. Le fond est rempli de blanc pur (#FFFFFF), ce que demandent la plupart des boutiques et des formulaires. Les contours des cheveux et des poils sont nettoyés pour se fondre dans le blanc."
+        ],
+        [
+          "Puis-je l’utiliser pour une photo de passeport ou d’identité ?",
+          "Vous obtenez un fond blanc uni, mais chaque pays a ses propres règles de taille, d’éclairage et de pose. Vérifiez-les avant d’imprimer ; Fizzdoc ne promet aucune validation officielle."
+        ],
+        [
+          "Puis-je plutôt choisir une autre couleur ?",
+          "Oui. Dans « Fond », vous pouvez passer à n’importe quelle couleur, un flou de l’original, votre propre photo ou aucun fond pour un PNG transparent."
+        ],
+        [
+          "Est-ce que Fizzdoc est gratuit ?",
+          "Oui, et ça restera gratuit : pas d'inscription, pas de filigrane, pas de limite quotidienne et pas d'offre premium. Fizzdoc est open source sous licence Apache-2.0, donc n'importe qui peut faire tourner sa propre copie."
+        ]
+      ],
+      "keywords": [
+        "mettre un fond blanc sur une photo",
+        "fond blanc photo",
+        "photo sur fond blanc gratuit",
+        "changer le fond d’une photo en blanc",
+        "fond blanc photo produit"
+      ]
+    },
+    "blur-background": {
+      "name": "Flouter le Fond",
+      "summary": "Gardez le sujet net et adoucissez tout ce qui est derrière, comme le mode portrait.",
+      "action": "Télécharger l’image",
+      "title": "Flouter le Fond d’une Photo Gratuit — Sans Envoi | Fizzdoc",
+      "description": "Floutez le fond d’une photo gratuitement en gardant la personne ou le produit net. Tout se fait sur votre appareil, en taille réelle, sans filigrane ni envoi.",
+      "h1": "Floutez le fond d’une photo",
+      "lede": "Choisissez une photo et le fond devient flou tandis que la personne, l’animal ou le produit reste net, comme sur un portrait. L’IA trouve le sujet sur votre propre appareil, et la photo garde sa pleine résolution.",
+      "steps": [
+        "Choisissez une photo. Le sujet est détecté et le fond est flouté tout de suite.",
+        "Retouchez un endroit que l’IA a manqué, ou passez à une couleur ou une autre photo derrière.",
+        "Choisissez la taille, puis cliquez sur « Télécharger l’image »."
+      ],
+      "faq": [
+        [
+          "Mes fichiers sont-ils envoyés quelque part ?",
+          "Non. Fizzdoc effectue tout le travail dans votre onglet de navigateur, grâce à des moteurs open source compilés en WebAssembly et en JavaScript. Votre fichier est lu depuis votre appareil, traité localement, puis le résultat est enregistré directement sur votre appareil. Vous pouvez le vérifier vous-même : ouvrez les outils de développement de votre navigateur, allez dans l'onglet Réseau et lancez une opération — aucune requête ne transporte votre fichier."
+        ],
+        [
+          "Est-ce que ça marche comme le mode portrait ?",
+          "Le rendu est similaire : le sujet reste net et le fond est flouté. L’outil ne mesure pas la profondeur, donc tout ce qui est derrière le sujet est flouté de la même façon."
+        ],
+        [
+          "La photo va-t-elle perdre en qualité ?",
+          "Non. La photo garde sa pleine résolution ; seul le fond est adouci. Vous pouvez aussi enregistrer une copie plus petite."
+        ],
+        [
+          "Puis-je plutôt supprimer complètement le fond ?",
+          "Oui. Dans « Fond », choisissez « Aucun » pour un PNG transparent, ou « Blanc », une couleur ou une autre photo."
+        ],
+        [
+          "Est-ce que Fizzdoc est gratuit ?",
+          "Oui, et ça restera gratuit : pas d'inscription, pas de filigrane, pas de limite quotidienne et pas d'offre premium. Fizzdoc est open source sous licence Apache-2.0, donc n'importe qui peut faire tourner sa propre copie."
+        ]
+      ],
+      "keywords": [
+        "flouter le fond d’une photo",
+        "flouter arrière-plan photo",
+        "flouter arrière-plan en ligne gratuit",
+        "effet mode portrait photo",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Créateur de stickers WhatsApp",
       "summary": "Transformez n’importe quelle photo en sticker : fond retiré, contour blanc, prêt pour WhatsApp.",

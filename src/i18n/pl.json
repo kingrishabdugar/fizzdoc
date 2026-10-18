@@ -3042,6 +3042,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Białe Tło",
+      "summary": "Wstaw czyste białe tło do dowolnego zdjęcia w jednym kroku.",
+      "action": "Pobierz obraz",
+      "title": "Zrób Białe Tło na Zdjęciu za Darmo — Bez Wysyłania | Fizzdoc",
+      "description": "Zrób białe tło na zdjęciu za darmo, na swoim urządzeniu: do ofert w sklepach, profili i formularzy. Pełna rozdzielczość, bez znaku wodnego i bez wysyłania.",
+      "h1": "Zrób białe tło na zdjęciu",
+      "lede": "Wybierz zdjęcie, a jego tło samo zmieni się w jednolitą biel: do ofert w sklepach internetowych, zdjęć profilowych i formularzy. Sztuczna inteligencja działa na Twoim urządzeniu, a zdjęcie zachowuje pełną rozdzielczość.",
+      "steps": [
+        "Wybierz zdjęcie. Tło od razu znika, a jego miejsce zajmuje biel.",
+        "W razie potrzeby popraw jakieś miejsce, dodaj cień albo wykadruj do kwadratu pod oferty w sklepach internetowych.",
+        "Wybierz rozmiar i kliknij „Pobierz obraz”."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Czy to naprawdę czysta biel?",
+          "Tak. Tło jest wypełniane czystą bielą (#FFFFFF), której wymaga większość sklepów i formularzy. Krawędzie włosów i sierści są czyszczone, żeby gładko przechodziły w biel."
+        ],
+        [
+          "Czy mogę użyć tego do zdjęcia do paszportu lub dowodu?",
+          "Dostajesz jednolite białe tło, ale każdy kraj ma własne zasady dotyczące rozmiaru, oświetlenia i pozy. Sprawdź je przed wydrukiem; Fizzdoc nie obiecuje oficjalnej akceptacji."
+        ],
+        [
+          "Czy mogę zamiast tego wybrać inny kolor?",
+          "Tak. W sekcji „Tło” możesz przełączyć się na dowolny kolor, rozmycie oryginału, własne zdjęcie albo brak tła, żeby uzyskać przezroczysty PNG."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "białe tło zdjęcie",
+        "zmiana tła na białe",
+        "białe tło do zdjęcia online",
+        "jak zrobić białe tło na zdjęciu",
+        "zdjęcie produktu na białym tle"
+      ]
+    },
+    "blur-background": {
+      "name": "Rozmyj Tło",
+      "summary": "Zachowaj ostrość obiektu i zmiękcz wszystko za nim, jak w trybie portretowym.",
+      "action": "Pobierz obraz",
+      "title": "Rozmyj Tło Zdjęcia za Darmo — Pełny Rozmiar, Bez Wysyłania | Fizzdoc",
+      "description": "Rozmyj tło zdjęcia za darmo i zachowaj ostrość osoby lub produktu. Działa na Twoim urządzeniu w pełnej rozdzielczości, bez znaku wodnego i bez wysyłania.",
+      "h1": "Rozmyj tło zdjęcia",
+      "lede": "Wybierz zdjęcie, a tło łagodnie się rozmyje, podczas gdy osoba, zwierzak lub produkt pozostaną ostre, jak na zdjęciu portretowym. Sztuczna inteligencja znajduje obiekt na Twoim urządzeniu, a zdjęcie zachowuje pełną rozdzielczość.",
+      "steps": [
+        "Wybierz zdjęcie. Obiekt zostaje wykryty, a tło od razu się rozmywa.",
+        "Popraw miejsce pominięte przez sztuczną inteligencję albo wstaw z tyłu kolor lub inne zdjęcie.",
+        "Wybierz rozmiar i kliknij „Pobierz obraz”."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Czy to działa jak tryb portretowy?",
+          "Daje podobny efekt: obiekt pozostaje ostry, a tło jest rozmyte. Nie mierzy głębi, więc wszystko za obiektem jest rozmyte w tym samym stopniu."
+        ],
+        [
+          "Czy zdjęcie straci na jakości?",
+          "Nie. Zdjęcie zachowuje pełną rozdzielczość; zmiękczane jest tylko tło. Możesz też zapisać mniejszą kopię."
+        ],
+        [
+          "Czy mogę zamiast tego całkiem usunąć tło?",
+          "Tak. W sekcji „Tło” wybierz „Brak”, aby uzyskać przezroczysty PNG, albo „Białe”, dowolny kolor lub inne zdjęcie."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "rozmyj tło zdjęcia",
+        "rozmycie tła online",
+        "jak rozmyć tło na zdjęciu",
+        "rozmazane tło zdjęcia",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Kreator naklejek WhatsApp",
       "summary": "Zrób naklejkę z dowolnego zdjęcia: bez tła, z białym obrysem, gotową do WhatsApp.",

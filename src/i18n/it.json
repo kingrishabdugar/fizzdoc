@@ -3042,6 +3042,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Sfondo Bianco",
+      "summary": "Metti uno sfondo bianco pulito dietro qualsiasi foto, in un solo passaggio.",
+      "action": "Scarica immagine",
+      "title": "Mettere Sfondo Bianco a una Foto Gratis — Senza Upload | Fizzdoc",
+      "description": "Rendi bianco lo sfondo di una foto gratis, sul tuo dispositivo, per negozi online, profili e moduli. Piena risoluzione, senza filigrana né upload.",
+      "h1": "Rendi bianco lo sfondo di una foto",
+      "lede": "Scegli una foto e lo sfondo diventa bianco uniforme da solo: per gli annunci nei negozi online, le foto profilo e i moduli. L’IA funziona sul tuo dispositivo e la foto mantiene la piena risoluzione.",
+      "steps": [
+        "Scegli una foto. Lo sfondo viene tolto e sostituito subito con il bianco.",
+        "Ritocca un punto se serve, aggiungi un’ombra o ritaglia in quadrato per i negozi online.",
+        "Scegli la dimensione e clicca su «Scarica immagine»."
+      ],
+      "faq": [
+        [
+          "I miei file vengono caricati da qualche parte?",
+          "No. Fizzdoc esegue il lavoro direttamente nella scheda del browser, usando motori open source compilati in WebAssembly e JavaScript. Il file viene letto dal tuo dispositivo, elaborato in locale, e il risultato viene salvato di nuovo sul tuo dispositivo. Puoi verificarlo tu stesso: apri gli strumenti per sviluppatori del browser, vai alla scheda Rete ed esegui un'operazione — nessuna richiesta trasporta il tuo file."
+        ],
+        [
+          "Il bianco è bianco puro?",
+          "Sì. Lo sfondo viene riempito di bianco puro (#FFFFFF), quello che chiede la maggior parte dei negozi e dei moduli. I contorni di capelli e pelo vengono puliti perché si fondano con il bianco."
+        ],
+        [
+          "Posso usarlo per la foto del passaporto o di un documento d’identità?",
+          "Ti dà uno sfondo bianco uniforme, ma ogni paese ha le sue regole su dimensioni, illuminazione e posa. Controllale prima di stampare; Fizzdoc non promette l’approvazione ufficiale."
+        ],
+        [
+          "Posso scegliere un altro colore?",
+          "Sì. In “Sfondo” puoi passare a qualsiasi colore, una sfocatura dell’originale, una tua foto o nessuno sfondo per un PNG trasparente."
+        ],
+        [
+          "Fizzdoc è gratuito?",
+          "Sì, e resterà gratuito: niente registrazione, niente filigrana, nessun limite giornaliero e nessun piano premium. Fizzdoc è open source con licenza Apache-2.0, quindi chiunque può eseguire la propria copia."
+        ]
+      ],
+      "keywords": [
+        "mettere sfondo bianco a una foto",
+        "sfondo bianco foto",
+        "foto con sfondo bianco online",
+        "rendere bianco lo sfondo di una foto",
+        "sfondo bianco foto prodotto"
+      ]
+    },
+    "blur-background": {
+      "name": "Sfoca Sfondo",
+      "summary": "Tieni il soggetto nitido e ammorbidisci tutto ciò che c’è dietro, come la modalità ritratto.",
+      "action": "Scarica immagine",
+      "title": "Sfocare lo Sfondo di una Foto Gratis — Senza Upload | Fizzdoc",
+      "description": "Sfoca lo sfondo di una foto gratis e tieni nitida la persona o il prodotto. Funziona sul tuo dispositivo a piena risoluzione, senza filigrana né upload.",
+      "h1": "Sfoca lo sfondo di una foto",
+      "lede": "Scegli una foto e lo sfondo si sfoca mentre la persona, l’animale o il prodotto resta nitido, come in un ritratto. L’IA trova il soggetto sul tuo dispositivo e la foto mantiene la piena risoluzione.",
+      "steps": [
+        "Scegli una foto. Il soggetto viene individuato e lo sfondo viene sfocato subito.",
+        "Ritocca un punto che l’IA ha mancato, oppure passa a un colore o a un’altra foto dietro.",
+        "Scegli la dimensione e clicca su «Scarica immagine»."
+      ],
+      "faq": [
+        [
+          "I miei file vengono caricati da qualche parte?",
+          "No. Fizzdoc esegue il lavoro direttamente nella scheda del browser, usando motori open source compilati in WebAssembly e JavaScript. Il file viene letto dal tuo dispositivo, elaborato in locale, e il risultato viene salvato di nuovo sul tuo dispositivo. Puoi verificarlo tu stesso: apri gli strumenti per sviluppatori del browser, vai alla scheda Rete ed esegui un'operazione — nessuna richiesta trasporta il tuo file."
+        ],
+        [
+          "Funziona come la modalità ritratto?",
+          "L’effetto è simile: il soggetto resta nitido e lo sfondo viene sfocato. Non misura la profondità, quindi tutto ciò che c’è dietro il soggetto viene sfocato allo stesso modo."
+        ],
+        [
+          "La foto perderà qualità?",
+          "No. La foto mantiene la piena risoluzione; viene ammorbidito solo lo sfondo. Puoi anche salvare una copia più piccola."
+        ],
+        [
+          "Posso invece rimuovere del tutto lo sfondo?",
+          "Sì. In “Sfondo” scegli “Nessuno” per un PNG trasparente, oppure “Bianco”, qualsiasi colore o un’altra foto."
+        ],
+        [
+          "Fizzdoc è gratuito?",
+          "Sì, e resterà gratuito: niente registrazione, niente filigrana, nessun limite giornaliero e nessun piano premium. Fizzdoc è open source con licenza Apache-2.0, quindi chiunque può eseguire la propria copia."
+        ]
+      ],
+      "keywords": [
+        "sfocare sfondo foto",
+        "sfocare lo sfondo di una foto online",
+        "sfocatura sfondo foto gratis",
+        "effetto ritratto foto",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Creatore di sticker WhatsApp",
       "summary": "Trasforma qualsiasi foto in uno sticker: sfondo rimosso, contorno bianco, pronto per WhatsApp.",

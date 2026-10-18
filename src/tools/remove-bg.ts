@@ -283,8 +283,8 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     backdrop = { kind: 'blur', amount: 0.012 };
   });
   blur.querySelector('.bg-chip')!.classList.add('bg-chip-blur');
-  // Pages like "white background" start with that colour picked.
-  (colors.get(preset.bg as 'white') ?? none).click();
+  // Pages like "white background" or "blur background" start with that picked.
+  (preset.bg === 'blur' ? blur : (colors.get(preset.bg ?? '') ?? none)).click();
 
   // ---- Style: shadow, outline, crop ----
   const toggle = (label: string, onChange: (on: boolean) => void) => {

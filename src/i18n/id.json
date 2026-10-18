@@ -3042,6 +3042,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Latar Belakang Putih",
+      "summary": "Pasang latar belakang putih bersih di belakang foto apa saja, dalam satu langkah.",
+      "action": "Unduh gambar",
+      "title": "Ubah Latar Belakang Foto Jadi Putih Gratis — Tanpa Unggah | Fizzdoc",
+      "description": "Ubah latar belakang foto jadi putih gratis langsung di perangkat Anda, untuk toko online, profil, dan formulir. Resolusi penuh, tanpa watermark, tanpa unggah.",
+      "h1": "Ubah latar belakang foto jadi putih",
+      "lede": "Pilih foto dan latar belakangnya otomatis jadi putih polos: untuk listing produk di toko online, foto profil, dan formulir. AI berjalan di perangkat Anda sendiri, dan foto tetap beresolusi penuh.",
+      "steps": [
+        "Pilih foto. Latar belakang langsung dihapus dan diganti putih.",
+        "Rapikan bagian tertentu jika perlu, tambahkan bayangan, atau potong jadi persegi untuk listing toko online.",
+        "Pilih ukuran, lalu klik “Unduh gambar”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah putihnya benar-benar putih murni?",
+          "Ya. Latar belakang diisi putih murni (#FFFFFF), yang diminta oleh kebanyakan toko dan formulir. Tepi rambut dan bulu dirapikan agar menyatu dengan putihnya."
+        ],
+        [
+          "Bisakah dipakai untuk pas foto paspor atau kartu identitas?",
+          "Hasilnya latar belakang putih polos, tetapi setiap negara punya aturan sendiri soal ukuran, pencahayaan, dan pose. Periksa aturannya sebelum mencetak; Fizzdoc tidak menjanjikan persetujuan resmi."
+        ],
+        [
+          "Bisakah saya memilih warna lain?",
+          "Bisa. Di bagian Latar belakang, Anda bisa beralih ke warna apa saja, versi buram dari foto aslinya, foto Anda sendiri, atau tanpa latar belakang sama sekali untuk PNG transparan."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "background foto putih",
+        "ubah background foto jadi putih",
+        "latar belakang putih",
+        "edit background putih online",
+        "ganti background foto putih gratis"
+      ]
+    },
+    "blur-background": {
+      "name": "Buramkan Latar Belakang",
+      "summary": "Subjek tetap tajam dan semua di belakangnya jadi lembut, seperti mode potret.",
+      "action": "Unduh gambar",
+      "title": "Blur Background Foto Gratis — Ukuran Penuh, Tanpa Unggah | Fizzdoc",
+      "description": "Buramkan latar belakang foto gratis dan biarkan orang atau produk tetap tajam. Berjalan di perangkat Anda dengan resolusi penuh, tanpa watermark, tanpa unggah.",
+      "h1": "Buramkan latar belakang foto",
+      "lede": "Pilih foto dan latar belakangnya jadi lembut, sementara orang, hewan peliharaan, atau produk tetap tajam, seperti foto potret. AI menemukan subjeknya di perangkat Anda sendiri, dan foto tetap beresolusi penuh.",
+      "steps": [
+        "Pilih foto. Subjek langsung ditemukan dan latar belakang dibuat buram.",
+        "Rapikan bagian yang terlewat oleh AI, atau ganti dengan warna atau foto lain di belakang.",
+        "Pilih ukuran, lalu klik “Unduh gambar”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah cara kerjanya seperti mode potret?",
+          "Hasilnya mirip: subjek tetap tajam dan latar belakang dibuat buram. Alat ini tidak mengukur kedalaman, jadi semua yang ada di belakang subjek diburamkan dengan kadar yang sama."
+        ],
+        [
+          "Apakah kualitas foto akan turun?",
+          "Tidak. Foto tetap beresolusi penuh; hanya latar belakangnya yang dilembutkan. Anda juga bisa menyimpan salinan yang lebih kecil."
+        ],
+        [
+          "Bisakah saya menghapus latar belakang sepenuhnya?",
+          "Bisa. Di bagian Latar belakang, pilih Tidak ada untuk PNG transparan, atau Putih, warna apa saja, atau foto lain."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "blur background foto",
+        "cara blur background foto",
+        "buramkan latar belakang foto",
+        "edit foto blur belakang",
+        "background blur online"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Pembuat stiker WhatsApp",
       "summary": "Ubah foto apa pun jadi stiker: latar dihapus, garis tepi putih, siap untuk WhatsApp.",
