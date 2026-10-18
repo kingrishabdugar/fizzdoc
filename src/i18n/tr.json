@@ -3044,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Beyaz Arka Plan",
+      "summary": "Her fotoğrafın arkasına tek adımda temiz, beyaz bir arka plan koyun.",
+      "action": "Görseli indir",
+      "title": "Arka Planı Beyaz Yapma Ücretsiz — Beyaz Fon, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğraf arka planını cihazınızda ücretsiz beyaz yapın: online mağaza ilanları, profiller ve formlar için. Tam çözünürlük, filigran yok, hiçbir şey yüklenmez.",
+      "h1": "Fotoğrafın arka planını beyaz yapın",
+      "lede": "Bir fotoğraf seçin, arka planı kendiliğinden düz beyaz olsun: online mağaza ilanları, profil fotoğrafları ve formlar için. Yapay zeka kendi cihazınızda çalışır ve fotoğraf tam çözünürlüğünü korur.",
+      "steps": [
+        "Bir fotoğraf seçin. Arka plan hemen silinir ve yerine beyaz gelir.",
+        "Gerekirse bir yeri düzeltin, gölge ekleyin ya da online mağaza ilanları için kare kırpın.",
+        "Boyutu seçin, sonra “Görseli indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Beyaz, saf beyaz mı?",
+          "Evet. Arka plan, çoğu mağaza ve formun istediği saf beyazla (#FFFFFF) doldurulur. Saç ve tüy kenarları temizlenir, böylece beyazla kaynaşır."
+        ],
+        [
+          "Pasaport veya kimlik fotoğrafı için kullanabilir miyim?",
+          "Düz beyaz bir arka plan verir, ancak her ülkenin boyut, ışık ve duruş için kendi kuralları vardır. Baskıdan önce bunları kontrol edin; Fizzdoc resmi onay alınacağına dair söz vermez."
+        ],
+        [
+          "Bunun yerine başka bir renk seçebilir miyim?",
+          "Evet. Arka plan bölümünden herhangi bir renge, orijinalin bulanık hâline ya da kendi fotoğrafınıza geçebilir veya şeffaf bir PNG için arka planı tamamen boş bırakabilirsiniz."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "arka planı beyaz yapma",
+        "fotoğraf arka planını beyaz yapma",
+        "beyaz arka plan fotoğraf",
+        "ürün fotoğrafı beyaz fon",
+        "fotoğrafa beyaz arka plan ekleme"
+      ]
+    },
+    "blur-background": {
+      "name": "Arka Planı Bulanıklaştır",
+      "summary": "Konuyu net tutun, arkasındaki her şeyi portre modundaki gibi yumuşatın.",
+      "action": "Görseli indir",
+      "title": "Arka Planı Bulanıklaştır Ücretsiz — Tam Boyut, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğrafın arka planını ücretsiz bulanıklaştırın, kişi veya ürün net kalsın. Cihazınızda tam çözünürlükte çalışır; filigran yok, yükleme yok.",
+      "h1": "Fotoğrafın arka planını bulanıklaştırın",
+      "lede": "Bir fotoğraf seçin; kişi, evcil hayvan ya da ürün net kalırken arka plan yumuşasın, tıpkı bir portre çekimi gibi. Yapay zeka konuyu kendi cihazınızda bulur ve fotoğraf tam çözünürlüğünü korur.",
+      "steps": [
+        "Bir fotoğraf seçin. Konu bulunur ve arka plan hemen bulanıklaştırılır.",
+        "Yapay zekanın atladığı bir yeri düzeltin ya da arkaya bir renk veya başka bir fotoğraf koyun.",
+        "Boyutu seçin, sonra “Görseli indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Portre modu gibi mi çalışır?",
+          "Benzer bir görünüm verir: konu net kalır, arka plan bulanıklaşır. Derinlik ölçmez, bu yüzden konunun arkasındaki her şey aynı miktarda bulanıklaştırılır."
+        ],
+        [
+          "Fotoğrafın kalitesi düşer mi?",
+          "Hayır. Fotoğraf tam çözünürlüğünü korur; yalnızca arka plan yumuşatılır. İsterseniz daha küçük bir kopya da kaydedebilirsiniz."
+        ],
+        [
+          "Bunun yerine arka planı tamamen silebilir miyim?",
+          "Evet. Arka plan bölümünden şeffaf bir PNG için Yok'u ya da Beyaz'ı, herhangi bir rengi veya başka bir fotoğrafı seçin."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "arka plan bulanıklaştırma",
+        "fotoğraf arka planı bulanıklaştırma",
+        "arka planı bulanık yapma",
+        "fotoğrafın arkasını bulanıklaştırma",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "WhatsApp çıkartma yapıcı",
       "summary": "Her fotoğrafı çıkartmaya çevirin: arka plan silinir, beyaz kenar eklenir, WhatsApp’a hazır.",

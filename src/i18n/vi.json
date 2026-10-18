@@ -3044,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Đổi Nền Trắng",
+      "summary": "Đặt nền trắng sạch phía sau bất kỳ bức ảnh nào, chỉ trong một bước.",
+      "action": "Tải ảnh xuống",
+      "title": "Đổi Nền Ảnh Sang Màu Trắng Miễn Phí — Không Tải Lên | Fizzdoc",
+      "description": "Đổi nền ảnh sang màu trắng miễn phí ngay trên thiết bị, cho ảnh bán hàng online, ảnh đại diện và biểu mẫu. Độ phân giải gốc, không watermark, không tải lên.",
+      "h1": "Đổi nền ảnh sang màu trắng",
+      "lede": "Chọn một bức ảnh và nền tự chuyển thành màu trắng trơn: cho ảnh sản phẩm bán hàng online, ảnh đại diện và biểu mẫu. AI chạy ngay trên thiết bị của bạn, và ảnh giữ nguyên độ phân giải đầy đủ.",
+      "steps": [
+        "Chọn một bức ảnh. Nền được xóa và thay bằng màu trắng ngay lập tức.",
+        "Chỉnh sửa thêm chỗ nào cần, thêm đổ bóng, hoặc cắt vuông cho ảnh bán hàng online.",
+        "Chọn kích thước, rồi nhấp “Tải ảnh xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Màu trắng có phải trắng tinh không?",
+          "Có. Nền được tô màu trắng tinh (#FFFFFF), đúng như yêu cầu của hầu hết các cửa hàng và biểu mẫu. Viền tóc và lông được làm sạch để hòa vào nền trắng."
+        ],
+        [
+          "Có dùng được cho ảnh hộ chiếu hay ảnh thẻ không?",
+          "Công cụ cho bạn nền trắng trơn, nhưng mỗi quốc gia có quy định riêng về kích thước, ánh sáng và tư thế. Hãy kiểm tra trước khi in; Fizzdoc không cam kết ảnh sẽ được chấp nhận chính thức."
+        ],
+        [
+          "Tôi có thể chọn màu khác không?",
+          "Có. Trong mục “Nền”, bạn có thể đổi sang màu bất kỳ, nền gốc được làm mờ, ảnh của bạn, hoặc không có nền để có PNG trong suốt."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "đổi nền ảnh sang màu trắng",
+        "tạo nền trắng cho ảnh",
+        "đổi phông nền trắng",
+        "ảnh sản phẩm nền trắng",
+        "white background"
+      ]
+    },
+    "blur-background": {
+      "name": "Làm Mờ Nền Ảnh",
+      "summary": "Giữ chủ thể sắc nét và làm mềm mọi thứ phía sau, như chế độ chân dung.",
+      "action": "Tải ảnh xuống",
+      "title": "Làm Mờ Nền Ảnh Miễn Phí — Kích Thước Gốc, Không Tải Lên | Fizzdoc",
+      "description": "Làm mờ nền ảnh miễn phí mà vẫn giữ người hoặc sản phẩm sắc nét. Chạy ngay trên thiết bị, giữ nguyên độ phân giải, không watermark, không tải lên.",
+      "h1": "Làm mờ nền ảnh",
+      "lede": "Chọn một bức ảnh và nền trở nên mềm mại, trong khi người, thú cưng hay sản phẩm vẫn sắc nét, như một bức ảnh chân dung. AI tìm chủ thể ngay trên thiết bị của bạn, và ảnh giữ nguyên độ phân giải đầy đủ.",
+      "steps": [
+        "Chọn một bức ảnh. Chủ thể được nhận diện và nền được làm mờ ngay lập tức.",
+        "Chỉnh sửa chỗ AI bỏ sót, hoặc đổi sang một màu hay một ảnh khác phía sau.",
+        "Chọn kích thước, rồi nhấp “Tải ảnh xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Có giống chế độ chân dung không?",
+          "Hiệu ứng tương tự: chủ thể vẫn sắc nét và nền được làm mờ. Công cụ không đo chiều sâu, nên mọi thứ phía sau chủ thể đều được làm mờ như nhau."
+        ],
+        [
+          "Ảnh có bị giảm chất lượng không?",
+          "Không. Ảnh giữ nguyên độ phân giải đầy đủ; chỉ phần nền được làm mềm. Bạn cũng có thể lưu một bản nhỏ hơn."
+        ],
+        [
+          "Tôi có thể xóa hẳn nền thay vì làm mờ không?",
+          "Có. Trong mục “Nền”, chọn “Không” để có PNG trong suốt, hoặc “Trắng”, màu bất kỳ hay một ảnh khác."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "làm mờ nền ảnh",
+        "xóa phông ảnh online",
+        "làm mờ hậu cảnh",
+        "làm mờ phông nền ảnh",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Tạo nhãn dán WhatsApp",
       "summary": "Biến ảnh bất kỳ thành nhãn dán: xóa nền, viền trắng, sẵn sàng cho WhatsApp.",

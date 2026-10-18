@@ -1727,6 +1727,20 @@ test('collage maker: four photos in a 2×2 grid, in list order, then reordered, 
   expect(seen.violations).toEqual([]);
 });
 
+test('the white and blur background pages open with that background picked', async ({ browser, baseURL }) => {
+  test.setTimeout(300_000);
+  const context = await browser.newContext({ baseURL });
+  // The small background model keeps this quick; the backdrop works the same on both.
+  await context.addInitScript(() => localStorage.setItem('fizzdoc-bg-crashed', String(Date.now())));
+  const page = await context.newPage();
+  for (const [path, picked] of [['/make-background-white/', 'White'], ['/blur-background/', 'Blur']]) {
+    await page.goto(path);
+    await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+    await expect(page.getByRole('button', { name: picked, exact: true })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
+  }
+  await context.close();
+});
+
 test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   for (const phone of [true, false]) {

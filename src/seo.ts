@@ -574,7 +574,7 @@ const VERB = /^(Add|Compress|Convert|Cut|Delete|Edit|Extract|Merge|Protect|Redac
 /** Names that keep their capital in a sentence ("How to remove Word metadata"). */
 const PROPER = new Set(['Word', 'Excel', 'PowerPoint', 'Markdown', 'Mermaid', 'WhatsApp', 'Aadhaar']);
 /** The photo tools, linked to each other first under "More tools". */
-const PHOTO_TOOLS = ['photo-editor', 'collage-maker', 'remove-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image', 'remove-gif-background', 'remove-video-background'];
+const PHOTO_TOOLS = ['photo-editor', 'collage-maker', 'remove-background', 'make-background-white', 'blur-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image', 'remove-gif-background', 'remove-video-background'];
 const howTo = (c: Copy, tool: Tool) => {
   if (c.lang !== 'en') return c.t('tool.how', { tool: tool.name });
   if (VERB.test(tool.name)) return `How to ${tool.name.replace(/\b[A-Z][a-z]+\b/g, (word) => (PROPER.has(word) ? word : word.toLowerCase()))}`;
@@ -920,7 +920,7 @@ ${HOME.what}
 ## Quick answers
 
 - **How do I remove the background from a photo without uploading it?** Open ${SITE.url}/remove-background/ and choose the photo. An AI model (BiRefNet) runs in the browser on the device, removes the background at the photo's full resolution, and saves a clear PNG, or white, any colour, a blur or another photo behind it. Free, no watermark, no sign-up, works offline after the first run.
-- **How do I make a photo's background white?** Same page: after the background is removed, pick White under Background and save as JPG or PNG.
+- **How do I make a photo's background white?** ${SITE.url}/make-background-white/ opens with white picked: choose the photo and save as JPG or PNG. To blur the background instead and keep the subject sharp: ${SITE.url}/blur-background/.
 - **Can I remove the background from a GIF or a video?** Yes: ${SITE.url}/remove-gif-background/ keeps every frame and its timing; ${SITE.url}/remove-video-background/ keeps the sound.
 - **Is there a free photo editor that doesn't upload my photo?** ${SITE.url}/photo-editor/ crops to square, 4:5, 16:9 or story size, turns and flips, sets brightness, contrast, saturation and warmth, adds one-tap looks, text and emoji, and saves at full size, all on the device, with no sign-up.
 - **How do I make a photo collage without uploading the photos?** ${SITE.url}/collage-maker/ puts 1 to 9 photos in a grid (square, 4:5, story, 16:9 or A4 for printing), lets each photo be moved and zoomed in its frame, sets the gap, round corners, background and text, and saves JPG, PNG or WebP with no watermark.

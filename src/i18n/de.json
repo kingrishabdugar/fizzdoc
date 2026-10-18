@@ -3044,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Weißer Hintergrund",
+      "summary": "Setzen Sie in einem Schritt einen sauberen weißen Hintergrund hinter jedes Foto.",
+      "action": "Bild herunterladen",
+      "title": "Fotohintergrund weiß machen kostenlos, ohne Upload | Fizzdoc",
+      "description": "Fotohintergrund kostenlos weiß machen, direkt auf Ihrem Gerät: für Onlineshops, Profile und Formulare. Volle Auflösung, kein Wasserzeichen, ohne Upload.",
+      "h1": "Den Hintergrund eines Fotos weiß machen",
+      "lede": "Wählen Sie ein Foto, und sein Hintergrund wird von selbst schlicht weiß: für Angebote in Onlineshops, Profilbilder und Formulare. Die KI läuft auf Ihrem eigenen Gerät, und das Foto behält seine volle Auflösung.",
+      "steps": [
+        "Wählen Sie ein Foto. Der Hintergrund wird sofort entfernt und durch Weiß ersetzt.",
+        "Bessern Sie bei Bedarf eine Stelle nach, fügen Sie einen Schatten hinzu oder schneiden Sie für Onlineshops quadratisch zu.",
+        "Wählen Sie die Größe und klicken Sie auf „Bild herunterladen“."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Ist das Weiß reines Weiß?",
+          "Ja. Der Hintergrund wird mit reinem Weiß (#FFFFFF) gefüllt, wie es die meisten Shops und Formulare verlangen. Haar- und Fellkanten werden bereinigt, damit sie ins Weiß übergehen."
+        ],
+        [
+          "Kann ich es für ein Pass- oder Ausweisfoto nutzen?",
+          "Sie erhalten einen schlichten weißen Hintergrund, aber jedes Land hat eigene Regeln für Größe, Beleuchtung und Pose. Prüfen Sie diese vor dem Drucken; Fizzdoc verspricht keine offizielle Anerkennung."
+        ],
+        [
+          "Kann ich stattdessen eine andere Farbe wählen?",
+          "Ja. Unter „Hintergrund“ können Sie zu einer beliebigen Farbe, dem weichgezeichneten Original, Ihrem eigenen Foto oder gar keinem Hintergrund für ein transparentes PNG wechseln."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "Hintergrund weiß machen",
+        "Foto Hintergrund weiß",
+        "weißer Hintergrund Foto",
+        "Produktfoto weißer Hintergrund",
+        "Bild Hintergrund weiß machen"
+      ]
+    },
+    "blur-background": {
+      "name": "Hintergrund Unscharf Machen",
+      "summary": "Das Motiv bleibt scharf und alles dahinter wird weich, wie im Porträtmodus.",
+      "action": "Bild herunterladen",
+      "title": "Fotohintergrund unscharf machen kostenlos, ohne Upload | Fizzdoc",
+      "description": "Fotohintergrund kostenlos unscharf machen, Person oder Produkt bleiben scharf. Läuft auf Ihrem Gerät in voller Auflösung, ohne Wasserzeichen, ohne Upload.",
+      "h1": "Den Hintergrund eines Fotos unscharf machen",
+      "lede": "Wählen Sie ein Foto, und der Hintergrund wird weich, während Person, Haustier oder Produkt scharf bleiben, wie bei einer Porträtaufnahme. Die KI erkennt das Motiv auf Ihrem eigenen Gerät, und das Foto behält seine volle Auflösung.",
+      "steps": [
+        "Wählen Sie ein Foto. Das Motiv wird erkannt und der Hintergrund sofort weichgezeichnet.",
+        "Bessern Sie Stellen nach, die die KI übersehen hat, oder wechseln Sie zu einer Farbe oder einem anderen Foto dahinter.",
+        "Wählen Sie die Größe und klicken Sie auf „Bild herunterladen“."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Funktioniert es wie der Porträtmodus?",
+          "Es sieht ähnlich aus: Das Motiv bleibt scharf und der Hintergrund wird weichgezeichnet. Die Tiefe wird nicht gemessen, daher wird alles hinter dem Motiv gleich stark weichgezeichnet."
+        ],
+        [
+          "Verliert das Foto an Qualität?",
+          "Nein. Das Foto behält seine volle Auflösung; nur der Hintergrund wird weicher. Sie können auch eine kleinere Kopie speichern."
+        ],
+        [
+          "Kann ich den Hintergrund stattdessen ganz entfernen?",
+          "Ja. Wählen Sie unter „Hintergrund“ die Option „Keiner“ für ein transparentes PNG, oder „Weiß“, eine beliebige Farbe oder ein anderes Foto."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "Hintergrund unscharf machen",
+        "Foto Hintergrund unscharf machen",
+        "Hintergrund verschwommen machen",
+        "Hintergrund weichzeichnen online",
+        "Hintergrund unscharf machen kostenlos"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "WhatsApp-Sticker-Maker",
       "summary": "Jedes Foto wird zum Sticker: Hintergrund weg, weißer Umriss, fertig für WhatsApp.",

@@ -8,7 +8,7 @@
 <h3 align="center">Free, private tools for PDF, images, audio, Word, Excel and PowerPoint that never see your files.</h3>
 
 <p align="center">
-  70 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
+  72 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
   <strong>No uploads. No sign-up. No watermark. No limits. Free forever. 16 languages.</strong>
 </p>
 
@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://fizzdoc.com"><strong>Open Fizzdoc →</strong></a> &nbsp;·&nbsp;
-  <a href="#-all-70-tools"><strong>All tools</strong></a> &nbsp;·&nbsp;
+  <a href="#-all-72-tools"><strong>All tools</strong></a> &nbsp;·&nbsp;
   <a href="#-how-it-works"><strong>How it works</strong></a> &nbsp;·&nbsp;
   <a href="CONTRIBUTING.md"><strong>Contribute</strong></a>
 </p>
@@ -27,7 +27,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-22c55e?style=flat-square" alt="Apache-2.0 license"></a>
   <img src="https://img.shields.io/badge/bytes%20uploaded-0-16a34a?style=flat-square" alt="0 bytes uploaded">
   <img src="https://img.shields.io/badge/price-free%20forever-16a34a?style=flat-square" alt="Free forever">
-  <img src="https://img.shields.io/badge/tools-70-e5322d?style=flat-square" alt="70 tools">
+  <img src="https://img.shields.io/badge/tools-72-e5322d?style=flat-square" alt="72 tools">
   <img src="https://img.shields.io/badge/languages-16-2f6fdb?style=flat-square" alt="16 languages">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-8b5cf6?style=flat-square" alt="PRs welcome"></a>
 </p>
@@ -53,7 +53,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | What you get | |
 |---|---|
 | 🔒 **Your file stays on your device** | No upload endpoint exists, and the CSP blocks connections to any other site |
-| 🧰 **70 tools in one place** | PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid |
+| 🧰 **72 tools in one place** | PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid |
 | ✏️ **Edit PDF text in its own font** | Changed lines are rewritten inside the PDF with its embedded font, size and colour |
 | 🎙️ **Speech to text on the device** | Whisper runs in the browser: TXT, SRT or VTT, offline after a one-time download |
 | 🆓 **Free forever** | No account, no daily limits, no watermark, no premium tier |
@@ -109,7 +109,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | **Edit text** in a PDF, or **black out** personal details for good | [Edit PDF](https://fizzdoc.com/edit-pdf/) · [Redact PDF](https://fizzdoc.com/redact-pdf/) |
 | Turn a PDF into an **editable Word** file, or Word into PDF | [PDF to Word](https://fizzdoc.com/pdf-to-word/) · [Word to PDF](https://fizzdoc.com/word-to-pdf/) |
 | **Remove the password** from a bank statement, or add one | [Unlock PDF](https://fizzdoc.com/unlock-pdf/) · [Protect PDF](https://fizzdoc.com/protect-pdf/) |
-| **Remove the background** from a photo, or put white, a colour, a blur or another photo behind, at full resolution | [Remove Background](https://fizzdoc.com/remove-background/) |
+| **Remove the background** from a photo, or put white, a colour, a blur or another photo behind, at full resolution | [Remove Background](https://fizzdoc.com/remove-background/) · [White background](https://fizzdoc.com/make-background-white/) · [Blur background](https://fizzdoc.com/blur-background/) |
 | **Edit a photo**: crop it square or to story size, fix the light and colour, add a look, text or emoji | [Photo Editor](https://fizzdoc.com/photo-editor/) |
 | **Make a collage** of 2 to 9 photos for a post, a story or an A4 print | [Collage Maker](https://fizzdoc.com/collage-maker/) |
 | **Copy text** from a scanned PDF, a photo or a screenshot | [OCR PDF](https://fizzdoc.com/ocr-pdf/) · [Image to Text](https://fizzdoc.com/image-to-text/) |
@@ -119,7 +119,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | Export a **Mermaid diagram as PNG or SVG** for slides, docs or a README | [Mermaid to PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid to SVG](https://fizzdoc.com/mermaid-to-svg/) |
 | **Remove hidden author and company names** before sharing an Office file or PDF | [Word](https://fizzdoc.com/remove-word-metadata/) · [Excel](https://fizzdoc.com/remove-excel-metadata/) · [PowerPoint](https://fizzdoc.com/remove-powerpoint-metadata/) · [PDF](https://fizzdoc.com/remove-pdf-metadata/) |
 
-## 🧰 All 70 tools
+## 🧰 All 72 tools
 
 | Format | Tools |
 |---|---|
@@ -128,7 +128,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | **Word** | [Word → PDF](https://fizzdoc.com/word-to-pdf/) · [Compress](https://fizzdoc.com/compress-word/) · [Remove metadata](https://fizzdoc.com/remove-word-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-word/) |
 | **Excel** | [Excel → CSV](https://fizzdoc.com/excel-to-csv/) · [CSV → Excel](https://fizzdoc.com/csv-to-excel/) · [Excel → JSON](https://fizzdoc.com/excel-to-json/) · [JSON → Excel](https://fizzdoc.com/json-to-excel/) · [Compress](https://fizzdoc.com/compress-excel/) · [Remove metadata](https://fizzdoc.com/remove-excel-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-excel/) |
 | **PowerPoint** | [Compress](https://fizzdoc.com/compress-powerpoint/) · [Remove metadata](https://fizzdoc.com/remove-powerpoint-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-powerpoint/) |
-| **Images** | [Remove background](https://fizzdoc.com/remove-background/) (AI on your device, full resolution) · [Remove GIF background](https://fizzdoc.com/remove-gif-background/) · [Remove video background](https://fizzdoc.com/remove-video-background/) (no green screen, sound kept) · [WhatsApp sticker maker](https://fizzdoc.com/whatsapp-sticker-maker/) (text in fun fonts and emoji you drag into place) · [Photo editor](https://fizzdoc.com/photo-editor/) (crop to square or story size, turn, light and colour, looks, text and emoji) · [Collage maker](https://fizzdoc.com/collage-maker/) (2 to 9 photos, square, story or A4) · [Compress](https://fizzdoc.com/compress-image/) (to [20 KB](https://fizzdoc.com/compress-image-to-20kb/), [50 KB](https://fizzdoc.com/compress-image-to-50kb/), [100 KB](https://fizzdoc.com/compress-image-to-100kb/) for forms) · [Resize](https://fizzdoc.com/resize-image/) (larger or smaller) · [Convert](https://fizzdoc.com/convert-image/) · [PNG → JPG](https://fizzdoc.com/png-to-jpg/) · [JPG → PNG](https://fizzdoc.com/jpg-to-png/) · [WebP → JPG](https://fizzdoc.com/webp-to-jpg/) · [JPG → WebP](https://fizzdoc.com/jpg-to-webp/) · [Image → Text](https://fizzdoc.com/image-to-text/) (select text right on the photo, like Live Text) · [Mermaid → PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid → SVG](https://fizzdoc.com/mermaid-to-svg/) (diagrams from code, with a preview and ready-to-use examples) |
+| **Images** | [Remove background](https://fizzdoc.com/remove-background/) (AI on your device, full resolution) · [White background](https://fizzdoc.com/make-background-white/) · [Blur background](https://fizzdoc.com/blur-background/) · [Remove GIF background](https://fizzdoc.com/remove-gif-background/) · [Remove video background](https://fizzdoc.com/remove-video-background/) (no green screen, sound kept) · [WhatsApp sticker maker](https://fizzdoc.com/whatsapp-sticker-maker/) (text in fun fonts and emoji you drag into place) · [Photo editor](https://fizzdoc.com/photo-editor/) (crop to square or story size, turn, light and colour, looks, text and emoji) · [Collage maker](https://fizzdoc.com/collage-maker/) (2 to 9 photos, square, story or A4) · [Compress](https://fizzdoc.com/compress-image/) (to [20 KB](https://fizzdoc.com/compress-image-to-20kb/), [50 KB](https://fizzdoc.com/compress-image-to-50kb/), [100 KB](https://fizzdoc.com/compress-image-to-100kb/) for forms) · [Resize](https://fizzdoc.com/resize-image/) (larger or smaller) · [Convert](https://fizzdoc.com/convert-image/) · [PNG → JPG](https://fizzdoc.com/png-to-jpg/) · [JPG → PNG](https://fizzdoc.com/jpg-to-png/) · [WebP → JPG](https://fizzdoc.com/webp-to-jpg/) · [JPG → WebP](https://fizzdoc.com/jpg-to-webp/) · [Image → Text](https://fizzdoc.com/image-to-text/) (select text right on the photo, like Live Text) · [Mermaid → PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid → SVG](https://fizzdoc.com/mermaid-to-svg/) (diagrams from code, with a preview and ready-to-use examples) |
 | **Audio** | [Cut & Split Audio](https://fizzdoc.com/split-audio/) (trim or split an MP3/M4A on a waveform, preview every part) · [Merge Audio](https://fizzdoc.com/merge-audio/) (listen before you download) — no re-encoding, so no quality loss · [Audio to Text](https://fizzdoc.com/audio-to-text/) · [MP3 to Text](https://fizzdoc.com/mp3-to-text/) · [Video to Text](https://fizzdoc.com/video-to-text/) · [Subtitle Generator](https://fizzdoc.com/subtitle-generator/) (SRT/VTT) — speech to text with OpenAI's Whisper running on your device; the model downloads once, then works offline |
 
 **Google Docs, Sheets and Slides** work too: download as .docx / .xlsx / .pptx and use the matching tool. Nothing is sent to Google.

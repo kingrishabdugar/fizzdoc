@@ -3044,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Fundo Branco",
+      "summary": "Coloque um fundo branco limpo atrás de qualquer foto, num só passo.",
+      "action": "Baixar imagem",
+      "title": "Colocar Fundo Branco em Foto Grátis — Sem Enviar Nada | Fizzdoc",
+      "description": "Coloque fundo branco em uma foto grátis, no seu aparelho, para lojas online, perfis e formulários. Resolução total, sem marca d'água. Nada é enviado.",
+      "h1": "Deixe o fundo da foto branco",
+      "lede": "Escolha uma foto e o fundo fica branco liso sozinho: para anúncios de lojas online, fotos de perfil e formulários. A IA roda no seu próprio aparelho e a foto mantém a resolução total.",
+      "steps": [
+        "Escolha uma foto. O fundo é removido e trocado por branco na hora.",
+        "Retoque qualquer parte se precisar, adicione uma sombra ou corte em quadrado para lojas online.",
+        "Escolha o tamanho e clique em “Baixar imagem”."
+      ],
+      "faq": [
+        [
+          "Meus arquivos são enviados para algum lugar?",
+          "Não. O Fizzdoc faz todo o trabalho dentro da aba do seu navegador, usando mecanismos de código aberto compilados para WebAssembly e JavaScript. Seu arquivo é lido do seu dispositivo, processado localmente, e o resultado é salvo direto de volta nele. Você pode conferir por conta própria: abra as ferramentas de desenvolvedor do navegador, vá até a aba Rede e rode uma tarefa — nenhuma requisição leva seu arquivo."
+        ],
+        [
+          "O branco é branco puro?",
+          "Sim. O fundo é preenchido com branco puro (#FFFFFF), que é o que a maioria das lojas e formulários pede. As bordas de cabelo e pelos são limpas para se misturarem ao branco."
+        ],
+        [
+          "Posso usar para foto de passaporte ou de documento?",
+          "Você recebe um fundo branco liso, mas cada país tem suas próprias regras de tamanho, iluminação e pose. Confira antes de imprimir; o Fizzdoc não promete aprovação oficial."
+        ],
+        [
+          "Posso escolher outra cor?",
+          "Sim. Em “Fundo” você pode trocar para qualquer cor, um desfoque do original, sua própria foto ou nenhum fundo, para um PNG transparente."
+        ],
+        [
+          "O Fizzdoc é gratuito?",
+          "Sim, e vai continuar sendo grátis: sem cadastro, sem marca d'água, sem limite diário e sem plano premium. O Fizzdoc é open source sob a licença Apache-2.0, então qualquer um pode rodar sua própria cópia."
+        ]
+      ],
+      "keywords": [
+        "colocar fundo branco em foto",
+        "fundo branco para foto",
+        "deixar fundo da foto branco",
+        "foto com fundo branco online",
+        "fundo branco para foto de produto"
+      ]
+    },
+    "blur-background": {
+      "name": "Desfocar Fundo",
+      "summary": "Mantenha o objeto nítido e suavize tudo atrás dele, como no modo retrato.",
+      "action": "Baixar imagem",
+      "title": "Desfocar Fundo de Foto Grátis — Sem Enviar Nada | Fizzdoc",
+      "description": "Desfoque o fundo de uma foto grátis e mantenha a pessoa ou o produto nítido. Roda no seu aparelho em resolução total, sem marca d'água. Nada é enviado.",
+      "h1": "Desfoque o fundo de uma foto",
+      "lede": "Escolha uma foto e o fundo fica suave enquanto a pessoa, o bichinho ou o produto continua nítido, como num retrato. A IA encontra o objeto no seu próprio aparelho e a foto mantém a resolução total.",
+      "steps": [
+        "Escolha uma foto. O objeto é encontrado e o fundo é desfocado na hora.",
+        "Retoque qualquer parte que a IA deixou passar, ou troque por uma cor ou outra foto atrás.",
+        "Escolha o tamanho e clique em “Baixar imagem”."
+      ],
+      "faq": [
+        [
+          "Meus arquivos são enviados para algum lugar?",
+          "Não. O Fizzdoc faz todo o trabalho dentro da aba do seu navegador, usando mecanismos de código aberto compilados para WebAssembly e JavaScript. Seu arquivo é lido do seu dispositivo, processado localmente, e o resultado é salvo direto de volta nele. Você pode conferir por conta própria: abra as ferramentas de desenvolvedor do navegador, vá até a aba Rede e rode uma tarefa — nenhuma requisição leva seu arquivo."
+        ],
+        [
+          "Funciona como o modo retrato?",
+          "O visual é parecido: o objeto continua nítido e o fundo fica desfocado. A ferramenta não mede a profundidade, então tudo atrás do objeto é desfocado na mesma intensidade."
+        ],
+        [
+          "A foto vai perder qualidade?",
+          "Não. A foto mantém a resolução total; só o fundo é suavizado. Você também pode salvar uma cópia menor."
+        ],
+        [
+          "Posso remover o fundo por completo?",
+          "Sim. Em “Fundo” escolha “Nenhum” para um PNG transparente, ou “Branco”, qualquer cor ou outra foto."
+        ],
+        [
+          "O Fizzdoc é gratuito?",
+          "Sim, e vai continuar sendo grátis: sem cadastro, sem marca d'água, sem limite diário e sem plano premium. O Fizzdoc é open source sob a licença Apache-2.0, então qualquer um pode rodar sua própria cópia."
+        ]
+      ],
+      "keywords": [
+        "desfocar fundo de foto",
+        "desfocar fundo online grátis",
+        "embaçar fundo da foto",
+        "efeito modo retrato em foto",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Criador de figurinhas para WhatsApp",
       "summary": "Transforme qualquer foto em figurinha: sem fundo, com contorno branco, pronta para o WhatsApp.",

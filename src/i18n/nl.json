@@ -3044,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Witte Achtergrond",
+      "summary": "Zet in één stap een strakke witte achtergrond achter elke foto.",
+      "action": "Afbeelding downloaden",
+      "title": "Achtergrond Wit Maken Gratis — Foto op Wit, Zonder Upload | Fizzdoc",
+      "description": "Maak een fotoachtergrond gratis wit, direct op je apparaat, voor webshops, profielen en formulieren. Volle resolutie, geen watermerk, niets geüpload.",
+      "h1": "Maak de achtergrond van een foto wit",
+      "lede": "Kies een foto en de achtergrond wordt vanzelf egaal wit: voor productfoto’s in webshops, profielfoto’s en formulieren. De AI draait op je eigen apparaat en de foto behoudt zijn volle resolutie.",
+      "steps": [
+        "Kies een foto. De achtergrond wordt meteen verwijderd en door wit vervangen.",
+        "Werk een plekje bij als dat nodig is, voeg een schaduw toe of snijd de foto vierkant bij voor webshops.",
+        "Kies het formaat en klik op “Afbeelding downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Is het wit echt zuiver wit?",
+          "Ja. De achtergrond wordt gevuld met zuiver wit (#FFFFFF), waar de meeste webshops en formulieren om vragen. Randen van haar en vacht worden opgeschoond, zodat ze mooi in het wit overlopen."
+        ],
+        [
+          "Kan ik het gebruiken voor een pasfoto of ID-foto?",
+          "Je krijgt een egale witte achtergrond, maar elk land heeft eigen regels voor formaat, belichting en houding. Controleer die voordat je afdrukt; Fizzdoc belooft geen officiële goedkeuring."
+        ],
+        [
+          "Kan ik ook een andere kleur kiezen?",
+          "Ja. Onder Achtergrond kun je overschakelen naar elke kleur, een vervaging van het origineel, je eigen foto of helemaal geen achtergrond voor een transparante PNG."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "achtergrond wit maken",
+        "foto achtergrond wit maken",
+        "witte achtergrond foto",
+        "productfoto witte achtergrond",
+        "witte achtergrond toevoegen"
+      ]
+    },
+    "blur-background": {
+      "name": "Achtergrond Vervagen",
+      "summary": "Houd het onderwerp scherp en maak alles erachter zacht, net als bij portretmodus.",
+      "action": "Afbeelding downloaden",
+      "title": "Achtergrond Vervagen Gratis — Volle Grootte, Zonder Upload | Fizzdoc",
+      "description": "Vervaag gratis de achtergrond van een foto en houd de persoon of het product scherp. Werkt op je apparaat in volle resolutie, zonder watermerk of upload.",
+      "h1": "Vervaag de achtergrond van een foto",
+      "lede": "Kies een foto en de achtergrond wordt zacht, terwijl de persoon, het huisdier of het product scherp blijft, net als bij een portretfoto. De AI vindt het onderwerp op je eigen apparaat en de foto behoudt zijn volle resolutie.",
+      "steps": [
+        "Kies een foto. Het onderwerp wordt gevonden en de achtergrond wordt meteen vervaagd.",
+        "Werk een plekje bij dat de AI heeft gemist, of zet er een kleur of een andere foto achter.",
+        "Kies het formaat en klik op “Afbeelding downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Werkt het zoals de portretmodus?",
+          "Het geeft een vergelijkbaar effect: het onderwerp blijft scherp en de achtergrond wordt vervaagd. Het meet geen diepte, dus alles achter het onderwerp wordt even sterk vervaagd."
+        ],
+        [
+          "Gaat de foto in kwaliteit achteruit?",
+          "Nee. De foto behoudt zijn volle resolutie; alleen de achtergrond wordt zachter gemaakt. Je kunt ook een kleinere kopie opslaan."
+        ],
+        [
+          "Kan ik de achtergrond ook helemaal verwijderen?",
+          "Ja. Kies onder Achtergrond Geen voor een transparante PNG, of Wit, elke kleur of een andere foto."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "achtergrond vervagen",
+        "foto achtergrond vervagen",
+        "achtergrond wazig maken",
+        "achtergrond blurren",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "WhatsApp-stickermaker",
       "summary": "Maak van elke foto een sticker: achtergrond weg, witte rand, klaar voor WhatsApp.",
