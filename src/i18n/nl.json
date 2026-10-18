@@ -1788,8 +1788,8 @@
       "name": "Achtergrond Verwijderen",
       "summary": "Knip een persoon, product of huisdier uit en zet er alles achter wat je wilt.",
       "action": "Afbeelding downloaden",
-      "title": "Achtergrond Verwijderen Gratis — Zonder Uploaden | Fizzdoc",
-      "description": "Verwijder de achtergrond van elke foto gratis en in volledige resolutie: transparante PNG, wit, elke kleur of je eigen foto. Er wordt niets geüpload.",
+      "title": "Achtergrond Verwijderen Gratis — Zonder Upload of Watermerk | Fizzdoc",
+      "description": "Verwijder gratis een fotoachtergrond op je apparaat: transparante PNG, wit, elke kleur of vervaging, in volle resolutie zonder watermerk. Niets wordt geüpload.",
       "h1": "Verwijder de achtergrond van elke foto",
       "lede": "Kies een foto en de achtergrond verdwijnt vanzelf. Laat hem transparant, of zet er wit, een kleur, een zachte vervaging of een andere foto achter. De AI draait op je eigen apparaat, dus je foto verlaat het nooit.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Hoe werkt het zonder uploaden?",
           "Een open-source AI-model (BiRefNet) draait in je browser, op je grafische chip als je apparaat die heeft. Het wordt één keer gedownload, ongeveer 110 MB, en werkt daarna zelfs offline. Telefoons met weinig geheugen gebruiken een kleiner model (U²-Net)."
+        ],
+        [
+          "Is er een watermerk of een limiet?",
+          "Geen watermerk, geen credits, geen account en geen dagelijkse limiet. Het resultaat wordt opgeslagen in de oorspronkelijke resolutie van je foto; alleen het geheugen van je apparaat bepaalt hoe groot een foto kan zijn."
+        ],
+        [
+          "Werkt het op een telefoon?",
+          "Ja, in elke moderne browser op je telefoon. Telefoons gebruiken een kleiner model (4.6 MB), zodat het tabblad niet zonder geheugen komt te zitten. Daardoor zijn de randen bij haar iets zachter dan op een laptop."
+        ],
+        [
+          "Hoe maak ik de achtergrond wit?",
+          "Zodra de achtergrond is verwijderd, kies je Wit onder Achtergrond en sla je op als JPG of PNG. Je kunt ook elke kleur, een vervaging van de oorspronkelijke achtergrond of een andere eigen foto kiezen."
+        ],
+        [
+          "Kan ik de achtergrond van een GIF of video verwijderen?",
+          "Ja. GIF Achtergrond Verwijderen behoudt elk beeld en de timing ervan, en Video Achtergrond Verwijderen behoudt het geluid. Beide werken ook op je eigen apparaat."
         ],
         [
           "Is Fizzdoc gratis?",
@@ -3059,9 +3075,9 @@
       "name": "Foto-editor",
       "summary": "Snijd een foto bij, draai hem, maak hem lichter en zet er tekst of emoji op, direct in je browser.",
       "action": "Foto downloaden",
-      "title": "Foto Bewerken Gratis — Bijsnijden, Tekst, Zonder Uploaden | Fizzdoc",
-      "description": "Bewerk foto's gratis in je browser: bijsnijden tot vierkant of story, draaien, spiegelen, helderheid en kleur, een filter, tekst of emoji. Niets wordt geüpload.",
-      "h1": "Bewerk een foto in je browser",
+      "title": "Gratis Foto-editor Zonder Upload — Bijsnijden, Tekst, Emoji | Fizzdoc",
+      "description": "Bewerk gratis een foto in je browser: bijsnijden tot vierkant, 4:5 of story, licht en kleur aanpassen, filter, tekst of emoji toevoegen. Geen upload of account.",
+      "h1": "Bewerk een foto online zonder hem te uploaden",
       "lede": "Snijd bij tot een vierkant of een story, draai en spiegel, pas helderheid, contrast en kleur aan, kies met één tik een filter en zet er tekst of emoji op. Alledaagse fotobewerkingen, gedaan op je eigen apparaat en opgeslagen op volle grootte.",
       "steps": [
         "Kies een foto.",
@@ -3080,6 +3096,22 @@
         [
           "Blijft de locatie van mijn telefoonfoto bewaard?",
           "Nee. De opgeslagen foto is een nieuw bestand met alleen de afbeelding erin, dus verborgen gegevens zoals de GPS-locatie, de datum en het telefoonmodel worden weggelaten."
+        ],
+        [
+          "Heb ik een account nodig?",
+          "Nee. Open de pagina, kies een foto en bewerk hem. Je hoeft je niet aan te melden, er wordt nergens iets bewaard en er is geen limiet op het aantal foto's dat je bewerkt."
+        ],
+        [
+          "Werkt het op mijn telefoon?",
+          "Ja. Op een telefoon blijft de foto bovenaan, staan de tools in een balk onderaan en kun je zijwaarts over de foto slepen om helderheid, contrast, verzadiging of warmte te veranderen."
+        ],
+        [
+          "Hoe maak ik een foto vierkant of 4:5 voor Instagram?",
+          "Open Bijsnijden en draaien, kies Vierkant of Staand 4:5 en sleep de foto om te kiezen wat er in beeld blijft. Story 9:16 en Breed 16:9 zijn er ook."
+        ],
+        [
+          "Kan ik tekst in het Hindi of andere talen toevoegen?",
+          "Ja. Typ in elke taal: de stijlen Schattig, Knus en GROOT bevatten Hindi-letters (Devanagari), en andere schriften, zoals Bengaals, Tamil of Telugu, gebruiken het eigen lettertype van je apparaat."
         ],
         [
           "Is Fizzdoc gratis?",

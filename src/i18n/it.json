@@ -1788,8 +1788,8 @@
       "name": "Rimuovi Sfondo",
       "summary": "Ritaglia una persona, un prodotto o un animale e metti quello che vuoi dietro.",
       "action": "Scarica immagine",
-      "title": "Rimuovi Sfondo da Immagine Gratis — Senza Upload | Fizzdoc",
-      "description": "Rimuovi lo sfondo da qualsiasi foto gratis e in piena risoluzione: PNG trasparente, bianco, qualsiasi colore o una tua foto. Non viene caricato nulla.",
+      "title": "Rimuovi Sfondo da Foto Gratis — Senza Upload né Filigrana | Fizzdoc",
+      "description": "Rimuovi lo sfondo da una foto gratis sul tuo dispositivo: PNG trasparente, bianco, qualsiasi colore o sfocatura, piena risoluzione, senza filigrana né upload.",
       "h1": "Rimuovi lo sfondo da qualsiasi foto",
       "lede": "Scegli una foto e lo sfondo sparisce da solo. Lascialo trasparente, oppure metti dietro il bianco, un colore, una sfocatura morbida o un’altra foto. L’IA funziona sul tuo dispositivo, quindi la tua foto non lo lascia mai.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Come funziona senza caricare nulla?",
           "Un modello di IA open source (BiRefNet) funziona dentro il tuo browser, sulla scheda grafica se il dispositivo ne ha una. Si scarica una sola volta, circa 110 MB, e poi funziona anche offline. Gli smartphone con poca memoria usano un modello più piccolo (U²-Net)."
+        ],
+        [
+          "C’è una filigrana o un limite?",
+          "Niente filigrana, niente crediti, niente registrazione e nessun limite giornaliero. Il risultato viene salvato alla risoluzione originale della tua foto; solo la memoria del tuo dispositivo limita quanto può essere grande una foto."
+        ],
+        [
+          "Funziona sul telefono?",
+          "Sì, in qualsiasi browser moderno per smartphone. Sui telefoni si usa un modello più piccolo (4.6 MB) perché la scheda non esaurisca la memoria, quindi i bordi dei capelli sono un po’ più morbidi che su un portatile."
+        ],
+        [
+          "Come faccio a rendere bianco lo sfondo?",
+          "Una volta rimosso lo sfondo, scegli “Bianco” in “Sfondo”, poi salva come JPG o PNG. Puoi anche scegliere qualsiasi colore, una sfocatura dello sfondo originale o un’altra tua foto."
+        ],
+        [
+          "Posso rimuovere lo sfondo da una GIF o da un video?",
+          "Sì. “Rimuovi Sfondo da GIF” mantiene ogni fotogramma e la sua durata, e “Rimuovi Sfondo da Video” mantiene l’audio. Entrambi funzionano anche sul tuo dispositivo."
         ],
         [
           "Fizzdoc è gratuito?",
@@ -3059,9 +3075,9 @@
       "name": "Editor Foto",
       "summary": "Ritaglia, ruota, schiarisci e aggiungi testo o emoji a una foto, direttamente nel browser.",
       "action": "Scarica foto",
-      "title": "Editor Foto Gratis Online — Ritaglia, Testo, Senza Upload | Fizzdoc",
-      "description": "Modifica foto gratis nel browser: ritaglia in quadrato o formato storia, ruota, capovolgi, regola luce e colore, aggiungi filtri, testo o emoji. Niente upload.",
-      "h1": "Modifica una foto nel browser",
+      "title": "Editor Foto Online Gratis, Senza Upload né Registrazione | Fizzdoc",
+      "description": "Modifica una foto gratis nel browser: ritaglia in quadrato, 4:5 o storia, regola luce e colore, aggiungi filtri, testo o emoji. Senza upload né registrazione.",
+      "h1": "Modifica una foto online senza caricarla",
       "lede": "Ritaglia in quadrato o per una storia, ruota e capovolgi, sistema luminosità, contrasto e colore, scegli un filtro con un tocco e aggiungi testo o emoji. Le modifiche di tutti i giorni, fatte sul tuo dispositivo e salvate a dimensione piena.",
       "steps": [
         "Scegli una foto.",
@@ -3080,6 +3096,22 @@
         [
           "La posizione della foto del mio telefono viene conservata?",
           "No. La foto salvata è un file nuovo che contiene solo l’immagine, quindi i dati nascosti come la posizione GPS, la data e il modello del telefono vengono esclusi."
+        ],
+        [
+          "Serve un account?",
+          "No. Apri la pagina, scegli una foto e modificala. Non c’è registrazione, non viene salvato nulla da nessuna parte e non c’è limite al numero di foto che modifichi."
+        ],
+        [
+          "Funziona sul mio telefono?",
+          "Sì. Sul telefono la foto resta in alto, gli strumenti stanno in una barra in basso e puoi trascinare sulla foto verso destra o sinistra per cambiare luminosità, contrasto, saturazione o calore."
+        ],
+        [
+          "Come rendo una foto quadrata o 4:5 per Instagram?",
+          "Apri “Ritaglia e ruota” e scegli “Quadrato” o “Verticale 4:5”, poi trascina la foto per scegliere cosa resta nell’inquadratura. Ci sono anche “Storia 9:16” e “Orizzontale 16:9”."
+        ],
+        [
+          "Posso aggiungere testo in hindi o in altre lingue?",
+          "Sì. Scrivi in qualsiasi lingua: gli stili “Carino”, “Accogliente” e “GRANDE” includono le lettere hindi (devanagari), e gli altri alfabeti, come bengalese, tamil o telugu, usano il font del tuo dispositivo."
         ],
         [
           "Fizzdoc è gratuito?",

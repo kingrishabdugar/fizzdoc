@@ -1788,8 +1788,8 @@
       "name": "Quitar Fondo",
       "summary": "Recorta a una persona, un producto o una mascota y pon lo que quieras detrás.",
       "action": "Descargar imagen",
-      "title": "Quitar Fondo de Imagen Gratis — Sin Subir Nada | Fizzdoc",
-      "description": "Quita el fondo de cualquier foto gratis y en resolución completa: PNG transparente, blanco, cualquier color o tu propia foto. No se sube nada.",
+      "title": "Quitar Fondo de Foto Gratis — Sin Subir, Sin Marca de Agua | Fizzdoc",
+      "description": "Quita el fondo de una foto gratis en tu dispositivo: PNG transparente, blanco, cualquier color o desenfoque, a tamaño completo, sin marca de agua. Nada se sube.",
       "h1": "Quita el fondo de cualquier foto",
       "lede": "Elige una foto y el fondo desaparece solo. Déjalo transparente, o pon detrás blanco, cualquier color, un desenfoque suave u otra foto. La IA funciona en tu propio dispositivo, así que tu foto nunca sale de él.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "¿Cómo funciona sin subir nada?",
           "Un modelo de IA de código abierto (BiRefNet) funciona dentro de tu navegador, en la tarjeta gráfica si el dispositivo la tiene. Se descarga una sola vez, unos 110 MB, y después funciona incluso sin conexión. Los móviles con poca memoria usan un modelo más pequeño (U²-Net)."
+        ],
+        [
+          "¿Hay marca de agua o algún límite?",
+          "No hay marca de agua, ni créditos, ni registro, ni límite diario. El resultado se guarda a la resolución original de tu foto; solo la memoria de tu dispositivo limita lo grande que puede ser una foto."
+        ],
+        [
+          "¿Funciona en el móvil?",
+          "Sí, en cualquier navegador de móvil moderno. Los móviles usan un modelo más pequeño (4.6 MB) para que la pestaña no se quede sin memoria, así que los bordes del pelo quedan un poco más suaves que en un portátil."
+        ],
+        [
+          "¿Cómo pongo el fondo blanco?",
+          "Cuando se haya quitado el fondo, elige «Blanco» en «Fondo» y guarda como JPG o PNG. También puedes elegir cualquier color, un desenfoque del fondo original u otra foto tuya."
+        ],
+        [
+          "¿Puedo quitar el fondo de un GIF o de un vídeo?",
+          "Sí. «Quitar Fondo de GIF» conserva cada fotograma y su duración, y «Quitar Fondo de Vídeo» conserva el sonido. Los dos funcionan también en tu dispositivo."
         ],
         [
           "¿Es gratis Fizzdoc?",
@@ -3059,9 +3075,9 @@
       "name": "Editor de Fotos",
       "summary": "Recorta, gira, aclara y añade texto o emojis a una foto, directamente en tu navegador.",
       "action": "Descargar foto",
-      "title": "Editor de Fotos Gratis — Recortar, Ajustar, Texto, Sin Subir | Fizzdoc",
-      "description": "Edita fotos gratis en tu navegador: recorta en cuadrado o tamaño historia, gira, voltea, ajusta brillo y color, añade filtros, texto o emojis. No se sube nada.",
-      "h1": "Edita una foto en tu navegador",
+      "title": "Editor de Fotos Gratis Sin Subir ni Registro: Recorte, Texto | Fizzdoc",
+      "description": "Edita fotos gratis en tu navegador: recorta en cuadrado, 4:5 o historia, ajusta luz y color, añade filtros, texto o emoji. Sin subidas ni registro, tamaño real.",
+      "h1": "Edita una foto online sin subirla",
       "lede": "Recorta en cuadrado o en formato historia, gira y voltea, ajusta el brillo, el contraste y el color, elige un filtro con un toque y añade texto o emojis. Retoques de todos los días, hechos en tu propio dispositivo y guardados a tamaño completo.",
       "steps": [
         "Elige una foto.",
@@ -3080,6 +3096,22 @@
         [
           "¿Se conserva la ubicación de la foto de mi móvil?",
           "No. La foto guardada es un archivo nuevo que solo contiene la imagen, así que los datos ocultos como la ubicación GPS, la fecha y el modelo del móvil se quedan fuera."
+        ],
+        [
+          "¿Necesito una cuenta?",
+          "No. Abre la página, elige una foto y edítala. No hay registro, no se guarda nada en ningún sitio y no hay límite de fotos que puedas editar."
+        ],
+        [
+          "¿Funciona en mi móvil?",
+          "Sí. En el móvil la foto queda arriba, las herramientas están en una barra abajo y puedes arrastrar hacia los lados sobre la foto para cambiar el brillo, el contraste, la saturación o la calidez."
+        ],
+        [
+          "¿Cómo hago una foto cuadrada o 4:5 para Instagram?",
+          "Abre «Recortar y girar» y elige «Cuadrado» o «Vertical 4:5»; luego arrastra la foto para elegir qué queda dentro del encuadre. También están «Historia 9:16» y «Horizontal 16:9»."
+        ],
+        [
+          "¿Puedo añadir texto en hindi o en otros idiomas?",
+          "Sí. Escribe en cualquier idioma: los estilos «Tierno», «Acogedor» y «GRANDE» incluyen letras del hindi (devanagari), y otras escrituras, como el bengalí, el tamil o el telugu, usan la fuente de tu propio dispositivo."
         ],
         [
           "¿Es gratis Fizzdoc?",

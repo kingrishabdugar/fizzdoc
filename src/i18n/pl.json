@@ -1788,8 +1788,8 @@
       "name": "Usuń Tło",
       "summary": "Wytnij osobę, produkt lub zwierzaka i wstaw za nim cokolwiek zechcesz.",
       "action": "Pobierz obraz",
-      "title": "Usuń Tło ze Zdjęcia za Darmo — Bez Wysyłania | Fizzdoc",
-      "description": "Usuń tło z dowolnego zdjęcia za darmo, w pełnej rozdzielczości: przezroczysty PNG, biel, dowolny kolor lub własne zdjęcie. Nic nie jest wysyłane.",
+      "title": "Usuń Tło ze Zdjęcia za Darmo — Bez Wysyłania i Znaku Wodnego | Fizzdoc",
+      "description": "Usuń tło ze zdjęcia za darmo na swoim urządzeniu: przezroczysty PNG, biel, dowolny kolor lub rozmycie, pełna rozdzielczość, bez znaku wodnego. Bez wysyłania.",
       "h1": "Usuń tło z dowolnego zdjęcia",
       "lede": "Wybierz zdjęcie, a tło zniknie samo. Zostaw je przezroczyste albo wstaw za nim biel, dowolny kolor, delikatne rozmycie lub inne zdjęcie. Sztuczna inteligencja działa na Twoim urządzeniu, więc zdjęcie nigdy go nie opuszcza.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Jak to działa bez wysyłania?",
           "Otwartoźródłowy model AI (BiRefNet) działa w Twojej przeglądarce, na układzie graficznym, jeśli urządzenie go ma. Pobiera się raz, około 110 MB, a potem działa nawet bez internetu. Telefony z małą ilością pamięci używają mniejszego modelu (U²-Net)."
+        ],
+        [
+          "Czy jest znak wodny albo limit?",
+          "Nie ma znaku wodnego, kredytów, rejestracji ani dziennego limitu. Wynik zapisuje się w oryginalnej rozdzielczości zdjęcia; tylko pamięć urządzenia ogranicza, jak duże może być zdjęcie."
+        ],
+        [
+          "Czy to działa na telefonie?",
+          "Tak, w każdej nowoczesnej przeglądarce na telefonie. Telefony używają mniejszego modelu (4.6 MB), żeby karcie nie zabrakło pamięci, więc krawędzie włosów są nieco bardziej miękkie niż na laptopie."
+        ],
+        [
+          "Jak zrobić białe tło?",
+          "Po usunięciu tła wybierz „Białe” w sekcji „Tło”, a potem zapisz jako JPG lub PNG. Możesz też wybrać dowolny kolor, rozmycie oryginalnego tła albo inne własne zdjęcie."
+        ],
+        [
+          "Czy mogę usunąć tło z GIF-a lub filmu?",
+          "Tak. „Usuń Tło z GIF-a” zachowuje każdą klatkę i jej czas wyświetlania, a „Usuń Tło z Filmu” zachowuje dźwięk. Oba narzędzia również działają na Twoim urządzeniu."
         ],
         [
           "Czy Fizzdoc jest darmowy?",
@@ -3059,9 +3075,9 @@
       "name": "Edytor zdjęć",
       "summary": "Przytnij, obróć i rozjaśnij zdjęcie oraz dodaj do niego napis lub emoji, prosto w przeglądarce.",
       "action": "Pobierz zdjęcie",
-      "title": "Edytor Zdjęć za Darmo — Kadruj, Dodaj Tekst, Bez Wysyłania | Fizzdoc",
-      "description": "Edytuj zdjęcia za darmo w przeglądarce: kadruj do kwadratu lub relacji, obracaj, odbijaj, popraw jasność i kolor, dodaj filtr, tekst lub emoji. Bez wysyłania.",
-      "h1": "Edytuj zdjęcie w przeglądarce",
+      "title": "Edytor Zdjęć za Darmo, Bez Wysyłania — Kadruj, Tekst, Emoji | Fizzdoc",
+      "description": "Edytuj zdjęcie za darmo w przeglądarce: kadruj do kwadratu, 4:5 lub relacji, popraw światło i kolor, dodaj filtr, tekst lub emoji. Bez wysyłania i rejestracji.",
+      "h1": "Edytuj zdjęcie online bez wysyłania go",
       "lede": "Wykadruj do kwadratu lub relacji, obróć i odbij, popraw jasność, kontrast i kolor, wybierz filtr jednym dotknięciem i dodaj napis lub emoji. Codzienna edycja zdjęć na Twoim własnym urządzeniu, zapisywana w pełnym rozmiarze.",
       "steps": [
         "Wybierz zdjęcie.",
@@ -3080,6 +3096,22 @@
         [
           "Czy lokalizacja ze zdjęcia z telefonu zostaje zachowana?",
           "Nie. Zapisane zdjęcie to nowy plik, w którym jest tylko sam obraz, więc ukryte dane, takie jak lokalizacja GPS, data i model telefonu, są pomijane."
+        ],
+        [
+          "Czy potrzebuję konta?",
+          "Nie. Otwórz stronę, wybierz zdjęcie i edytuj je. Nie ma rejestracji, nic nie jest nigdzie zapisywane i nie ma limitu liczby edytowanych zdjęć."
+        ],
+        [
+          "Czy to działa na moim telefonie?",
+          "Tak. Na telefonie zdjęcie zostaje u góry, narzędzia są na pasku na dole, a przeciągając w bok po zdjęciu, zmienisz jasność, kontrast, nasycenie lub ciepło."
+        ],
+        [
+          "Jak zrobić zdjęcie kwadratowe lub 4:5 na Instagram?",
+          "Otwórz „Kadrowanie i obrót” i wybierz „Kwadrat” lub „Pionowy 4:5”, a potem przeciągnij zdjęcie, aby wybrać, co zostanie w kadrze. Są też „Relacja 9:16” i „Szeroki 16:9”."
+        ],
+        [
+          "Czy mogę dodać tekst po hindi lub w innych językach?",
+          "Tak. Pisz w dowolnym języku: style „Uroczy”, „Przytulny” i „DUŻY” zawierają litery hindi (dewanagari), a inne pisma, na przykład bengalskie, tamilskie czy telugu, korzystają z wbudowanej czcionki Twojego urządzenia."
         ],
         [
           "Czy Fizzdoc jest darmowy?",

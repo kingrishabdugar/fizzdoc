@@ -483,7 +483,11 @@ ${proofHtml(c)}
 ${faqHtml(c, home.faq)}`;
   }
   const tool = c.tool(page.tool);
-  const related = [...TOOLS.filter((t) => t.slug !== tool.slug && t.format === tool.format), ...TOOLS.filter((t) => t.format !== tool.format)].slice(0, 8);
+  // Photo tools point to each other first; then the same kind of file, then everything else.
+  const photo = PHOTO_TOOLS.includes(tool.slug) ? PHOTO_TOOLS.map((slug) => TOOLS.find((t) => t.slug === slug)!) : [];
+  const related = [...new Set([...photo, ...TOOLS.filter((t) => t.format === tool.format), ...TOOLS.filter((t) => t.format !== tool.format)])]
+    .filter((t) => t.slug !== tool.slug)
+    .slice(0, 8);
   return `
 <nav class="crumbs" aria-label="${esc(c.t('crumbs.label'))}"><a href="${c.link()}">${SITE.name}</a><span aria-hidden="true">/</span><a href="${c.link()}#${tool.format}">${esc(c.t('group.title', { format: c.t(`format.${tool.format}`) }))}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(tool.name)}</span></nav>
 <section class="hero hero-tool">
@@ -550,9 +554,13 @@ function examplesHtml(c: Copy, tool: Tool) {
 // English "How to" headings: a name that starts with a verb reads on ("How to merge PDF"), "X to Y"
 // names are conversions ("How to convert PDF to JPG"), and the rest are used ("How to use OCR PDF").
 const VERB = /^(Add|Compress|Convert|Cut|Delete|Edit|Extract|Merge|Protect|Redact|Remove|Reorder|Resize|Rotate|Split|Unlock|Watermark) /;
+/** Names that keep their capital in a sentence ("How to remove Word metadata"). */
+const PROPER = new Set(['Word', 'Excel', 'PowerPoint', 'Markdown', 'Mermaid', 'WhatsApp', 'Aadhaar']);
+/** The photo tools, linked to each other first under "More tools". */
+const PHOTO_TOOLS = ['photo-editor', 'remove-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image', 'remove-gif-background', 'remove-video-background'];
 const howTo = (c: Copy, tool: Tool) => {
   if (c.lang !== 'en') return c.t('tool.how', { tool: tool.name });
-  if (VERB.test(tool.name)) return `How to ${tool.name[0].toLowerCase()}${tool.name.slice(1)}`;
+  if (VERB.test(tool.name)) return `How to ${tool.name.replace(/\b[A-Z][a-z]+\b/g, (word) => (PROPER.has(word) ? word : word.toLowerCase()))}`;
   return / to /.test(tool.name) ? `How to convert ${tool.name}` : `How to use ${tool.name}`;
 };
 
@@ -592,7 +600,7 @@ function jsonLd(c: Copy, page: Page) {
     name: tool ? `${SITE.name} ${tool.name}` : SITE.name,
     url,
     description: tool ? tool.description : c.home.description,
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: tool?.format === 'image' ? 'MultimediaApplication' : 'UtilitiesApplication',
     operatingSystem: 'Any',
     browserRequirements: 'Requires JavaScript and WebAssembly',
     isAccessibleForFree: true,
@@ -891,6 +899,14 @@ ${HOME.what}
 - Website: ${SITE.url}/
 - Source code: ${SITE.repo} (open source, Apache-2.0; issues and pull requests welcome)
 - Made by: Rishab Dugar
+
+## Quick answers
+
+- **How do I remove the background from a photo without uploading it?** Open ${SITE.url}/remove-background/ and choose the photo. An AI model (BiRefNet) runs in the browser on the device, removes the background at the photo's full resolution, and saves a clear PNG, or white, any colour, a blur or another photo behind it. Free, no watermark, no sign-up, works offline after the first run.
+- **How do I make a photo's background white?** Same page: after the background is removed, pick White under Background and save as JPG or PNG.
+- **Can I remove the background from a GIF or a video?** Yes: ${SITE.url}/remove-gif-background/ keeps every frame and its timing; ${SITE.url}/remove-video-background/ keeps the sound.
+- **Is there a free photo editor that doesn't upload my photo?** ${SITE.url}/photo-editor/ crops to square, 4:5, 16:9 or story size, turns and flips, sets brightness, contrast, saturation and warmth, adds one-tap looks, text and emoji, and saves at full size, all on the device, with no sign-up.
+- **How do I make a WhatsApp sticker from a photo?** ${SITE.url}/whatsapp-sticker-maker/ removes the background, adds a white outline, text and emoji, and saves a 512×512 WebP under 100 KB; WhatsApp's own "Create sticker" then adds it to the sticker tray.
 
 ## Why Fizzdoc instead of other online file tools
 

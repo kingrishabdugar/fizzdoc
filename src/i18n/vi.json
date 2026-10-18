@@ -1788,8 +1788,8 @@
       "name": "Xóa Nền Ảnh",
       "summary": "Tách một người, sản phẩm hay thú cưng ra khỏi ảnh và đặt bất cứ thứ gì phía sau.",
       "action": "Tải ảnh xuống",
-      "title": "Xóa Nền Ảnh Miễn Phí — Không Cần Tải Lên | Fizzdoc",
-      "description": "Xóa nền của mọi bức ảnh miễn phí, giữ nguyên độ phân giải: PNG trong suốt, nền trắng, màu bất kỳ hoặc ảnh của bạn. Không có gì bị tải lên.",
+      "title": "Xóa Nền Ảnh Miễn Phí — Không Cần Tải Lên, Không Watermark | Fizzdoc",
+      "description": "Xóa nền ảnh miễn phí ngay trên thiết bị: PNG trong suốt, nền trắng, màu bất kỳ hoặc làm mờ, giữ nguyên độ phân giải, không watermark. Ảnh không hề bị tải lên.",
       "h1": "Xóa nền của mọi bức ảnh",
       "lede": "Chọn một bức ảnh và nền tự biến mất. Giữ trong suốt, hoặc đặt phía sau màu trắng, một màu bất kỳ, hiệu ứng mờ nhẹ hay một ảnh khác. AI chạy ngay trên thiết bị của bạn, nên ảnh không bao giờ rời khỏi máy.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Không tải lên thì nó hoạt động thế nào?",
           "Một mô hình AI mã nguồn mở (BiRefNet) chạy ngay trong trình duyệt của bạn, trên chip đồ họa nếu thiết bị có. Mô hình tải một lần, khoảng 110 MB, sau đó dùng được cả khi không có mạng. Điện thoại ít bộ nhớ dùng mô hình nhỏ hơn (U²-Net)."
+        ],
+        [
+          "Có watermark hay giới hạn nào không?",
+          "Không watermark, không tốn credit, không cần đăng ký và không giới hạn hằng ngày. Kết quả được lưu ở đúng độ phân giải của ảnh gốc; chỉ bộ nhớ của thiết bị mới giới hạn kích thước ảnh tối đa."
+        ],
+        [
+          "Có dùng được trên điện thoại không?",
+          "Có, trên mọi trình duyệt điện thoại hiện đại. Điện thoại dùng mô hình nhỏ hơn (4.6 MB) để tab không bị hết bộ nhớ, nên viền tóc hơi mềm hơn so với trên laptop."
+        ],
+        [
+          "Làm sao để nền thành màu trắng?",
+          "Sau khi xóa nền, chọn “Trắng” trong mục “Nền”, rồi lưu thành JPG hoặc PNG. Bạn cũng có thể chọn màu bất kỳ, nền gốc được làm mờ, hoặc một ảnh khác của bạn."
+        ],
+        [
+          "Tôi có thể xóa nền GIF hoặc video không?",
+          "Có. “Xóa Nền GIF” giữ nguyên mọi khung hình cùng thời gian hiển thị của chúng, còn “Xóa Nền Video” giữ nguyên âm thanh. Cả hai cũng chạy trên thiết bị của bạn."
         ],
         [
           "Fizzdoc có miễn phí không?",
@@ -3059,9 +3075,9 @@
       "name": "Chỉnh sửa ảnh",
       "summary": "Cắt, xoay, làm sáng và thêm chữ hoặc biểu tượng cảm xúc vào ảnh, ngay trong trình duyệt.",
       "action": "Tải ảnh xuống",
-      "title": "Chỉnh Sửa Ảnh Miễn Phí — Cắt, Thêm Chữ, Không Tải Lên | Fizzdoc",
-      "description": "Chỉnh ảnh miễn phí ngay trong trình duyệt: cắt vuông hoặc khung story, xoay, lật, chỉnh độ sáng và màu, thêm bộ lọc, chữ hoặc emoji. Không tải lên gì cả.",
-      "h1": "Chỉnh sửa ảnh ngay trong trình duyệt",
+      "title": "Chỉnh Sửa Ảnh Miễn Phí, Không Tải Lên — Cắt, Thêm Chữ, Emoji | Fizzdoc",
+      "description": "Chỉnh ảnh miễn phí trong trình duyệt: cắt vuông, 4:5 hoặc khung story, chỉnh ánh sáng và màu, thêm bộ lọc, chữ hoặc emoji. Không tải lên, không cần đăng ký.",
+      "h1": "Chỉnh sửa ảnh online mà không cần tải lên",
       "lede": "Cắt ảnh vuông hoặc khung story, xoay và lật, chỉnh độ sáng, độ tương phản và màu sắc, chọn bộ lọc chỉ với một chạm, rồi thêm chữ hoặc biểu tượng cảm xúc. Những chỉnh sửa ảnh hằng ngày, làm ngay trên thiết bị của bạn, lưu với kích thước đầy đủ.",
       "steps": [
         "Chọn một bức ảnh.",
@@ -3080,6 +3096,22 @@
         [
           "Vị trí trong ảnh chụp bằng điện thoại có được giữ lại không?",
           "Không. Ảnh được lưu là một tệp mới chỉ chứa hình ảnh, nên các thông tin ẩn như vị trí GPS, ngày tháng và mẫu điện thoại đều được bỏ đi."
+        ],
+        [
+          "Tôi có cần tài khoản không?",
+          "Không. Mở trang, chọn ảnh và chỉnh sửa. Không cần đăng ký, không có gì được lưu ở bất kỳ đâu, và không giới hạn số ảnh bạn chỉnh."
+        ],
+        [
+          "Có dùng được trên điện thoại của tôi không?",
+          "Có. Trên điện thoại, ảnh nằm ở phía trên, các công cụ nằm trên một thanh ở dưới cùng, và bạn có thể kéo ngang trên ảnh để đổi độ sáng, độ tương phản, độ bão hòa hoặc độ ấm."
+        ],
+        [
+          "Làm sao để cắt ảnh vuông hoặc 4:5 cho Instagram?",
+          "Mở “Cắt và xoay” rồi chọn “Vuông” hoặc “Dọc 4:5”, sau đó kéo ảnh để chọn phần được giữ lại trong khung. Còn có cả “Story 9:16” và “Ngang 16:9”."
+        ],
+        [
+          "Tôi có thể thêm chữ tiếng Hindi hoặc ngôn ngữ khác không?",
+          "Có. Gõ bằng bất kỳ ngôn ngữ nào: các kiểu “Dễ thương”, “Ấm áp” và “TO” đều có chữ Hindi (Devanagari), còn các hệ chữ khác như Bengal, Tamil hay Telugu sẽ dùng phông chữ có sẵn trên thiết bị của bạn."
         ],
         [
           "Fizzdoc có miễn phí không?",
