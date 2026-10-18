@@ -175,6 +175,7 @@
     "error.PROCESSING_FAILED": "Bei der Verarbeitung ist etwas schiefgelaufen. Ihre Originaldatei ist unverändert.",
     "offline.needed": "Du bist offline, und dieses Werkzeug ist noch nicht auf diesem Gerät. Es braucht einmal Internet: Verbinde dich und versuche es erneut.",
     "offline.ready": "Bereit: Dieses Werkzeug funktioniert jetzt auf diesem Gerät auch bei ausgeschaltetem WLAN oder mobilen Daten.",
+    "offline.badge": "Funktioniert offline",
     "offline.install": "Fizzdoc installieren",
     "offline.iosSteps": "Um Fizzdoc auf iPhone oder iPad zu installieren, tippe auf „Teilen“ und dann auf „Zum Home-Bildschirm“.",
     "error.NO_PASSWORD": "Geben Sie das Passwort ein, das Sie hinzufügen möchten.",

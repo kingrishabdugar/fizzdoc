@@ -175,6 +175,7 @@
     "error.PROCESSING_FAILED": "Qualcosa è andato storto durante l'elaborazione. Il tuo file originale non è stato cambiato.",
     "offline.needed": "Sei offline e questo strumento non è ancora su questo dispositivo. Serve internet una volta: connettiti e riprova.",
     "offline.ready": "Pronto: questo strumento ora funziona su questo dispositivo anche con Wi-Fi o dati mobili spenti.",
+    "offline.badge": "Funziona offline",
     "offline.install": "Installa Fizzdoc",
     "offline.iosSteps": "Per installare Fizzdoc su iPhone o iPad, tocca il pulsante Condividi e poi “Aggiungi alla schermata Home”.",
     "error.NO_PASSWORD": "Digita la password che vuoi aggiungere.",

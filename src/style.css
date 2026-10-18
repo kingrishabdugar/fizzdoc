@@ -2083,3 +2083,9 @@ dialog p {
     bottom: auto;
   }
 }
+
+/* "Works offline" next to the tool page's promise line, once the tool has run on this device. */
+.offline-badge {
+  color: light-dark(#15803d, #4ade80);
+  font-weight: 600;
+}

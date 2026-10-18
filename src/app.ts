@@ -566,7 +566,19 @@ function setUp(op: ToolOp) {
       return; // storage blocked: skip the note rather than repeat it every time
     }
     warnings.append(Object.assign(document.createElement('li'), { textContent: t('offline.ready') }));
+    showOfflineBadge();
   }
+  /** "Works offline" under the tool's name, once that first run has happened on this device. */
+  function showOfflineBadge() {
+    const badge = $('offline-badge');
+    try {
+      if (badge) badge.hidden = !(navigator.serviceWorker?.controller && localStorage.getItem(`fizzdoc-offline-${op}`));
+    } catch {
+      // storage blocked: no badge
+    }
+  }
+  showOfflineBadge();
+  navigator.serviceWorker?.addEventListener('controllerchange', showOfflineBadge);
 
   // Local jobs can't be interrupted mid-way, so Cancel lets go of them and ignores their result.
   let localJob = 0;

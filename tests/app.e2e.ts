@@ -80,6 +80,16 @@ test('merges two PDFs locally without sending any file data', async ({ page, bas
 
 test('works with the internet off: a page opened before loads again and its tool runs', async ({ browser, baseURL }) => {
   const context = await browser.newContext({ serviceWorkers: 'allow' });
+  const first = await context.newPage();
+  await first.goto('/rotate-pdf/');
+  await expect(first.locator('#offline-badge')).toBeHidden();
+  // On the very first visit the worker takes charge, so the first run already says the tool works offline.
+  await expect.poll(() => first.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+  await first.locator('#file-input').setInputFiles(fixture('form'));
+  await first.getByRole('button', { name: 'Rotate pages' }).click();
+  await expect(first.locator('#warnings')).toContainText('Ready: this tool now works on this device');
+  await expect(first.locator('#offline-badge')).toBeVisible();
+  await first.close();
   const requests: string[] = [];
   context.on('request', (r) => requests.push(r.url())); // includes the service worker's own requests
   const page = await context.newPage();
@@ -94,6 +104,9 @@ test('works with the internet off: a page opened before loads again and its tool
   await expect(page.locator('#status')).toContainText('Done — 6 pages');
   expect((await downloadBytes(page)).bytes.subarray(0, 5).toString()).toBe('%PDF-');
   await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device with Wi-Fi or mobile data turned off.');
+  await expect(page.locator('#offline-badge')).toHaveText(' · ✓ Works offline');
+  await page.reload();
+  await expect(page.locator('#offline-badge')).toBeVisible();
 
   // A page never opened says so plainly, in its own language, with a link home.
   await page.goto('/split-pdf/');
