@@ -1613,7 +1613,8 @@ test('photo editor: crops to a square, turns, applies a look and adds text, then
   await expect(page.getByRole('tab', { name: 'Crop and turn' })).toHaveAttribute('aria-selected', 'true');
   await page.getByRole('button', { name: 'Square' }).click();
   await expect(page.getByRole('button', { name: 'Square' })).toHaveAttribute('aria-pressed', 'true');
-  // A quarter turn to the right puts the red half on top.
+  // Flipped sideways the blue half is on the left; a quarter turn to the right then puts it on top.
+  await page.getByRole('button', { name: 'Flip sideways' }).click();
   await page.getByRole('button', { name: 'Turn right' }).click();
   // Light: a sideways drag on the photo changes the chosen slider (brightness); the ruler says so.
   await page.getByRole('tab', { name: 'Light and colour' }).click();
@@ -1648,12 +1649,13 @@ test('photo editor: crops to a square, turns, applies a look and adds text, then
     return { size: [bitmap.width, bitmap.height], top: at(300, 60), bottom: at(300, 300) };
   }, [...saved.bytes]);
   expect(look.size).toEqual([600, 600]);
-  // Black and white: grey everywhere; red (top) and blue (bottom) become different greys.
+  // Black and white: grey everywhere.
   for (const [r, g, b] of [look.top, look.bottom]) {
     expect(Math.abs(r - g)).toBeLessThan(3);
     expect(Math.abs(g - b)).toBeLessThan(3);
   }
-  expect(Math.abs(look.top[0] - look.bottom[0])).toBeGreaterThan(5);
+  // Blue turns a darker grey than red, so blue on top means the turn went the way the button says.
+  expect(look.bottom[0] - look.top[0]).toBeGreaterThan(5);
   expect(seen.violations).toEqual([]);
 });
 

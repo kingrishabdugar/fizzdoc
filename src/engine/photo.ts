@@ -82,9 +82,9 @@ export function fit(w: number, h: number, max = Infinity, maxArea = 16_777_216):
  */
 export function frame(w: number, h: number, ratio: number, zoom: number, cx: number, cy: number): [number, number, number, number] {
   const shape = ratio || w / h;
-  const fw = Math.min(w, h * shape) / zoom;
-  const fh = fw / shape;
-  const x = Math.min(w - fw, Math.max(0, cx * w - fw / 2));
-  const y = Math.min(h - fh, Math.max(0, cy * h - fh / 2));
-  return [Math.round(x), Math.round(y), Math.round(fw), Math.round(fh)];
+  const fw = Math.max(1, Math.round(Math.min(w, h * shape) / zoom));
+  const fh = Math.max(1, Math.min(h, Math.round(fw / shape)));
+  const x = Math.min(w - fw, Math.max(0, Math.round(cx * w - fw / 2)));
+  const y = Math.min(h - fh, Math.max(0, Math.round(cy * h - fh / 2)));
+  return [x, y, fw, fh];
 }

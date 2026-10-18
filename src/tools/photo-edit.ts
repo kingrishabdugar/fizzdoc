@@ -6,6 +6,7 @@ import './remove-bg.css';
 import './photo-edit.css';
 import { FILTERS, NONE, adjustPixels, combine, fit, frame, turned, type Adjust, type Filter } from '../engine/photo';
 import type { Output } from '../engine/local';
+import { stickerText } from './sticker-text';
 import { t, type UiKey } from '../i18n';
 
 export interface PhotoEditor {
@@ -72,7 +73,9 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     const [tw, th] = turned(photo.width, photo.height, state.turns);
     return { tw, th, box: frame(tw, th, SHAPES[state.shape], state.zoom, state.cx, state.cy) };
   };
-  const number = new Intl.NumberFormat(document.documentElement.lang || undefined, { signDisplay: 'exceptZero' });
+  const lang = document.documentElement.lang || undefined;
+  const number = new Intl.NumberFormat(lang, { signDisplay: 'exceptZero' });
+  const decimal = new Intl.NumberFormat(lang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   viewer.classList.add('bg-editor', 'pe-editor');
   const stage = element('div', 'bg-stage');
@@ -80,19 +83,18 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   canvas.setAttribute('role', 'img');
   canvas.setAttribute('aria-label', t('pe.preview'));
   stage.append(canvas);
-  let text: ReturnType<typeof import('./sticker-text').stickerText> | undefined;
+  let text: ReturnType<typeof stickerText> | undefined;
   let original = false;
 
-  /** Draws the edited photo onto `target` with its longest side at most `longest` px. `plain` skips colour and text. */
-  const paint = (target: HTMLCanvasElement | OffscreenCanvas, longest: number, plain = false, fill?: string) => {
+  /**
+   * Draws the edited photo onto `target` with its longest side at most `longest` px (and its area at most
+   * `maxArea`). `plain` skips colour and text; `fill` paints behind see-through parts.
+   */
+  const paint = (target: HTMLCanvasElement | OffscreenCanvas, longest: number, plain = false, fill?: string, maxArea?: number) => {
     const { tw, th, box } = kept();
     const [x, y, w, h] = box;
-    [target.width, target.height] = fit(w, h, longest);
+    [target.width, target.height] = fit(w, h, longest, maxArea);
     const context = target.getContext('2d') as CanvasRenderingContext2D;
-    if (fill) {
-      context.fillStyle = fill;
-      context.fillRect(0, 0, target.width, target.height);
-    }
     const s = target.width / w;
     // Flip on screen, then turn, then draw the photo centred: the frame picks the kept part.
     context.setTransform(s, 0, 0, s, -x * s, -y * s);
@@ -101,15 +103,21 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     context.rotate((state.turns * Math.PI) / 2);
     context.drawImage(photo, -photo.width / 2, -photo.height / 2);
     context.setTransform(1, 0, 0, 1, 0, 0);
-    if (plain) return;
     const adjust = combine(FILTERS[state.look], state.own);
-    if (Object.values(adjust).some(Boolean)) {
+    if (!plain && Object.values(adjust).some(Boolean)) {
       const pixels = context.getImageData(0, 0, target.width, target.height);
       adjustPixels(pixels.data, adjust);
       context.putImageData(pixels, 0, 0);
     }
+    if (fill) {
+      // Behind the photo, after the colour changes, so a white background stays white.
+      context.globalCompositeOperation = 'destination-over';
+      context.fillStyle = fill;
+      context.fillRect(0, 0, target.width, target.height);
+      context.globalCompositeOperation = 'source-over';
+    }
     // The text's selection box only shows while the Text tab is open.
-    text?.draw(context, target.width, target.height, target === canvas && tab === 'text');
+    if (!plain) text?.draw(context, target.width, target.height, target === canvas && tab === 'text');
   };
   // Sliders fire fast: draw at most once a frame.
   let queued = false;
@@ -122,7 +130,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     });
   };
 
-  const row = (label: string, className = 'bg-tools') => {
+  const row = (label: string, className: string) => {
     const node = element('div', className);
     node.setAttribute('role', 'group');
     node.setAttribute('aria-label', label);
@@ -158,7 +166,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
 
   // ---- Top bar: hold to compare, and save ----
   const top = element('div', 'pe-top');
-  const compare = iconButton('compare', t('bg.compare'), 'bg-btn pe-compare');
+  const compare = iconButton('compare', t('bg.compare'), 'bg-btn bg-compare pe-compare');
   const save = iconButton('save', t('ws.download'), 'pe-save');
   save.onclick = () => document.getElementById('run')?.click(); // the page's own save, with its progress and result
   top.append(compare, save);
@@ -233,7 +241,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     return node;
   });
   shapeRow.append(...shapeButtons);
-  const zoom = slider(t('pe.zoom'), 1, 3, 0.05, (v) => `${v.toFixed(1)}×`, (value) => {
+  const zoom = slider(t('pe.zoom'), 1, 3, 0.05, (v) => `${decimal.format(v)}×`, (value) => {
     state.zoom = value;
     sync();
   });
@@ -248,9 +256,21 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     };
     return node;
   };
-  const flipH = turnButton('pe.flipH', () => (state.flipX = !state.flipX));
-  const flipV = turnButton('pe.flipV', () => (state.flipY = !state.flipY));
-  turnRow.append(turnButton('pe.left', () => (state.turns = (state.turns + 3) % 4)), turnButton('pe.right', () => (state.turns = (state.turns + 1) % 4)), flipH, flipV);
+  const flipH = turnButton('pe.flipH', () => {
+    state.flipX = !state.flipX;
+    state.cx = 1 - state.cx;
+  });
+  const flipV = turnButton('pe.flipV', () => {
+    state.flipY = !state.flipY;
+    state.cy = 1 - state.cy;
+  });
+  // The photo is flipped after it is turned, so with one flip on, a turn goes the other way inside.
+  const turn = (right: boolean) => {
+    const mirrored = state.flipX !== state.flipY;
+    state.turns = (state.turns + (right !== mirrored ? 1 : 3)) % 4;
+    [state.cx, state.cy] = right ? [1 - state.cy, state.cx] : [state.cy, 1 - state.cx];
+  };
+  turnRow.append(turnButton('pe.left', () => turn(false)), turnButton('pe.right', () => turn(true)), flipH, flipV);
   const sizeSelect = element('select');
   sizeSelect.setAttribute('aria-label', t('bg.size'));
   const sizeLabel = element('label', 'pe-size', t('bg.size'));
@@ -279,7 +299,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
       draw();
     }),
   );
-  panels.light.append(chipRow, ...sliders.map((s) => s.wrap), element('p', 'bg-hint pe-swipe-hint', t('pe.swipeHint')));
+  panels.light.append(chipRow, ...sliders.map((s) => s.wrap), element('p', 'bg-hint', t('pe.swipeHint')));
 
   /** Reflects the state in the controls and redraws. */
   function sync() {
@@ -296,12 +316,16 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     const movable = state.shape !== 'original' || state.zoom > 1;
     dragHint.hidden = !movable;
     canvas.classList.toggle('pe-movable', movable);
-    // Sizes follow the kept part of the photo.
-    const [, , w, h] = kept().box;
+    canvas.tabIndex = movable ? 0 : -1; // arrow keys move the frame too
+    // The centre the frame really has (it stops at the photo's edges), so the next drag starts from there.
+    const { tw, th, box } = kept();
+    const [bx, by, w, h] = box;
+    state.cx = (bx + w / 2) / tw;
+    state.cy = (by + h / 2) / th;
     const picked = sizeSelect.value || '100';
     sizeSelect.replaceChildren(
       ...SIZES.map((pct) => {
-        const [sw, sh] = fit(w, h, Math.round((Math.max(w, h) * pct) / 100));
+        const [sw, sh] = fit(w, h, Math.round((Math.max(w, h) * pct) / 100), Infinity);
         return new Option(t(pct === 100 ? 'bg.original' : 'bg.widthOption', { w: sw, h: sh }), String(pct));
       }),
     );
@@ -310,17 +334,17 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   }
 
   // ---- Dragging on the photo: Crop moves the photo in the frame, Light changes the chosen slider, Text moves words ----
-  let drag: { x: number; y: number; cx: number; cy: number; value: number } | undefined;
+  let drag: { id: number; x: number; y: number; cx: number; cy: number; value: number } | undefined;
   const clamp = (value: number, half: number) => Math.min(1 - half, Math.max(half, value));
   const startDrag = (event: PointerEvent) => {
-    if (event.defaultPrevented || event.button !== 0) return; // a text layer took it
+    if (drag || event.defaultPrevented || event.button !== 0) return; // one finger at a time; a text layer took it
     if (tab === 'crop' ? !canvas.classList.contains('pe-movable') : tab !== 'light') return;
     event.preventDefault();
     canvas.setPointerCapture(event.pointerId);
-    drag = { x: event.clientX, y: event.clientY, cx: state.cx, cy: state.cy, value: state.own[chosen] };
+    drag = { id: event.pointerId, x: event.clientX, y: event.clientY, cx: state.cx, cy: state.cy, value: state.own[chosen] };
   };
   canvas.addEventListener('pointermove', (event) => {
-    if (!drag) return;
+    if (event.pointerId !== drag?.id) return;
     const rect = canvas.getBoundingClientRect();
     if (tab === 'light') {
       // The photo's full width is the whole range, -100 to +100.
@@ -335,7 +359,20 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     }
     draw();
   });
-  for (const type of ['pointerup', 'pointercancel']) canvas.addEventListener(type, () => (drag = undefined));
+  for (const type of ['pointerup', 'pointercancel'] as const)
+    canvas.addEventListener(type, (event) => {
+      if (event.pointerId === drag?.id) drag = undefined;
+    });
+  // Without a pointer: arrow keys move the frame (Shift for bigger steps).
+  canvas.addEventListener('keydown', (event) => {
+    const step = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    if (!step || !canvas.classList.contains('pe-movable')) return;
+    event.preventDefault();
+    const by = event.shiftKey ? 0.1 : 0.02;
+    state.cx += step[0] * by;
+    state.cy += step[1] * by;
+    sync();
+  });
 
   // ---- Hold to see the original ----
   const showOriginal = (on: boolean) => {
@@ -351,7 +388,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   compare.addEventListener('keyup', () => showOriginal(false));
 
   // The text layers come from the Sticker Maker; registered first, so a touch on a layer moves the layer.
-  text = (await import('./sticker-text')).stickerText(canvas, draw, () => tab !== 'text');
+  text = stickerText(canvas, draw, () => tab !== 'text');
   panels.text.append(text.panel);
   canvas.addEventListener('pointerdown', startDrag);
   viewer.replaceChildren(top, stage, tabList, ...TABS.map((key) => panels[key]));
@@ -365,18 +402,24 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
       await document.fonts.ready;
       const [, , w, h] = kept().box;
       const format = options.format === 'png' ? 'png' : options.format === 'webp' ? 'webp' : 'jpg';
-      const out = new OffscreenCanvas(1, 1);
+      const longest = Math.round((Math.max(w, h) * Number(sizeSelect.value)) / 100);
+      const type = format === 'jpg' ? 'image/jpeg' : `image/${format}`;
       // JPG has no see-through pixels: a clear part of the photo becomes white instead of black.
-      paint(out, Math.round((Math.max(w, h) * Number(sizeSelect.value)) / 100), false, format === 'jpg' ? '#ffffff' : undefined);
-      const blob = await out.convertToBlob({ type: format === 'jpg' ? 'image/jpeg' : `image/${format}`, quality: 0.92 });
-      return {
-        blob,
-        name: `${file.name.replace(/\.[^.]+$/, '')}-edited.${format}`,
-        summary: `${out.width} × ${out.height} px · ${Math.max(1, Math.round(blob.size / 1024))} KB`,
+      const render = async (maxArea?: number) => {
+        const out = new OffscreenCanvas(1, 1);
+        paint(out, longest, false, format === 'jpg' ? '#ffffff' : undefined, maxArea);
+        return { out, blob: await out.convertToBlob({ type, quality: 0.92 }) };
       };
+      // Full size first; a phone that can't make a canvas that big (about 16.7 million pixels on iPhone) gets the largest it can.
+      const { out, blob } = await render(Infinity).catch(() => render());
+      const ext = ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' } as Record<string, string>)[blob.type] ?? format;
+      return { blob, name: `${file.name.replace(/\.[^.]+$/, '')}-edited.${ext}`, summary: `${out.width} × ${out.height} px` };
     },
     destroy() {
       photo.close();
+      viewer.classList.remove('bg-editor', 'pe-editor');
+      delete viewer.dataset.tab;
+      viewer.replaceChildren();
     },
   };
 }

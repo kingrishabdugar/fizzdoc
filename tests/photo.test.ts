@@ -43,5 +43,12 @@ describe('photo edits', () => {
     expect(frame(4000, 3000, 1, 2, 1, 0.5)).toEqual([2500, 750, 1500, 1500]);
     // No shape keeps the photo's own.
     expect(frame(4000, 3000, 0, 1, 0.5, 0.5)).toEqual([0, 0, 4000, 3000]);
+    // Rounding never pushes the box past an edge.
+    for (const zoom of [1, 1.3, 1.6, 2.05, 2.9])
+      for (const [cx, cy] of [[0, 0], [1, 1], [0.5, 1]]) {
+        const [x, y, fw, fh] = frame(4032, 3024, 16 / 9, zoom, cx, cy);
+        expect(x + fw).toBeLessThanOrEqual(4032);
+        expect(y + fh).toBeLessThanOrEqual(3024);
+      }
   });
 });
