@@ -42,6 +42,8 @@
     "search.count": "{n} outils correspondants",
     "search.none": "Aucun outil ne correspond. Essayez « pdf », « images » ou « audio ».",
     "home.chip": "Traité sur cet appareil",
+    "home.createTitle": "Retoucher et créer",
+    "home.createLede": "Retouchez une photo, faites un collage, détourez-la ou transformez-la en sticker, le tout sur votre appareil.",
     "home.toolsTitle": "Chaque outil, privé par défaut",
     "home.toolsLede": "Choisissez un outil. Votre fichier est traité sur cet appareil et ne touche jamais un serveur.",
     "home.whatTitle": "Qu'est-ce que {name} ?",

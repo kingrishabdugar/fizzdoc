@@ -42,6 +42,8 @@
     "search.count": "{n} passende tools",
     "search.none": "Geen tool komt overeen. Probeer “pdf”, “afbeelding” of “audio”.",
     "home.chip": "Verwerkt op dit apparaat",
+    "home.createTitle": "Bewerken en maken",
+    "home.createLede": "Verbeter een foto, maak een collage, haal de achtergrond weg of maak er een sticker van, alles op je eigen apparaat.",
     "home.toolsTitle": "Elke tool, standaard privé",
     "home.toolsLede": "Kies een tool. Je bestand wordt op dit apparaat verwerkt en komt nooit bij een server terecht.",
     "home.whatTitle": "Wat is {name}?",

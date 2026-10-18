@@ -2128,3 +2128,221 @@ dialog p {
   border-left: 0;
   border-top: 0;
 }
+
+/* Home: "Edit and create", four big photo-tool cards, each with its own colour and a small drawing in plain CSS.
+   Laptops: four tall cards. Phones: compact rows with the drawing at the end. */
+.create-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.create-card {
+  --tone: #a15c00;
+  --tint: light-dark(#fff4e2, #2b1d0a);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s, translate 0.2s;
+}
+.create-card:hover,
+.create-card:focus-visible {
+  border-color: var(--tone);
+  box-shadow: var(--shadow-md);
+  translate: 0 -2px;
+}
+.create-card strong {
+  margin-top: 8px;
+  font-size: 1.05rem;
+}
+.create-card > span:last-child {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.create-collage-maker {
+  --tone: #0f766e;
+  --tint: light-dark(#e6f6f4, #0b2422);
+}
+.create-remove-background {
+  --tone: #8b5cf6;
+  --tint: light-dark(#f1ecff, #1d1530);
+}
+.create-whatsapp-sticker-maker {
+  --tone: #008069;
+  --tint: light-dark(#efeae2, #0b141a);
+}
+.create-art {
+  position: relative;
+  display: block;
+  height: 132px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--tint);
+}
+.create-art i {
+  position: absolute;
+}
+/* Photo Editor: a photo with crop marks and a slider under it. */
+.create-photo-editor .create-art i:nth-child(1) {
+  inset: 18px 22% 34px;
+  border-radius: 6px;
+  background: linear-gradient(#8ecae6 0 60%, #52b788 60%);
+}
+.create-photo-editor .create-art i:nth-child(2),
+.create-photo-editor .create-art i:nth-child(3) {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--tone);
+}
+.create-photo-editor .create-art i:nth-child(2) {
+  top: 12px;
+  left: calc(22% - 6px);
+  border-right: 0;
+  border-bottom: 0;
+}
+.create-photo-editor .create-art i:nth-child(3) {
+  right: calc(22% - 6px);
+  bottom: 28px;
+  border-left: 0;
+  border-top: 0;
+}
+.create-photo-editor .create-art i:nth-child(4) {
+  right: 22%;
+  bottom: 14px;
+  left: 22%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--tone) 0 62%, var(--line-strong) 62%);
+}
+/* Collage Maker: one big photo and three small ones. */
+.create-collage-maker .create-art i {
+  border-radius: 6px;
+}
+.create-collage-maker .create-art i:nth-child(1) {
+  top: 14px;
+  bottom: 14px;
+  left: 14px;
+  width: calc(50% - 18px);
+  background: linear-gradient(160deg, #ffb703, #fb8500);
+}
+.create-collage-maker .create-art i:nth-child(2) {
+  top: 14px;
+  right: 14px;
+  width: calc(50% - 18px);
+  height: calc(50% - 18px);
+  background: linear-gradient(160deg, #8ecae6, #219ebc);
+}
+.create-collage-maker .create-art i:nth-child(3),
+.create-collage-maker .create-art i:nth-child(4) {
+  bottom: 14px;
+  width: calc(25% - 13px);
+  height: calc(50% - 18px);
+}
+.create-collage-maker .create-art i:nth-child(3) {
+  right: calc(25% + 1px);
+  background: linear-gradient(160deg, #95d5b2, #2d6a4f);
+}
+.create-collage-maker .create-art i:nth-child(4) {
+  right: 14px;
+  background: linear-gradient(160deg, #cdb4db, #7b2cbf);
+}
+/* Remove Background: the photo on one side, see-through on the other. */
+.create-remove-background .create-art i:nth-child(1) {
+  inset: 0 50% 0 0;
+  background: linear-gradient(#bde0fe, #a2d2ff);
+}
+.create-remove-background .create-art i:nth-child(2) {
+  inset: 0 0 0 50%;
+  background: repeating-conic-gradient(light-dark(#e4e4e7, #27272a) 0% 25%, light-dark(#fafafa, #18181b) 0% 50%) 50% / 14px 14px;
+}
+.create-remove-background .create-art i:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  width: 72px;
+  height: 92px;
+  border-radius: 36px 36px 10px 10px;
+  translate: -50% 0;
+  background: var(--tone);
+}
+.create-remove-background .create-art i:nth-child(4) {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #fff;
+  transition: left 0.3s;
+}
+/* WhatsApp Sticker Maker: a chat with a sticker and a sent bubble. */
+.create-whatsapp-sticker-maker .create-art {
+  background: radial-gradient(circle, light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.05)) 1.5px, transparent 2px) 0 0 / 18px 18px, var(--tint);
+}
+.create-whatsapp-sticker-maker .create-art i:nth-child(1)::before {
+  content: '😂' / '';
+  position: absolute;
+  top: 14px;
+  left: 18%;
+  font-size: 3rem;
+  line-height: 1;
+  rotate: -10deg;
+  filter: drop-shadow(2px 0 #fff) drop-shadow(-2px 0 #fff) drop-shadow(0 2px #fff) drop-shadow(0 -2px #fff);
+}
+.create-whatsapp-sticker-maker .create-art i:nth-child(2) {
+  right: 14px;
+  bottom: 18px;
+  width: 46%;
+  height: 34px;
+  border-radius: 10px 0 10px 10px;
+  background: light-dark(#d9fdd3, #005c4b);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .create-whatsapp-sticker-maker:hover .create-art i:nth-child(1)::before {
+    rotate: 6deg;
+  }
+  .create-remove-background:hover .create-art i:nth-child(4) {
+    left: 70%;
+  }
+}
+@media (max-width: 900px) {
+  .create-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Phones: compact rows, the drawing at the end. */
+@media (max-width: 560px) {
+  .create-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .create-card {
+    display: grid;
+    grid-template-columns: 1fr 84px;
+    grid-template-rows: auto 1fr;
+    column-gap: 12px;
+    padding: 12px;
+  }
+  .create-art {
+    grid-row: 1 / 3;
+    grid-column: 2;
+    height: 72px;
+    border-radius: 12px;
+  }
+  .create-card strong {
+    margin-top: 0;
+  }
+  .create-whatsapp-sticker-maker .create-art i:nth-child(1)::before {
+    top: 10px;
+    left: 8px;
+    font-size: 2rem;
+  }
+}

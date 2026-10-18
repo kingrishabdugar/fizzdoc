@@ -42,6 +42,8 @@
     "search.count": "{n} alat yang cocok",
     "search.none": "Tidak ada alat yang cocok. Coba “pdf”, “gambar”, atau “audio”.",
     "home.chip": "Diproses di perangkat ini",
+    "home.createTitle": "Edit dan buat",
+    "home.createLede": "Perbaiki foto, buat kolase, hapus latar belakang, atau jadikan stiker, semuanya di perangkat Anda sendiri.",
     "home.toolsTitle": "Semua alat, privat secara default",
     "home.toolsLede": "Pilih alat. File Anda diproses di perangkat ini dan tidak pernah menyentuh server.",
     "home.whatTitle": "Apa itu {name}?",

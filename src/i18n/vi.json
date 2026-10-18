@@ -42,6 +42,8 @@
     "search.count": "{n} công cụ phù hợp",
     "search.none": "Không có công cụ nào phù hợp. Hãy thử “pdf”, “hình ảnh” hoặc “âm thanh”.",
     "home.chip": "Xử lý ngay trên thiết bị này",
+    "home.createTitle": "Chỉnh sửa và sáng tạo",
+    "home.createLede": "Sửa ảnh, ghép ảnh, xóa phông hoặc biến ảnh thành sticker, tất cả ngay trên thiết bị của bạn.",
     "home.toolsTitle": "Mọi công cụ đều riêng tư theo mặc định",
     "home.toolsLede": "Chọn một công cụ. Tệp của bạn được xử lý ngay trên thiết bị này và không bao giờ chạm tới máy chủ.",
     "home.whatTitle": "{name} là gì?",

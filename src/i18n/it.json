@@ -42,6 +42,8 @@
     "search.count": "{n} strumenti corrispondenti",
     "search.none": "Nessuno strumento corrisponde. Prova “pdf”, “immagini” o “audio”.",
     "home.chip": "Elaborato su questo dispositivo",
+    "home.createTitle": "Modifica e crea",
+    "home.createLede": "Sistema una foto, crea un collage, rimuovi lo sfondo o trasformala in sticker, tutto sul tuo dispositivo.",
     "home.toolsTitle": "Ogni strumento, privato per natura",
     "home.toolsLede": "Scegli uno strumento. Il tuo file viene elaborato su questo dispositivo e non tocca mai un server.",
     "home.whatTitle": "Cos'è {name}?",

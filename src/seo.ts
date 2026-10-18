@@ -243,6 +243,20 @@ const proofHtml = (c: Copy, tool?: Tool) => `
 </section>`;
 
 // File cards beside the home hero; draggable, they spring back when released.
+// The photo tools people come for most, as four big cards right under the home page's hero. Each card's
+// drawing is plain CSS (no words), so nothing needs translating but the section's title and intro.
+const CREATE = ['photo-editor', 'collage-maker', 'remove-background', 'whatsapp-sticker-maker'];
+const createHtml = (c: Copy) => `
+<section class="section create" aria-labelledby="create-title">
+  <div class="section-head"><h2 id="create-title">${esc(c.t('home.createTitle'))}</h2><p>${esc(c.t('home.createLede'))}</p></div>
+  <ul class="create-grid">
+    ${CREATE.map((slug) => {
+      const tool = c.tool(TOOLS.find((t) => t.slug === slug)!);
+      return `<li><a class="create-card create-${slug}" data-spring href="${c.link(tool)}"><span class="create-art" aria-hidden="true"><i></i><i></i><i></i><i></i></span><strong>${esc(tool.name)}</strong><span>${esc(tool.summary)}</span></a></li>`;
+    }).join('\n    ')}
+  </ul>
+</section>`;
+
 const heroArt = (c: Copy) => `
 <div class="hero-art" aria-hidden="true">
   ${FORMAT_ORDER.slice(0, 4).map((f) => `<div class="file-card fmt-${f}" data-spring><span class="badge fmt-${f}">${FORMATS[f].badge}</span><i></i><i></i><i></i><i></i></div>`).join('\n  ')}
@@ -473,6 +487,7 @@ ${proofHtml(c)}`;
   </div>
   ${heroArt(c)}
 </section>
+${createHtml(c)}
 <section class="section" id="tools" aria-labelledby="tools-title">
   <div class="section-head"><h2 id="tools-title">${esc(c.t('home.toolsTitle'))}</h2><p>${esc(c.t('home.toolsLede'))}</p></div>
   ${toolGroups(c)}

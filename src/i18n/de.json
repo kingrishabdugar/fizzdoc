@@ -42,6 +42,8 @@
     "search.count": "{n} passende Tools",
     "search.none": "Kein passendes Tool gefunden. Versuchen Sie „pdf“, „Bilder“ oder „Audio“.",
     "home.chip": "Verarbeitung auf diesem Gerät",
+    "home.createTitle": "Bearbeiten und gestalten",
+    "home.createLede": "Ein Foto verbessern, eine Collage machen, den Hintergrund entfernen oder einen Sticker daraus machen, alles auf deinem Gerät.",
     "home.toolsTitle": "Jedes Tool, standardmäßig privat",
     "home.toolsLede": "Wählen Sie ein Tool. Ihre Datei wird auf diesem Gerät verarbeitet und berührt niemals einen Server.",
     "home.whatTitle": "Was ist {name}?",

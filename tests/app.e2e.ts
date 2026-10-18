@@ -1238,6 +1238,16 @@ test('photo tools link to each other first, and tell search engines they are pho
   expect(await (await request.get('/llms.txt')).text()).toContain('How do I remove the background from a photo without uploading it?');
 });
 
+test('the home page leads with the photo tools: editor, collage, background and sticker', async ({ page }) => {
+  await page.goto('/');
+  const cards = page.locator('.create-grid a');
+  await expect(cards).toHaveCount(4);
+  await expect(cards.first()).toHaveAttribute('href', '/photo-editor/');
+  await expect(page.locator('#create-title')).toHaveText('Edit and create');
+  await page.goto('/hi/');
+  await expect(page.locator('.create-grid a').nth(2)).toHaveAttribute('href', '/hi/remove-background/');
+});
+
 test('English “How to” headings read as sentences', async ({ request }) => {
   for (const [path, heading] of [
     ['/merge-pdf/', 'How to merge PDF'],

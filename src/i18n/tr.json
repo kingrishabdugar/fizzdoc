@@ -42,6 +42,8 @@
     "search.count": "{n} eşleşen araç",
     "search.none": "Eşleşen araç yok. “pdf”, “görsel” veya “ses” deneyin.",
     "home.chip": "Bu cihazda işlenir",
+    "home.createTitle": "Düzenle ve oluştur",
+    "home.createLede": "Fotoğrafı düzeltin, kolaj yapın, arka planı kaldırın ya da çıkartmaya dönüştürün; hepsi kendi cihazınızda.",
     "home.toolsTitle": "Her araç, varsayılan olarak gizli",
     "home.toolsLede": "Bir araç seçin. Dosyanız bu cihazda işlenir ve hiçbir sunucuya dokunmaz.",
     "home.whatTitle": "{name} nedir?",
