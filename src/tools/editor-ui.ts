@@ -115,3 +115,44 @@ export function tabs<K extends string>(viewer: HTMLElement, keys: readonly K[], 
   }
   return { tabList, panels, show, current: () => current };
 }
+
+/** Opens a photo (turned the right way up from its EXIF); a file the browser can't read becomes BAD_IMAGE. */
+export async function decode(file: File) {
+  try {
+    return await createImageBitmap(file);
+  } catch {
+    const { LocalError } = await import('../engine/local');
+    throw new LocalError('BAD_IMAGE');
+  }
+}
+
+/** Calls `paint` at most once a frame, however fast sliders and drags ask. */
+export function throttle(paint: () => void) {
+  let queued = false;
+  return () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      paint();
+    });
+  };
+}
+
+/** Brings the editor into view once the page around it has settled (the file list and options appear too). */
+export const bringIntoView = (viewer: HTMLElement) =>
+  requestAnimationFrame(() => requestAnimationFrame(() => viewer.scrollIntoView({ block: 'start', behavior: 'instant' })));
+
+/** The top bar's Download button: it runs the page's own save, with its progress and result. */
+export function saveButton(label: string) {
+  const node = iconButton('save', label, 'pe-save');
+  node.onclick = () => document.getElementById('run')?.click();
+  return node;
+}
+
+/** Encodes a finished canvas; the extension follows the type the browser really wrote (Safari may not write WebP). */
+export async function encode(canvas: OffscreenCanvas, format: string) {
+  const blob = await canvas.convertToBlob({ type: format === 'jpg' ? 'image/jpeg' : `image/${format}`, quality: 0.92 });
+  const ext = ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' } as Record<string, string>)[blob.type] ?? format;
+  return { blob, ext };
+}

@@ -301,6 +301,16 @@
     "pe.fade": "Phai màu",
     "pe.sepia": "Sepia",
     "pe.noir": "Noir",
+    "co.preview": "Xem trước ảnh ghép",
+    "co.layout": "Bố cục",
+    "co.photo": "Ảnh",
+    "co.space": "Giãn cách",
+    "co.gap": "Khoảng cách",
+    "co.corners": "Bo góc",
+    "co.a4": "In A4",
+    "co.max": "Chỉ dùng 9 ảnh đầu tiên.",
+    "co.order": "Để đổi chỗ ảnh, hãy đổi thứ tự của chúng trong danh sách ở trên.",
+    "co.tapHint": "Chạm vào một ảnh để chọn, rồi kéo để di chuyển ảnh trong khung.",
     "st.text": "Chữ",
     "st.hint": "Kéo chữ trên ảnh. Chụm hai ngón tay, hoặc dùng thanh trượt, để đổi cỡ và xoay chữ.",
     "st.add": "Thêm chữ",
@@ -3069,6 +3079,49 @@
         "biến ảnh thành sticker",
         "làm sticker miễn phí",
         "sticker webp nền trong suốt"
+      ]
+    },
+    "collage-maker": {
+      "name": "Ghép ảnh",
+      "summary": "Ghép 2 đến 9 ảnh thành một bức ảnh, có khoảng cách, bo góc và chữ.",
+      "action": "Tải ảnh ghép xuống",
+      "title": "Ghép Ảnh Online Miễn Phí — Không Tải Lên, Không Watermark | Fizzdoc",
+      "description": "Ghép ảnh miễn phí trong trình duyệt: chọn bố cục cho 2 đến 9 ảnh, chỉnh khoảng cách, góc và kích thước, thêm chữ. Không tải lên, không đăng ký, không watermark.",
+      "h1": "Ghép ảnh mà không cần tải ảnh lên",
+      "lede": "Chọn 2 đến 9 ảnh, chọn bố cục và khung hình (vuông, story, A4 và nhiều khung khác), di chuyển và thu phóng từng ảnh trong khung của nó, rồi thêm khoảng cách, bo góc, màu nền và chữ. Mọi thứ diễn ra ngay trên thiết bị của bạn.",
+      "steps": [
+        "Chọn 2 đến 9 ảnh. Thứ tự trong danh sách là thứ tự trong ảnh ghép.",
+        "Chọn bố cục và khung hình, di chuyển và thu phóng từng ảnh, rồi chỉnh khoảng cách, góc, nền và chữ.",
+        "Chọn kích thước và định dạng, rồi nhấp “Tải ảnh ghép xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Một ảnh ghép có thể có bao nhiêu ảnh?",
+          "Từ 1 đến 9. Mỗi số lượng ảnh có các bố cục riêng, như đặt cạnh nhau, xếp trên dưới, một ảnh lớn kèm các ảnh nhỏ hơn, hoặc dạng lưới. Nếu bạn thêm hơn 9 ảnh, 9 ảnh đầu tiên sẽ được dùng."
+        ],
+        [
+          "Tôi có thể di chuyển hoặc phóng to từng ảnh không?",
+          "Có. Mở “Ảnh”, chạm vào một ảnh để chọn, rồi kéo để chọn phần hiển thị trong khung, và dùng “Thu phóng” để nhìn gần hơn. Để đổi chỗ ảnh, hãy đổi thứ tự của chúng trong danh sách tệp."
+        ],
+        [
+          "Tôi có thể lưu những kích thước nào?",
+          "“Vuông”, “Dọc 4:5” và “Story 9:16” cho mạng xã hội, “Ngang 16:9”, và “In A4” để in: 1080 hoặc 2160 px ở cạnh ngắn, hoặc 2480 px cho A4 ở 300 dpi. Dưới dạng JPG, PNG hoặc WebP, không có watermark."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "ghép ảnh online",
+        "ghép ảnh miễn phí",
+        "ghép nhiều ảnh thành một",
+        "làm ảnh collage",
+        "ghép ảnh không watermark"
       ]
     },
     "photo-editor": {

@@ -1686,6 +1686,11 @@ test('collage maker: four photos in a 2×2 grid, in list order, then reordered, 
   };
   await page.locator('#file-input').setInputFiles([await solid('#ff0000'), await solid('#00ff00'), await solid('#0000ff'), await solid('#ffff00')]);
   await expect(page.getByRole('tab', { name: 'Layout' })).toHaveAttribute('aria-selected', 'true');
+  // Photo: a finger moves the picked photo (no page scroll), and each photo can be picked with a button too.
+  await page.getByRole('tab', { name: 'Photo' }).click();
+  await expect(page.locator('.bg-canvas')).toHaveCSS('touch-action', 'none');
+  await page.getByRole('group', { name: 'Photo' }).getByRole('button', { name: '2. 00ff00.png' }).click();
+  await expect(page.getByRole('button', { name: '2. 00ff00.png' })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('tab', { name: 'Space' }).click();
   await page.getByRole('slider', { name: 'Gap' }).fill('0');
   await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');

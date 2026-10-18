@@ -95,12 +95,12 @@ function setUp(op: ToolOp) {
   // The on-page editors (Edit PDF, Redact PDF) follow the chosen file.
   // update() is for editors that use the whole list (the Collage Maker): it follows adds, removals and reordering.
   type Editor = { save(options: Options, onProgress: (fraction: number) => void): Promise<Output>; destroy(): void; update?(files: File[]): void };
-  const EDITORS: Partial<Record<ToolOp, (file: File, viewer: HTMLElement, all: File[]) => Promise<Editor>>> = {
+  const EDITORS: Partial<Record<ToolOp, (file: File, viewer: HTMLElement) => Promise<Editor>>> = {
     'edit-pdf': async (file, view) => (await import('./tools/edit-pdf')).openEditor(file, view),
     'audio-split': async (file, view) => (await import('./tools/audio-split')).openSplitter(file, view),
     'remove-bg': async (file, view) => (await import('./tools/remove-bg')).openBackgroundEditor(file, view, options()),
     'photo-edit': async (file, view) => (await import('./tools/photo-edit')).openPhotoEditor(file, view),
-    collage: async (_, view, all) => (await import('./tools/collage')).openCollage(all, view),
+    collage: async (_, view) => (await import('./tools/collage')).openCollage(files, view),
     'redact-pdf': async (file, view) => {
       const redactor = await (await import('./tools/redact-pdf')).openRedactor(file, view);
       return { save: (o, onProgress) => redactor.save(rasterOptions(o), onProgress), destroy: redactor.destroy };
@@ -215,14 +215,14 @@ function setUp(op: ToolOp) {
     const open = EDITORS[op];
     if (!open) return;
     // The collage follows the whole list in place: adding, removing or reordering photos.
-    if (op === 'collage' && editor && files.length) return void editor.ready.then((e) => e.update?.([...files]), () => {});
+    if (op === 'collage' && editor && files.length) return void editor.ready.then((e) => e.update?.(files), () => {});
     if (editor?.file === files[0]) return;
     editor?.ready.then((e) => e.destroy(), () => {});
     viewer!.replaceChildren();
     editor = undefined;
     if (!files[0]) return;
     const file = files[0];
-    const ready = open(file, viewer!, [...files]);
+    const ready = open(file, viewer!);
     editor = { file, ready };
     ready.catch((error) => {
       files = [];

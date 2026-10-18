@@ -301,6 +301,16 @@
     "pe.fade": "Desvanecido",
     "pe.sepia": "Sepia",
     "pe.noir": "Noir",
+    "co.preview": "Vista previa del collage",
+    "co.layout": "Diseño",
+    "co.photo": "Foto",
+    "co.space": "Espacio",
+    "co.gap": "Separación",
+    "co.corners": "Esquinas redondeadas",
+    "co.a4": "A4 para imprimir",
+    "co.max": "Solo se usan las 9 primeras fotos.",
+    "co.order": "Para intercambiar fotos, cambia su orden en la lista de arriba.",
+    "co.tapHint": "Toca una foto para elegirla y luego arrástrala para moverla dentro de su marco.",
     "st.text": "Texto",
     "st.hint": "Arrastra el texto sobre la imagen. Pellizca con dos dedos, o usa los controles, para cambiar su tamaño y girarlo.",
     "st.add": "Añadir texto",
@@ -3069,6 +3079,49 @@
         "foto a sticker de whatsapp",
         "hacer stickers gratis online",
         "sticker webp transparente"
+      ]
+    },
+    "collage-maker": {
+      "name": "Creador de collages",
+      "summary": "Junta de 2 a 9 fotos en una sola imagen, con separación, esquinas redondeadas y texto.",
+      "action": "Descargar collage",
+      "title": "Collage de Fotos Gratis — Sin Subir Nada ni Marca de Agua | Fizzdoc",
+      "description": "Haz un collage de fotos gratis en tu navegador: diseño para 2 a 9 fotos, separación, esquinas, tamaño y texto. Sin subir nada, sin registro ni marca de agua.",
+      "h1": "Haz un collage de fotos sin subir tus fotos",
+      "lede": "Elige de 2 a 9 fotos, escoge un diseño y un formato (cuadrado, historia, A4 y más), mueve y amplía cada foto dentro de su marco, y añade separación, esquinas redondeadas, un color de fondo y texto. Todo ocurre en tu dispositivo.",
+      "steps": [
+        "Elige de 2 a 9 fotos. El orden de la lista es el orden en el collage.",
+        "Escoge un diseño y un formato, mueve y amplía cada foto, y ajusta la separación, las esquinas, el fondo y el texto.",
+        "Elige el tamaño y el formato, y haz clic en «Descargar collage»."
+      ],
+      "faq": [
+        [
+          "¿Se suben mis archivos a algún sitio?",
+          "No. Fizzdoc hace todo el trabajo dentro de la pestaña de tu navegador, con motores de código abierto compilados a WebAssembly y JavaScript. Tu archivo se lee desde tu dispositivo, se procesa localmente y el resultado se guarda directamente en tu dispositivo. Puedes comprobarlo tú mismo: abre las herramientas de desarrollador de tu navegador, ve a la pestaña Red y ejecuta una tarea — ninguna solicitud lleva tu archivo."
+        ],
+        [
+          "¿Cuántas fotos puede tener un collage?",
+          "De 1 a 9. Cada número de fotos tiene sus propios diseños, como una al lado de otra, una encima de otra, una foto grande con otras más pequeñas o una cuadrícula. Si añades más de 9, se usan las 9 primeras."
+        ],
+        [
+          "¿Puedo mover o ampliar cada foto?",
+          "Sí. Abre «Foto», toca una foto para elegirla, arrástrala para decidir qué se ve en su marco y usa «Zoom» para acercarte. Para intercambiar fotos, cambia su orden en la lista de archivos."
+        ],
+        [
+          "¿Qué tamaños puedo guardar?",
+          "«Cuadrado», «Vertical 4:5» e «Historia 9:16» para redes sociales, «Horizontal 16:9» y «A4 para imprimir»: 1080 o 2160 px en el lado corto, o 2480 px para A4 a 300 dpi. En JPG, PNG o WebP, sin marca de agua."
+        ],
+        [
+          "¿Es gratis Fizzdoc?",
+          "Sí, y seguirá siendo gratis: sin registro, sin marca de agua, sin límite diario y sin plan premium. Fizzdoc es de código abierto bajo la licencia Apache-2.0, así que cualquiera puede ejecutar su propia copia."
+        ]
+      ],
+      "keywords": [
+        "hacer collage de fotos",
+        "collage de fotos online gratis",
+        "juntar varias fotos en una",
+        "montaje de fotos online",
+        "unir fotos en una sola imagen"
       ]
     },
     "photo-editor": {

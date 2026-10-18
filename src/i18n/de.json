@@ -301,6 +301,16 @@
     "pe.fade": "Verblasst",
     "pe.sepia": "Sepia",
     "pe.noir": "Noir",
+    "co.preview": "Vorschau der Collage",
+    "co.layout": "Layout",
+    "co.photo": "Foto",
+    "co.space": "Abstände",
+    "co.gap": "Abstand",
+    "co.corners": "Runde Ecken",
+    "co.a4": "A4-Druck",
+    "co.max": "Nur die ersten 9 Fotos werden verwendet.",
+    "co.order": "Um Fotos zu tauschen, ändern Sie ihre Reihenfolge in der Liste oben.",
+    "co.tapHint": "Auf ein Foto tippen, um es auszuwählen, dann ziehen, um es im Rahmen zu verschieben.",
     "st.text": "Text",
     "st.hint": "Zieh den Text auf dem Bild an seinen Platz. Mit zwei Fingern zusammenziehen oder die Regler nutzen, um ihn zu vergrößern und zu drehen.",
     "st.add": "Text hinzufügen",
@@ -3069,6 +3079,49 @@
         "Foto zu Sticker",
         "Sticker selber machen kostenlos",
         "transparenter Sticker webp"
+      ]
+    },
+    "collage-maker": {
+      "name": "Collage erstellen",
+      "summary": "2 bis 9 Fotos in einem Bild vereinen, mit Abstand, runden Ecken und Text.",
+      "action": "Collage herunterladen",
+      "title": "Fotocollage Kostenlos — Ohne Upload, Ohne Wasserzeichen | Fizzdoc",
+      "description": "Fotocollage kostenlos im Browser erstellen: Layout für 2 bis 9 Fotos, Abstand, Ecken, Größe und Text. Ohne Upload, Anmeldung oder Wasserzeichen.",
+      "h1": "Fotocollage erstellen, ohne Ihre Fotos hochzuladen",
+      "lede": "Wählen Sie 2 bis 9 Fotos, ein Layout und ein Format (quadratisch, Story, A4 und mehr), verschieben und vergrößern Sie jedes Foto in seinem Rahmen und fügen Sie Abstand, runde Ecken, eine Hintergrundfarbe und Text hinzu. Alles geschieht auf Ihrem Gerät.",
+      "steps": [
+        "Wählen Sie 2 bis 9 Fotos. Die Reihenfolge der Liste ist die Reihenfolge in der Collage.",
+        "Wählen Sie ein Layout und ein Format, verschieben und vergrößern Sie jedes Foto und stellen Sie Abstand, Ecken, Hintergrund und Text ein.",
+        "Wählen Sie Größe und Format und klicken Sie auf „Collage herunterladen“."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Wie viele Fotos kann eine Collage haben?",
+          "Von 1 bis 9. Für jede Anzahl von Fotos gibt es eigene Layouts, etwa nebeneinander, übereinander, ein großes Foto mit kleineren oder ein Raster. Wenn Sie mehr als 9 hinzufügen, werden die ersten 9 verwendet."
+        ],
+        [
+          "Kann ich jedes Foto verschieben oder vergrößern?",
+          "Ja. Öffnen Sie „Foto“, tippen Sie auf ein Foto, um es auszuwählen, und ziehen Sie es dann, um festzulegen, was in seinem Rahmen zu sehen ist. Mit „Zoom“ gehen Sie näher heran. Um Fotos zu tauschen, ändern Sie ihre Reihenfolge in der Dateiliste."
+        ],
+        [
+          "Welche Größen kann ich speichern?",
+          "„Quadratisch“, „Hochformat 4:5“ und „Story 9:16“ für soziale Medien, „Querformat 16:9“ und „A4-Druck“: 1080 oder 2160 px an der kurzen Seite oder 2480 px für A4 bei 300 dpi. Als JPG, PNG oder WebP, ohne Wasserzeichen."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "Fotocollage erstellen",
+        "Collage erstellen kostenlos",
+        "Bilder zusammenfügen",
+        "mehrere Fotos in einem Bild",
+        "Fotocollage ohne Wasserzeichen"
       ]
     },
     "photo-editor": {

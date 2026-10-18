@@ -7,7 +7,7 @@ import './photo-edit.css';
 import { FILTERS, NONE, adjustPixels, combine, fit, frame, turned, type Adjust, type Filter } from '../engine/photo';
 import type { Output } from '../engine/local';
 import { stickerText } from './sticker-text';
-import { button, element, iconButton, row, slider, tabs } from './editor-ui';
+import { bringIntoView, button, decode, element, encode, iconButton, row, saveButton, slider, tabs, throttle } from './editor-ui';
 import { t, type UiKey } from '../i18n';
 
 export interface PhotoEditor {
@@ -29,13 +29,7 @@ type Tab = (typeof TABS)[number];
 const LABELS: Record<Tab, UiKey> = { looks: 'pe.looks', crop: 'pe.crop', light: 'pe.light', text: 'st.text' };
 
 export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<PhotoEditor> {
-  let photo: ImageBitmap;
-  try {
-    photo = await createImageBitmap(file); // also turns phone photos the right way up (EXIF)
-  } catch {
-    const { LocalError } = await import('../engine/local');
-    throw new LocalError('BAD_IMAGE');
-  }
+  const photo = await decode(file);
   const state = { shape: 'original' as Shape, zoom: 1, cx: 0.5, cy: 0.5, turns: 0, flipX: false, flipY: false, look: 'original' as Filter, own: { ...NONE } as Adjust };
   let chosen: Slider = 'brightness'; // the slider shown on phones, and the one a sideways swipe changes
   /** The kept part of the turned photo: [x, y, width, height] in photo pixels. */
@@ -89,23 +83,12 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     // The text's selection box only shows while the Text tab is open.
     if (!plain) text?.draw(context, target.width, target.height, target === canvas && tab() === 'text');
   };
-  // Sliders fire fast: draw at most once a frame.
-  let queued = false;
-  const draw = () => {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(() => {
-      queued = false;
-      paint(canvas, PREVIEW, original);
-    });
-  };
+  const draw = throttle(() => paint(canvas, PREVIEW, original));
 
   // ---- Top bar: hold to compare, and save ----
   const top = element('div', 'pe-top');
   const compare = iconButton('compare', t('bg.compare'), 'bg-btn bg-compare pe-compare');
-  const save = iconButton('save', t('ws.download'), 'pe-save');
-  save.onclick = () => document.getElementById('run')?.click(); // the page's own save, with its progress and result
-  top.append(compare, save);
+  top.append(compare, saveButton(t('ws.download')));
 
   // ---- Tabs ----
   const ui = tabs(viewer, TABS, (key) => [key, t(LABELS[key])], () => draw());
@@ -296,8 +279,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   viewer.replaceChildren(top, stage, ui.tabList, ...TABS.map((key) => panels[key]));
   ui.show('looks');
   sync();
-  // Bring the editor into view once the page around it has settled (the file list and options appear too).
-  requestAnimationFrame(() => requestAnimationFrame(() => viewer.scrollIntoView({ block: 'start', behavior: 'instant' })));
+  bringIntoView(viewer);
 
   return {
     async save(options) {
@@ -305,16 +287,14 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
       const [, , w, h] = kept().box;
       const format = options.format === 'png' ? 'png' : options.format === 'webp' ? 'webp' : 'jpg';
       const longest = Math.round((Math.max(w, h) * Number(sizeSelect.value)) / 100);
-      const type = format === 'jpg' ? 'image/jpeg' : `image/${format}`;
       // JPG has no see-through pixels: a clear part of the photo becomes white instead of black.
       const render = async (maxArea?: number) => {
         const out = new OffscreenCanvas(1, 1);
         paint(out, longest, false, format === 'jpg' ? '#ffffff' : undefined, maxArea);
-        return { out, blob: await out.convertToBlob({ type, quality: 0.92 }) };
+        return { out, ...(await encode(out, format)) };
       };
       // Full size first; a phone that can't make a canvas that big (about 16.7 million pixels on iPhone) gets the largest it can.
-      const { out, blob } = await render(Infinity).catch(() => render());
-      const ext = ({ 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' } as Record<string, string>)[blob.type] ?? format;
+      const { out, blob, ext } = await render(Infinity).catch(() => render());
       return { blob, name: `${file.name.replace(/\.[^.]+$/, '')}-edited.${ext}`, summary: `${out.width} × ${out.height} px` };
     },
     destroy() {

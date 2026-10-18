@@ -123,6 +123,11 @@
   touch-action: pan-y; /* a sideways drag changes the value; up and down still scroll the page */
   cursor: ew-resize;
 }
+/* Collage: in the Photo tab a finger moves the picked photo in its frame. */
+.pe-editor.co-editor[data-tab='photo'] .bg-canvas {
+  touch-action: none;
+  cursor: grab;
+}
 
 /* ---- Tabs ---- */
 .pe-tabs {
@@ -425,31 +430,26 @@
   }
 }
 
-/* Collage Maker: a note in the top bar (too many photos), layout thumbnails, and the colour picker as a chip. */
+/* Collage Maker: a note in the top bar (too many photos, or one that can't be read) and the layout thumbnails. */
 .co-note {
   margin: 0;
   padding-inline-start: 8px;
 }
 .co-layouts .pe-look {
+  justify-content: center;
   width: 64px;
+  min-height: 44px;
+}
+.co-layouts .pe-look:first-child {
+  margin-inline-end: 0;
+  padding-inline-end: 4px;
+  border-inline-end: 0;
 }
 .co-layouts .pe-look canvas {
   aspect-ratio: auto;
-  object-fit: contain;
   background: #0a0a0b;
 }
-.co-colour {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
 .co-layouts .pe-look[aria-pressed='true']::after {
+  right: 0;
   bottom: 0;
-}
-.bg-editor.pe-editor .co-colour input[type='color'] {
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 0;
-  background: none;
 }
