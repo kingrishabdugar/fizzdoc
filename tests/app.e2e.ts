@@ -1219,6 +1219,15 @@ test('ripples on background clicks only', async ({ page }) => {
   await expect(page.locator('.tap-ripple')).toHaveCount(0);
 });
 
+test('each tool page names the open-source engines that tool runs on', async ({ request }) => {
+  const engines = async (path: string) => [...(await (await request.get(path)).text()).matchAll(/<a href="[^"]+">([^<]+)<\/a>(?:, | &amp; |\.?<\/span>)/g)].map((m) => m[1]);
+  expect(await engines('/merge-pdf/')).toEqual(expect.arrayContaining(['qpdf', 'pdf.js', 'pdf-lib']));
+  expect(await engines('/remove-background/')).toEqual(expect.arrayContaining(['BiRefNet', 'ONNX Runtime']));
+  expect(await engines('/remove-background/')).not.toContain('qpdf');
+  expect(await engines('/audio-to-text/')).toEqual(expect.arrayContaining(['Whisper', 'Transformers.js']));
+  expect(await engines('/image-to-text/')).toContain('tesseract.js');
+});
+
 test('English “How to” headings read as sentences', async ({ request }) => {
   for (const [path, heading] of [
     ['/merge-pdf/', 'How to merge PDF'],
