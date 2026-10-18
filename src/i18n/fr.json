@@ -1788,8 +1788,8 @@
       "name": "Supprimer le Fond",
       "summary": "Détourez une personne, un produit ou un animal et mettez ce que vous voulez derrière.",
       "action": "Télécharger l’image",
-      "title": "Supprimer le Fond d’une Image Gratuit — Sans Envoi | Fizzdoc",
-      "description": "Supprimez le fond de n’importe quelle photo gratuitement, en pleine résolution : PNG transparent, blanc, toute couleur ou votre photo. Rien n’est envoyé.",
+      "title": "Supprimer le Fond Gratuit — Sans Envoi, Sans Filigrane | Fizzdoc",
+      "description": "Supprimez le fond d’une photo gratuitement sur votre appareil : PNG transparent, blanc, toute couleur ou flou, taille réelle, sans filigrane. Rien n’est envoyé.",
       "h1": "Supprimez le fond de n’importe quelle photo",
       "lede": "Choisissez une photo et le fond disparaît tout seul. Laissez-le transparent, ou mettez derrière du blanc, une couleur, un flou doux ou une autre photo. L’IA tourne sur votre propre appareil, votre photo ne le quitte donc jamais.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Comment ça marche sans rien envoyer ?",
           "Un modèle d’IA open source (BiRefNet) tourne dans votre navigateur, sur la puce graphique quand l’appareil en a une. Il se télécharge une seule fois, environ 110 Mo, puis fonctionne même hors connexion. Les téléphones avec peu de mémoire utilisent un modèle plus petit (U²-Net)."
+        ],
+        [
+          "Y a-t-il un filigrane ou une limite ?",
+          "Pas de filigrane, pas de crédits, pas d’inscription et pas de limite quotidienne. Le résultat est enregistré à la résolution d’origine de votre photo ; seule la mémoire de votre appareil limite la taille que peut avoir une photo."
+        ],
+        [
+          "Est-ce que ça marche sur un téléphone ?",
+          "Oui, dans n’importe quel navigateur mobile récent. Les téléphones utilisent un modèle plus petit (4.6 MB) pour que l’onglet ne manque pas de mémoire, donc les contours des cheveux sont un peu plus doux que sur un ordinateur portable."
+        ],
+        [
+          "Comment mettre un fond blanc ?",
+          "Une fois le fond supprimé, choisissez « Blanc » dans « Fond », puis enregistrez en JPG ou PNG. Vous pouvez aussi choisir n’importe quelle couleur, un flou du fond d’origine ou une autre de vos photos."
+        ],
+        [
+          "Puis-je supprimer le fond d’un GIF ou d’une vidéo ?",
+          "Oui. « Supprimer le Fond d’un GIF » garde chaque image et sa durée, et « Supprimer le Fond d’une Vidéo » garde le son. Les deux fonctionnent aussi sur votre appareil."
         ],
         [
           "Est-ce que Fizzdoc est gratuit ?",
@@ -3059,9 +3075,9 @@
       "name": "Éditeur photo",
       "summary": "Recadrez, faites pivoter, éclaircissez et ajoutez du texte ou des emojis à une photo, directement dans votre navigateur.",
       "action": "Télécharger la photo",
-      "title": "Éditeur Photo Gratuit — Recadrer, Régler, Texte, Sans Envoi | Fizzdoc",
-      "description": "Retouchez vos photos gratuitement dans le navigateur : recadrage carré ou story, rotation, miroir, lumière, couleur, filtre, texte, emoji. Rien n’est envoyé.",
-      "h1": "Modifiez une photo dans votre navigateur",
+      "title": "Éditeur Photo Gratuit — Recadrer, Texte, Emoji, Sans Envoi | Fizzdoc",
+      "description": "Retouchez une photo gratuitement dans le navigateur : recadrage carré, 4:5 ou story, lumière et couleur, filtre, texte ou emoji. Sans envoi, sans inscription.",
+      "h1": "Modifiez une photo en ligne sans l’envoyer",
       "lede": "Recadrez en carré ou au format story, faites pivoter et retournez, corrigez la luminosité, le contraste et la couleur, choisissez un filtre d’un seul geste et ajoutez du texte ou des emojis. Les retouches du quotidien, faites sur votre propre appareil et enregistrées en taille d’origine.",
       "steps": [
         "Choisissez une photo.",
@@ -3080,6 +3096,22 @@
         [
           "La localisation de la photo de mon téléphone est-elle conservée ?",
           "Non. La photo enregistrée est un nouveau fichier qui ne contient que l’image, donc les informations cachées comme la localisation GPS, la date et le modèle du téléphone ne sont pas reprises."
+        ],
+        [
+          "Faut-il un compte ?",
+          "Non. Ouvrez la page, choisissez une photo et modifiez-la. Pas d’inscription, rien n’est enregistré nulle part, et aucune limite au nombre de photos que vous modifiez."
+        ],
+        [
+          "Est-ce que ça marche sur mon téléphone ?",
+          "Oui. Sur un téléphone, la photo reste en haut, les outils sont dans une barre en bas, et vous pouvez faire glisser le doigt sur la photo vers la gauche ou la droite pour changer la luminosité, le contraste, la saturation ou la chaleur."
+        ],
+        [
+          "Comment mettre une photo au format carré ou 4:5 pour Instagram ?",
+          "Ouvrez « Recadrer et pivoter » et choisissez « Carré » ou « Portrait 4:5 », puis faites glisser la photo pour choisir ce qui reste dans le cadre. « Story 9:16 » et « Paysage 16:9 » sont aussi disponibles."
+        ],
+        [
+          "Puis-je ajouter du texte en hindi ou dans d’autres langues ?",
+          "Oui. Écrivez dans n’importe quelle langue : les styles « Mignon », « Douillet » et « GROS » incluent les lettres hindi (devanagari), et les autres écritures, comme le bengali, le tamoul ou le télougou, utilisent la police de votre appareil."
         ],
         [
           "Est-ce que Fizzdoc est gratuit ?",

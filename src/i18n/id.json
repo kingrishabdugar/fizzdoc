@@ -1788,8 +1788,8 @@
       "name": "Hapus Latar Belakang",
       "summary": "Potong orang, produk, atau hewan peliharaan lalu pasang apa saja di belakangnya.",
       "action": "Unduh gambar",
-      "title": "Hapus Latar Belakang Foto Gratis — Tanpa Unggah | Fizzdoc",
-      "description": "Hapus latar belakang foto apa saja secara gratis dengan resolusi penuh: PNG transparan, putih, warna apa saja, atau foto Anda. Tidak ada yang diunggah.",
+      "title": "Hapus Latar Belakang Foto Gratis — Tanpa Unggah & Watermark | Fizzdoc",
+      "description": "Hapus latar belakang foto gratis di perangkat Anda: PNG transparan, putih, warna apa saja, atau buram, resolusi penuh tanpa watermark. Foto tak pernah diunggah.",
       "h1": "Hapus latar belakang foto apa saja",
       "lede": "Pilih foto dan latar belakangnya hilang sendiri. Biarkan transparan, atau pasang warna putih, warna apa saja, buram lembut, atau foto lain di belakangnya. AI berjalan di perangkat Anda sendiri, jadi foto Anda tidak pernah keluar dari sana.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Bagaimana cara kerjanya tanpa mengunggah?",
           "Model AI open source (BiRefNet) berjalan di dalam browser Anda, memakai chip grafis jika perangkat punya. Modelnya diunduh sekali, sekitar 110 MB, lalu bisa dipakai bahkan saat offline. Ponsel dengan memori kecil memakai model yang lebih kecil (U²-Net)."
+        ],
+        [
+          "Apakah ada watermark atau batasan?",
+          "Tanpa watermark, tanpa kredit, tanpa daftar, dan tanpa batas harian. Hasilnya disimpan dengan resolusi asli foto Anda; ukuran foto maksimal hanya dibatasi oleh memori perangkat Anda."
+        ],
+        [
+          "Apakah bisa dipakai di ponsel?",
+          "Ya, di browser ponsel modern mana pun. Ponsel memakai model yang lebih kecil (4.6 MB) agar tab tidak kehabisan memori, jadi tepi rambut sedikit lebih lembut dibanding di laptop."
+        ],
+        [
+          "Bagaimana cara membuat latar belakang putih?",
+          "Setelah latar belakang dihapus, pilih Putih di bagian Latar belakang, lalu simpan sebagai JPG atau PNG. Anda juga bisa memilih warna apa saja, versi buram dari latar belakang asli, atau foto Anda yang lain."
+        ],
+        [
+          "Bisakah saya menghapus latar belakang GIF atau video?",
+          "Bisa. Hapus Latar Belakang GIF mempertahankan setiap bingkai beserta waktunya, dan Hapus Latar Belakang Video mempertahankan suaranya. Keduanya juga berjalan di perangkat Anda."
         ],
         [
           "Apakah Fizzdoc gratis?",
@@ -3059,9 +3075,9 @@
       "name": "Editor Foto",
       "summary": "Potong, putar, cerahkan, dan tambahkan tulisan atau emoji ke foto, langsung di browser Anda.",
       "action": "Unduh foto",
-      "title": "Edit Foto Online Gratis — Potong, Tambah Teks, Tanpa Unggah | Fizzdoc",
-      "description": "Edit foto gratis di browser: potong jadi persegi atau ukuran story, putar, balik, atur kecerahan dan warna, tambah filter, teks, atau emoji. Tanpa unggah.",
-      "h1": "Edit foto di browser Anda",
+      "title": "Edit Foto Online Gratis, Tanpa Unggah — Potong, Teks, Emoji | Fizzdoc",
+      "description": "Edit foto gratis di browser: potong jadi persegi, 4:5, atau ukuran story, atur cahaya dan warna, tambah filter, teks, atau emoji. Tanpa unggah, tanpa daftar.",
+      "h1": "Edit foto online tanpa mengunggahnya",
       "lede": "Potong jadi persegi atau story, putar dan balik, atur kecerahan, kontras, dan warna, pilih filter dengan sekali ketuk, lalu tambahkan tulisan atau emoji. Edit foto sehari-hari, dikerjakan di perangkat Anda sendiri, disimpan dalam ukuran penuh.",
       "steps": [
         "Pilih foto.",
@@ -3080,6 +3096,22 @@
         [
           "Apakah lokasi dari foto ponsel saya ikut tersimpan?",
           "Tidak. Foto yang disimpan adalah file baru yang hanya berisi gambarnya, jadi detail tersembunyi seperti lokasi GPS, tanggal, dan model ponsel tidak ikut disimpan."
+        ],
+        [
+          "Apakah saya perlu akun?",
+          "Tidak. Buka halamannya, pilih foto, lalu edit. Tidak perlu daftar, tidak ada yang disimpan di mana pun, dan tidak ada batas jumlah foto yang bisa Anda edit."
+        ],
+        [
+          "Apakah bisa dipakai di ponsel saya?",
+          "Ya. Di ponsel, foto tetap di atas, alat-alatnya ada di bilah bawah, dan Anda bisa menyeret ke samping di atas foto untuk mengubah kecerahan, kontras, saturasi, atau kehangatan."
+        ],
+        [
+          "Bagaimana cara membuat foto persegi atau 4:5 untuk Instagram?",
+          "Buka Potong dan putar, pilih Persegi atau Potret 4:5, lalu seret foto untuk memilih bagian yang tetap ada di dalam bingkai. Story 9:16 dan Lebar 16:9 juga tersedia."
+        ],
+        [
+          "Bisakah saya menambahkan teks dalam bahasa Hindi atau bahasa lain?",
+          "Bisa. Ketik dalam bahasa apa pun: gaya Imut, Hangat, dan BESAR sudah mencakup huruf Hindi (Devanagari), sedangkan aksara lain, seperti Bengali, Tamil, atau Telugu, memakai font bawaan perangkat Anda."
         ],
         [
           "Apakah Fizzdoc gratis?",

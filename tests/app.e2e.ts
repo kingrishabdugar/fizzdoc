@@ -1228,9 +1228,21 @@ test('each tool page names the open-source engines that tool runs on', async ({ 
   expect(await engines('/image-to-text/')).toContain('tesseract.js');
 });
 
+test('photo tools link to each other first, and tell search engines they are photo apps', async ({ request }) => {
+  const html = await (await request.get('/remove-background/')).text();
+  const more = html.slice(html.indexOf('id="more"'), html.indexOf('</section>', html.indexOf('id="more"')));
+  expect(more.indexOf('href="/photo-editor/"')).toBeGreaterThan(-1);
+  expect(more.indexOf('href="/photo-editor/"')).toBeLessThan(more.indexOf('href="/compress-image/"'));
+  expect(more).not.toContain('href="/mermaid-to-png/"');
+  expect(html).toContain('"applicationCategory":"MultimediaApplication"');
+  expect(await (await request.get('/llms.txt')).text()).toContain('How do I remove the background from a photo without uploading it?');
+});
+
 test('English “How to” headings read as sentences', async ({ request }) => {
   for (const [path, heading] of [
     ['/merge-pdf/', 'How to merge PDF'],
+    ['/remove-background/', 'How to remove background'],
+    ['/remove-word-metadata/', 'How to remove Word metadata'],
     ['/pdf-to-jpg/', 'How to convert PDF to JPG'],
     ['/whatsapp-sticker-maker/', 'How to use WhatsApp Sticker Maker'],
   ])

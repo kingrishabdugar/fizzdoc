@@ -1788,8 +1788,8 @@
       "name": "Hintergrund Entfernen",
       "summary": "Schneiden Sie eine Person, ein Produkt oder ein Haustier frei und setzen Sie beliebig etwas dahinter.",
       "action": "Bild herunterladen",
-      "title": "Bildhintergrund Entfernen Kostenlos — Ohne Upload | Fizzdoc",
-      "description": "Entfernen Sie den Hintergrund jedes Fotos kostenlos in voller Auflösung: transparentes PNG, Weiß, jede Farbe oder Ihr eigenes Foto. Es wird nichts hochgeladen.",
+      "title": "Hintergrund Entfernen Kostenlos, Ohne Upload & Wasserzeichen | Fizzdoc",
+      "description": "Fotohintergrund kostenlos auf Ihrem Gerät entfernen: transparentes PNG, Weiß, jede Farbe oder Unschärfe, volle Auflösung, kein Wasserzeichen. Ohne Upload.",
       "h1": "Hintergrund von jedem Foto entfernen",
       "lede": "Wählen Sie ein Foto, und der Hintergrund verschwindet von selbst. Lassen Sie ihn transparent oder setzen Sie Weiß, eine beliebige Farbe, einen weichen Blur oder ein anderes Foto dahinter. Die KI läuft auf Ihrem eigenen Gerät, Ihr Foto verlässt es also nie.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Wie funktioniert das ohne Upload?",
           "Ein quelloffenes KI-Modell (BiRefNet) läuft direkt in Ihrem Browser, auf dem Grafikchip, wenn Ihr Gerät einen hat. Es wird einmalig geladen, etwa 110 MB, und funktioniert danach auch offline. Handys mit wenig Speicher nutzen ein kleineres Modell (U²-Net)."
+        ],
+        [
+          "Gibt es ein Wasserzeichen oder ein Limit?",
+          "Kein Wasserzeichen, keine Credits, keine Anmeldung und kein Tageslimit. Das Ergebnis wird in der Originalauflösung Ihres Fotos gespeichert; nur der Speicher Ihres Geräts begrenzt, wie groß ein Foto sein kann."
+        ],
+        [
+          "Funktioniert es auf dem Handy?",
+          "Ja, in jedem modernen Handy-Browser. Handys nutzen ein kleineres Modell (4.6 MB), damit dem Tab nicht der Speicher ausgeht. Deshalb sind Haarkanten etwas weicher als auf einem Laptop."
+        ],
+        [
+          "Wie mache ich den Hintergrund weiß?",
+          "Wenn der Hintergrund entfernt ist, wählen Sie unter „Hintergrund“ die Option „Weiß“ und speichern dann als JPG oder PNG. Sie können auch eine beliebige Farbe, den weichgezeichneten Originalhintergrund oder ein anderes eigenes Foto wählen."
+        ],
+        [
+          "Kann ich den Hintergrund aus einem GIF oder Video entfernen?",
+          "Ja. „GIF-Hintergrund Entfernen“ behält jedes Einzelbild und dessen Timing, und „Videohintergrund Entfernen“ behält den Ton. Beide laufen ebenfalls auf Ihrem Gerät."
         ],
         [
           "Ist Fizzdoc kostenlos?",
@@ -3059,9 +3075,9 @@
       "name": "Foto bearbeiten",
       "summary": "Ein Foto zuschneiden, drehen, aufhellen und mit Text oder Emojis versehen, direkt im Browser.",
       "action": "Foto herunterladen",
-      "title": "Foto Bearbeiten Kostenlos — Zuschneiden, Text, Ohne Upload | Fizzdoc",
-      "description": "Fotos kostenlos im Browser bearbeiten: zuschneiden (Quadrat oder Story), drehen, spiegeln, Licht und Farbe anpassen, Filter, Text oder Emoji. Ohne Upload.",
-      "h1": "Ein Foto im Browser bearbeiten",
+      "title": "Foto Online Bearbeiten Kostenlos, Ohne Upload und Anmeldung | Fizzdoc",
+      "description": "Fotos kostenlos im Browser bearbeiten: auf Quadrat, 4:5 oder Story zuschneiden, Licht und Farbe anpassen, Filter, Text oder Emoji. Ohne Upload, ohne Anmeldung.",
+      "h1": "Foto online bearbeiten, ohne es hochzuladen",
       "lede": "Quadratisch oder als Story zuschneiden, drehen und spiegeln, Helligkeit, Kontrast und Farbe korrigieren, mit einem Tippen einen Filter wählen und Text oder Emojis hinzufügen. Alltägliche Fotobearbeitung, direkt auf Ihrem eigenen Gerät, in voller Größe gespeichert.",
       "steps": [
         "Wählen Sie ein Foto.",
@@ -3080,6 +3096,22 @@
         [
           "Bleibt der Standort aus meinem Handyfoto erhalten?",
           "Nein. Das gespeicherte Foto ist eine neue Datei, die nur das Bild enthält. Versteckte Angaben wie der GPS-Standort, das Datum und das Handymodell werden also weggelassen."
+        ],
+        [
+          "Brauche ich ein Konto?",
+          "Nein. Öffnen Sie die Seite, wählen Sie ein Foto und bearbeiten Sie es. Es gibt keine Anmeldung, nichts wird irgendwo gespeichert, und es gibt kein Limit, wie viele Fotos Sie bearbeiten."
+        ],
+        [
+          "Funktioniert es auf meinem Handy?",
+          "Ja. Auf dem Handy bleibt das Foto oben, die Werkzeuge liegen in einer Leiste unten, und Sie können auf dem Foto nach links oder rechts ziehen, um Helligkeit, Kontrast, Sättigung oder Wärme zu ändern."
+        ],
+        [
+          "Wie mache ich ein Foto quadratisch oder 4:5 für Instagram?",
+          "Öffnen Sie „Zuschneiden und drehen“ und wählen Sie „Quadratisch“ oder „Hochformat 4:5“. Ziehen Sie dann das Foto, um zu wählen, was im Rahmen bleibt. „Story 9:16“ und „Querformat 16:9“ gibt es ebenfalls."
+        ],
+        [
+          "Kann ich Text auf Hindi oder in anderen Sprachen hinzufügen?",
+          "Ja. Schreiben Sie in jeder Sprache: Die Stile „Süß“, „Gemütlich“ und „GROSS“ enthalten Hindi-Buchstaben (Devanagari), und andere Schriften wie Bengali, Tamil oder Telugu nutzen die eigene Schriftart Ihres Geräts."
         ],
         [
           "Ist Fizzdoc kostenlos?",

@@ -1788,8 +1788,8 @@
       "name": "Arka Planı Sil",
       "summary": "Bir kişiyi, ürünü ya da evcil hayvanı kesip çıkarın ve arkasına istediğinizi koyun.",
       "action": "Görseli indir",
-      "title": "Fotoğraf Arka Planı Silme Ücretsiz — Yükleme Yok | Fizzdoc",
-      "description": "Her fotoğrafın arka planını ücretsiz silin, tam çözünürlükle: şeffaf PNG, beyaz, istediğiniz renk veya kendi fotoğrafınız. Hiçbir şey yüklenmez.",
+      "title": "Fotoğraf Arka Planı Silme Ücretsiz — Yükleme ve Filigran Yok | Fizzdoc",
+      "description": "Fotoğraf arka planını cihazınızda ücretsiz silin: şeffaf PNG, beyaz, istediğiniz renk veya bulanıklık, tam çözünürlükte ve filigransız. Fotoğrafınız yüklenmez.",
       "h1": "Her fotoğrafın arka planını silin",
       "lede": "Bir fotoğraf seçin, arka plan kendiliğinden kaybolsun. Şeffaf bırakın ya da arkasına beyaz, istediğiniz bir renk, yumuşak bir bulanıklık veya başka bir fotoğraf koyun. Yapay zeka kendi cihazınızda çalışır, bu yüzden fotoğrafınız cihazınızdan hiç çıkmaz.",
       "steps": [
@@ -1809,6 +1809,22 @@
         [
           "Yüklemeden nasıl çalışıyor?",
           "Açık kaynaklı bir yapay zeka modeli (BiRefNet) tarayıcınızın içinde çalışır, cihazda ekran kartı varsa onun üzerinde. Bir kez, yaklaşık 110 MB iner, sonra çevrimdışıyken bile çalışır. Belleği az telefonlar daha küçük bir model (U²-Net) kullanır."
+        ],
+        [
+          "Filigran veya sınır var mı?",
+          "Filigran yok, kredi yok, kayıt yok, günlük limit yok. Sonuç fotoğrafınızın kendi çözünürlüğünde kaydedilir; bir fotoğrafın ne kadar büyük olabileceğini yalnızca cihazınızın belleği sınırlar."
+        ],
+        [
+          "Telefonda çalışır mı?",
+          "Evet, her modern telefon tarayıcısında. Sekmenin belleği tükenmesin diye telefonlar daha küçük bir model (4.6 MB) kullanır, bu yüzden saç kenarları dizüstü bilgisayara göre biraz daha yumuşak olur."
+        ],
+        [
+          "Arka planı nasıl beyaz yaparım?",
+          "Arka plan silindikten sonra Arka plan bölümünden Beyaz'ı seçin, ardından JPG veya PNG olarak kaydedin. İsterseniz herhangi bir renk, orijinal arka planın bulanık hâli ya da kendinize ait başka bir fotoğraf da seçebilirsiniz."
+        ],
+        [
+          "GIF'in veya videonun arka planını silebilir miyim?",
+          "Evet. GIF Arka Planı Silme her kareyi ve zamanlamasını korur, Video Arka Planı Silme ise sesi korur. İkisi de aynı şekilde cihazınızda çalışır."
         ],
         [
           "Fizzdoc ücretsiz mi?",
@@ -3059,9 +3075,9 @@
       "name": "Fotoğraf Düzenleyici",
       "summary": "Fotoğrafı kırpın, döndürün, aydınlatın ve üzerine yazı ya da emoji ekleyin, doğrudan tarayıcınızda.",
       "action": "Fotoğrafı indir",
-      "title": "Fotoğraf Düzenleme Ücretsiz — Kırp, Yazı Ekle, Yükleme Yok | Fizzdoc",
-      "description": "Fotoğrafı tarayıcıda ücretsiz düzenleyin: kareye veya hikayeye kırpın, döndürün, çevirin, ışığı ve rengi düzeltin, filtre, yazı veya emoji ekleyin. Yükleme yok.",
-      "h1": "Fotoğrafı tarayıcınızda düzenleyin",
+      "title": "Fotoğraf Düzenleme Ücretsiz — Kırp, Yazı, Emoji, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğrafı tarayıcıda ücretsiz düzenleyin: kare, 4:5 veya hikaye boyutuna kırpın, ışığı ve rengi düzeltin, filtre, yazı veya emoji ekleyin. Yükleme ve kayıt yok.",
+      "h1": "Fotoğrafı yüklemeden çevrimiçi düzenleyin",
       "lede": "Kare ya da hikaye boyutuna kırpın, döndürün ve çevirin, parlaklığı, kontrastı ve rengi düzeltin, tek dokunuşla bir filtre seçin, yazı ya da emoji ekleyin. Günlük fotoğraf düzenlemeleri kendi cihazınızda yapılır ve tam boyutta kaydedilir.",
       "steps": [
         "Bir fotoğraf seçin.",
@@ -3080,6 +3096,22 @@
         [
           "Telefon fotoğrafımdaki konum bilgisi kalıyor mu?",
           "Hayır. Kaydedilen fotoğraf yalnızca resmin kendisini içeren yeni bir dosyadır, bu yüzden GPS konumu, tarih ve telefon modeli gibi gizli bilgiler dışarıda kalır."
+        ],
+        [
+          "Hesap gerekiyor mu?",
+          "Hayır. Sayfayı açın, bir fotoğraf seçin ve düzenleyin. Kayıt olmanız gerekmez, hiçbir şey hiçbir yere kaydedilmez ve düzenleyebileceğiniz fotoğraf sayısında sınır yoktur."
+        ],
+        [
+          "Telefonumda çalışır mı?",
+          "Evet. Telefonda fotoğraf üstte kalır, araçlar alttaki bir çubukta durur; parlaklığı, kontrastı, doygunluğu veya sıcaklığı değiştirmek için fotoğrafın üzerinde sağa sola sürükleyebilirsiniz."
+        ],
+        [
+          "Instagram için fotoğrafı nasıl kare veya 4:5 yaparım?",
+          "Kırp ve döndür'ü açın, Kare veya Dikey 4:5'i seçin, sonra çerçevede neyin kalacağını seçmek için fotoğrafı sürükleyin. Hikaye 9:16 ve Geniş 16:9 da var."
+        ],
+        [
+          "Hintçe veya başka dillerde yazı ekleyebilir miyim?",
+          "Evet. Herhangi bir dilde yazın: Sevimli, Sıcak ve BÜYÜK stilleri Hintçe (Devanagari) harfleri içerir; Bengalce, Tamilce veya Teluguca gibi diğer yazı sistemleri ise cihazınızın kendi yazı tipini kullanır."
         ],
         [
           "Fizzdoc ücretsiz mi?",
