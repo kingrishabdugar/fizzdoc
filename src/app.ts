@@ -98,6 +98,7 @@ function setUp(op: ToolOp) {
     'edit-pdf': async (file, view) => (await import('./tools/edit-pdf')).openEditor(file, view),
     'audio-split': async (file, view) => (await import('./tools/audio-split')).openSplitter(file, view),
     'remove-bg': async (file, view) => (await import('./tools/remove-bg')).openBackgroundEditor(file, view, options()),
+    'photo-edit': async (file, view) => (await import('./tools/photo-edit')).openPhotoEditor(file, view),
     'redact-pdf': async (file, view) => {
       const redactor = await (await import('./tools/redact-pdf')).openRedactor(file, view);
       return { save: (o, onProgress) => redactor.save(rasterOptions(o), onProgress), destroy: redactor.destroy };
@@ -191,6 +192,7 @@ function setUp(op: ToolOp) {
     'edit-pdf': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'redact-pdf': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'remove-bg': async (_, o) => (await editor!.ready).save(o, progressLabel),
+    'photo-edit': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'audio-split': async () => (await editor!.ready).save({}, progressLabel),
     'audio-merge': async (f) => {
       const { parseAudio, write, formatTime, extension } = await import('./engine/audio');

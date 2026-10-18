@@ -271,6 +271,36 @@
     "bg.sharpNote": "Grafik çipinizde daha ayrıntılı bir geçiş yapar. İlk seferde yaklaşık {mb} MB indirir.",
     "bg.sharpFailed": "Daha keskin kenarlar bu cihazda çalışmadı, bu yüzden ilk sonuç korundu.",
     "bg.shareSticker": "Fotoğraflar’a kaydet",
+    "pe.preview": "Düzenlenen fotoğrafın önizlemesi",
+    "pe.crop": "Kırp ve döndür",
+    "pe.shape": "Şekil",
+    "pe.original": "Orijinal",
+    "pe.square": "Kare",
+    "pe.portrait": "Dikey 4:5",
+    "pe.wide": "Geniş 16:9",
+    "pe.story": "Hikaye 9:16",
+    "pe.zoom": "Yakınlaştırma",
+    "pe.dragHint": "Karede ne kalacağını seçmek için fotoğrafı sürükleyin.",
+    "pe.turn": "Döndür ve çevir",
+    "pe.left": "Sola döndür",
+    "pe.right": "Sağa döndür",
+    "pe.flipH": "Yatay çevir",
+    "pe.flipV": "Dikey çevir",
+    "pe.light": "Işık ve renk",
+    "pe.brightness": "Parlaklık",
+    "pe.contrast": "Kontrast",
+    "pe.saturation": "Doygunluk",
+    "pe.warmth": "Sıcaklık",
+    "pe.reset": "Sıfırla",
+    "pe.swipeHint": "Değiştirmek için fotoğrafın üzerinde sağa sola sürükleyin.",
+    "pe.looks": "Filtreler",
+    "pe.bw": "Siyah beyaz",
+    "pe.vivid": "Canlı",
+    "pe.warm": "Sıcak",
+    "pe.cool": "Soğuk",
+    "pe.fade": "Soluk",
+    "pe.sepia": "Sepya",
+    "pe.noir": "Noir",
     "st.text": "Metin",
     "st.hint": "Metni resmin üzerinde sürükleyin. Boyutunu değiştirmek ve döndürmek için iki parmakla sıkıştırın ya da kaydırıcıları kullanın.",
     "st.add": "Metin ekle",
@@ -3023,6 +3053,45 @@
         "fotoğrafı çıkartma yap",
         "ücretsiz çıkartma oluştur",
         "şeffaf çıkartma webp"
+      ]
+    },
+    "photo-editor": {
+      "name": "Fotoğraf Düzenleyici",
+      "summary": "Fotoğrafı kırpın, döndürün, aydınlatın ve üzerine yazı ya da emoji ekleyin, doğrudan tarayıcınızda.",
+      "action": "Fotoğrafı indir",
+      "title": "Fotoğraf Düzenleme Ücretsiz — Kırp, Yazı Ekle, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğrafı tarayıcıda ücretsiz düzenleyin: kareye veya hikayeye kırpın, döndürün, çevirin, ışığı ve rengi düzeltin, filtre, yazı veya emoji ekleyin. Yükleme yok.",
+      "h1": "Fotoğrafı tarayıcınızda düzenleyin",
+      "lede": "Kare ya da hikaye boyutuna kırpın, döndürün ve çevirin, parlaklığı, kontrastı ve rengi düzeltin, tek dokunuşla bir filtre seçin, yazı ya da emoji ekleyin. Günlük fotoğraf düzenlemeleri kendi cihazınızda yapılır ve tam boyutta kaydedilir.",
+      "steps": [
+        "Bir fotoğraf seçin.",
+        "Kırpın, döndürün, ışığı ve rengi ayarlayın, bir filtre seçin ya da yazı ve emoji ekleyin. Önizleme siz ilerledikçe güncellenir.",
+        "Boyutu ve formatı seçin, sonra “Fotoğrafı indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Düzenleme kaliteyi düşürür mü?",
+          "Kaydetmenin düşürdüğünden fazla değil. Her değişiklik orijinal fotoğrafınızdan yeniden çizilir, bu yüzden düzenlemeler üst üste birikmez ve daha küçük bir boyut seçmediğiniz sürece fotoğraf tam boyutunda kaydedilir. JPG ve WebP yüksek kalitede kaydedilir; PNG kayıpsızdır."
+        ],
+        [
+          "Telefon fotoğrafımdaki konum bilgisi kalıyor mu?",
+          "Hayır. Kaydedilen fotoğraf yalnızca resmin kendisini içeren yeni bir dosyadır, bu yüzden GPS konumu, tarih ve telefon modeli gibi gizli bilgiler dışarıda kalır."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "ücretsiz fotoğraf düzenleme",
+        "fotoğrafı kare kırpma",
+        "fotoğrafa yazı ekleme",
+        "online fotoğraf filtreleri",
+        "yüklemeden fotoğraf düzenleme"
       ]
     }
   }

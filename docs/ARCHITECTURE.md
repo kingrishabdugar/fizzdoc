@@ -85,6 +85,7 @@ sequenceDiagram
 | `src/engine/transcribe.ts` | Speech to text, SRT and VTT with Whisper in a worker; model cached once in Cache Storage | transformers.js, ONNX Runtime |
 | `src/tools/edit-pdf.ts` | In-page PDF editor: change text, add text, white-out | pdf.js, pdf-lib, `pdf-text.ts` |
 | `src/tools/ocr-viewer.ts` | Image with selectable recognized text (Live Text style) | – |
+| `src/tools/photo-edit.ts`, `src/engine/photo.ts` | Photo Editor: crop shapes with drag-to-frame, turn and flip, light and colour as plain pixel maths, one-tap looks, text and emoji layers (shared with the Sticker Maker), saved at full size | Canvas |
 
 ## Design decisions
 

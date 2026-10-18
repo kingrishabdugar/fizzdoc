@@ -271,6 +271,36 @@
     "bg.sharpNote": "Menjalankan proses lebih detail di chip grafis Anda. Pertama kali mengunduh sekitar {mb} MB.",
     "bg.sharpFailed": "Tepi lebih tajam tidak berhasil di perangkat ini, jadi hasil pertama dipertahankan.",
     "bg.shareSticker": "Simpan ke Foto",
+    "pe.preview": "Pratinjau foto yang diedit",
+    "pe.crop": "Potong dan putar",
+    "pe.shape": "Bentuk",
+    "pe.original": "Asli",
+    "pe.square": "Persegi",
+    "pe.portrait": "Potret 4:5",
+    "pe.wide": "Lebar 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Seret foto untuk memilih bagian yang tetap ada di dalam bingkai.",
+    "pe.turn": "Putar dan balik",
+    "pe.left": "Putar ke kiri",
+    "pe.right": "Putar ke kanan",
+    "pe.flipH": "Balik kiri-kanan",
+    "pe.flipV": "Balik atas-bawah",
+    "pe.light": "Cahaya dan warna",
+    "pe.brightness": "Kecerahan",
+    "pe.contrast": "Kontras",
+    "pe.saturation": "Saturasi",
+    "pe.warmth": "Kehangatan",
+    "pe.reset": "Atur ulang",
+    "pe.swipeHint": "Geser ke kiri atau kanan di atas foto untuk mengubahnya.",
+    "pe.looks": "Filter",
+    "pe.bw": "Hitam putih",
+    "pe.vivid": "Cerah",
+    "pe.warm": "Hangat",
+    "pe.cool": "Sejuk",
+    "pe.fade": "Pudar",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
     "st.text": "Teks",
     "st.hint": "Seret teks di atas gambar. Cubit dengan dua jari, atau pakai penggeser, untuk mengubah ukuran dan memutarnya.",
     "st.add": "Tambah teks",
@@ -3023,6 +3053,45 @@
         "foto jadi stiker",
         "bikin stiker gratis",
         "stiker webp transparan"
+      ]
+    },
+    "photo-editor": {
+      "name": "Editor Foto",
+      "summary": "Potong, putar, cerahkan, dan tambahkan tulisan atau emoji ke foto, langsung di browser Anda.",
+      "action": "Unduh foto",
+      "title": "Edit Foto Online Gratis — Potong, Tambah Teks, Tanpa Unggah | Fizzdoc",
+      "description": "Edit foto gratis di browser: potong jadi persegi atau ukuran story, putar, balik, atur kecerahan dan warna, tambah filter, teks, atau emoji. Tanpa unggah.",
+      "h1": "Edit foto di browser Anda",
+      "lede": "Potong jadi persegi atau story, putar dan balik, atur kecerahan, kontras, dan warna, pilih filter dengan sekali ketuk, lalu tambahkan tulisan atau emoji. Edit foto sehari-hari, dikerjakan di perangkat Anda sendiri, disimpan dalam ukuran penuh.",
+      "steps": [
+        "Pilih foto.",
+        "Potong, putar, atur cahaya dan warna, pilih filter, atau tambahkan teks dan emoji. Pratinjau langsung berubah saat Anda mengedit.",
+        "Pilih ukuran dan format, lalu klik “Unduh foto”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah mengedit menurunkan kualitas?",
+          "Tidak lebih dari yang terjadi saat menyimpan biasa. Setiap perubahan digambar ulang dari foto asli Anda, jadi hasil edit tidak pernah menumpuk, dan foto disimpan dalam ukuran penuh kecuali Anda memilih yang lebih kecil. JPG dan WebP disimpan dengan kualitas tinggi; PNG bersifat lossless."
+        ],
+        [
+          "Apakah lokasi dari foto ponsel saya ikut tersimpan?",
+          "Tidak. Foto yang disimpan adalah file baru yang hanya berisi gambarnya, jadi detail tersembunyi seperti lokasi GPS, tanggal, dan model ponsel tidak ikut disimpan."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "edit foto online gratis",
+        "crop foto persegi",
+        "tambah tulisan di foto",
+        "filter foto online",
+        "edit foto tanpa upload"
       ]
     }
   }

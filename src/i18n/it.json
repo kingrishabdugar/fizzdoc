@@ -271,6 +271,36 @@
     "bg.sharpNote": "Fa un passaggio più dettagliato sul chip grafico. La prima volta scarica circa {mb} MB.",
     "bg.sharpFailed": "I bordi più nitidi non hanno funzionato su questo dispositivo, quindi resta il primo risultato.",
     "bg.shareSticker": "Salva in Foto",
+    "pe.preview": "Anteprima della foto modificata",
+    "pe.crop": "Ritaglia e ruota",
+    "pe.shape": "Formato",
+    "pe.original": "Originale",
+    "pe.square": "Quadrato",
+    "pe.portrait": "Verticale 4:5",
+    "pe.wide": "Orizzontale 16:9",
+    "pe.story": "Storia 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Trascina la foto per scegliere cosa resta nell’inquadratura.",
+    "pe.turn": "Ruota e capovolgi",
+    "pe.left": "Ruota a sinistra",
+    "pe.right": "Ruota a destra",
+    "pe.flipH": "Capovolgi in orizzontale",
+    "pe.flipV": "Capovolgi in verticale",
+    "pe.light": "Luce e colore",
+    "pe.brightness": "Luminosità",
+    "pe.contrast": "Contrasto",
+    "pe.saturation": "Saturazione",
+    "pe.warmth": "Calore",
+    "pe.reset": "Reimposta",
+    "pe.swipeHint": "Trascina sulla foto verso destra o sinistra per cambiarlo.",
+    "pe.looks": "Filtri",
+    "pe.bw": "B/N",
+    "pe.vivid": "Vivace",
+    "pe.warm": "Caldo",
+    "pe.cool": "Freddo",
+    "pe.fade": "Sbiadito",
+    "pe.sepia": "Seppia",
+    "pe.noir": "Noir",
     "st.text": "Testo",
     "st.hint": "Trascina il testo sull’immagine. Pizzica con due dita, o usa i cursori, per ridimensionarlo e ruotarlo.",
     "st.add": "Aggiungi testo",
@@ -3023,6 +3053,45 @@
         "foto in sticker",
         "fare sticker gratis",
         "sticker webp trasparente"
+      ]
+    },
+    "photo-editor": {
+      "name": "Editor Foto",
+      "summary": "Ritaglia, ruota, schiarisci e aggiungi testo o emoji a una foto, direttamente nel browser.",
+      "action": "Scarica foto",
+      "title": "Editor Foto Gratis Online — Ritaglia, Testo, Senza Upload | Fizzdoc",
+      "description": "Modifica foto gratis nel browser: ritaglia in quadrato o formato storia, ruota, capovolgi, regola luce e colore, aggiungi filtri, testo o emoji. Niente upload.",
+      "h1": "Modifica una foto nel browser",
+      "lede": "Ritaglia in quadrato o per una storia, ruota e capovolgi, sistema luminosità, contrasto e colore, scegli un filtro con un tocco e aggiungi testo o emoji. Le modifiche di tutti i giorni, fatte sul tuo dispositivo e salvate a dimensione piena.",
+      "steps": [
+        "Scegli una foto.",
+        "Ritaglia, ruota, regola la luce e il colore, scegli un filtro o aggiungi testo ed emoji. L’anteprima si aggiorna mentre modifichi.",
+        "Scegli la dimensione e il formato, poi clicca su “Scarica foto”."
+      ],
+      "faq": [
+        [
+          "I miei file vengono caricati da qualche parte?",
+          "No. Fizzdoc esegue il lavoro direttamente nella scheda del browser, usando motori open source compilati in WebAssembly e JavaScript. Il file viene letto dal tuo dispositivo, elaborato in locale, e il risultato viene salvato di nuovo sul tuo dispositivo. Puoi verificarlo tu stesso: apri gli strumenti per sviluppatori del browser, vai alla scheda Rete ed esegui un'operazione — nessuna richiesta trasporta il tuo file."
+        ],
+        [
+          "Modificare la foto ne abbassa la qualità?",
+          "Non più del semplice salvataggio. Ogni modifica viene ridisegnata dalla tua foto originale, quindi le modifiche non si accumulano mai, e la foto viene salvata a dimensione piena, a meno che tu non ne scelga una più piccola. JPG e WebP vengono salvati ad alta qualità; PNG è senza perdita."
+        ],
+        [
+          "La posizione della foto del mio telefono viene conservata?",
+          "No. La foto salvata è un file nuovo che contiene solo l’immagine, quindi i dati nascosti come la posizione GPS, la data e il modello del telefono vengono esclusi."
+        ],
+        [
+          "Fizzdoc è gratuito?",
+          "Sì, e resterà gratuito: niente registrazione, niente filigrana, nessun limite giornaliero e nessun piano premium. Fizzdoc è open source con licenza Apache-2.0, quindi chiunque può eseguire la propria copia."
+        ]
+      ],
+      "keywords": [
+        "editor foto online gratis",
+        "ritagliare foto quadrata",
+        "scrivere su una foto",
+        "filtri foto online",
+        "modificare foto senza caricarla"
       ]
     }
   }

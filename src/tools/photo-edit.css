@@ -1,0 +1,426 @@
+/* Photo Editor: one dark editing area inside the page, the same in both site themes. The photo stays in view;
+   a bar of tabs picks one panel at a time. The site's colour tokens are set again here with their dark values
+   (light-dark() in a token resolves where the token is defined, so color-scheme alone isn't enough). The light
+   marigold accent reads on the dark surface; Save keeps the page's own darker marigold under white text.
+   Two classes, so these win over the shared .bg-editor rules whatever order the stylesheets load in. */
+.bg-editor.pe-editor {
+  color-scheme: dark;
+  --accent: #ffb547;
+  --surface: #121214;
+  --surface-2: #18181b;
+  --text: #fafafa;
+  --muted: #a1a1aa;
+  --faint: #71717a;
+  --line: #27272a;
+  --line-strong: #3f3f46;
+  display: grid;
+  grid-template-areas: 'top' 'stage' 'panel' 'tabs';
+  grid-template-rows: auto minmax(0, 1fr) clamp(168px, 30svh, 232px) auto;
+  gap: 0;
+  height: calc(100svh - 92px); /* the page keeps 80px clear under its header when scrolling to the editor */
+  min-height: 400px;
+  overflow: hidden;
+  border: 1px solid #27272a;
+  border-radius: 16px;
+  background: #121214;
+  color: var(--text);
+}
+@media (min-width: 960px) {
+  .bg-editor.pe-editor {
+    grid-template-areas: 'top top' 'stage tabs' 'stage panel';
+    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    height: min(calc(100svh - 92px), 820px);
+  }
+}
+@media (max-width: 600px) {
+  .workspace:has(.pe-editor) {
+    padding: 12px;
+  }
+}
+
+/* ---- Top bar ---- */
+.pe-top {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid #27272a;
+}
+.pe-top button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 0.875rem;
+}
+.pe-top svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+.pe-compare {
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.pe-compare[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  color: var(--text);
+}
+.pe-save {
+  padding: 0 18px;
+  border: 0;
+  border-radius: 12px;
+  background: #a15c00;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pe-save:hover {
+  background: #874d00;
+}
+
+/* ---- The photo ---- */
+.pe-editor .bg-stage {
+  position: relative;
+  display: block;
+  grid-area: stage;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: #0a0a0b; /* flat and neutral, so colours are judged true */
+}
+/* The photo always fits the stage, centred, whatever its shape: the stage's height comes from the grid. */
+.pe-editor .bg-canvas {
+  position: absolute;
+  inset: 8px;
+  width: auto;
+  height: auto;
+  max-width: calc(100% - 16px);
+  max-height: calc(100% - 16px);
+  margin: auto;
+  border-radius: 2px;
+}
+/* Text layers only take the photo in the Text tab; elsewhere a swipe still scrolls the page. */
+.pe-editor .bg-canvas.st-has-text {
+  touch-action: auto;
+  cursor: default;
+}
+.pe-editor[data-tab='crop'] .bg-canvas.pe-movable,
+.pe-editor[data-tab='text'] .bg-canvas.st-has-text {
+  touch-action: none;
+  cursor: grab;
+}
+.pe-editor[data-tab='light'] .bg-canvas {
+  touch-action: pan-y; /* a sideways drag changes the value; up and down still scroll the page */
+  cursor: ew-resize;
+}
+
+/* ---- Tabs ---- */
+.pe-tabs {
+  grid-area: tabs;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #27272a;
+}
+@media (min-width: 960px) {
+  .pe-tabs {
+    border-top: 0;
+    border-bottom: 1px solid #27272a;
+    border-left: 1px solid #27272a;
+  }
+}
+.pe-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 56px;
+  padding: 6px 4px;
+  border: 0;
+  border-top: 2px solid transparent;
+  background: none;
+  color: #a1a1aa;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: color 120ms, border-color 120ms;
+}
+.pe-tab svg {
+  width: 22px;
+  height: 22px;
+}
+.pe-tab[aria-selected='true'] {
+  border-top-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- Panels ---- */
+.pe-panel {
+  grid-area: panel;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 12px;
+}
+@media (min-width: 960px) {
+  .pe-panel {
+    border-left: 1px solid #27272a;
+    padding: 16px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pe-panel:not([hidden]) {
+    transition: opacity 120ms ease-out;
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+.pe-panel > * + * {
+  margin-top: 12px;
+}
+.pe-panel .bg-hint {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+/* The Text tab names the panel, so the sticker panel's own frame and title go. */
+.pe-panel .st-panel {
+  padding: 0;
+  border: 0;
+}
+.pe-panel .st-panel > legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.pe-editor .bg-btn[aria-pressed='true'] {
+  color: #1c1103;
+}
+
+/* Chips: a row of choices that scrolls sideways on phones. */
+.pe-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.pe-chips > .bg-btn {
+  flex: none;
+  padding: 0 14px;
+  font-size: 0.875rem;
+}
+@media (min-width: 960px) {
+  .pe-chips {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+/* ---- Rulers: the browser's own range input, with ticks, a fill from zero and a thin marigold bar ---- */
+.pe-slider {
+  display: block;
+}
+.pe-slider-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pe-name {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+.pe-value {
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.pe-editor .pe-slider input[type='range'] {
+  --v: 0;
+  --a: calc(50% + min(var(--v), 0) * 50%);
+  --b: calc(50% + max(var(--v), 0) * 50%);
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background:
+    linear-gradient(to right, transparent var(--a), var(--accent) var(--a) var(--b), transparent var(--b)) center / 100% 4px no-repeat,
+    repeating-linear-gradient(to right, rgb(255 255 255 / 0.32) 0 1px, transparent 1px 8px) center / 100% 14px no-repeat;
+  touch-action: pan-y;
+  cursor: ew-resize;
+}
+.pe-editor .pe-slider.from-start input[type='range'] {
+  --a: 0%;
+  --b: calc(var(--v) * 100%);
+}
+.pe-slider input::-webkit-slider-runnable-track {
+  height: 44px;
+  background: none;
+}
+/* A 24px-wide thumb to grab, drawn as a thin marigold bar. */
+.pe-slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 30px;
+  margin-top: 7px;
+  border: 0;
+  background: linear-gradient(var(--accent), var(--accent)) center / 4px 100% no-repeat;
+}
+.pe-slider input::-moz-range-track {
+  background: none;
+}
+.pe-slider input::-moz-range-thumb {
+  width: 24px;
+  height: 30px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(var(--accent), var(--accent)) center / 4px 100% no-repeat;
+}
+
+/* Light tab: on phones only the chosen ruler, with a big readout; on laptops all four, no chips. */
+@media (max-width: 959px) {
+  .pe-panel#pe-light .pe-slider:not(.on) {
+    display: none;
+  }
+  .pe-panel#pe-light .pe-value {
+    font-size: 1.75rem;
+  }
+}
+@media (min-width: 960px) {
+  .pe-light-chips > .bg-btn:not(:last-child) {
+    display: none; /* the four rulers show at once; only Reset stays */
+  }
+}
+
+/* ---- Looks: a strip of the photo itself on phones, a grid on laptops ---- */
+.pe-looks {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+@media (min-width: 960px) {
+  .pe-looks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+  }
+}
+.pe-look {
+  position: relative;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 76px;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-align: center;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+@media (min-width: 960px) {
+  .pe-look {
+    width: auto;
+  }
+}
+.pe-look:first-child {
+  margin-inline-end: 4px;
+  padding-inline-end: 14px;
+  border-inline-end: 1px solid #27272a;
+}
+.pe-look canvas {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.pe-look[aria-pressed='true'] {
+  color: var(--text);
+}
+/* The chosen look gets the same crop marks as the page heading. */
+.pe-look[aria-pressed='true']::before,
+.pe-look[aria-pressed='true']::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+}
+.pe-look[aria-pressed='true']::before {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.pe-look[aria-pressed='true']::after {
+  right: 0;
+  bottom: 22px;
+  border-left: 0;
+  border-top: 0;
+}
+.pe-look:first-child[aria-pressed='true']::after {
+  right: 10px;
+}
+
+/* Size, under the crop controls. */
+.pe-size {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.875rem;
+}
+.pe-size select {
+  min-height: 44px;
+  max-width: 100%;
+}
+/* The page's input focus ring (a border and glow) doesn't suit a ruler; the outline above marks focus instead. */
+.bg-editor.pe-editor .pe-slider input[type='range']:focus {
+  border: 0;
+  box-shadow: none;
+}
+.bg-editor.pe-editor .pe-slider input[type='range']:focus-visible,
+.pe-editor .bg-canvas:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Narrow phones: Compare shows only its icon; the label stays for screen readers. */
+@media (max-width: 480px) {
+  .pe-compare span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+}

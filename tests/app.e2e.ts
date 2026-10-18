@@ -1591,6 +1591,74 @@ test('sticker on iPhone: “Save to Photos” hands a 512×512 PNG to the share 
   await context.close();
 });
 
+test('photo editor: crops to a square, turns, applies a look and adds text, then saves at full size', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/photo-editor/');
+  // A 900 × 600 photo: red on the left half, blue on the right.
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(900, 600);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#d02020';
+    c.fillRect(0, 0, 450, 600);
+    c.fillStyle = '#2040d0';
+    c.fillRect(450, 0, 450, 600);
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  await page.locator('#file-input').setInputFiles({ name: 'halves.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  // Looks is the first tab; arrow keys move between tabs.
+  await expect(page.getByRole('tab', { name: 'Looks' })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('button', { name: 'B&W' }).click();
+  await page.getByRole('tab', { name: 'Looks' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('tab', { name: 'Crop and turn' })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('button', { name: 'Square' }).click();
+  await expect(page.getByRole('button', { name: 'Square' })).toHaveAttribute('aria-pressed', 'true');
+  // Flipped sideways the blue half is on the left; a quarter turn to the right then puts it on top.
+  await page.getByRole('button', { name: 'Flip sideways' }).click();
+  await page.getByRole('button', { name: 'Turn right' }).click();
+  // Light: a sideways drag on the photo changes the chosen slider (brightness); the ruler says so.
+  await page.getByRole('tab', { name: 'Light and colour' }).click();
+  // The preview redraws on the next frame: wait until it is square before aiming at it.
+  await expect.poll(() => page.locator('.bg-canvas').evaluate((c: HTMLCanvasElement) => c.width === c.height)).toBe(true);
+  await page.locator('.bg-canvas').scrollIntoViewIfNeeded();
+  const box = (await page.locator('.bg-canvas').boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.5, { steps: 4 });
+  await page.mouse.up();
+  await expect(page.getByRole('slider', { name: 'Brightness' })).toHaveAttribute('aria-valuetext', '+20');
+  await page.getByRole('button', { name: 'Reset' }).click();
+  await expect(page.getByRole('slider', { name: 'Brightness' })).toHaveAttribute('aria-valuetext', '0');
+  // Hold to compare.
+  const compare = page.getByRole('button', { name: 'Hold to see the original' });
+  await compare.dispatchEvent('pointerdown');
+  await expect(compare).toHaveAttribute('aria-pressed', 'true');
+  await compare.dispatchEvent('pointerup');
+  await page.getByRole('tab', { name: 'Text' }).click();
+  await page.getByRole('button', { name: 'Add text' }).click();
+  await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');
+  await page.getByRole('button', { name: 'Download photo' }).click();
+  await expect(page.locator('#status')).toContainText('600 × 600 px');
+  const saved = await downloadBytes(page);
+  expect(saved.name).toBe('halves-edited.png');
+  const look = await page.evaluate(async (data) => {
+    const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/png' }));
+    const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    c.drawImage(bitmap, 0, 0);
+    const at = (x: number, y: number) => [...c.getImageData(x, y, 1, 1).data];
+    return { size: [bitmap.width, bitmap.height], top: at(300, 60), bottom: at(300, 300) };
+  }, [...saved.bytes]);
+  expect(look.size).toEqual([600, 600]);
+  // Black and white: grey everywhere.
+  for (const [r, g, b] of [look.top, look.bottom]) {
+    expect(Math.abs(r - g)).toBeLessThan(3);
+    expect(Math.abs(g - b)).toBeLessThan(3);
+  }
+  // Blue turns a darker grey than red, so blue on top means the turn went the way the button says.
+  expect(look.bottom[0] - look.top[0]).toBeGreaterThan(5);
+  expect(seen.violations).toEqual([]);
+});
+
 test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   for (const phone of [true, false]) {

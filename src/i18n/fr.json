@@ -271,6 +271,36 @@
     "bg.sharpNote": "Fait un passage plus détaillé sur votre puce graphique. La première fois, environ {mb} Mo sont téléchargés.",
     "bg.sharpFailed": "Les bords plus nets n’ont pas fonctionné sur cet appareil, le premier résultat est donc conservé.",
     "bg.shareSticker": "Enregistrer dans Photos",
+    "pe.preview": "Aperçu de la photo modifiée",
+    "pe.crop": "Recadrer et pivoter",
+    "pe.shape": "Format",
+    "pe.original": "Original",
+    "pe.square": "Carré",
+    "pe.portrait": "Portrait 4:5",
+    "pe.wide": "Paysage 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Faites glisser la photo pour choisir ce qui reste dans le cadre.",
+    "pe.turn": "Pivoter et retourner",
+    "pe.left": "Pivoter à gauche",
+    "pe.right": "Pivoter à droite",
+    "pe.flipH": "Retourner horizontalement",
+    "pe.flipV": "Retourner verticalement",
+    "pe.light": "Lumière et couleur",
+    "pe.brightness": "Luminosité",
+    "pe.contrast": "Contraste",
+    "pe.saturation": "Saturation",
+    "pe.warmth": "Chaleur",
+    "pe.reset": "Réinitialiser",
+    "pe.swipeHint": "Faites glisser sur la photo vers la gauche ou la droite pour le modifier.",
+    "pe.looks": "Filtres",
+    "pe.bw": "N&B",
+    "pe.vivid": "Vif",
+    "pe.warm": "Chaud",
+    "pe.cool": "Froid",
+    "pe.fade": "Délavé",
+    "pe.sepia": "Sépia",
+    "pe.noir": "Noir",
     "st.text": "Texte",
     "st.hint": "Faites glisser le texte sur l’image. Pincez avec deux doigts, ou utilisez les curseurs, pour le redimensionner et le faire pivoter.",
     "st.add": "Ajouter du texte",
@@ -3023,6 +3053,45 @@
         "photo en sticker whatsapp",
         "faire des stickers gratuit",
         "sticker webp transparent"
+      ]
+    },
+    "photo-editor": {
+      "name": "Éditeur photo",
+      "summary": "Recadrez, faites pivoter, éclaircissez et ajoutez du texte ou des emojis à une photo, directement dans votre navigateur.",
+      "action": "Télécharger la photo",
+      "title": "Éditeur Photo Gratuit — Recadrer, Régler, Texte, Sans Envoi | Fizzdoc",
+      "description": "Retouchez vos photos gratuitement dans le navigateur : recadrage carré ou story, rotation, miroir, lumière, couleur, filtre, texte, emoji. Rien n’est envoyé.",
+      "h1": "Modifiez une photo dans votre navigateur",
+      "lede": "Recadrez en carré ou au format story, faites pivoter et retournez, corrigez la luminosité, le contraste et la couleur, choisissez un filtre d’un seul geste et ajoutez du texte ou des emojis. Les retouches du quotidien, faites sur votre propre appareil et enregistrées en taille d’origine.",
+      "steps": [
+        "Choisissez une photo.",
+        "Recadrez, faites pivoter, réglez la lumière et la couleur, choisissez un filtre, ou ajoutez du texte et des emojis. L’aperçu se met à jour au fur et à mesure.",
+        "Choisissez la taille et le format, puis cliquez sur « Télécharger la photo »."
+      ],
+      "faq": [
+        [
+          "Mes fichiers sont-ils envoyés quelque part ?",
+          "Non. Fizzdoc effectue tout le travail dans votre onglet de navigateur, grâce à des moteurs open source compilés en WebAssembly et en JavaScript. Votre fichier est lu depuis votre appareil, traité localement, puis le résultat est enregistré directement sur votre appareil. Vous pouvez le vérifier vous-même : ouvrez les outils de développement de votre navigateur, allez dans l'onglet Réseau et lancez une opération — aucune requête ne transporte votre fichier."
+        ],
+        [
+          "La retouche fait-elle perdre de la qualité ?",
+          "Pas plus qu’un simple enregistrement. Chaque modification est redessinée à partir de votre photo d’origine, donc les retouches ne s’accumulent jamais, et la photo est enregistrée en taille d’origine, sauf si vous choisissez une taille plus petite. Les JPG et WebP sont enregistrés en haute qualité ; le PNG est sans perte."
+        ],
+        [
+          "La localisation de la photo de mon téléphone est-elle conservée ?",
+          "Non. La photo enregistrée est un nouveau fichier qui ne contient que l’image, donc les informations cachées comme la localisation GPS, la date et le modèle du téléphone ne sont pas reprises."
+        ],
+        [
+          "Est-ce que Fizzdoc est gratuit ?",
+          "Oui, et ça restera gratuit : pas d'inscription, pas de filigrane, pas de limite quotidienne et pas d'offre premium. Fizzdoc est open source sous licence Apache-2.0, donc n'importe qui peut faire tourner sa propre copie."
+        ]
+      ],
+      "keywords": [
+        "éditeur photo en ligne gratuit",
+        "recadrer une photo en carré",
+        "ajouter du texte sur une photo",
+        "filtre photo en ligne",
+        "modifier une photo sans l'envoyer"
       ]
     }
   }

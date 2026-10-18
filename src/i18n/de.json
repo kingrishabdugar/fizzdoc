@@ -271,6 +271,36 @@
     "bg.sharpNote": "Rechnet genauer auf Ihrem Grafikchip. Beim ersten Mal werden etwa {mb} MB geladen.",
     "bg.sharpFailed": "Feinere Kanten haben auf diesem Gerät nicht geklappt, daher bleibt das erste Ergebnis.",
     "bg.shareSticker": "In Fotos speichern",
+    "pe.preview": "Vorschau des bearbeiteten Fotos",
+    "pe.crop": "Zuschneiden und drehen",
+    "pe.shape": "Format",
+    "pe.original": "Original",
+    "pe.square": "Quadratisch",
+    "pe.portrait": "Hochformat 4:5",
+    "pe.wide": "Querformat 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Foto ziehen, um zu wählen, was im Rahmen bleibt.",
+    "pe.turn": "Drehen und spiegeln",
+    "pe.left": "Nach links drehen",
+    "pe.right": "Nach rechts drehen",
+    "pe.flipH": "Horizontal spiegeln",
+    "pe.flipV": "Vertikal spiegeln",
+    "pe.light": "Licht und Farbe",
+    "pe.brightness": "Helligkeit",
+    "pe.contrast": "Kontrast",
+    "pe.saturation": "Sättigung",
+    "pe.warmth": "Wärme",
+    "pe.reset": "Zurücksetzen",
+    "pe.swipeHint": "Zieh auf dem Foto nach links oder rechts, um es zu ändern.",
+    "pe.looks": "Filter",
+    "pe.bw": "S/W",
+    "pe.vivid": "Lebendig",
+    "pe.warm": "Warm",
+    "pe.cool": "Kühl",
+    "pe.fade": "Verblasst",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
     "st.text": "Text",
     "st.hint": "Zieh den Text auf dem Bild an seinen Platz. Mit zwei Fingern zusammenziehen oder die Regler nutzen, um ihn zu vergrößern und zu drehen.",
     "st.add": "Text hinzufügen",
@@ -3023,6 +3053,45 @@
         "Foto zu Sticker",
         "Sticker selber machen kostenlos",
         "transparenter Sticker webp"
+      ]
+    },
+    "photo-editor": {
+      "name": "Foto bearbeiten",
+      "summary": "Ein Foto zuschneiden, drehen, aufhellen und mit Text oder Emojis versehen, direkt im Browser.",
+      "action": "Foto herunterladen",
+      "title": "Foto Bearbeiten Kostenlos — Zuschneiden, Text, Ohne Upload | Fizzdoc",
+      "description": "Fotos kostenlos im Browser bearbeiten: zuschneiden (Quadrat oder Story), drehen, spiegeln, Licht und Farbe anpassen, Filter, Text oder Emoji. Ohne Upload.",
+      "h1": "Ein Foto im Browser bearbeiten",
+      "lede": "Quadratisch oder als Story zuschneiden, drehen und spiegeln, Helligkeit, Kontrast und Farbe korrigieren, mit einem Tippen einen Filter wählen und Text oder Emojis hinzufügen. Alltägliche Fotobearbeitung, direkt auf Ihrem eigenen Gerät, in voller Größe gespeichert.",
+      "steps": [
+        "Wählen Sie ein Foto.",
+        "Schneiden Sie zu, drehen Sie, passen Sie Licht und Farbe an, wählen Sie einen Filter oder fügen Sie Text und Emojis hinzu. Die Vorschau wird laufend aktualisiert.",
+        "Wählen Sie Größe und Format und klicken Sie auf „Foto herunterladen“."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Verschlechtert das Bearbeiten die Qualität?",
+          "Nicht mehr als das Speichern. Jede Änderung wird neu aus Ihrem Originalfoto erzeugt, sodass sich Bearbeitungen nie anhäufen, und das Foto wird in voller Größe gespeichert, außer Sie wählen eine kleinere. JPG und WebP werden in hoher Qualität gespeichert; PNG ist verlustfrei."
+        ],
+        [
+          "Bleibt der Standort aus meinem Handyfoto erhalten?",
+          "Nein. Das gespeicherte Foto ist eine neue Datei, die nur das Bild enthält. Versteckte Angaben wie der GPS-Standort, das Datum und das Handymodell werden also weggelassen."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "Foto bearbeiten online kostenlos",
+        "Bild quadratisch zuschneiden",
+        "Text auf Foto schreiben",
+        "Fotofilter online",
+        "Foto bearbeiten ohne Upload"
       ]
     }
   }

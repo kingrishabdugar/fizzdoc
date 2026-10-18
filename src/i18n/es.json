@@ -271,6 +271,36 @@
     "bg.sharpNote": "Hace una pasada más detallada en tu tarjeta gráfica. La primera vez descarga unos {mb} MB.",
     "bg.sharpFailed": "Los bordes más finos no funcionaron en este dispositivo, así que se mantiene el primer resultado.",
     "bg.shareSticker": "Guardar en Fotos",
+    "pe.preview": "Vista previa de la foto editada",
+    "pe.crop": "Recortar y girar",
+    "pe.shape": "Formato",
+    "pe.original": "Original",
+    "pe.square": "Cuadrado",
+    "pe.portrait": "Vertical 4:5",
+    "pe.wide": "Horizontal 16:9",
+    "pe.story": "Historia 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Arrastra la foto para elegir qué queda dentro del encuadre.",
+    "pe.turn": "Girar y voltear",
+    "pe.left": "Girar a la izquierda",
+    "pe.right": "Girar a la derecha",
+    "pe.flipH": "Voltear en horizontal",
+    "pe.flipV": "Voltear en vertical",
+    "pe.light": "Luz y color",
+    "pe.brightness": "Brillo",
+    "pe.contrast": "Contraste",
+    "pe.saturation": "Saturación",
+    "pe.warmth": "Calidez",
+    "pe.reset": "Restablecer",
+    "pe.swipeHint": "Arrastra sobre la foto hacia los lados para cambiarlo.",
+    "pe.looks": "Filtros",
+    "pe.bw": "B/N",
+    "pe.vivid": "Vivo",
+    "pe.warm": "Cálido",
+    "pe.cool": "Frío",
+    "pe.fade": "Desvanecido",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
     "st.text": "Texto",
     "st.hint": "Arrastra el texto sobre la imagen. Pellizca con dos dedos, o usa los controles, para cambiar su tamaño y girarlo.",
     "st.add": "Añadir texto",
@@ -3023,6 +3053,45 @@
         "foto a sticker de whatsapp",
         "hacer stickers gratis online",
         "sticker webp transparente"
+      ]
+    },
+    "photo-editor": {
+      "name": "Editor de Fotos",
+      "summary": "Recorta, gira, aclara y añade texto o emojis a una foto, directamente en tu navegador.",
+      "action": "Descargar foto",
+      "title": "Editor de Fotos Gratis — Recortar, Ajustar, Texto, Sin Subir | Fizzdoc",
+      "description": "Edita fotos gratis en tu navegador: recorta en cuadrado o tamaño historia, gira, voltea, ajusta brillo y color, añade filtros, texto o emojis. No se sube nada.",
+      "h1": "Edita una foto en tu navegador",
+      "lede": "Recorta en cuadrado o en formato historia, gira y voltea, ajusta el brillo, el contraste y el color, elige un filtro con un toque y añade texto o emojis. Retoques de todos los días, hechos en tu propio dispositivo y guardados a tamaño completo.",
+      "steps": [
+        "Elige una foto.",
+        "Recorta, gira, ajusta la luz y el color, elige un filtro o añade texto y emojis. La vista previa se actualiza mientras editas.",
+        "Elige el tamaño y el formato, y haz clic en «Descargar foto»."
+      ],
+      "faq": [
+        [
+          "¿Se suben mis archivos a algún sitio?",
+          "No. Fizzdoc hace todo el trabajo dentro de la pestaña de tu navegador, con motores de código abierto compilados a WebAssembly y JavaScript. Tu archivo se lee desde tu dispositivo, se procesa localmente y el resultado se guarda directamente en tu dispositivo. Puedes comprobarlo tú mismo: abre las herramientas de desarrollador de tu navegador, ve a la pestaña Red y ejecuta una tarea — ninguna solicitud lleva tu archivo."
+        ],
+        [
+          "¿Editar la foto baja la calidad?",
+          "No más que guardarla. Cada cambio se vuelve a dibujar a partir de tu foto original, así que las ediciones nunca se acumulan, y la foto se guarda a tamaño completo salvo que elijas uno más pequeño. JPG y WebP se guardan en alta calidad; PNG no pierde calidad."
+        ],
+        [
+          "¿Se conserva la ubicación de la foto de mi móvil?",
+          "No. La foto guardada es un archivo nuevo que solo contiene la imagen, así que los datos ocultos como la ubicación GPS, la fecha y el modelo del móvil se quedan fuera."
+        ],
+        [
+          "¿Es gratis Fizzdoc?",
+          "Sí, y seguirá siendo gratis: sin registro, sin marca de agua, sin límite diario y sin plan premium. Fizzdoc es de código abierto bajo la licencia Apache-2.0, así que cualquiera puede ejecutar su propia copia."
+        ]
+      ],
+      "keywords": [
+        "editor de fotos online gratis",
+        "recortar foto en cuadrado",
+        "poner texto a una foto",
+        "filtros para fotos online",
+        "editar fotos sin subirlas"
       ]
     }
   }
