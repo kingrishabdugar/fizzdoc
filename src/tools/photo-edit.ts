@@ -7,6 +7,7 @@ import './photo-edit.css';
 import { FILTERS, NONE, adjustPixels, combine, fit, frame, turned, type Adjust, type Filter } from '../engine/photo';
 import type { Output } from '../engine/local';
 import { stickerText } from './sticker-text';
+import { button, element, iconButton, row, slider, tabs } from './editor-ui';
 import { t, type UiKey } from '../i18n';
 
 export interface PhotoEditor {
@@ -25,37 +26,7 @@ const SIZES = [100, 75, 50, 25];
 const TABS = ['looks', 'crop', 'light', 'text'] as const;
 type Tab = (typeof TABS)[number];
 
-// Our own line icons, drawn like the site's tool icons.
-const svg = (paths: string) =>
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
-const ICONS = {
-  looks: '<circle cx="9" cy="9" r="5"/><circle cx="15" cy="9" r="5"/><circle cx="12" cy="15" r="5"/>',
-  crop: '<path d="M7 3v14h14M3 7h14v14"/>',
-  light: '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
-  text: '<path d="M5 7V5h14v2M12 5v14M9 19h6"/>',
-  compare: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 3v18"/>',
-  save: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
-};
 const LABELS: Record<Tab, UiKey> = { looks: 'pe.looks', crop: 'pe.crop', light: 'pe.light', text: 'st.text' };
-
-const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text = '') => {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (text) node.textContent = text;
-  return node;
-};
-const button = (label: string, className = 'bg-btn') => {
-  const node = element('button', className, label);
-  node.type = 'button';
-  return node;
-};
-/** A button with one of the icons above and a visible label. */
-const iconButton = (icon: keyof typeof ICONS, label: string, className: string) => {
-  const node = button('', className);
-  node.innerHTML = svg(ICONS[icon]);
-  node.append(element('span', '', label));
-  return node;
-};
 
 export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<PhotoEditor> {
   let photo: ImageBitmap;
@@ -66,7 +37,6 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     throw new LocalError('BAD_IMAGE');
   }
   const state = { shape: 'original' as Shape, zoom: 1, cx: 0.5, cy: 0.5, turns: 0, flipX: false, flipY: false, look: 'original' as Filter, own: { ...NONE } as Adjust };
-  let tab: Tab = 'looks';
   let chosen: Slider = 'brightness'; // the slider shown on phones, and the one a sideways swipe changes
   /** The kept part of the turned photo: [x, y, width, height] in photo pixels. */
   const kept = () => {
@@ -117,7 +87,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
       context.globalCompositeOperation = 'source-over';
     }
     // The text's selection box only shows while the Text tab is open.
-    if (!plain) text?.draw(context, target.width, target.height, target === canvas && tab === 'text');
+    if (!plain) text?.draw(context, target.width, target.height, target === canvas && tab() === 'text');
   };
   // Sliders fire fast: draw at most once a frame.
   let queued = false;
@@ -130,40 +100,6 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     });
   };
 
-  const row = (label: string, className: string) => {
-    const node = element('div', className);
-    node.setAttribute('role', 'group');
-    node.setAttribute('aria-label', label);
-    return node;
-  };
-  /** A ruler: the browser's own range input (so keys and screen readers work), with its name and a big signed value. */
-  const slider = (label: string, min: number, max: number, step: number, show: (value: number) => string, onInput: (value: number) => void) => {
-    const range = element('input');
-    range.type = 'range';
-    range.min = String(min);
-    range.max = String(max);
-    range.step = String(step);
-    range.setAttribute('aria-label', label);
-    const value = element('span', 'pe-value');
-    value.setAttribute('aria-hidden', 'true'); // the range announces itself through aria-valuetext
-    const head = element('span', 'pe-slider-head');
-    head.append(element('span', 'pe-name', label), value);
-    const wrap = element('label', 'pe-slider');
-    wrap.append(head, range);
-    const set = (v: number) => {
-      range.value = String(v);
-      value.textContent = show(v);
-      range.setAttribute('aria-valuetext', value.textContent);
-      // -1…1 for the fill from the middle (or 0…1 from the start for Zoom).
-      range.style.setProperty('--v', String(min < 0 ? v / max : (v - min) / (max - min)));
-    };
-    range.oninput = () => {
-      set(Number(range.value));
-      onInput(Number(range.value));
-    };
-    return { range, wrap, set };
-  };
-
   // ---- Top bar: hold to compare, and save ----
   const top = element('div', 'pe-top');
   const compare = iconButton('compare', t('bg.compare'), 'bg-btn bg-compare pe-compare');
@@ -172,42 +108,9 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   top.append(compare, save);
 
   // ---- Tabs ----
-  const tabList = element('div', 'pe-tabs');
-  tabList.setAttribute('role', 'tablist');
-  const panels = {} as Record<Tab, HTMLElement>;
-  const tabButtons = TABS.map((key) => {
-    const node = iconButton(key, t(LABELS[key]), 'pe-tab');
-    node.id = `pe-tab-${key}`;
-    node.setAttribute('role', 'tab');
-    node.setAttribute('aria-controls', `pe-${key}`);
-    node.onclick = () => show(key);
-    const panel = element('div', 'pe-panel');
-    panel.id = `pe-${key}`;
-    panel.setAttribute('role', 'tabpanel');
-    panel.setAttribute('aria-labelledby', node.id);
-    panels[key] = panel;
-    return node;
-  });
-  tabList.append(...tabButtons);
-  // Arrow keys move between tabs.
-  tabList.addEventListener('keydown', (event) => {
-    const at = TABS.indexOf(tab);
-    const next = { ArrowRight: at + 1, ArrowLeft: at - 1, Home: 0, End: TABS.length - 1 }[event.key];
-    if (next === undefined) return;
-    event.preventDefault();
-    show(TABS[(next + TABS.length) % TABS.length]);
-    tabButtons[TABS.indexOf(tab)].focus();
-  });
-  function show(key: Tab) {
-    tab = key;
-    viewer.dataset.tab = key;
-    TABS.forEach((k, i) => {
-      tabButtons[i].setAttribute('aria-selected', String(k === key));
-      tabButtons[i].tabIndex = k === key ? 0 : -1;
-      panels[k].hidden = k !== key;
-    });
-    draw();
-  }
+  const ui = tabs(viewer, TABS, (key) => [key, t(LABELS[key])], () => draw());
+  const panels = ui.panels;
+  const tab = () => ui.current();
 
   // ---- Looks: each one shows the photo with that look ----
   const lookRow = row(t('pe.looks'), 'pe-looks');
@@ -245,7 +148,6 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     state.zoom = value;
     sync();
   });
-  zoom.wrap.classList.add('from-start');
   const dragHint = element('p', 'bg-hint', t('pe.dragHint'));
   const turnRow = row(t('pe.turn'), 'pe-chips');
   const turnButton = (label: UiKey, act: () => void) => {
@@ -338,7 +240,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   const clamp = (value: number, half: number) => Math.min(1 - half, Math.max(half, value));
   const startDrag = (event: PointerEvent) => {
     if (drag || event.defaultPrevented || event.button !== 0) return; // one finger at a time; a text layer took it
-    if (tab === 'crop' ? !canvas.classList.contains('pe-movable') : tab !== 'light') return;
+    if (tab() === 'crop' ? !canvas.classList.contains('pe-movable') : tab() !== 'light') return;
     event.preventDefault();
     canvas.setPointerCapture(event.pointerId);
     drag = { id: event.pointerId, x: event.clientX, y: event.clientY, cx: state.cx, cy: state.cy, value: state.own[chosen] };
@@ -346,7 +248,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   canvas.addEventListener('pointermove', (event) => {
     if (event.pointerId !== drag?.id) return;
     const rect = canvas.getBoundingClientRect();
-    if (tab === 'light') {
+    if (tab() === 'light') {
       // The photo's full width is the whole range, -100 to +100.
       state.own[chosen] = Math.round(Math.min(100, Math.max(-100, drag.value + ((event.clientX - drag.x) / rect.width) * 200)));
       sliders[SLIDERS.indexOf(chosen)].set(state.own[chosen]);
@@ -388,11 +290,11 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
   compare.addEventListener('keyup', () => showOriginal(false));
 
   // The text layers come from the Sticker Maker; registered first, so a touch on a layer moves the layer.
-  text = stickerText(canvas, draw, () => tab !== 'text');
+  text = stickerText(canvas, draw, () => tab() !== 'text');
   panels.text.append(text.panel);
   canvas.addEventListener('pointerdown', startDrag);
-  viewer.replaceChildren(top, stage, tabList, ...TABS.map((key) => panels[key]));
-  show('looks');
+  viewer.replaceChildren(top, stage, ui.tabList, ...TABS.map((key) => panels[key]));
+  ui.show('looks');
   sync();
   // Bring the editor into view once the page around it has settled (the file list and options appear too).
   requestAnimationFrame(() => requestAnimationFrame(() => viewer.scrollIntoView({ block: 'start', behavior: 'instant' })));

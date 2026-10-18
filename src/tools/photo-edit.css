@@ -424,3 +424,32 @@
     clip-path: inset(50%);
   }
 }
+
+/* Collage Maker: a note in the top bar (too many photos), layout thumbnails, and the colour picker as a chip. */
+.co-note {
+  margin: 0;
+  padding-inline-start: 8px;
+}
+.co-layouts .pe-look {
+  width: 64px;
+}
+.co-layouts .pe-look canvas {
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #0a0a0b;
+}
+.co-colour {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.co-layouts .pe-look[aria-pressed='true']::after {
+  bottom: 0;
+}
+.bg-editor.pe-editor .co-colour input[type='color'] {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: none;
+}

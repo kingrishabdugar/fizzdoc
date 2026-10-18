@@ -108,6 +108,7 @@ const ICON_PATHS: Record<ToolOp, string> = {
   'edit-pdf': '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
   'remove-bg': '<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><circle cx="12" cy="9.5" r="2.8"/><path d="M7 18a5 5 0 0 1 10 0"/>',
   'photo-edit': '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  collage: '<rect x="3" y="3" width="8" height="18" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>',
   'redact-pdf': '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><rect x="7" y="12" width="10" height="3" fill="currentColor"/><path d="M7 18h6"/>',
   'scan-pdf': '<path d="M5 3h14v8H5z"/><path d="M3 11h18v4H3z"/><path d="M7 15v6h10v-6"/><path d="M9 18h6"/>',
   'ocr-pdf': SCAN,
@@ -207,6 +208,7 @@ const OP_ENGINES: Partial<Record<ToolOp, Engine[]>> = {
   'mermaid-image': ['Mermaid'],
   'image-convert': ['Canvas', 'fflate'],
   'photo-edit': ['Canvas'],
+  collage: ['Canvas'],
   'audio-split': ['Web Audio', 'fflate'],
   'audio-merge': ['Web Audio', 'fflate'],
   // Word, Excel and PowerPoint files are ZIP archives of XML.
@@ -314,7 +316,7 @@ function optionsHtml(c: Copy, tool: Tool) {
   if (tool.op === 'remove-bg' && tool.preset?.format === 'sticker') return '<input type="hidden" name="format" value="sticker">';
   if (tool.op === 'remove-bg')
     return `<label>${esc(c.t('ws.saveAs'))}<select name="format">${option('auto', c.t('ws.fmtAuto'))}${option('png', c.t('ws.fmtPng'))}${option('jpg', c.t('ws.fmtJpeg'))}${option('webp', c.t('ws.fmtWebp'))}</select></label>`;
-  if (tool.op === 'photo-edit')
+  if (tool.op === 'photo-edit' || tool.op === 'collage')
     return `<label>${esc(c.t('ws.saveAs'))}<select name="format">${option('jpg', c.t('ws.fmtJpeg'))}${option('png', c.t('ws.fmtPng'))}${option('webp', c.t('ws.fmtWebp'))}</select></label>`;
   if (tool.op === 'mermaid-image')
     return `<label class="code">${esc(c.t('ws.mermaidCode'))}<textarea name="code" rows="9" spellcheck="false" autocapitalize="off" autocomplete="off">${esc(MERMAID_SAMPLE)}</textarea></label>
@@ -376,7 +378,7 @@ function workspaceHtml(c: Copy, tool: Tool) {
               : null;
   const { accept, choose, multiple } = input(c, tool);
   return `
-<section class="workspace${['edit-pdf', 'redact-pdf', 'audio-split', 'remove-bg', 'photo-edit'].includes(tool.op) ? ' wide' : ''}" id="workspace" data-multiple="${multiple}" aria-label="${esc(tool.name)}">
+<section class="workspace${['edit-pdf', 'redact-pdf', 'audio-split', 'remove-bg', 'photo-edit', 'collage'].includes(tool.op) ? ' wide' : ''}" id="workspace" data-multiple="${multiple}" aria-label="${esc(tool.name)}">
   <label class="drop" id="drop">
     <input id="file-input" type="file" accept="${accept}"${multiple ? ' multiple' : ''}>
     <span class="drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4"/><path d="m6 10 6-6 6 6"/><path d="M4 20h16"/></svg></span>
@@ -384,7 +386,7 @@ function workspaceHtml(c: Copy, tool: Tool) {
     <span>${esc(c.t(multiple ? 'ws.dropMany' : 'ws.dropOne'))}</span>
   </label>
   <ol id="file-list" class="file-list" aria-label="${esc(c.t('ws.files'))}"></ol>
-  ${['edit-pdf', 'redact-pdf', 'image-ocr', 'audio-split', 'remove-bg', 'photo-edit'].includes(tool.op) ? '<div id="viewer" class="viewer"></div>' : ''}
+  ${['edit-pdf', 'redact-pdf', 'image-ocr', 'audio-split', 'remove-bg', 'photo-edit', 'collage'].includes(tool.op) ? '<div id="viewer" class="viewer"></div>' : ''}
   ${multiple ? `<p class="hint" id="reorder-hint" hidden>${esc(c.t('ws.reorder'))}</p>` : ''}
   <div class="options">
     ${
@@ -557,7 +559,7 @@ const VERB = /^(Add|Compress|Convert|Cut|Delete|Edit|Extract|Merge|Protect|Redac
 /** Names that keep their capital in a sentence ("How to remove Word metadata"). */
 const PROPER = new Set(['Word', 'Excel', 'PowerPoint', 'Markdown', 'Mermaid', 'WhatsApp', 'Aadhaar']);
 /** The photo tools, linked to each other first under "More tools". */
-const PHOTO_TOOLS = ['photo-editor', 'remove-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image', 'remove-gif-background', 'remove-video-background'];
+const PHOTO_TOOLS = ['photo-editor', 'collage-maker', 'remove-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image', 'remove-gif-background', 'remove-video-background'];
 const howTo = (c: Copy, tool: Tool) => {
   if (c.lang !== 'en') return c.t('tool.how', { tool: tool.name });
   if (VERB.test(tool.name)) return `How to ${tool.name.replace(/\b[A-Z][a-z]+\b/g, (word) => (PROPER.has(word) ? word : word.toLowerCase()))}`;
@@ -906,6 +908,7 @@ ${HOME.what}
 - **How do I make a photo's background white?** Same page: after the background is removed, pick White under Background and save as JPG or PNG.
 - **Can I remove the background from a GIF or a video?** Yes: ${SITE.url}/remove-gif-background/ keeps every frame and its timing; ${SITE.url}/remove-video-background/ keeps the sound.
 - **Is there a free photo editor that doesn't upload my photo?** ${SITE.url}/photo-editor/ crops to square, 4:5, 16:9 or story size, turns and flips, sets brightness, contrast, saturation and warmth, adds one-tap looks, text and emoji, and saves at full size, all on the device, with no sign-up.
+- **How do I make a photo collage without uploading the photos?** ${SITE.url}/collage-maker/ puts 1 to 9 photos in a grid (square, 4:5, story, 16:9 or A4 for printing), lets each photo be moved and zoomed in its frame, sets the gap, round corners, background and text, and saves JPG, PNG or WebP with no watermark.
 - **How do I make a WhatsApp sticker from a photo?** ${SITE.url}/whatsapp-sticker-maker/ removes the background, adds a white outline, text and emoji, and saves a 512×512 WebP under 100 KB; WhatsApp's own "Create sticker" then adds it to the sticker tray.
 
 ## Why Fizzdoc instead of other online file tools

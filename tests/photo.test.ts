@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FILTERS, NONE, adjustPixels, combine, fit, frame, turned } from '../src/engine/photo';
+import { FILTERS, LAYOUTS, NONE, adjustPixels, cells, combine, fit, frame, place, turned } from '../src/engine/photo';
 
 const pixel = (r: number, g: number, b: number) => new Uint8ClampedArray([r, g, b, 255]);
 
@@ -50,5 +50,28 @@ describe('photo edits', () => {
         expect(x + fw).toBeLessThanOrEqual(4032);
         expect(y + fh).toBeLessThanOrEqual(3024);
       }
+  });
+});
+
+describe('collage layouts', () => {
+  it('has one cell per photo, filling the collage with no overlaps', () => {
+    for (const [count, layouts] of Object.entries(LAYOUTS))
+      for (const [counts, columns] of layouts) {
+        const all = cells(counts, columns);
+        expect(all.length, `${counts} ${columns ?? ''}`).toBe(Number(count));
+        expect(all.reduce((sum, [, , w, h]) => sum + w * h, 0)).toBeCloseTo(1);
+        for (const [i, a] of all.entries())
+          for (const b of all.slice(i + 1)) {
+            const apart = a[0] + a[2] <= b[0] + 1e-9 || b[0] + b[2] <= a[0] + 1e-9 || a[1] + a[3] <= b[1] + 1e-9 || b[1] + b[3] <= a[1] + 1e-9;
+            expect(apart).toBe(true);
+          }
+      }
+  });
+
+  it('leaves the same gap around the edge and between cells', () => {
+    const [left, right] = cells([2]).map((cell) => place(cell, 1000, 500, 20));
+    expect(left).toEqual([20, 20, 470, 460]);
+    expect(right[0] - (left[0] + left[2])).toBe(20);
+    expect(1000 - (right[0] + right[2])).toBe(20);
   });
 });
