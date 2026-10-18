@@ -277,6 +277,15 @@ test('alternative pages describe only Fizzdoc, link to the matching tools and sa
   await expect(page.locator('footer a[href="/alternatives/"]')).toHaveText('जाने-पहचाने टूल्स के विकल्प');
 });
 
+test('the privacy page says what stays on the device, and every page links to it', async ({ page }) => {
+  await page.goto('/privacy/');
+  await expect(page.locator('h1')).toHaveText('Privacy');
+  await expect(page.locator('#faq')).toBeVisible();
+  await expect(page.locator('main')).toContainText('no cookies, no analytics');
+  await page.goto('/hi/merge-pdf/');
+  await expect(page.locator('footer a[href="/privacy/"]')).toHaveText('गोपनीयता');
+});
+
 test('the Aadhaar unlock page explains the password format and unlocks on the device', async ({ page }) => {
   await page.goto('/unlock-aadhaar-pdf/');
   await expect(page.locator('h1')).toHaveText('Remove the password from an e-Aadhaar PDF');

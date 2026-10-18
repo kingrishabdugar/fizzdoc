@@ -38,6 +38,7 @@ export const UI = {
   'footer.madeBy': 'Designed and built by',
   'footer.feedback': 'Report a bug or suggest a tool',
   'footer.compare': 'Alternatives to familiar tools',
+  'footer.privacy': 'Privacy',
   'star.title': 'Free and open source. Forever.',
   'star.text': 'No ads, no accounts, no servers looking at your files. If Fizzdoc saved you time, a star on GitHub helps more people find it.',
   'star.button': 'Star Fizzdoc on GitHub',

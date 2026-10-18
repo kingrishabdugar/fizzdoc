@@ -4,6 +4,7 @@ import { SHARE_ICON, shareLinks } from './share';
 import { existsSync, readFileSync } from 'node:fs';
 import { LANGS, UI, fill, type Lang, type Strings, type UiKey } from './i18n.ts';
 import { ALTERNATIVES, ALTERNATIVES_HUB, type Alternative } from './alternatives.ts';
+import { PRIVACY } from './privacy.ts';
 import { FORMATS, HOME, SITE, TOOLS, type Format, type Tool, type ToolOp } from './site.ts';
 
 type ToolCopy = Pick<Tool, 'name' | 'summary' | 'action' | 'title' | 'description' | 'h1' | 'lede' | 'steps' | 'faq'>;
@@ -31,6 +32,8 @@ export interface Page {
   tool?: Tool;
   /** A comparison page ("iLovePDF alternative"), or 'hub' for the list of them. English only. */
   alt?: Alternative | 'hub';
+  /** The privacy page. English only. */
+  privacy?: true;
 }
 
 const prefix = (lang: Lang) => (lang === 'en' ? '' : `/${lang}`);
@@ -40,8 +43,11 @@ export const PAGES: Page[] = [
   ...SITE_LANGS.flatMap((lang) => [{ path: pathOf(lang), lang }, ...TOOLS.map((tool) => ({ path: pathOf(lang, tool), lang, tool }))]),
   { path: `/${ALTERNATIVES_HUB.slug}/`, lang: 'en' as Lang, alt: 'hub' as const },
   ...ALTERNATIVES.map((alt) => ({ path: `/${alt.slug}/`, lang: 'en' as Lang, alt })),
+  { path: `/${PRIVACY.slug}/`, lang: 'en' as Lang, privacy: true as const },
 ];
 const altCopy = (alt: Alternative | 'hub') => (alt === 'hub' ? ALTERNATIVES_HUB : alt);
+/** Title, description and FAQ of an English-only page (a comparison or the privacy page). */
+const englishOnly = (page: Page) => (page.privacy ? PRIVACY : page.alt && altCopy(page.alt));
 
 /** Everything a page needs in one language. */
 function copy(lang: Lang) {
@@ -378,6 +384,15 @@ const passwordDialog = (c: Copy) => `<dialog id="password-dialog" aria-labelledb
 
 function mainHtml(c: Copy, page: Page) {
   if (page.alt) return altHtml(c, page.alt);
+  if (page.privacy)
+    return `
+<nav class="crumbs" aria-label="${esc(c.t('crumbs.label'))}"><a href="${c.link()}">${SITE.name}</a><span aria-hidden="true">/</span><span aria-current="page">${PRIVACY.h1}</span></nav>
+<section class="hero hero-tool">
+  <h1>${esc(PRIVACY.h1)}</h1>
+  <p class="lede">${esc(PRIVACY.lede)}</p>
+</section>
+${faqHtml(c, PRIVACY.faq)}
+${proofHtml(c)}`;
   if (!page.tool) {
     const home = c.home;
     const merge = TOOLS.find((t) => t.slug === 'merge-pdf');
@@ -504,6 +519,15 @@ const OG_LOCALE: Record<Lang, string> = {
 function jsonLd(c: Copy, page: Page) {
   const url = SITE.url + page.path;
   if (page.alt) return altJsonLd(page.alt, url);
+  if (page.privacy)
+    return JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'WebPage', name: PRIVACY.title, description: PRIVACY.description, url, inLanguage: 'en', isPartOf: { '@id': `${SITE.url}/#org` } },
+        { '@type': 'Organization', '@id': `${SITE.url}/#org`, name: SITE.name, url: `${SITE.url}/`, logo: `${SITE.url}/icon-512.png`, sameAs: [SITE.repo] },
+        { '@type': 'FAQPage', inLanguage: 'en', mainEntity: PRIVACY.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+      ],
+    }).replace(/</g, '\\u003c');
   const tool = page.tool && c.tool(page.tool);
   const faq = tool ? tool.faq : c.home.faq;
   const author = { '@id': `${SITE.url}/#author` };
@@ -678,7 +702,7 @@ const ogImage = (lang: Lang) => (lang !== 'en' && existsSync(new URL(`../public/
 const formatStars = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '')}k` : String(n));
 
 /** The same page in every language: for hreflang links and the language menu. */
-const alternates = (page: Page) => (page.alt ? [{ lang: 'en' as Lang, path: page.path }] : SITE_LANGS.map((lang) => ({ lang, path: pathOf(lang, page.tool) })));
+const alternates = (page: Page) => (englishOnly(page) ? [{ lang: 'en' as Lang, path: page.path }] : SITE_LANGS.map((lang) => ({ lang, path: pathOf(lang, page.tool) })));
 
 // Each language's "choose your language" tip, so a Hindi-speaking visitor on an English page reads it in Hindi.
 const LANG_TIPS = JSON.stringify(Object.fromEntries(SITE_LANGS.map((lang) => [lang, copy(lang).t('lang.tip')])));
@@ -709,8 +733,9 @@ export function notFoundPage(template: string, stars?: number) {
 export function renderPage(template: string, page: Page, withCsp: boolean, stars?: number) {
   const c = copy(page.lang);
   const tool = page.tool && c.tool(page.tool);
-  const title = page.alt ? altCopy(page.alt).title : tool?.title ?? c.home.title;
-  const description = page.alt ? altCopy(page.alt).description : tool?.description ?? c.home.description;
+  const only = englishOnly(page);
+  const title = only ? only.title : tool?.title ?? c.home.title;
+  const description = only ? only.description : tool?.description ?? c.home.description;
   const url = SITE.url + page.path;
   const head = [
     withCsp ? `<meta http-equiv="Content-Security-Policy" content="${CSP}">` : '',
@@ -718,7 +743,7 @@ export function renderPage(template: string, page: Page, withCsp: boolean, stars
     `<meta name="description" content="${esc(description)}">`,
     `<link rel="canonical" href="${url}">`,
     ...alternates(page).map(({ lang, path }) => `<link rel="alternate" hreflang="${lang}" href="${SITE.url}${path}">`),
-    `<link rel="alternate" hreflang="x-default" href="${SITE.url}${page.alt ? page.path : pathOf('en', page.tool)}">`,
+    `<link rel="alternate" hreflang="x-default" href="${SITE.url}${only ? page.path : pathOf('en', page.tool)}">`,
     `<meta property="og:type" content="website">`,
     `<meta property="og:site_name" content="${SITE.name}">`,
     `<meta property="og:title" content="${esc(title)}">`,
