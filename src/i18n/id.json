@@ -11,7 +11,7 @@
     "footer.about": "Alat dokumen yang privat. File Anda diproses di perangkat Anda dan tidak pernah diunggah.",
     "footer.license": "Open source (Apache-2.0)",
     "footer.licenses": "Lisensi pihak ketiga",
-    "footer.builtOn": "Dibangun dengan qpdf, pdf.js, dan pdf-lib",
+    "footer.builtOn": "Dibangun dengan qpdf, pdf.js, pdf-lib, ONNX Runtime, dan Whisper",
     "star.title": "Gratis dan open source. Selamanya.",
     "star.text": "Tanpa iklan, tanpa akun, tanpa server yang mengintip file Anda. Jika Fizzdoc menghemat waktu Anda, beri bintang di GitHub agar lebih banyak orang menemukannya.",
     "star.button": "Beri Bintang Fizzdoc di GitHub",
@@ -42,6 +42,8 @@
     "search.count": "{n} alat yang cocok",
     "search.none": "Tidak ada alat yang cocok. Coba “pdf”, “gambar”, atau “audio”.",
     "home.chip": "Diproses di perangkat ini",
+    "home.createTitle": "Edit dan buat",
+    "home.createLede": "Perbaiki foto, buat kolase, hapus latar belakang, atau jadikan stiker, semuanya di perangkat Anda sendiri.",
     "home.toolsTitle": "Semua alat, privat secara default",
     "home.toolsLede": "Pilih alat. File Anda diproses di perangkat ini dan tidak pernah menyentuh server.",
     "home.whatTitle": "Apa itu {name}?",
@@ -93,6 +95,10 @@
     "ws.compression": "Kompresi",
     "ws.balanced": "Seimbang — kualitas terbaik",
     "ws.strong": "Kuat — ukuran file terkecil",
+    "ws.levelLow": "Ringan — kualitas terbaik",
+    "ws.levelMedium": "Seimbang — disarankan",
+    "ws.levelHigh": "Kuat — file lebih kecil",
+    "ws.levelExtreme": "Ekstrem — file terkecil",
     "ws.saveAs": "Simpan sebagai",
     "ws.fmtOriginal": "Format sama seperti tiap file",
     "ws.fmtJpeg": "JPG — foto, bisa dibuka di mana saja",
@@ -169,6 +175,11 @@
     "error.NO_PAGES_LEFT": "Itu akan menghapus semua halaman. Sisakan setidaknya satu halaman.",
     "error.WRONG_FILE_COUNT": "Tambahkan jumlah file yang dibutuhkan alat ini.",
     "error.PROCESSING_FAILED": "Terjadi kesalahan saat memproses. File asli Anda tidak berubah.",
+    "offline.needed": "Kamu sedang offline, dan alat ini belum ada di perangkat ini. Alat ini butuh internet sekali: sambungkan lalu coba lagi.",
+    "offline.ready": "Siap: alat ini sekarang berfungsi di perangkat ini meski Wi-Fi atau data seluler dimatikan.",
+    "offline.badge": "Bisa dipakai offline",
+    "offline.install": "Pasang Fizzdoc",
+    "offline.iosSteps": "Untuk memasang Fizzdoc di iPhone atau iPad, ketuk tombol Bagikan, lalu “Tambah ke Layar Utama”.",
     "error.NO_PASSWORD": "Masukkan kata sandi yang ingin Anda tambahkan.",
     "error.PASSWORDS_DIFFER": "Kedua kata sandi tidak cocok.",
     "error.NOT_OFFICE": "File ini bukan dokumen Word, Excel, atau PowerPoint yang valid.",
@@ -261,8 +272,75 @@
     "bg.sharp": "Tepi lebih tajam (rambut, bulu)",
     "bg.sharpNote": "Menjalankan proses lebih detail di chip grafis Anda. Pertama kali mengunduh sekitar {mb} MB.",
     "bg.sharpFailed": "Tepi lebih tajam tidak berhasil di perangkat ini, jadi hasil pertama dipertahankan.",
-    "bg.shareSticker": "Bagikan ke WhatsApp",
-    "bg.stickerNote": "Stiker siap: 512 × 512, latar transparan, garis tepi putih. Simpan, atau bagikan langsung ke WhatsApp dari ponsel.",
+    "bg.shareSticker": "Simpan ke Foto",
+    "pe.preview": "Pratinjau foto yang diedit",
+    "pe.crop": "Potong dan putar",
+    "pe.shape": "Bentuk",
+    "pe.original": "Asli",
+    "pe.square": "Persegi",
+    "pe.portrait": "Potret 4:5",
+    "pe.wide": "Lebar 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Seret foto untuk memilih bagian yang tetap ada di dalam bingkai.",
+    "pe.turn": "Putar dan balik",
+    "pe.left": "Putar ke kiri",
+    "pe.right": "Putar ke kanan",
+    "pe.flipH": "Balik kiri-kanan",
+    "pe.flipV": "Balik atas-bawah",
+    "pe.light": "Cahaya dan warna",
+    "pe.brightness": "Kecerahan",
+    "pe.contrast": "Kontras",
+    "pe.saturation": "Saturasi",
+    "pe.warmth": "Kehangatan",
+    "pe.reset": "Atur ulang",
+    "pe.swipeHint": "Geser ke kiri atau kanan di atas foto untuk mengubahnya.",
+    "pe.looks": "Filter",
+    "pe.bw": "Hitam putih",
+    "pe.vivid": "Cerah",
+    "pe.warm": "Hangat",
+    "pe.cool": "Sejuk",
+    "pe.fade": "Pudar",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
+    "co.preview": "Pratinjau kolase",
+    "co.layout": "Tata letak",
+    "co.photo": "Foto",
+    "co.space": "Spasi",
+    "co.gap": "Jarak",
+    "co.corners": "Sudut bulat",
+    "co.a4": "Cetak A4",
+    "co.max": "Hanya 9 foto pertama yang dipakai.",
+    "co.order": "Untuk menukar foto, ubah urutannya di daftar di atas.",
+    "co.tapHint": "Ketuk foto untuk memilihnya, lalu seret untuk menggesernya di dalam bingkainya.",
+    "st.text": "Teks",
+    "st.hint": "Seret teks di atas gambar. Cubit dengan dua jari, atau pakai penggeser, untuk mengubah ukuran dan memutarnya.",
+    "st.add": "Tambah teks",
+    "st.addEmoji": "Tambah emoji",
+    "st.sample": "Halo!",
+    "st.textLabel": "Teks kamu",
+    "st.style": "Gaya huruf",
+    "st.funny": "Lucu",
+    "st.cute": "Imut",
+    "st.cozy": "Hangat",
+    "st.big": "BESAR",
+    "st.serious": "Serius",
+    "st.color": "Warna",
+    "st.white": "Putih",
+    "st.black": "Hitam",
+    "st.green": "Hijau",
+    "st.yellow": "Kuning",
+    "st.red": "Merah",
+    "st.blue": "Biru",
+    "st.size": "Ukuran",
+    "st.turn": "Putar",
+    "st.delete": "Hapus teks",
+    "bg.stickerNote": "Stiker siap: 512 × 512, latar transparan, garis tepi putih.",
+    "wa.title": "Tambahkan ke WhatsApp",
+    "wa.why": "Tidak ada situs web yang bisa memasukkan stiker langsung ke WhatsApp: file yang dibagikan akan masuk sebagai foto. Pembuat stiker milik WhatsApp sendiri yang mengerjakan langkah terakhir, lalu menyimpan stiker di daftar stiker Anda.",
+    "wa.android": "Android: unduh stiker. Di WhatsApp, buka chat mana saja (chat dengan diri sendiri juga bisa), ketuk tombol emoji, lalu Stiker › Buat, dan pilih stiker dari foto Anda. Ketuk Kirim.",
+    "wa.iphone": "iPhone (iOS 17 atau lebih baru): ketuk “Simpan ke Foto” lalu simpan gambarnya. Di WhatsApp, buka chat mana saja, ketuk Stiker › Buat stiker › Gunakan foto, lalu pilih gambar tersebut. Ketuk Kirim.",
+    "wa.computer": "Di komputer: unduh stiker, kirim ke ponsel Anda, lalu ikuti langkah di atas pada ponsel itu.",
     "bg.magicErase": "Ketuk untuk hapus",
     "bg.magicRestore": "Ketuk untuk simpan",
     "bg.magicHint": "Lebih cepat: pilih Ketuk untuk hapus atau Ketuk untuk simpan, lalu ketuk sisa latar atau bagian yang hilang. Seluruh area dengan warna itu langsung diperbaiki.",
@@ -294,6 +372,7 @@
     "footer.madeBy": "Dirancang dan dibuat oleh",
     "footer.feedback": "Laporkan bug atau usulkan alat",
     "footer.compare": "Alternatif untuk alat yang sudah dikenal",
+    "footer.privacy": "Privasi",
     "format.audio": "Audio",
     "ws.chooseAudio": "Pilih file MP3 atau M4A",
     "ws.chooseAudios": "Pilih file MP3 atau M4A",
@@ -741,7 +820,7 @@
       "lede": "Perkecil PDF agar cukup ringan untuk dikirim lewat email atau diunggah ke portal. Fizzdoc mengompresi ulang foto dan scan yang terlalu besar, tanpa menyentuh teks dan grafik vektor.",
       "steps": [
         "Tambahkan satu file PDF.",
-        "Pilih kompresi Seimbang atau Kuat.",
+        "Pilih seberapa kuat kompresinya: Ringan, Seimbang, Kuat, atau Ekstrem.",
         "Klik “Kompres PDF” dan unduh file yang lebih kecil."
       ],
       "faq": [
@@ -1721,8 +1800,8 @@
       "name": "Hapus Latar Belakang",
       "summary": "Potong orang, produk, atau hewan peliharaan lalu pasang apa saja di belakangnya.",
       "action": "Unduh gambar",
-      "title": "Hapus Latar Belakang Foto Gratis — Tanpa Unggah | Fizzdoc",
-      "description": "Hapus latar belakang foto apa saja secara gratis dengan resolusi penuh: PNG transparan, putih, warna apa saja, atau foto Anda. Tidak ada yang diunggah.",
+      "title": "Hapus Latar Belakang Gratis — Ukuran Penuh, Tanpa Unggah | Fizzdoc",
+      "description": "Hapus latar belakang foto gratis di perangkat Anda: PNG transparan, putih, warna apa saja, atau buram, resolusi penuh tanpa watermark. Foto tak pernah diunggah.",
       "h1": "Hapus latar belakang foto apa saja",
       "lede": "Pilih foto dan latar belakangnya hilang sendiri. Biarkan transparan, atau pasang warna putih, warna apa saja, buram lembut, atau foto lain di belakangnya. AI berjalan di perangkat Anda sendiri, jadi foto Anda tidak pernah keluar dari sana.",
       "steps": [
@@ -1742,6 +1821,22 @@
         [
           "Bagaimana cara kerjanya tanpa mengunggah?",
           "Model AI open source (BiRefNet) berjalan di dalam browser Anda, memakai chip grafis jika perangkat punya. Modelnya diunduh sekali, sekitar 110 MB, lalu bisa dipakai bahkan saat offline. Ponsel dengan memori kecil memakai model yang lebih kecil (U²-Net)."
+        ],
+        [
+          "Apakah ada watermark atau batasan?",
+          "Tanpa watermark, tanpa kredit, tanpa daftar, dan tanpa batas harian. Hasilnya disimpan dengan resolusi asli foto Anda; ukuran foto maksimal hanya dibatasi oleh memori perangkat Anda."
+        ],
+        [
+          "Apakah bisa dipakai di ponsel?",
+          "Ya, di browser ponsel modern mana pun. Ponsel memakai model yang lebih kecil (4.6 MB) agar tab tidak kehabisan memori, jadi tepi rambut sedikit lebih lembut dibanding di laptop."
+        ],
+        [
+          "Bagaimana cara membuat latar belakang putih?",
+          "Setelah latar belakang dihapus, pilih Putih di bagian Latar belakang, lalu simpan sebagai JPG atau PNG. Anda juga bisa memilih warna apa saja, versi buram dari latar belakang asli, atau foto Anda yang lain."
+        ],
+        [
+          "Bisakah saya menghapus latar belakang GIF atau video?",
+          "Bisa. Hapus Latar Belakang GIF mempertahankan setiap bingkai beserta waktunya, dan Hapus Latar Belakang Video mempertahankan suaranya. Keduanya juga berjalan di perangkat Anda."
         ],
         [
           "Apakah Fizzdoc gratis?",
@@ -2949,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Latar Belakang Putih",
+      "summary": "Pasang latar belakang putih bersih di belakang foto apa saja, dalam satu langkah.",
+      "action": "Unduh gambar",
+      "title": "Ubah Latar Belakang Foto Jadi Putih Gratis — Tanpa Unggah | Fizzdoc",
+      "description": "Ubah latar belakang foto jadi putih gratis langsung di perangkat Anda, untuk toko online, profil, dan formulir. Resolusi penuh, tanpa watermark, tanpa unggah.",
+      "h1": "Ubah latar belakang foto jadi putih",
+      "lede": "Pilih foto dan latar belakangnya otomatis jadi putih polos: untuk listing produk di toko online, foto profil, dan formulir. AI berjalan di perangkat Anda sendiri, dan foto tetap beresolusi penuh.",
+      "steps": [
+        "Pilih foto. Latar belakang langsung dihapus dan diganti putih.",
+        "Rapikan bagian tertentu jika perlu, tambahkan bayangan, atau potong jadi persegi untuk listing toko online.",
+        "Pilih ukuran, lalu klik “Unduh gambar”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah putihnya benar-benar putih murni?",
+          "Ya. Latar belakang diisi putih murni (#FFFFFF), yang diminta oleh kebanyakan toko dan formulir. Tepi rambut dan bulu dirapikan agar menyatu dengan putihnya."
+        ],
+        [
+          "Bisakah dipakai untuk pas foto paspor atau kartu identitas?",
+          "Hasilnya latar belakang putih polos, tetapi setiap negara punya aturan sendiri soal ukuran, pencahayaan, dan pose. Periksa aturannya sebelum mencetak; Fizzdoc tidak menjanjikan persetujuan resmi."
+        ],
+        [
+          "Bisakah saya memilih warna lain?",
+          "Bisa. Di bagian Latar belakang, Anda bisa beralih ke warna apa saja, versi buram dari foto aslinya, foto Anda sendiri, atau tanpa latar belakang sama sekali untuk PNG transparan."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "background foto putih",
+        "ubah background foto jadi putih",
+        "latar belakang putih",
+        "edit background putih online",
+        "ganti background foto putih gratis"
+      ]
+    },
+    "blur-background": {
+      "name": "Buramkan Latar Belakang",
+      "summary": "Subjek tetap tajam dan semua di belakangnya jadi lembut, seperti mode potret.",
+      "action": "Unduh gambar",
+      "title": "Blur Background Foto Gratis — Ukuran Penuh, Tanpa Unggah | Fizzdoc",
+      "description": "Buramkan latar belakang foto gratis dan biarkan orang atau produk tetap tajam. Berjalan di perangkat Anda dengan resolusi penuh, tanpa watermark, tanpa unggah.",
+      "h1": "Buramkan latar belakang foto",
+      "lede": "Pilih foto dan latar belakangnya jadi lembut, sementara orang, hewan peliharaan, atau produk tetap tajam, seperti foto potret. AI menemukan subjeknya di perangkat Anda sendiri, dan foto tetap beresolusi penuh.",
+      "steps": [
+        "Pilih foto. Subjek langsung ditemukan dan latar belakang dibuat buram.",
+        "Rapikan bagian yang terlewat oleh AI, atau ganti dengan warna atau foto lain di belakang.",
+        "Pilih ukuran, lalu klik “Unduh gambar”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah cara kerjanya seperti mode potret?",
+          "Hasilnya mirip: subjek tetap tajam dan latar belakang dibuat buram. Alat ini tidak mengukur kedalaman, jadi semua yang ada di belakang subjek diburamkan dengan kadar yang sama."
+        ],
+        [
+          "Apakah kualitas foto akan turun?",
+          "Tidak. Foto tetap beresolusi penuh; hanya latar belakangnya yang dilembutkan. Anda juga bisa menyimpan salinan yang lebih kecil."
+        ],
+        [
+          "Bisakah saya menghapus latar belakang sepenuhnya?",
+          "Bisa. Di bagian Latar belakang, pilih Tidak ada untuk PNG transparan, atau Putih, warna apa saja, atau foto lain."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "blur background foto",
+        "cara blur background foto",
+        "buramkan latar belakang foto",
+        "edit foto blur belakang",
+        "background blur online"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Pembuat stiker WhatsApp",
       "summary": "Ubah foto apa pun jadi stiker: latar dihapus, garis tepi putih, siap untuk WhatsApp.",
@@ -2959,8 +3140,8 @@
       "lede": "Pilih foto teman, hewan peliharaan, atau diri sendiri. Latar menghilang, garis tepi stiker putih ditambahkan, dan Anda mendapat stiker siap WhatsApp: WebP 512 × 512, latar transparan, di bawah 100 KB. AI berjalan di perangkat Anda sendiri.",
       "steps": [
         "Pilih foto. Latar dihapus dan garis tepi stiker ditambahkan.",
-        "Perbaiki bagian tertentu bila perlu, atau matikan garis tepi.",
-        "Klik “Unduh stiker”, atau di ponsel ketuk “Bagikan ke WhatsApp”."
+        "Tambahkan teks atau emoji bila ingin, perbaiki bagian tertentu, atau matikan garis tepi.",
+        "Unduh stiker (di iPhone, ketuk “Simpan ke Foto”), lalu di WhatsApp buka Stiker › Buat dan pilih stikernya."
       ],
       "faq": [
         [
@@ -2969,7 +3150,7 @@
         ],
         [
           "Bagaimana cara menambahkan stiker ke WhatsApp?",
-          "Di ponsel, ketuk “Bagikan ke WhatsApp” lalu kirim ke chat mana saja (chat dengan diri sendiri juga bisa). Lalu ketuk stiker di chat dan pilih “Tambahkan ke favorit”. Di komputer, unduh file WebP dan kirim dari WhatsApp Web atau Desktop."
+          "Tidak ada situs web yang bisa menambahkan stiker langsung ke WhatsApp, jadi langkah terakhir dilakukan oleh pembuat stiker milik WhatsApp sendiri. Di Android, unduh stiker, lalu di chat mana saja ketuk tombol emoji › Stiker › Buat dan pilih stiker dari foto Anda. Di iPhone (iOS 17 atau lebih baru), ketuk “Simpan ke Foto”, lalu di chat ketuk Stiker › Buat stiker › Gunakan foto dan pilih stikernya. Ketuk Kirim, dan WhatsApp menyimpannya di daftar stiker Anda. Di komputer, kirim file ke ponsel Anda lalu lakukan langkahnya di sana."
         ],
         [
           "Apakah ini buatan WhatsApp?",
@@ -2986,6 +3167,104 @@
         "foto jadi stiker",
         "bikin stiker gratis",
         "stiker webp transparan"
+      ]
+    },
+    "collage-maker": {
+      "name": "Pembuat Kolase",
+      "summary": "Gabungkan 2 sampai 9 foto jadi satu gambar, dengan jarak, sudut bulat, dan teks.",
+      "action": "Unduh kolase",
+      "title": "Buat Kolase Foto Gratis — Tanpa Unggah, Tanpa Watermark | Fizzdoc",
+      "description": "Buat kolase foto gratis di browser: pilih tata letak untuk 2 sampai 9 foto, atur jarak, sudut, dan ukuran, tambah teks. Tanpa unggah, daftar, atau watermark.",
+      "h1": "Buat kolase foto tanpa mengunggah foto Anda",
+      "lede": "Pilih 2 sampai 9 foto, pilih tata letak dan bentuk (persegi, story, A4, dan lainnya), geser dan zoom setiap foto di dalam bingkainya, lalu tambahkan jarak, sudut bulat, warna latar, dan teks. Semuanya dikerjakan di perangkat Anda sendiri.",
+      "steps": [
+        "Pilih 2 sampai 9 foto. Urutan di daftar adalah urutan di kolase.",
+        "Pilih tata letak dan bentuk, geser dan zoom setiap foto, lalu atur jarak, sudut, latar, dan teks.",
+        "Pilih ukuran dan format, lalu klik “Unduh kolase”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Berapa banyak foto dalam satu kolase?",
+          "Dari 1 sampai 9. Setiap jumlah foto punya tata letaknya sendiri, seperti berdampingan, atas-bawah, satu foto besar dengan beberapa foto kecil, atau grid. Jika Anda menambahkan lebih dari 9, yang dipakai adalah 9 foto pertama."
+        ],
+        [
+          "Bisakah saya menggeser atau memperbesar setiap foto?",
+          "Bisa. Buka Foto, ketuk sebuah foto untuk memilihnya, lalu seret untuk memilih bagian yang terlihat di bingkainya, dan pakai Zoom untuk memperbesar. Untuk menukar foto, ubah urutannya di daftar file."
+        ],
+        [
+          "Ukuran apa saja yang bisa saya simpan?",
+          "Persegi, Potret 4:5, dan Story 9:16 untuk media sosial, Lebar 16:9, serta Cetak A4 untuk dicetak: 1080 atau 2160 px di sisi pendek, atau 2480 px untuk A4 pada 300 dpi. Dalam format JPG, PNG, atau WebP, tanpa watermark."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "buat kolase foto",
+        "kolase foto online gratis",
+        "gabungkan foto jadi satu",
+        "bikin kolase foto",
+        "kolase foto tanpa watermark"
+      ]
+    },
+    "photo-editor": {
+      "name": "Editor Foto",
+      "summary": "Potong, putar, cerahkan, dan tambahkan tulisan atau emoji ke foto, langsung di browser Anda.",
+      "action": "Unduh foto",
+      "title": "Edit Foto Online Gratis, Tanpa Unggah — Potong, Teks, Emoji | Fizzdoc",
+      "description": "Edit foto gratis di browser: potong jadi persegi, 4:5, atau ukuran story, atur cahaya dan warna, tambah filter, teks, atau emoji. Tanpa unggah, tanpa daftar.",
+      "h1": "Edit foto online tanpa mengunggahnya",
+      "lede": "Potong jadi persegi atau story, putar dan balik, atur kecerahan, kontras, dan warna, pilih filter dengan sekali ketuk, lalu tambahkan tulisan atau emoji. Edit foto sehari-hari, dikerjakan di perangkat Anda sendiri, disimpan dalam ukuran penuh.",
+      "steps": [
+        "Pilih foto.",
+        "Potong, putar, atur cahaya dan warna, pilih filter, atau tambahkan teks dan emoji. Pratinjau langsung berubah saat Anda mengedit.",
+        "Pilih ukuran dan format, lalu klik “Unduh foto”."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah mengedit menurunkan kualitas?",
+          "Tidak lebih dari yang terjadi saat menyimpan biasa. Setiap perubahan digambar ulang dari foto asli Anda, jadi hasil edit tidak pernah menumpuk, dan foto disimpan dalam ukuran penuh kecuali Anda memilih yang lebih kecil. JPG dan WebP disimpan dengan kualitas tinggi; PNG bersifat lossless."
+        ],
+        [
+          "Apakah lokasi dari foto ponsel saya ikut tersimpan?",
+          "Tidak. Foto yang disimpan adalah file baru yang hanya berisi gambarnya, jadi detail tersembunyi seperti lokasi GPS, tanggal, dan model ponsel tidak ikut disimpan."
+        ],
+        [
+          "Apakah saya perlu akun?",
+          "Tidak. Buka halamannya, pilih foto, lalu edit. Tidak perlu daftar, tidak ada yang disimpan di mana pun, dan tidak ada batas jumlah foto yang bisa Anda edit."
+        ],
+        [
+          "Apakah bisa dipakai di ponsel saya?",
+          "Ya. Di ponsel, foto tetap di atas, alat-alatnya ada di bilah bawah, dan Anda bisa menyeret ke samping di atas foto untuk mengubah kecerahan, kontras, saturasi, atau kehangatan."
+        ],
+        [
+          "Bagaimana cara membuat foto persegi atau 4:5 untuk Instagram?",
+          "Buka Potong dan putar, pilih Persegi atau Potret 4:5, lalu seret foto untuk memilih bagian yang tetap ada di dalam bingkai. Story 9:16 dan Lebar 16:9 juga tersedia."
+        ],
+        [
+          "Bisakah saya menambahkan teks dalam bahasa Hindi atau bahasa lain?",
+          "Bisa. Ketik dalam bahasa apa pun: gaya Imut, Hangat, dan BESAR sudah mencakup huruf Hindi (Devanagari), sedangkan aksara lain, seperti Bengali, Tamil, atau Telugu, memakai font bawaan perangkat Anda."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "edit foto online gratis",
+        "crop foto persegi",
+        "tambah tulisan di foto",
+        "filter foto online",
+        "edit foto tanpa upload"
       ]
     }
   }

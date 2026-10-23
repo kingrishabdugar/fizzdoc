@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
-import { defineConfig, type Plugin } from 'vite';
-import { PAGES, SITE_LANGS, fileName, llms, llmsFor, llmsFull, notFoundPage, renderPage, robots, sitemap } from './src/seo.ts';
+import { readFileSync } from 'node:fs';
+import { defineConfig, type Plugin, type Rollup } from 'vite';
+import { PAGES, SITE_LANGS, fileName, llms, llmsFor, llmsFull, notFoundPage, offlineText, renderPage, robots, sitemap } from './src/seo.ts';
 import { SITE } from './src/site.ts';
 import { ocrAssets } from './vite-plugins/ocr-assets.ts';
 import { whisperAssets } from './vite-plugins/whisper-assets.ts';
@@ -67,6 +68,9 @@ function pages(): Plugin {
   };
 }
 
+const sizeOf = (item: Rollup.OutputAsset | Rollup.OutputChunk) =>
+  item.type === 'asset' ? (typeof item.source === 'string' ? Buffer.byteLength(item.source) : item.source.length) : Buffer.byteLength(item.code);
+
 /** Static hosts refuse files over 25 MiB (Cloudflare Pages); fail the build here instead of at deploy. */
 function sizeGuard(): Plugin {
   const LIMIT = 25 * 1024 * 1024;
@@ -75,19 +79,41 @@ function sizeGuard(): Plugin {
     enforce: 'post',
     generateBundle(_, bundle) {
       for (const [name, item] of Object.entries(bundle)) {
-        const size = item.type === 'asset' ? (typeof item.source === 'string' ? Buffer.byteLength(item.source) : item.source.length) : Buffer.byteLength(item.code);
+        const size = sizeOf(item);
         if (size > LIMIT) this.error(`${name} is ${(size / 1048576).toFixed(1)} MiB; static hosts accept at most 25 MiB per file. Split it into parts.`);
       }
     },
   };
 }
 
+/**
+ * Writes /sw.js (src/sw.js) with the list of files it keeps on the device for offline use: the code of
+ * every tool and theme.js. Files over 5 MB are left out: the ONNX runtime is only used by Audio to Text and
+ * Remove Background, which keep their runtimes and models in their own caches.
+ */
+function serviceWorker(): Plugin {
+  return {
+    name: 'fizzdoc-service-worker',
+    enforce: 'post',
+    generateBundle(_, bundle) {
+      // theme.js runs before every page paints, so it must be there offline too.
+      const assets = ['/theme.js', ...Object.values(bundle)
+        .filter((item) => item.fileName.startsWith('assets/') && sizeOf(item) <= 5 * 1024 * 1024)
+        .map((item) => `/${item.fileName}`)
+        .sort()];
+      const source = readFileSync('src/sw.js', 'utf8').replace('[/* ASSETS */]', JSON.stringify(assets)).replace('{/* OFFLINE */}', JSON.stringify(offlineText()));
+      this.emitFile({ type: 'asset', fileName: 'sw.js', source });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [pages(), ocrAssets(), whisperAssets(), backgroundAssets(), sizeGuard()],
+  plugins: [pages(), ocrAssets(), whisperAssets(), backgroundAssets(), serviceWorker(), sizeGuard()],
   // Audio to Text runs Whisper on ONNX Runtime's CPU build; its WebGPU build is too big to host.
   // Remove Background imports the real WebGPU build by its own name, 'ort-webgpu'.
   resolve: { alias: { 'onnxruntime-web/webgpu': 'onnxruntime-web/wasm', 'ort-webgpu': ORT_WEBGPU } },
   worker: { format: 'es' },
-  build: { target: 'es2022' },
+  // Fonts are always files: the CSP (default-src 'self') rightly refuses fonts from data: URLs.
+  build: { target: 'es2022', assetsInlineLimit: (file) => (/\.(woff2?|ttf|otf)$/.test(file) ? false : undefined) },
   test: { include: ['tests/**/*.test.ts'] },
 });

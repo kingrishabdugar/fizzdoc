@@ -557,6 +557,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ==============================================================================
+Bangers typeface (SIL Open Font License 1.1)
+==============================================================================
+
+Copyright 2010 The Bangers Project Authors (https://github.com/googlefonts/bangers)
+
+Licensed under the SIL Open Font License, Version 1.1 — the same license text as reproduced for Inter above.
+
+==============================================================================
+Baloo 2 typeface (SIL Open Font License 1.1)
+==============================================================================
+
+Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+
+Licensed under the SIL Open Font License, Version 1.1 — the same license text as reproduced for Inter above.
+
+==============================================================================
+Kalam typeface (SIL Open Font License 1.1)
+==============================================================================
+
+Copyright (c) 2014 Indian Type Foundry (info@indiantypefoundry.com)
+
+Licensed under the SIL Open Font License, Version 1.1 — the same license text as reproduced for Inter above.
+
+==============================================================================
+Teko typeface (SIL Open Font License 1.1)
+==============================================================================
+
+Copyright 2023 The Teko Project Authors (https://www.github.com/googlefonts/teko)
+
+Licensed under the SIL Open Font License, Version 1.1 — the same license text as reproduced for Inter above.
+
+==============================================================================
 JetBrains Mono (SIL Open Font License 1.1)
 ==============================================================================
 

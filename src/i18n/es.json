@@ -11,7 +11,7 @@
     "footer.about": "Herramientas de documentos privadas. Tus archivos se procesan en tu dispositivo y nunca se suben a ningún servidor.",
     "footer.license": "Código abierto (Apache-2.0)",
     "footer.licenses": "Licencias de terceros",
-    "footer.builtOn": "Creado con qpdf, pdf.js y pdf-lib",
+    "footer.builtOn": "Creado con qpdf, pdf.js, pdf-lib, ONNX Runtime y Whisper",
     "star.title": "Gratis y de código abierto. Para siempre.",
     "star.text": "Sin anuncios, sin cuentas, sin servidores que vean tus archivos. Si Fizzdoc te ha ahorrado tiempo, una estrella en GitHub ayuda a que más gente lo encuentre.",
     "star.button": "Destaca Fizzdoc en GitHub",
@@ -42,6 +42,8 @@
     "search.count": "{n} herramientas coincidentes",
     "search.none": "Ninguna herramienta coincide. Prueba «pdf», «imagen» o «audio».",
     "home.chip": "Procesado en este dispositivo",
+    "home.createTitle": "Editar y crear",
+    "home.createLede": "Arregla una foto, haz un collage, quita el fondo o conviértela en sticker, todo en tu dispositivo.",
     "home.toolsTitle": "Todas las herramientas, privadas por defecto",
     "home.toolsLede": "Elige una herramienta. Tu archivo se procesa en este dispositivo y nunca pasa por un servidor.",
     "home.whatTitle": "¿Qué es {name}?",
@@ -93,6 +95,10 @@
     "ws.compression": "Compresión",
     "ws.balanced": "Equilibrada — mejor calidad",
     "ws.strong": "Fuerte — archivo más pequeño",
+    "ws.levelLow": "Ligera — mejor calidad",
+    "ws.levelMedium": "Equilibrada — recomendada",
+    "ws.levelHigh": "Fuerte — archivo más pequeño",
+    "ws.levelExtreme": "Extrema — el archivo más pequeño",
     "ws.saveAs": "Guardar como",
     "ws.fmtOriginal": "Mismo formato que cada archivo",
     "ws.fmtJpeg": "JPG — fotos, se abre en cualquier sitio",
@@ -169,6 +175,11 @@
     "error.NO_PAGES_LEFT": "Eso eliminaría todas las páginas. Conserva al menos una.",
     "error.WRONG_FILE_COUNT": "Añade el número de archivos que necesita esta herramienta.",
     "error.PROCESSING_FAILED": "Algo ha fallado durante el procesamiento. Tu archivo original no se ha modificado.",
+    "offline.needed": "Estás sin conexión y esta herramienta aún no está en este dispositivo. Necesita internet una vez: conéctate y vuelve a intentarlo.",
+    "offline.ready": "Lista: esta herramienta ya funciona en este dispositivo con el Wi-Fi o los datos móviles desactivados.",
+    "offline.badge": "Funciona sin conexión",
+    "offline.install": "Instalar Fizzdoc",
+    "offline.iosSteps": "Para instalar Fizzdoc en iPhone o iPad, toca el botón Compartir y luego “Añadir a pantalla de inicio”.",
     "error.NO_PASSWORD": "Escribe la contraseña que quieres añadir.",
     "error.PASSWORDS_DIFFER": "Las dos contraseñas no coinciden.",
     "error.NOT_OFFICE": "Este archivo no es un documento válido de Word, Excel o PowerPoint.",
@@ -261,8 +272,75 @@
     "bg.sharp": "Bordes más finos (pelo, pelaje)",
     "bg.sharpNote": "Hace una pasada más detallada en tu tarjeta gráfica. La primera vez descarga unos {mb} MB.",
     "bg.sharpFailed": "Los bordes más finos no funcionaron en este dispositivo, así que se mantiene el primer resultado.",
-    "bg.shareSticker": "Compartir en WhatsApp",
-    "bg.stickerNote": "Sticker listo: 512 × 512, fondo transparente y contorno blanco. Guárdalo o compártelo directo a WhatsApp desde el móvil.",
+    "bg.shareSticker": "Guardar en Fotos",
+    "pe.preview": "Vista previa de la foto editada",
+    "pe.crop": "Recortar y girar",
+    "pe.shape": "Formato",
+    "pe.original": "Original",
+    "pe.square": "Cuadrado",
+    "pe.portrait": "Vertical 4:5",
+    "pe.wide": "Horizontal 16:9",
+    "pe.story": "Historia 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Arrastra la foto para elegir qué queda dentro del encuadre.",
+    "pe.turn": "Girar y voltear",
+    "pe.left": "Girar a la izquierda",
+    "pe.right": "Girar a la derecha",
+    "pe.flipH": "Voltear en horizontal",
+    "pe.flipV": "Voltear en vertical",
+    "pe.light": "Luz y color",
+    "pe.brightness": "Brillo",
+    "pe.contrast": "Contraste",
+    "pe.saturation": "Saturación",
+    "pe.warmth": "Calidez",
+    "pe.reset": "Restablecer",
+    "pe.swipeHint": "Arrastra sobre la foto hacia los lados para cambiarlo.",
+    "pe.looks": "Filtros",
+    "pe.bw": "B/N",
+    "pe.vivid": "Vivo",
+    "pe.warm": "Cálido",
+    "pe.cool": "Frío",
+    "pe.fade": "Desvanecido",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
+    "co.preview": "Vista previa del collage",
+    "co.layout": "Diseño",
+    "co.photo": "Foto",
+    "co.space": "Espacio",
+    "co.gap": "Separación",
+    "co.corners": "Esquinas redondeadas",
+    "co.a4": "A4 para imprimir",
+    "co.max": "Solo se usan las 9 primeras fotos.",
+    "co.order": "Para intercambiar fotos, cambia su orden en la lista de arriba.",
+    "co.tapHint": "Toca una foto para elegirla y luego arrástrala para moverla dentro de su marco.",
+    "st.text": "Texto",
+    "st.hint": "Arrastra el texto sobre la imagen. Pellizca con dos dedos, o usa los controles, para cambiar su tamaño y girarlo.",
+    "st.add": "Añadir texto",
+    "st.addEmoji": "Añadir un emoji",
+    "st.sample": "¡Hola!",
+    "st.textLabel": "Tu texto",
+    "st.style": "Estilo de letra",
+    "st.funny": "Divertido",
+    "st.cute": "Tierno",
+    "st.cozy": "Acogedor",
+    "st.big": "GRANDE",
+    "st.serious": "Serio",
+    "st.color": "Color",
+    "st.white": "Blanco",
+    "st.black": "Negro",
+    "st.green": "Verde",
+    "st.yellow": "Amarillo",
+    "st.red": "Rojo",
+    "st.blue": "Azul",
+    "st.size": "Tamaño",
+    "st.turn": "Girar",
+    "st.delete": "Borrar texto",
+    "bg.stickerNote": "Sticker listo: 512 × 512, fondo transparente y contorno blanco.",
+    "wa.title": "Añádelo a WhatsApp",
+    "wa.why": "Ninguna web puede poner un sticker directamente en WhatsApp: un archivo compartido llega como foto. El propio creador de stickers de WhatsApp hace el último paso y luego guarda el sticker en tu bandeja de stickers.",
+    "wa.android": "Android: descarga el sticker. En WhatsApp, abre cualquier chat (un chat contigo mismo sirve), toca el botón de emojis, luego Stickers › Crear y elige el sticker entre tus fotos. Toca Enviar.",
+    "wa.iphone": "iPhone (iOS 17 o posterior): toca “Guardar en Fotos” y guarda la imagen. En WhatsApp, abre cualquier chat, toca Stickers › Crear sticker › Usar una foto y elígela. Toca Enviar.",
+    "wa.computer": "En el ordenador: descarga el sticker, envíalo a tu móvil y sigue allí los pasos de arriba.",
     "bg.magicErase": "Toca para quitar",
     "bg.magicRestore": "Toca para conservar",
     "bg.magicHint": "Más rápido: elige Toca para quitar o Toca para conservar y toca un resto de fondo o una parte que falta. Toda la zona de ese color se corrige de una vez.",
@@ -294,6 +372,7 @@
     "footer.madeBy": "Diseñado y creado por",
     "footer.feedback": "Reporta un error o sugiere una herramienta",
     "footer.compare": "Alternativas a herramientas conocidas",
+    "footer.privacy": "Privacidad",
     "format.audio": "Audio",
     "ws.chooseAudio": "Elige un archivo MP3 o M4A",
     "ws.chooseAudios": "Elige archivos MP3 o M4A",
@@ -741,7 +820,7 @@
       "lede": "Haz que un PDF sea lo bastante pequeño para enviarlo por correo o subirlo a un portal. Fizzdoc recomprime fotos y escaneos pesados y deja intactos el texto y los gráficos vectoriales.",
       "steps": [
         "Añade un archivo PDF.",
-        "Elige compresión Equilibrada o Fuerte.",
+        "Elige cuánto comprimir: Ligera, Equilibrada, Fuerte o Extrema.",
         "Haz clic en «Comprimir PDF» y descarga el archivo más ligero."
       ],
       "faq": [
@@ -1721,8 +1800,8 @@
       "name": "Quitar Fondo",
       "summary": "Recorta a una persona, un producto o una mascota y pon lo que quieras detrás.",
       "action": "Descargar imagen",
-      "title": "Quitar Fondo de Imagen Gratis — Sin Subir Nada | Fizzdoc",
-      "description": "Quita el fondo de cualquier foto gratis y en resolución completa: PNG transparente, blanco, cualquier color o tu propia foto. No se sube nada.",
+      "title": "Quitar Fondo de Foto Gratis — Sin Subir, Sin Marca de Agua | Fizzdoc",
+      "description": "Quita el fondo de una foto gratis en tu dispositivo: PNG transparente, blanco, cualquier color o desenfoque, a tamaño completo, sin marca de agua. Nada se sube.",
       "h1": "Quita el fondo de cualquier foto",
       "lede": "Elige una foto y el fondo desaparece solo. Déjalo transparente, o pon detrás blanco, cualquier color, un desenfoque suave u otra foto. La IA funciona en tu propio dispositivo, así que tu foto nunca sale de él.",
       "steps": [
@@ -1742,6 +1821,22 @@
         [
           "¿Cómo funciona sin subir nada?",
           "Un modelo de IA de código abierto (BiRefNet) funciona dentro de tu navegador, en la tarjeta gráfica si el dispositivo la tiene. Se descarga una sola vez, unos 110 MB, y después funciona incluso sin conexión. Los móviles con poca memoria usan un modelo más pequeño (U²-Net)."
+        ],
+        [
+          "¿Hay marca de agua o algún límite?",
+          "No hay marca de agua, ni créditos, ni registro, ni límite diario. El resultado se guarda a la resolución original de tu foto; solo la memoria de tu dispositivo limita lo grande que puede ser una foto."
+        ],
+        [
+          "¿Funciona en el móvil?",
+          "Sí, en cualquier navegador de móvil moderno. Los móviles usan un modelo más pequeño (4.6 MB) para que la pestaña no se quede sin memoria, así que los bordes del pelo quedan un poco más suaves que en un portátil."
+        ],
+        [
+          "¿Cómo pongo el fondo blanco?",
+          "Cuando se haya quitado el fondo, elige «Blanco» en «Fondo» y guarda como JPG o PNG. También puedes elegir cualquier color, un desenfoque del fondo original u otra foto tuya."
+        ],
+        [
+          "¿Puedo quitar el fondo de un GIF o de un vídeo?",
+          "Sí. «Quitar Fondo de GIF» conserva cada fotograma y su duración, y «Quitar Fondo de Vídeo» conserva el sonido. Los dos funcionan también en tu dispositivo."
         ],
         [
           "¿Es gratis Fizzdoc?",
@@ -2949,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Fondo Blanco",
+      "summary": "Pon un fondo blanco limpio detrás de cualquier foto, en un solo paso.",
+      "action": "Descargar imagen",
+      "title": "Poner Fondo Blanco a una Foto Gratis — Sin Subir Nada | Fizzdoc",
+      "description": "Pon fondo blanco a una foto gratis, en tu dispositivo, para tiendas online, perfiles y formularios. Resolución completa, sin marca de agua. Nada se sube.",
+      "h1": "Pon fondo blanco a una foto",
+      "lede": "Elige una foto y su fondo se vuelve blanco liso solo: para anuncios de tiendas online, fotos de perfil y formularios. La IA funciona en tu propio dispositivo y la foto conserva su resolución completa.",
+      "steps": [
+        "Elige una foto. El fondo se quita y se cambia por blanco al instante.",
+        "Retoca cualquier zona si hace falta, añade una sombra o recorta en cuadrado para tiendas online.",
+        "Elige el tamaño y haz clic en «Descargar imagen»."
+      ],
+      "faq": [
+        [
+          "¿Se suben mis archivos a algún sitio?",
+          "No. Fizzdoc hace todo el trabajo dentro de la pestaña de tu navegador, con motores de código abierto compilados a WebAssembly y JavaScript. Tu archivo se lee desde tu dispositivo, se procesa localmente y el resultado se guarda directamente en tu dispositivo. Puedes comprobarlo tú mismo: abre las herramientas de desarrollador de tu navegador, ve a la pestaña Red y ejecuta una tarea — ninguna solicitud lleva tu archivo."
+        ],
+        [
+          "¿El blanco es blanco puro?",
+          "Sí. El fondo se rellena con blanco puro (#FFFFFF), que es lo que piden la mayoría de las tiendas y formularios. Los bordes del pelo y del pelaje se limpian para que se fundan con el blanco."
+        ],
+        [
+          "¿Puedo usarlo para una foto de pasaporte o de documento de identidad?",
+          "Te da un fondo blanco liso, pero cada país tiene sus propias normas de tamaño, iluminación y postura. Compruébalas antes de imprimir; Fizzdoc no promete la aprobación oficial."
+        ],
+        [
+          "¿Puedo elegir otro color?",
+          "Sí. En «Fondo» puedes cambiar a cualquier color, un desenfoque del original, tu propia foto o ningún fondo para obtener un PNG transparente."
+        ],
+        [
+          "¿Es gratis Fizzdoc?",
+          "Sí, y seguirá siendo gratis: sin registro, sin marca de agua, sin límite diario y sin plan premium. Fizzdoc es de código abierto bajo la licencia Apache-2.0, así que cualquiera puede ejecutar su propia copia."
+        ]
+      ],
+      "keywords": [
+        "poner fondo blanco a una foto",
+        "fondo blanco para foto",
+        "cambiar fondo de foto a blanco",
+        "foto con fondo blanco online",
+        "fondo blanco para foto de producto"
+      ]
+    },
+    "blur-background": {
+      "name": "Desenfocar Fondo",
+      "summary": "Mantén nítido el sujeto y suaviza todo lo que hay detrás, como el modo retrato.",
+      "action": "Descargar imagen",
+      "title": "Desenfocar Fondo de Foto Gratis — Sin Subir Nada | Fizzdoc",
+      "description": "Desenfoca el fondo de una foto gratis y deja nítida a la persona o el producto. En tu dispositivo, a resolución completa, sin marca de agua. Nada se sube.",
+      "h1": "Desenfoca el fondo de una foto",
+      "lede": "Elige una foto y el fondo se suaviza mientras la persona, la mascota o el producto sigue nítido, como en un retrato. La IA encuentra el sujeto en tu propio dispositivo y la foto conserva su resolución completa.",
+      "steps": [
+        "Elige una foto. Se detecta el sujeto y el fondo se desenfoca al instante.",
+        "Retoca cualquier zona que se le haya escapado a la IA, o pon detrás un color u otra foto.",
+        "Elige el tamaño y haz clic en «Descargar imagen»."
+      ],
+      "faq": [
+        [
+          "¿Se suben mis archivos a algún sitio?",
+          "No. Fizzdoc hace todo el trabajo dentro de la pestaña de tu navegador, con motores de código abierto compilados a WebAssembly y JavaScript. Tu archivo se lee desde tu dispositivo, se procesa localmente y el resultado se guarda directamente en tu dispositivo. Puedes comprobarlo tú mismo: abre las herramientas de desarrollador de tu navegador, ve a la pestaña Red y ejecuta una tarea — ninguna solicitud lleva tu archivo."
+        ],
+        [
+          "¿Funciona como el modo retrato?",
+          "Da un aspecto parecido: el sujeto sigue nítido y el fondo se desenfoca. No mide la profundidad, así que todo lo que hay detrás del sujeto se desenfoca por igual."
+        ],
+        [
+          "¿Perderá calidad la foto?",
+          "No. La foto conserva su resolución completa; solo se suaviza el fondo. También puedes guardar una copia más pequeña."
+        ],
+        [
+          "¿Puedo quitar el fondo por completo?",
+          "Sí. En «Fondo» elige «Ninguno» para un PNG transparente, o «Blanco», cualquier color u otra foto."
+        ],
+        [
+          "¿Es gratis Fizzdoc?",
+          "Sí, y seguirá siendo gratis: sin registro, sin marca de agua, sin límite diario y sin plan premium. Fizzdoc es de código abierto bajo la licencia Apache-2.0, así que cualquiera puede ejecutar su propia copia."
+        ]
+      ],
+      "keywords": [
+        "desenfocar fondo de foto",
+        "difuminar fondo de una foto",
+        "desenfocar fondo online gratis",
+        "efecto modo retrato en foto",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Creador de stickers para WhatsApp",
       "summary": "Convierte cualquier foto en sticker: sin fondo, con contorno blanco, listo para WhatsApp.",
@@ -2959,8 +3140,8 @@
       "lede": "Elige una foto de un amigo, tu mascota o tú. El fondo desaparece, se añade un contorno blanco de sticker y obtienes un sticker listo para WhatsApp: WebP de 512 × 512, fondo transparente, menos de 100 KB. La IA funciona en tu propio dispositivo.",
       "steps": [
         "Elige una foto. Se quita el fondo y se añade el contorno del sticker.",
-        "Retoca alguna zona si hace falta, o quita el contorno.",
-        "Pulsa “Descargar sticker” o, en el móvil, “Compartir en WhatsApp”."
+        "Añade texto o emojis si quieres, retoca cualquier zona o quita el contorno.",
+        "Descarga el sticker (en el iPhone, toca “Guardar en Fotos”) y luego, en WhatsApp, abre Stickers › Crear y elígelo."
       ],
       "faq": [
         [
@@ -2969,7 +3150,7 @@
         ],
         [
           "¿Cómo añado el sticker a WhatsApp?",
-          "En el móvil, pulsa “Compartir en WhatsApp” y envíalo a cualquier chat (un chat contigo mismo sirve). Luego toca el sticker en el chat y elige “Añadir a favoritos”. En el ordenador, descarga el archivo WebP y envíalo desde WhatsApp Web o Desktop."
+          "Ninguna web puede añadir stickers a WhatsApp directamente, así que el propio creador de stickers de WhatsApp hace el último paso. En Android, descarga el sticker y luego, en cualquier chat, toca el botón de emojis › Stickers › Crear y elígelo entre tus fotos. En el iPhone (iOS 17 o posterior), toca “Guardar en Fotos” y luego, en un chat, toca Stickers › Crear sticker › Usar una foto y elígelo. Toca Enviar y WhatsApp lo guarda en tu bandeja de stickers. En el ordenador, envía el archivo a tu móvil y hazlo allí."
         ],
         [
           "¿Esto lo hace WhatsApp?",
@@ -2986,6 +3167,104 @@
         "foto a sticker de whatsapp",
         "hacer stickers gratis online",
         "sticker webp transparente"
+      ]
+    },
+    "collage-maker": {
+      "name": "Creador de collages",
+      "summary": "Junta de 2 a 9 fotos en una sola imagen, con separación, esquinas redondeadas y texto.",
+      "action": "Descargar collage",
+      "title": "Collage de Fotos Gratis — Sin Subir Nada ni Marca de Agua | Fizzdoc",
+      "description": "Haz un collage de fotos gratis en tu navegador: diseño para 2 a 9 fotos, separación, esquinas, tamaño y texto. Sin subir nada, sin registro ni marca de agua.",
+      "h1": "Haz un collage de fotos sin subir tus fotos",
+      "lede": "Elige de 2 a 9 fotos, escoge un diseño y un formato (cuadrado, historia, A4 y más), mueve y amplía cada foto dentro de su marco, y añade separación, esquinas redondeadas, un color de fondo y texto. Todo ocurre en tu dispositivo.",
+      "steps": [
+        "Elige de 2 a 9 fotos. El orden de la lista es el orden en el collage.",
+        "Escoge un diseño y un formato, mueve y amplía cada foto, y ajusta la separación, las esquinas, el fondo y el texto.",
+        "Elige el tamaño y el formato, y haz clic en «Descargar collage»."
+      ],
+      "faq": [
+        [
+          "¿Se suben mis archivos a algún sitio?",
+          "No. Fizzdoc hace todo el trabajo dentro de la pestaña de tu navegador, con motores de código abierto compilados a WebAssembly y JavaScript. Tu archivo se lee desde tu dispositivo, se procesa localmente y el resultado se guarda directamente en tu dispositivo. Puedes comprobarlo tú mismo: abre las herramientas de desarrollador de tu navegador, ve a la pestaña Red y ejecuta una tarea — ninguna solicitud lleva tu archivo."
+        ],
+        [
+          "¿Cuántas fotos puede tener un collage?",
+          "De 1 a 9. Cada número de fotos tiene sus propios diseños, como una al lado de otra, una encima de otra, una foto grande con otras más pequeñas o una cuadrícula. Si añades más de 9, se usan las 9 primeras."
+        ],
+        [
+          "¿Puedo mover o ampliar cada foto?",
+          "Sí. Abre «Foto», toca una foto para elegirla, arrástrala para decidir qué se ve en su marco y usa «Zoom» para acercarte. Para intercambiar fotos, cambia su orden en la lista de archivos."
+        ],
+        [
+          "¿Qué tamaños puedo guardar?",
+          "«Cuadrado», «Vertical 4:5» e «Historia 9:16» para redes sociales, «Horizontal 16:9» y «A4 para imprimir»: 1080 o 2160 px en el lado corto, o 2480 px para A4 a 300 dpi. En JPG, PNG o WebP, sin marca de agua."
+        ],
+        [
+          "¿Es gratis Fizzdoc?",
+          "Sí, y seguirá siendo gratis: sin registro, sin marca de agua, sin límite diario y sin plan premium. Fizzdoc es de código abierto bajo la licencia Apache-2.0, así que cualquiera puede ejecutar su propia copia."
+        ]
+      ],
+      "keywords": [
+        "hacer collage de fotos",
+        "collage de fotos online gratis",
+        "juntar varias fotos en una",
+        "montaje de fotos online",
+        "unir fotos en una sola imagen"
+      ]
+    },
+    "photo-editor": {
+      "name": "Editor de Fotos",
+      "summary": "Recorta, gira, aclara y añade texto o emojis a una foto, directamente en tu navegador.",
+      "action": "Descargar foto",
+      "title": "Editor de Fotos Gratis Sin Subir ni Registro: Recorte, Texto | Fizzdoc",
+      "description": "Edita fotos gratis en tu navegador: recorta en cuadrado, 4:5 o historia, ajusta luz y color, añade filtros, texto o emoji. Sin subidas ni registro, tamaño real.",
+      "h1": "Edita una foto online sin subirla",
+      "lede": "Recorta en cuadrado o en formato historia, gira y voltea, ajusta el brillo, el contraste y el color, elige un filtro con un toque y añade texto o emojis. Retoques de todos los días, hechos en tu propio dispositivo y guardados a tamaño completo.",
+      "steps": [
+        "Elige una foto.",
+        "Recorta, gira, ajusta la luz y el color, elige un filtro o añade texto y emojis. La vista previa se actualiza mientras editas.",
+        "Elige el tamaño y el formato, y haz clic en «Descargar foto»."
+      ],
+      "faq": [
+        [
+          "¿Se suben mis archivos a algún sitio?",
+          "No. Fizzdoc hace todo el trabajo dentro de la pestaña de tu navegador, con motores de código abierto compilados a WebAssembly y JavaScript. Tu archivo se lee desde tu dispositivo, se procesa localmente y el resultado se guarda directamente en tu dispositivo. Puedes comprobarlo tú mismo: abre las herramientas de desarrollador de tu navegador, ve a la pestaña Red y ejecuta una tarea — ninguna solicitud lleva tu archivo."
+        ],
+        [
+          "¿Editar la foto baja la calidad?",
+          "No más que guardarla. Cada cambio se vuelve a dibujar a partir de tu foto original, así que las ediciones nunca se acumulan, y la foto se guarda a tamaño completo salvo que elijas uno más pequeño. JPG y WebP se guardan en alta calidad; PNG no pierde calidad."
+        ],
+        [
+          "¿Se conserva la ubicación de la foto de mi móvil?",
+          "No. La foto guardada es un archivo nuevo que solo contiene la imagen, así que los datos ocultos como la ubicación GPS, la fecha y el modelo del móvil se quedan fuera."
+        ],
+        [
+          "¿Necesito una cuenta?",
+          "No. Abre la página, elige una foto y edítala. No hay registro, no se guarda nada en ningún sitio y no hay límite de fotos que puedas editar."
+        ],
+        [
+          "¿Funciona en mi móvil?",
+          "Sí. En el móvil la foto queda arriba, las herramientas están en una barra abajo y puedes arrastrar hacia los lados sobre la foto para cambiar el brillo, el contraste, la saturación o la calidez."
+        ],
+        [
+          "¿Cómo hago una foto cuadrada o 4:5 para Instagram?",
+          "Abre «Recortar y girar» y elige «Cuadrado» o «Vertical 4:5»; luego arrastra la foto para elegir qué queda dentro del encuadre. También están «Historia 9:16» y «Horizontal 16:9»."
+        ],
+        [
+          "¿Puedo añadir texto en hindi o en otros idiomas?",
+          "Sí. Escribe en cualquier idioma: los estilos «Tierno», «Acogedor» y «GRANDE» incluyen letras del hindi (devanagari), y otras escrituras, como el bengalí, el tamil o el telugu, usan la fuente de tu propio dispositivo."
+        ],
+        [
+          "¿Es gratis Fizzdoc?",
+          "Sí, y seguirá siendo gratis: sin registro, sin marca de agua, sin límite diario y sin plan premium. Fizzdoc es de código abierto bajo la licencia Apache-2.0, así que cualquiera puede ejecutar su propia copia."
+        ]
+      ],
+      "keywords": [
+        "editor de fotos online gratis",
+        "recortar foto en cuadrado",
+        "poner texto a una foto",
+        "filtros para fotos online",
+        "editar fotos sin subirlas"
       ]
     }
   }

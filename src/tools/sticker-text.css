@@ -1,0 +1,71 @@
+/* The Sticker Maker's text panel. Each style button shows its own font. */
+.st-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+.st-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  font: 600 1.1rem/1.4 var(--font);
+  resize: vertical;
+}
+.st-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.st-style {
+  font-size: 1.15rem;
+}
+.st-style[data-style='funny'] {
+  font-family: 'Bangers', 'Baloo 2 Variable', sans-serif;
+  letter-spacing: 0.04em;
+}
+.st-style[data-style='cute'] {
+  font-family: 'Baloo 2 Variable', sans-serif;
+  font-weight: 800;
+}
+.st-style[data-style='cozy'] {
+  font-family: 'Kalam', 'Baloo 2 Variable', sans-serif;
+  font-weight: 700;
+}
+.st-style[data-style='big'] {
+  font-family: 'Teko', 'Baloo 2 Variable', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.st-style[data-style='serious'] {
+  font-weight: 700;
+}
+.st-emoji {
+  min-width: 48px;
+  padding: 0 8px;
+  font-size: 1.5rem;
+}
+.st-swatch {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--swatch);
+  cursor: pointer;
+}
+.st-swatch[aria-pressed='true'] {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+/* With text on the picture, a finger drags the text instead of scrolling the page. */
+.bg-canvas.st-has-text {
+  touch-action: none;
+  cursor: move;
+}
+.bg-stage.painting .bg-canvas.st-has-text {
+  cursor: crosshair;
+}

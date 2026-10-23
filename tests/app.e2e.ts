@@ -26,8 +26,28 @@ async function fingerOn(page: Page) {
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [from] });
     for (let i = 1; i <= 8; i++)
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: from.x + ((to.x - from.x) * i) / 8, y: from.y + ((to.y - from.y) * i) / 8 }] });
+    // Rest the finger before lifting it, as people do. Lifting it mid-move flings the page, and the
+    // browser then treats the next tap as "stop scrolling" rather than a click.
+    await page.waitForTimeout(150);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [to] });
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   };
+}
+
+/** A red ball on a pale background (600 x 400 PNG), drawn in the page: a clear subject for Remove Background. */
+async function ballPhoto(page: Page) {
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(600, 400);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#e8eef5';
+    c.fillRect(0, 0, 600, 400);
+    c.fillStyle = '#c0392b';
+    c.beginPath();
+    c.arc(300, 200, 110, 0, Math.PI * 2);
+    c.fill();
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  return { name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) };
 }
 
 async function downloadBytes(page: Page) {
@@ -56,6 +76,151 @@ test('merges two PDFs locally without sending any file data', async ({ page, bas
     expect(request.body, request.url).toBeNull();
   }
   expect(seen.violations).toEqual([]);
+});
+
+test('works with the internet off: a page opened before loads again and its tool runs', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ serviceWorkers: 'allow' });
+  const first = await context.newPage();
+  await first.goto('/rotate-pdf/');
+  await expect(first.locator('#offline-badge')).toBeHidden();
+  // On the very first visit the worker takes charge, so the first run already says the tool works offline.
+  await expect.poll(() => first.evaluate(() => !!navigator.serviceWorker.controller)).toBe(true);
+  await first.locator('#file-input').setInputFiles(fixture('form'));
+  await first.getByRole('button', { name: 'Rotate pages' }).click();
+  await expect(first.locator('#warnings')).toContainText('Ready: this tool now works on this device');
+  await expect(first.locator('#offline-badge')).toBeVisible();
+  await first.close();
+  const requests: string[] = [];
+  context.on('request', (r) => requests.push(r.url())); // includes the service worker's own requests
+  const page = await context.newPage();
+  await page.goto('/merge-pdf/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(async () => !!(await caches.match(location.href)))).toBe(true);
+
+  await context.setOffline(true);
+  await page.reload();
+  await page.locator('#file-input').setInputFiles([fixture('form'), fixture('bookmarks')]);
+  await page.getByRole('button', { name: 'Merge PDFs' }).click();
+  await expect(page.locator('#status')).toContainText('Done — 6 pages');
+  expect((await downloadBytes(page)).bytes.subarray(0, 5).toString()).toBe('%PDF-');
+  await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device with Wi-Fi or mobile data turned off.');
+  await expect(page.locator('#offline-badge')).toHaveText(' · ✓ Works offline');
+  await page.reload();
+  await expect(page.locator('#offline-badge')).toBeVisible();
+
+  // A page never opened says so plainly, in its own language, with a link home.
+  await page.goto('/split-pdf/');
+  await expect(page.locator('body')).toContainText('You’re offline, and this tool isn’t on this device yet.');
+  await expect(page.getByRole('link', { name: 'Fizzdoc home' })).toHaveAttribute('href', '/');
+  await page.goto('/hi/split-pdf/');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'hi');
+  await expect(page.getByRole('link')).toHaveAttribute('href', '/hi/');
+
+  // The home page, where an installed app opens, is kept even if it was never visited.
+  await page.goto('/');
+  await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.locator('body')).not.toContainText('isn’t on this device yet');
+
+  const origin = new URL(baseURL!).origin;
+  for (const url of requests) if (!/^(blob|data):/.test(url)) expect(new URL(url).origin, url).toBe(origin);
+  await context.close();
+});
+
+test('offline, a tool whose files never reached the device says it needs the internet once, and works after one use', async ({ browser }) => {
+  const context = await browser.newContext({ serviceWorkers: 'allow' });
+  const page = await context.newPage();
+  const recognize = async () => {
+    await page.locator('#file-input').setInputFiles(file('photo.png'));
+    await page.getByRole('button', { name: 'Recognize text' }).click();
+  };
+  await page.goto('/image-to-text/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await expect.poll(() => page.evaluate(async () => !!(await caches.match(location.href)))).toBe(true);
+
+  // The OCR engine's files (6 MB) are fetched on first use, so offline they aren't there yet.
+  await context.setOffline(true);
+  await page.reload();
+  await recognize();
+  await expect(page.locator('#status')).toHaveText('You’re offline, and this tool isn’t on this device yet. It needs the internet once: connect and try again.');
+
+  await context.setOffline(false);
+  await recognize();
+  await expect(page.locator('#status')).toContainText('words recognized');
+  await context.setOffline(true);
+  await page.reload();
+  await recognize();
+  await expect(page.locator('#status')).toContainText('words recognized');
+  await context.close();
+});
+
+test('offers "Install Fizzdoc" where the browser can install it, and the Add to Home Screen steps on iPhone', async ({ browser, baseURL }) => {
+  const desktop = await browser.newContext({ baseURL });
+  const page = await desktop.newPage();
+  await page.goto('/merge-pdf/');
+  const install = page.getByRole('button', { name: 'Install Fizzdoc' });
+  await expect(install).toBeHidden();
+  // Chrome and Edge announce that the site can be installed; the button then opens their own prompt.
+  await page.evaluate(() =>
+    dispatchEvent(Object.assign(new Event('beforeinstallprompt', { cancelable: true }), { prompt: async () => ((window as unknown as { prompted: boolean }).prompted = true) })),
+  );
+  await install.click();
+  expect(await page.evaluate(() => (window as unknown as { prompted?: boolean }).prompted)).toBe(true);
+  await expect(install).toBeHidden(); // a prompt can be shown only once
+  await desktop.close();
+
+  const { defaultBrowserType: _, ...iPhone } = devices['iPhone 13'];
+  const phone = await browser.newContext({ ...iPhone, baseURL });
+  const ios = await phone.newPage();
+  await ios.goto('/hi/merge-pdf/');
+  const button = ios.getByRole('button', { name: 'Fizzdoc इंस्टॉल करें' });
+  await button.click();
+  await expect(ios.locator('#install-tip')).toBeVisible();
+  await expect(ios.locator('#install-tip')).toContainText('Add to Home Screen');
+  expect(await ios.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await phone.close();
+});
+
+test('offline, Remove Background works on a phone after one online run', async ({ browser, baseURL }) => {
+  test.setTimeout(300_000);
+  const context = await browser.newContext({ ...devices['Pixel 7'], baseURL, serviceWorkers: 'allow' });
+  const page = await context.newPage();
+  await page.goto('/remove-background/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload(); // the service worker is in charge from here on
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 200_000 });
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device');
+
+  await context.setOffline(true);
+  await page.reload();
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 120_000 });
+  await page.getByRole('button', { name: 'Download image' }).click();
+  await expect(page.locator('#status')).toContainText('600 × 400 px');
+  await context.close();
+});
+
+test('offline, Audio to Text works after one online run', async ({ browser, baseURL }) => {
+  test.setTimeout(300_000);
+  const context = await browser.newContext({ baseURL, serviceWorkers: 'allow' });
+  const page = await context.newPage();
+  const transcribe = async () => {
+    await page.locator('#file-input').setInputFiles(file('speech.wav'));
+    await page.locator('select[name="language"]').selectOption('english');
+    await page.getByRole('button', { name: 'Transcribe' }).click();
+    await expect(page.locator('#status')).toContainText('Done — TXT', { timeout: 150_000 });
+    await expect(page.locator('.transcript-preview')).toContainText('ask not what your country can do for you');
+  };
+  await page.goto('/audio-to-text/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload();
+  await transcribe();
+  await expect(page.locator('#warnings')).toContainText('Ready: this tool now works on this device');
+  await context.setOffline(true);
+  await page.reload();
+  await transcribe();
+  await context.close();
 });
 
 test('shows real progress and a prefilled problem report without the file name', async ({ page }) => {
@@ -103,10 +268,22 @@ test('alternative pages describe only Fizzdoc, link to the matching tools and sa
   await page.locator('.tool-grid a', { hasText: 'Merge PDF' }).click();
   await expect(page).toHaveURL(/\/merge-pdf\/$/);
 
+  // Image and audio jobs too, not only PDF.
+  await page.goto('/remove-bg-alternative/');
+  await expect(page.locator('.tool-grid a', { hasText: 'Remove Background' }).first()).toHaveAttribute('href', '/remove-background/');
   await page.goto('/alternatives/');
-  await expect(page.locator('section:has(#compare) .proof-grid a')).toHaveCount(7);
+  await expect(page.locator('section:has(#compare) .proof-grid a')).toHaveCount(12);
   await page.goto('/hi/');
   await expect(page.locator('footer a[href="/alternatives/"]')).toHaveText('जाने-पहचाने टूल्स के विकल्प');
+});
+
+test('the privacy page says what stays on the device, and every page links to it', async ({ page }) => {
+  await page.goto('/privacy/');
+  await expect(page.locator('h1')).toHaveText('Privacy');
+  await expect(page.locator('#faq')).toBeVisible();
+  await expect(page.locator('main')).toContainText('no cookies, no analytics');
+  await page.goto('/hi/merge-pdf/');
+  await expect(page.locator('footer a[href="/privacy/"]')).toHaveText('गोपनीयता');
 });
 
 test('the Aadhaar unlock page explains the password format and unlocks on the device', async ({ page }) => {
@@ -230,29 +407,60 @@ test('compresses a PDF and reports the saving', async ({ page }) => {
   expect((await downloadBytes(page)).name).toBe('text-only-compressed.pdf');
 });
 
-test('compresses photos that carry a colour profile, as browsers save them', async ({ page }) => {
+/** A 600 × 450 pt page filled with the 1800 × 1350 photo, tagged with a colour profile the way browsers save PDFs. */
+async function profiledPhotoPdf() {
   const pdf = await PDFDocument.create();
   const image = await pdf.embedJpg(readFileSync(file('big-photo.jpg')));
   pdf.addPage([600, 450]).drawImage(image, { x: 0, y: 0, width: 600, height: 450 });
   await pdf.flush();
   const profile = pdf.context.register(pdf.context.stream(new Uint8Array(16), { N: 3 }));
   (pdf.context.lookup(image.ref) as PDFRawStream).dict.set(PDFName.of('ColorSpace'), pdf.context.obj(['ICCBased', profile]));
-  const input = Buffer.from(await pdf.save());
+  return Buffer.from(await pdf.save());
+}
+
+const imageOf = (pdf: PDFDocument) =>
+  (pdf.context.enumerateIndirectObjects().find(([, o]) => o instanceof PDFRawStream && o.dict.lookup(PDFName.of('Subtype')) === PDFName.of('Image'))![1] as PDFRawStream).dict;
+
+test('compresses photos that carry a colour profile, as browsers save them', async ({ page }) => {
+  const input = await profiledPhotoPdf();
 
   await page.goto('/compress-pdf/');
   await page.locator('#file-input').setInputFiles({ name: 'profiled.pdf', mimeType: 'application/pdf', buffer: input });
-  await page.locator('[name=level]').selectOption('strong');
+  await page.locator('[name=level]').selectOption('high');
   await page.getByRole('button', { name: 'Compress PDF' }).click();
   await expect(page.locator('#status')).toContainText('smaller');
   const { bytes } = await downloadBytes(page);
   expect(bytes.length).toBeLessThan(input.length / 2);
   const output = await PDFDocument.load(bytes);
   expect(output.getPageCount()).toBe(1);
-  const [, photo] = output.context.enumerateIndirectObjects().find(([, o]) => o instanceof PDFRawStream && o.dict.lookup(PDFName.of('Subtype')) === PDFName.of('Image'))!;
-  const dict = (photo as PDFRawStream).dict;
+  const dict = imageOf(output);
   expect(dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
-  expect(dict.lookup(PDFName.of('Width'))?.toString()).toBe('1400'); // strong caps the long side at 1400 px
+  expect(dict.lookup(PDFName.of('Width'))?.toString()).toBe('917'); // Strong keeps 110 DPI: a 600 pt (8.3 inch) page holds 917 px
   expect(dict.lookup(PDFName.of('ColorSpace'))?.toString()).toMatch(/ICCBased/);
+});
+
+test('offers four compression levels, Balanced by default, each one smaller than the last', async ({ page }) => {
+  const input = await profiledPhotoPdf();
+  await page.goto('/compress-pdf/');
+  const level = page.locator('[name=level]');
+  await expect(level).toHaveValue('medium');
+  await expect(level.locator('option')).toHaveText(['Light — best quality', 'Balanced — recommended', 'Strong — smaller file', 'Extreme — smallest file']);
+  await page.locator('#file-input').setInputFiles({ name: 'profiled.pdf', mimeType: 'application/pdf', buffer: input });
+  const sizes: number[] = [];
+  const widths: string[] = [];
+  for (const value of ['low', 'medium', 'high', 'extreme']) {
+    await level.selectOption(value);
+    await page.getByRole('button', { name: 'Compress PDF' }).click();
+    // This photo is already compressed, so Light may not beat it; then the original is kept, never a bigger file.
+    await expect(page.locator('#status')).toContainText(value === 'low' ? /smaller|Already optimized/ : 'smaller');
+    const { bytes } = await downloadBytes(page);
+    sizes.push(bytes.length);
+    widths.push(imageOf(await PDFDocument.load(bytes)).lookup(PDFName.of('Width'))!.toString());
+  }
+  expect(['1667', '1800']).toContain(widths[0]); // 200 DPI on a 600 pt page, or the untouched 1800 px original
+  expect(widths.slice(1)).toEqual(['1250', '917', '600']); // 150, 110 and 72 DPI
+  expect(sizes[0]).toBeLessThanOrEqual(input.length);
+  for (let i = 1; i < sizes.length; i++) expect(sizes[i]).toBeLessThan(sizes[i - 1]);
 });
 
 test('resizes and converts images with the chosen options', async ({ page }) => {
@@ -495,9 +703,11 @@ test('scrolls the redact pages with a finger, and draws with one after “Draw b
   const draw = page.getByRole('button', { name: 'Draw boxes' });
   await draw.tap();
   await expect(draw).toHaveAttribute('aria-pressed', 'true');
+  // Tapping the button scrolled it into view, so bring the page back before drawing on it.
+  await page.locator('.redact-overlay').first().scrollIntoViewIfNeeded();
   const sheet = (await page.locator('.redact-overlay').first().boundingBox())!;
   const visible = (await scroll.boundingBox())!;
-  const start = { x: sheet.x + 40, y: Math.max(sheet.y, visible.y) + 20 };
+  const start = { x: sheet.x + 40, y: Math.max(sheet.y, visible.y, 0) + 20 };
   await drag(start, { x: start.x + 150, y: start.y + 60 });
   await expect(page.locator('.redact-count')).toHaveText('Marked areas: 1');
   await context.close();
@@ -1032,6 +1242,46 @@ test('ripples on background clicks only', async ({ page }) => {
   await expect(page.locator('.tap-ripple')).toHaveCount(0);
 });
 
+test('each tool page names the open-source engines that tool runs on', async ({ request }) => {
+  const engines = async (path: string) => [...(await (await request.get(path)).text()).matchAll(/<a href="[^"]+">([^<]+)<\/a>(?:, | &amp; |\.?<\/span>)/g)].map((m) => m[1]);
+  expect(await engines('/merge-pdf/')).toEqual(expect.arrayContaining(['qpdf', 'pdf.js', 'pdf-lib']));
+  expect(await engines('/remove-background/')).toEqual(expect.arrayContaining(['BiRefNet', 'ONNX Runtime']));
+  expect(await engines('/remove-background/')).not.toContain('qpdf');
+  expect(await engines('/audio-to-text/')).toEqual(expect.arrayContaining(['Whisper', 'Transformers.js']));
+  expect(await engines('/image-to-text/')).toContain('tesseract.js');
+});
+
+test('photo tools link to each other first, and tell search engines they are photo apps', async ({ request }) => {
+  const html = await (await request.get('/remove-background/')).text();
+  const more = html.slice(html.indexOf('id="more"'), html.indexOf('</section>', html.indexOf('id="more"')));
+  expect(more.indexOf('href="/photo-editor/"')).toBeGreaterThan(-1);
+  expect(more.indexOf('href="/photo-editor/"')).toBeLessThan(more.indexOf('href="/compress-image/"'));
+  expect(more).not.toContain('href="/mermaid-to-png/"');
+  expect(html).toContain('"applicationCategory":"MultimediaApplication"');
+  expect(await (await request.get('/llms.txt')).text()).toContain('How do I remove the background from a photo without uploading it?');
+});
+
+test('the home page leads with the photo tools: editor, collage, background and sticker', async ({ page }) => {
+  await page.goto('/');
+  const cards = page.locator('.create-grid a');
+  await expect(cards).toHaveCount(4);
+  await expect(cards.first()).toHaveAttribute('href', '/photo-editor/');
+  await expect(page.locator('#create-title')).toHaveText('Edit and create');
+  await page.goto('/hi/');
+  await expect(page.locator('.create-grid a').nth(2)).toHaveAttribute('href', '/hi/remove-background/');
+});
+
+test('English “How to” headings read as sentences', async ({ request }) => {
+  for (const [path, heading] of [
+    ['/merge-pdf/', 'How to merge PDF'],
+    ['/remove-background/', 'How to remove background'],
+    ['/remove-word-metadata/', 'How to remove Word metadata'],
+    ['/pdf-to-jpg/', 'How to convert PDF to JPG'],
+    ['/whatsapp-sticker-maker/', 'How to use WhatsApp Sticker Maker'],
+  ])
+    expect(await (await request.get(path)).text()).toContain(`<h2 id="how">${heading}</h2>`);
+});
+
 for (const { path, tool } of PAGES) {
   test(`serves search-ready HTML at ${path}`, async ({ request }) => {
     const html = await (await request.get(path)).text();
@@ -1279,20 +1529,12 @@ test('makes a WhatsApp sticker: 512×512 WebP, clear background, outline, under 
   test.setTimeout(240_000);
   const seen = watch(page);
   await page.goto('/whatsapp-sticker-maker/');
-  const photo = await page.evaluate(async () => {
-    const canvas = new OffscreenCanvas(900, 600);
-    const c = canvas.getContext('2d')!;
-    c.fillStyle = '#e8eef5';
-    c.fillRect(0, 0, 900, 600);
-    c.fillStyle = '#c0392b';
-    c.beginPath();
-    c.arc(450, 300, 170, 0, Math.PI * 2);
-    c.fill();
-    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
-  });
-  await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
   await expect(page.getByRole('button', { name: 'Outline' })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
   await expect(page.getByRole('combobox', { name: 'Size' })).toBeHidden();
+  // No website can add a sticker to WhatsApp, so the page shows WhatsApp's own steps instead of a share button.
+  await expect(page.getByText('Add it to WhatsApp')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Save to Photos' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Download sticker' }).click();
   await expect(page.locator('#status')).toContainText('512 × 512 px');
   const sticker = await downloadBytes(page);
@@ -1318,6 +1560,210 @@ test('makes a WhatsApp sticker: 512×512 WebP, clear background, outline, under 
   expect(seen.violations).toEqual([]);
 });
 
+test('sticker text and emoji: words in a fun font, dragged into place, and an emoji end up in the saved sticker', async ({ browser, baseURL }) => {
+  test.setTimeout(240_000);
+  const context = await browser.newContext({ baseURL });
+  // The small background model keeps this test quick; the text works the same on both.
+  await context.addInitScript(() => localStorage.setItem('fizzdoc-bg-crashed', String(Date.now())));
+  const page = await context.newPage();
+  await page.goto('/whatsapp-sticker-maker/');
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await expect(page.getByRole('button', { name: 'Outline' })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
+
+  await page.getByRole('button', { name: 'Add text' }).click();
+  await page.getByRole('textbox', { name: 'Your text' }).fill('LOL');
+  await page.getByRole('button', { name: 'BIG' }).click();
+  await page.getByRole('button', { name: 'Yellow' }).click();
+  await expect(page.getByRole('button', { name: 'BIG' })).toHaveAttribute('aria-pressed', 'true');
+  // The new text sits low in the middle; drag it to the top-left corner, clear of the ball.
+  const box = (await page.locator('.bg-canvas').boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.84);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.22, box.y + box.height * 0.13, { steps: 8 });
+  await page.mouse.up();
+  // An emoji lands in the top-right corner, with its own colours (no style or colour choices).
+  await page.getByRole('group', { name: 'Add an emoji' }).getByRole('button', { name: '🔥' }).click();
+  await expect(page.getByRole('group', { name: 'Font style' })).toBeHidden();
+
+  await page.getByRole('button', { name: 'Download sticker' }).click();
+  await expect(page.locator('#status')).toContainText('512 × 512 px');
+  const sticker = await downloadBytes(page);
+  expect(sticker.bytes.length).toBeLessThanOrEqual(100 * 1024);
+  const found = await page.evaluate(async (data) => {
+    const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/webp' }));
+    const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    c.drawImage(bitmap, 0, 0);
+    // Yellow letters where the text was dropped, in a corner the ball doesn't reach.
+    const pixels = c.getImageData(40, 30, 150, 70).data;
+    let yellow = 0;
+    for (let i = 0; i < pixels.length; i += 4) if (pixels[i] > 220 && pixels[i + 1] > 180 && pixels[i + 2] < 90 && pixels[i + 3] > 200) yellow++;
+    // The emoji, top right, also clear of the ball.
+    const corner = c.getImageData(420, 55, 45, 40).data;
+    let emoji = 0;
+    for (let i = 3; i < corner.length; i += 4) if (corner[i] > 200) emoji++;
+    return { size: [bitmap.width, bitmap.height], yellow, emoji };
+  }, [...sticker.bytes]);
+  expect(found.size).toEqual([512, 512]);
+  expect(found.yellow).toBeGreaterThan(50);
+  expect(found.emoji).toBeGreaterThan(200);
+  await context.close();
+});
+
+test('sticker on iPhone: “Save to Photos” hands a 512×512 PNG to the share sheet', async ({ browser, baseURL }) => {
+  test.setTimeout(240_000);
+  const context = await browser.newContext({
+    baseURL,
+    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
+  });
+  await context.addInitScript(() => {
+    localStorage.setItem('fizzdoc-bg-crashed', String(Date.now()));
+    // The share sheet, as Safari offers it: record what would be shared.
+    Object.defineProperty(navigator, 'canShare', { value: () => true });
+    Object.defineProperty(navigator, 'share', {
+      value: async ({ files }: { files: File[] }) => {
+        const bitmap = await createImageBitmap(files[0]);
+        (window as unknown as { shared: unknown }).shared = { name: files[0].name, type: files[0].type, size: [bitmap.width, bitmap.height] };
+      },
+    });
+  });
+  const page = await context.newPage();
+  await page.goto('/whatsapp-sticker-maker/');
+  await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+  await page.getByRole('button', { name: 'Save to Photos' }).click({ timeout: 200_000 });
+  await expect
+    .poll(() => page.evaluate(() => (window as unknown as { shared?: unknown }).shared))
+    .toEqual({ name: 'ball-sticker.png', type: 'image/png', size: [512, 512] });
+  await context.close();
+});
+
+test('photo editor: crops to a square, turns, applies a look and adds text, then saves at full size', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/photo-editor/');
+  // A 900 × 600 photo: red on the left half, blue on the right.
+  const photo = await page.evaluate(async () => {
+    const canvas = new OffscreenCanvas(900, 600);
+    const c = canvas.getContext('2d')!;
+    c.fillStyle = '#d02020';
+    c.fillRect(0, 0, 450, 600);
+    c.fillStyle = '#2040d0';
+    c.fillRect(450, 0, 450, 600);
+    return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+  });
+  await page.locator('#file-input').setInputFiles({ name: 'halves.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+  // Looks is the first tab; arrow keys move between tabs.
+  await expect(page.getByRole('tab', { name: 'Looks' })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('button', { name: 'B&W' }).click();
+  await page.getByRole('tab', { name: 'Looks' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.getByRole('tab', { name: 'Crop and turn' })).toHaveAttribute('aria-selected', 'true');
+  await page.getByRole('button', { name: 'Square' }).click();
+  await expect(page.getByRole('button', { name: 'Square' })).toHaveAttribute('aria-pressed', 'true');
+  // Flipped sideways the blue half is on the left; a quarter turn to the right then puts it on top.
+  await page.getByRole('button', { name: 'Flip sideways' }).click();
+  await page.getByRole('button', { name: 'Turn right' }).click();
+  // Light: a sideways drag on the photo changes the chosen slider (brightness); the ruler says so.
+  await page.getByRole('tab', { name: 'Light and colour' }).click();
+  // The preview redraws on the next frame: wait until it is square before aiming at it.
+  await expect.poll(() => page.locator('.bg-canvas').evaluate((c: HTMLCanvasElement) => c.width === c.height)).toBe(true);
+  await page.locator('.bg-canvas').scrollIntoViewIfNeeded();
+  const box = (await page.locator('.bg-canvas').boundingBox())!;
+  await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.5, { steps: 4 });
+  await page.mouse.up();
+  await expect(page.getByRole('slider', { name: 'Brightness' })).toHaveAttribute('aria-valuetext', '+20');
+  await page.getByRole('button', { name: 'Reset' }).click();
+  await expect(page.getByRole('slider', { name: 'Brightness' })).toHaveAttribute('aria-valuetext', '0');
+  // Hold to compare.
+  const compare = page.getByRole('button', { name: 'Hold to see the original' });
+  await compare.dispatchEvent('pointerdown');
+  await expect(compare).toHaveAttribute('aria-pressed', 'true');
+  await compare.dispatchEvent('pointerup');
+  await page.getByRole('tab', { name: 'Text' }).click();
+  await page.getByRole('button', { name: 'Add text' }).click();
+  await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');
+  await page.getByRole('button', { name: 'Download photo' }).click();
+  await expect(page.locator('#status')).toContainText('600 × 600 px');
+  const saved = await downloadBytes(page);
+  expect(saved.name).toBe('halves-edited.png');
+  const look = await page.evaluate(async (data) => {
+    const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/png' }));
+    const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+    c.drawImage(bitmap, 0, 0);
+    const at = (x: number, y: number) => [...c.getImageData(x, y, 1, 1).data];
+    return { size: [bitmap.width, bitmap.height], top: at(300, 60), bottom: at(300, 300) };
+  }, [...saved.bytes]);
+  expect(look.size).toEqual([600, 600]);
+  // Black and white: grey everywhere.
+  for (const [r, g, b] of [look.top, look.bottom]) {
+    expect(Math.abs(r - g)).toBeLessThan(3);
+    expect(Math.abs(g - b)).toBeLessThan(3);
+  }
+  // Blue turns a darker grey than red, so blue on top means the turn went the way the button says.
+  expect(look.bottom[0] - look.top[0]).toBeGreaterThan(5);
+  expect(seen.violations).toEqual([]);
+});
+
+test('collage maker: four photos in a 2×2 grid, in list order, then reordered, saved at 1080 px', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/collage-maker/');
+  const solid = async (color: string) => {
+    const bytes = await page.evaluate(async (fill) => {
+      const canvas = new OffscreenCanvas(400, 300);
+      const c = canvas.getContext('2d')!;
+      c.fillStyle = fill;
+      c.fillRect(0, 0, 400, 300);
+      return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
+    }, color);
+    return { name: `${color.slice(1)}.png`, mimeType: 'image/png', buffer: Buffer.from(bytes) };
+  };
+  await page.locator('#file-input').setInputFiles([await solid('#ff0000'), await solid('#00ff00'), await solid('#0000ff'), await solid('#ffff00')]);
+  await expect(page.getByRole('tab', { name: 'Layout' })).toHaveAttribute('aria-selected', 'true');
+  // Photo: a finger moves the picked photo (no page scroll), and each photo can be picked with a button too.
+  await page.getByRole('tab', { name: 'Photo' }).click();
+  await expect(page.locator('.bg-canvas')).toHaveCSS('touch-action', 'none');
+  await page.getByRole('group', { name: 'Photo' }).getByRole('button', { name: '2. 00ff00.png' }).click();
+  await expect(page.getByRole('button', { name: '2. 00ff00.png' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('tab', { name: 'Space' }).click();
+  await page.getByRole('slider', { name: 'Gap' }).fill('0');
+  await page.getByRole('combobox', { name: 'Save as' }).selectOption('png');
+  const quadrants = async () => {
+    await page.getByRole('button', { name: 'Download collage' }).click();
+    await expect(page.locator('#status')).toContainText('1080 × 1080 px');
+    const saved = await downloadBytes(page);
+    expect(saved.name).toBe('collage.png');
+    return page.evaluate(async (data) => {
+      const bitmap = await createImageBitmap(new Blob([new Uint8Array(data)], { type: 'image/png' }));
+      const c = new OffscreenCanvas(bitmap.width, bitmap.height).getContext('2d')!;
+      c.drawImage(bitmap, 0, 0);
+      const at = (x: number, y: number) => [...c.getImageData(x, y, 1, 1).data.slice(0, 3)].map((v) => (v > 127 ? 1 : 0)).join('');
+      return { size: [bitmap.width, bitmap.height], cells: [at(270, 270), at(810, 270), at(270, 810), at(810, 810)] };
+    }, [...saved.bytes]);
+  };
+  const first = await quadrants();
+  expect(first.size).toEqual([1080, 1080]);
+  // Red, green, blue, yellow: in the order of the file list.
+  expect(first.cells).toEqual(['100', '010', '001', '110']);
+  // Moving the first photo down swaps the first two cells.
+  await page.locator('#file-list li').first().getByRole('button', { name: 'Move down' }).click();
+  await expect.poll(async () => (await quadrants()).cells).toEqual(['010', '100', '001', '110']);
+  expect(seen.violations).toEqual([]);
+});
+
+test('the white and blur background pages open with that background picked', async ({ browser, baseURL }) => {
+  test.setTimeout(300_000);
+  const context = await browser.newContext({ baseURL });
+  // The small background model keeps this quick; the backdrop works the same on both.
+  await context.addInitScript(() => localStorage.setItem('fizzdoc-bg-crashed', String(Date.now())));
+  const page = await context.newPage();
+  for (const [path, picked] of [['/make-background-white/', 'White'], ['/blur-background/', 'Blur']]) {
+    await page.goto(path);
+    await page.locator('#file-input').setInputFiles(await ballPhoto(page));
+    await expect(page.getByRole('button', { name: picked, exact: true })).toHaveAttribute('aria-pressed', 'true', { timeout: 200_000 });
+  }
+  await context.close();
+});
+
 test('phones use the small background model, so the big one never loads and the tab stays alive', async ({ browser, baseURL }) => {
   test.setTimeout(240_000);
   for (const phone of [true, false]) {
@@ -1328,18 +1774,7 @@ test('phones use the small background model, so the big one never loads and the 
     const fetched: string[] = [];
     page.on('request', (request) => fetched.push(new URL(request.url()).pathname));
     await page.goto('/remove-background/');
-    const photo = await page.evaluate(async () => {
-      const canvas = new OffscreenCanvas(600, 400);
-      const c = canvas.getContext('2d')!;
-      c.fillStyle = '#e8eef5';
-      c.fillRect(0, 0, 600, 400);
-      c.fillStyle = '#c0392b';
-      c.beginPath();
-      c.arc(300, 200, 110, 0, Math.PI * 2);
-      c.fill();
-      return [...new Uint8Array(await (await canvas.convertToBlob({ type: 'image/png' })).arrayBuffer())];
-    });
-    await page.locator('#file-input').setInputFiles({ name: 'ball.png', mimeType: 'image/png', buffer: Buffer.from(photo) });
+    await page.locator('#file-input').setInputFiles(await ballPhoto(page));
     await expect(page.locator('.bg-note')).toContainText('lighter model', { timeout: 200_000 });
     expect(fetched.some((path) => path.startsWith('/bg/u2netp/'))).toBe(true);
     expect(fetched.filter((path) => path.startsWith('/bg/birefnet') || path.startsWith('/bg/ort/'))).toEqual([]);

@@ -11,7 +11,7 @@
     "footer.about": "Công cụ xử lý tài liệu riêng tư. Tệp của bạn được xử lý ngay trên thiết bị và không bao giờ được tải lên.",
     "footer.license": "Mã nguồn mở (Apache-2.0)",
     "footer.licenses": "Giấy phép bên thứ ba",
-    "footer.builtOn": "Xây dựng trên qpdf, pdf.js và pdf-lib",
+    "footer.builtOn": "Xây dựng trên qpdf, pdf.js, pdf-lib, ONNX Runtime và Whisper",
     "star.title": "Miễn phí và mã nguồn mở. Mãi mãi.",
     "star.text": "Không quảng cáo, không cần tài khoản, không có máy chủ nào nhìn thấy tệp của bạn. Nếu Fizzdoc giúp bạn tiết kiệm thời gian, một ngôi sao trên GitHub sẽ giúp nhiều người khác tìm thấy nó hơn.",
     "star.button": "Gắn sao cho Fizzdoc trên GitHub",
@@ -42,6 +42,8 @@
     "search.count": "{n} công cụ phù hợp",
     "search.none": "Không có công cụ nào phù hợp. Hãy thử “pdf”, “hình ảnh” hoặc “âm thanh”.",
     "home.chip": "Xử lý ngay trên thiết bị này",
+    "home.createTitle": "Chỉnh sửa và sáng tạo",
+    "home.createLede": "Sửa ảnh, ghép ảnh, xóa phông hoặc biến ảnh thành sticker, tất cả ngay trên thiết bị của bạn.",
     "home.toolsTitle": "Mọi công cụ đều riêng tư theo mặc định",
     "home.toolsLede": "Chọn một công cụ. Tệp của bạn được xử lý ngay trên thiết bị này và không bao giờ chạm tới máy chủ.",
     "home.whatTitle": "{name} là gì?",
@@ -93,6 +95,10 @@
     "ws.compression": "Mức nén",
     "ws.balanced": "Cân bằng — chất lượng tốt nhất",
     "ws.strong": "Nén mạnh — tệp nhỏ nhất",
+    "ws.levelLow": "Nhẹ — chất lượng tốt nhất",
+    "ws.levelMedium": "Cân bằng — khuyên dùng",
+    "ws.levelHigh": "Nén mạnh — tệp nhỏ hơn",
+    "ws.levelExtreme": "Tối đa — tệp nhỏ nhất",
     "ws.saveAs": "Lưu dưới dạng",
     "ws.fmtOriginal": "Giữ nguyên định dạng của từng tệp",
     "ws.fmtJpeg": "JPG — dùng cho ảnh, mở được ở mọi nơi",
@@ -169,6 +175,11 @@
     "error.NO_PAGES_LEFT": "Thao tác này sẽ xóa hết mọi trang. Hãy giữ lại ít nhất một trang.",
     "error.WRONG_FILE_COUNT": "Hãy thêm đúng số lượng tệp mà công cụ này cần.",
     "error.PROCESSING_FAILED": "Đã xảy ra lỗi trong quá trình xử lý. Tệp gốc của bạn không bị thay đổi.",
+    "offline.needed": "Bạn đang ngoại tuyến và công cụ này chưa có trên thiết bị. Công cụ cần internet một lần: hãy kết nối rồi thử lại.",
+    "offline.ready": "Sẵn sàng: công cụ này giờ chạy trên thiết bị này cả khi tắt Wi-Fi hoặc dữ liệu di động.",
+    "offline.badge": "Dùng được khi ngoại tuyến",
+    "offline.install": "Cài đặt Fizzdoc",
+    "offline.iosSteps": "Để cài Fizzdoc trên iPhone hoặc iPad, chạm vào nút Chia sẻ, rồi chọn “Thêm vào MH chính”.",
     "error.NO_PASSWORD": "Nhập mật khẩu bạn muốn thêm.",
     "error.PASSWORDS_DIFFER": "Hai mật khẩu không khớp nhau.",
     "error.NOT_OFFICE": "Đây không phải là tệp Word, Excel hoặc PowerPoint hợp lệ.",
@@ -261,8 +272,75 @@
     "bg.sharp": "Viền sắc nét hơn (tóc, lông)",
     "bg.sharpNote": "Xử lý kỹ hơn trên chip đồ họa của bạn. Lần đầu sẽ tải khoảng {mb} MB.",
     "bg.sharpFailed": "Viền sắc nét hơn không chạy được trên thiết bị này, nên kết quả đầu tiên được giữ lại.",
-    "bg.shareSticker": "Chia sẻ lên WhatsApp",
-    "bg.stickerNote": "Nhãn dán đã xong: 512 × 512, nền trong suốt, viền trắng. Lưu lại, hoặc chia sẻ thẳng lên WhatsApp từ điện thoại.",
+    "bg.shareSticker": "Lưu vào Ảnh",
+    "pe.preview": "Xem trước ảnh đã chỉnh",
+    "pe.crop": "Cắt và xoay",
+    "pe.shape": "Khung hình",
+    "pe.original": "Gốc",
+    "pe.square": "Vuông",
+    "pe.portrait": "Dọc 4:5",
+    "pe.wide": "Ngang 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Thu phóng",
+    "pe.dragHint": "Kéo ảnh để chọn phần được giữ lại trong khung.",
+    "pe.turn": "Xoay và lật",
+    "pe.left": "Xoay trái",
+    "pe.right": "Xoay phải",
+    "pe.flipH": "Lật ngang",
+    "pe.flipV": "Lật dọc",
+    "pe.light": "Ánh sáng và màu",
+    "pe.brightness": "Độ sáng",
+    "pe.contrast": "Độ tương phản",
+    "pe.saturation": "Độ bão hòa",
+    "pe.warmth": "Độ ấm",
+    "pe.reset": "Đặt lại",
+    "pe.swipeHint": "Kéo sang trái hoặc phải trên ảnh để thay đổi.",
+    "pe.looks": "Bộ lọc",
+    "pe.bw": "Đen trắng",
+    "pe.vivid": "Rực rỡ",
+    "pe.warm": "Ấm",
+    "pe.cool": "Lạnh",
+    "pe.fade": "Phai màu",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
+    "co.preview": "Xem trước ảnh ghép",
+    "co.layout": "Bố cục",
+    "co.photo": "Ảnh",
+    "co.space": "Giãn cách",
+    "co.gap": "Khoảng cách",
+    "co.corners": "Bo góc",
+    "co.a4": "In A4",
+    "co.max": "Chỉ dùng 9 ảnh đầu tiên.",
+    "co.order": "Để đổi chỗ ảnh, hãy đổi thứ tự của chúng trong danh sách ở trên.",
+    "co.tapHint": "Chạm vào một ảnh để chọn, rồi kéo để di chuyển ảnh trong khung.",
+    "st.text": "Chữ",
+    "st.hint": "Kéo chữ trên ảnh. Chụm hai ngón tay, hoặc dùng thanh trượt, để đổi cỡ và xoay chữ.",
+    "st.add": "Thêm chữ",
+    "st.addEmoji": "Thêm biểu tượng cảm xúc",
+    "st.sample": "Xin chào!",
+    "st.textLabel": "Chữ của bạn",
+    "st.style": "Kiểu chữ",
+    "st.funny": "Vui nhộn",
+    "st.cute": "Dễ thương",
+    "st.cozy": "Ấm áp",
+    "st.big": "TO",
+    "st.serious": "Nghiêm túc",
+    "st.color": "Màu",
+    "st.white": "Trắng",
+    "st.black": "Đen",
+    "st.green": "Xanh lá",
+    "st.yellow": "Vàng",
+    "st.red": "Đỏ",
+    "st.blue": "Xanh dương",
+    "st.size": "Cỡ chữ",
+    "st.turn": "Xoay",
+    "st.delete": "Xóa chữ",
+    "bg.stickerNote": "Nhãn dán đã xong: 512 × 512, nền trong suốt, viền trắng.",
+    "wa.title": "Thêm vào WhatsApp",
+    "wa.why": "Không trang web nào có thể đưa nhãn dán thẳng vào WhatsApp: tệp được chia sẻ sẽ đến dưới dạng ảnh. Công cụ tạo nhãn dán của chính WhatsApp làm bước cuối, rồi giữ nhãn dán trong mục nhãn dán của bạn.",
+    "wa.android": "Android: tải nhãn dán xuống. Trong WhatsApp, mở một cuộc trò chuyện bất kỳ (trò chuyện với chính mình cũng được), chạm nút biểu tượng cảm xúc, rồi chạm Nhãn dán › Tạo, và chọn nhãn dán từ ảnh của bạn. Chạm Gửi.",
+    "wa.iphone": "iPhone (iOS 17 trở lên): chạm “Lưu vào Ảnh” và lưu hình ảnh. Trong WhatsApp, mở một cuộc trò chuyện bất kỳ, chạm Nhãn dán › Tạo nhãn dán › Dùng ảnh, rồi chọn ảnh đó. Chạm Gửi.",
+    "wa.computer": "Trên máy tính: tải nhãn dán xuống, gửi sang điện thoại, rồi làm các bước trên ở đó.",
     "bg.magicErase": "Chạm để xóa",
     "bg.magicRestore": "Chạm để giữ",
     "bg.magicHint": "Nhanh hơn: chọn Chạm để xóa hoặc Chạm để giữ, rồi chạm vào phần nền còn sót hoặc phần bị mất. Cả vùng cùng màu được sửa ngay một lần.",
@@ -294,6 +372,7 @@
     "footer.madeBy": "Thiết kế và phát triển bởi",
     "footer.feedback": "Báo lỗi hoặc đề xuất công cụ",
     "footer.compare": "Lựa chọn thay thế cho công cụ quen thuộc",
+    "footer.privacy": "Quyền riêng tư",
     "format.audio": "Âm thanh",
     "ws.chooseAudio": "Chọn một tệp MP3 hoặc M4A",
     "ws.chooseAudios": "Chọn các tệp MP3 hoặc M4A",
@@ -741,7 +820,7 @@
       "lede": "Làm nhỏ một PDF đủ để gửi email hoặc tải lên một cổng thông tin. Fizzdoc nén lại ảnh chụp và bản quét quá lớn, giữ nguyên văn bản và hình vector.",
       "steps": [
         "Thêm một tệp PDF.",
-        "Chọn mức nén Cân bằng hoặc Nén mạnh.",
+        "Chọn mức nén: Nhẹ, Cân bằng, Nén mạnh hoặc Tối đa.",
         "Bấm “Nén PDF” và tải xuống tệp nhỏ hơn."
       ],
       "faq": [
@@ -1721,8 +1800,8 @@
       "name": "Xóa Nền Ảnh",
       "summary": "Tách một người, sản phẩm hay thú cưng ra khỏi ảnh và đặt bất cứ thứ gì phía sau.",
       "action": "Tải ảnh xuống",
-      "title": "Xóa Nền Ảnh Miễn Phí — Không Cần Tải Lên | Fizzdoc",
-      "description": "Xóa nền của mọi bức ảnh miễn phí, giữ nguyên độ phân giải: PNG trong suốt, nền trắng, màu bất kỳ hoặc ảnh của bạn. Không có gì bị tải lên.",
+      "title": "Xóa Nền Ảnh Miễn Phí — Không Cần Tải Lên, Không Watermark | Fizzdoc",
+      "description": "Xóa nền ảnh miễn phí ngay trên thiết bị: PNG trong suốt, nền trắng, màu bất kỳ hoặc làm mờ, giữ nguyên độ phân giải, không watermark. Ảnh không hề bị tải lên.",
       "h1": "Xóa nền của mọi bức ảnh",
       "lede": "Chọn một bức ảnh và nền tự biến mất. Giữ trong suốt, hoặc đặt phía sau màu trắng, một màu bất kỳ, hiệu ứng mờ nhẹ hay một ảnh khác. AI chạy ngay trên thiết bị của bạn, nên ảnh không bao giờ rời khỏi máy.",
       "steps": [
@@ -1742,6 +1821,22 @@
         [
           "Không tải lên thì nó hoạt động thế nào?",
           "Một mô hình AI mã nguồn mở (BiRefNet) chạy ngay trong trình duyệt của bạn, trên chip đồ họa nếu thiết bị có. Mô hình tải một lần, khoảng 110 MB, sau đó dùng được cả khi không có mạng. Điện thoại ít bộ nhớ dùng mô hình nhỏ hơn (U²-Net)."
+        ],
+        [
+          "Có watermark hay giới hạn nào không?",
+          "Không watermark, không tốn credit, không cần đăng ký và không giới hạn hằng ngày. Kết quả được lưu ở đúng độ phân giải của ảnh gốc; chỉ bộ nhớ của thiết bị mới giới hạn kích thước ảnh tối đa."
+        ],
+        [
+          "Có dùng được trên điện thoại không?",
+          "Có, trên mọi trình duyệt điện thoại hiện đại. Điện thoại dùng mô hình nhỏ hơn (4.6 MB) để tab không bị hết bộ nhớ, nên viền tóc hơi mềm hơn so với trên laptop."
+        ],
+        [
+          "Làm sao để nền thành màu trắng?",
+          "Sau khi xóa nền, chọn “Trắng” trong mục “Nền”, rồi lưu thành JPG hoặc PNG. Bạn cũng có thể chọn màu bất kỳ, nền gốc được làm mờ, hoặc một ảnh khác của bạn."
+        ],
+        [
+          "Tôi có thể xóa nền GIF hoặc video không?",
+          "Có. “Xóa Nền GIF” giữ nguyên mọi khung hình cùng thời gian hiển thị của chúng, còn “Xóa Nền Video” giữ nguyên âm thanh. Cả hai cũng chạy trên thiết bị của bạn."
         ],
         [
           "Fizzdoc có miễn phí không?",
@@ -2949,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Đổi Nền Trắng",
+      "summary": "Đặt nền trắng sạch phía sau bất kỳ bức ảnh nào, chỉ trong một bước.",
+      "action": "Tải ảnh xuống",
+      "title": "Đổi Nền Ảnh Sang Màu Trắng Miễn Phí — Không Tải Lên | Fizzdoc",
+      "description": "Đổi nền ảnh sang màu trắng miễn phí ngay trên thiết bị, cho ảnh bán hàng online, ảnh đại diện và biểu mẫu. Độ phân giải gốc, không watermark, không tải lên.",
+      "h1": "Đổi nền ảnh sang màu trắng",
+      "lede": "Chọn một bức ảnh và nền tự chuyển thành màu trắng trơn: cho ảnh sản phẩm bán hàng online, ảnh đại diện và biểu mẫu. AI chạy ngay trên thiết bị của bạn, và ảnh giữ nguyên độ phân giải đầy đủ.",
+      "steps": [
+        "Chọn một bức ảnh. Nền được xóa và thay bằng màu trắng ngay lập tức.",
+        "Chỉnh sửa thêm chỗ nào cần, thêm đổ bóng, hoặc cắt vuông cho ảnh bán hàng online.",
+        "Chọn kích thước, rồi nhấp “Tải ảnh xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Màu trắng có phải trắng tinh không?",
+          "Có. Nền được tô màu trắng tinh (#FFFFFF), đúng như yêu cầu của hầu hết các cửa hàng và biểu mẫu. Viền tóc và lông được làm sạch để hòa vào nền trắng."
+        ],
+        [
+          "Có dùng được cho ảnh hộ chiếu hay ảnh thẻ không?",
+          "Công cụ cho bạn nền trắng trơn, nhưng mỗi quốc gia có quy định riêng về kích thước, ánh sáng và tư thế. Hãy kiểm tra trước khi in; Fizzdoc không cam kết ảnh sẽ được chấp nhận chính thức."
+        ],
+        [
+          "Tôi có thể chọn màu khác không?",
+          "Có. Trong mục “Nền”, bạn có thể đổi sang màu bất kỳ, nền gốc được làm mờ, ảnh của bạn, hoặc không có nền để có PNG trong suốt."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "đổi nền ảnh sang màu trắng",
+        "tạo nền trắng cho ảnh",
+        "đổi phông nền trắng",
+        "ảnh sản phẩm nền trắng",
+        "white background"
+      ]
+    },
+    "blur-background": {
+      "name": "Làm Mờ Nền Ảnh",
+      "summary": "Giữ chủ thể sắc nét và làm mềm mọi thứ phía sau, như chế độ chân dung.",
+      "action": "Tải ảnh xuống",
+      "title": "Làm Mờ Nền Ảnh Miễn Phí — Kích Thước Gốc, Không Tải Lên | Fizzdoc",
+      "description": "Làm mờ nền ảnh miễn phí mà vẫn giữ người hoặc sản phẩm sắc nét. Chạy ngay trên thiết bị, giữ nguyên độ phân giải, không watermark, không tải lên.",
+      "h1": "Làm mờ nền ảnh",
+      "lede": "Chọn một bức ảnh và nền trở nên mềm mại, trong khi người, thú cưng hay sản phẩm vẫn sắc nét, như một bức ảnh chân dung. AI tìm chủ thể ngay trên thiết bị của bạn, và ảnh giữ nguyên độ phân giải đầy đủ.",
+      "steps": [
+        "Chọn một bức ảnh. Chủ thể được nhận diện và nền được làm mờ ngay lập tức.",
+        "Chỉnh sửa chỗ AI bỏ sót, hoặc đổi sang một màu hay một ảnh khác phía sau.",
+        "Chọn kích thước, rồi nhấp “Tải ảnh xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Có giống chế độ chân dung không?",
+          "Hiệu ứng tương tự: chủ thể vẫn sắc nét và nền được làm mờ. Công cụ không đo chiều sâu, nên mọi thứ phía sau chủ thể đều được làm mờ như nhau."
+        ],
+        [
+          "Ảnh có bị giảm chất lượng không?",
+          "Không. Ảnh giữ nguyên độ phân giải đầy đủ; chỉ phần nền được làm mềm. Bạn cũng có thể lưu một bản nhỏ hơn."
+        ],
+        [
+          "Tôi có thể xóa hẳn nền thay vì làm mờ không?",
+          "Có. Trong mục “Nền”, chọn “Không” để có PNG trong suốt, hoặc “Trắng”, màu bất kỳ hay một ảnh khác."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "làm mờ nền ảnh",
+        "xóa phông ảnh online",
+        "làm mờ hậu cảnh",
+        "làm mờ phông nền ảnh",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "Tạo nhãn dán WhatsApp",
       "summary": "Biến ảnh bất kỳ thành nhãn dán: xóa nền, viền trắng, sẵn sàng cho WhatsApp.",
@@ -2959,8 +3140,8 @@
       "lede": "Chọn ảnh bạn bè, thú cưng hoặc của chính bạn. Nền biến mất, viền sticker màu trắng được thêm vào, và bạn có sticker sẵn sàng cho WhatsApp: WebP 512 × 512, nền trong suốt, dưới 100 KB. AI chạy ngay trên thiết bị của bạn.",
       "steps": [
         "Chọn một ảnh. Nền được xóa và viền sticker được thêm vào.",
-        "Sửa lại chỗ nào đó nếu cần, hoặc tắt viền.",
-        "Bấm “Tải nhãn dán”, hoặc trên điện thoại chạm “Chia sẻ lên WhatsApp”."
+        "Thêm chữ hoặc biểu tượng cảm xúc nếu muốn, sửa lại chỗ nào đó, hoặc tắt viền.",
+        "Tải sticker xuống (trên iPhone, chạm “Lưu vào Ảnh”), rồi trong WhatsApp mở Nhãn dán › Tạo và chọn sticker đó."
       ],
       "faq": [
         [
@@ -2969,7 +3150,7 @@
         ],
         [
           "Làm sao thêm sticker vào WhatsApp?",
-          "Trên điện thoại, chạm “Chia sẻ lên WhatsApp” và gửi vào một cuộc trò chuyện bất kỳ (trò chuyện với chính mình cũng được). Sau đó chạm vào sticker và chọn “Thêm vào mục yêu thích”. Trên máy tính, tải file WebP rồi gửi từ WhatsApp Web hoặc Desktop."
+          "Không trang web nào có thể thêm sticker thẳng vào WhatsApp, nên bước cuối do công cụ tạo sticker của chính WhatsApp đảm nhận. Trên Android, tải sticker xuống, rồi trong một cuộc trò chuyện bất kỳ chạm nút biểu tượng cảm xúc › Nhãn dán › Tạo và chọn sticker từ ảnh của bạn. Trên iPhone (iOS 17 trở lên), chạm “Lưu vào Ảnh”, rồi trong một cuộc trò chuyện chạm Nhãn dán › Tạo nhãn dán › Dùng ảnh và chọn ảnh đó. Chạm Gửi, và WhatsApp sẽ giữ sticker trong mục sticker của bạn. Trên máy tính, gửi tệp sang điện thoại rồi làm ở đó."
         ],
         [
           "Đây có phải công cụ của WhatsApp không?",
@@ -2986,6 +3167,104 @@
         "biến ảnh thành sticker",
         "làm sticker miễn phí",
         "sticker webp nền trong suốt"
+      ]
+    },
+    "collage-maker": {
+      "name": "Ghép ảnh",
+      "summary": "Ghép 2 đến 9 ảnh thành một bức ảnh, có khoảng cách, bo góc và chữ.",
+      "action": "Tải ảnh ghép xuống",
+      "title": "Ghép Ảnh Online Miễn Phí — Không Tải Lên, Không Watermark | Fizzdoc",
+      "description": "Ghép ảnh miễn phí trong trình duyệt: chọn bố cục cho 2 đến 9 ảnh, chỉnh khoảng cách, góc và kích thước, thêm chữ. Không tải lên, không đăng ký, không watermark.",
+      "h1": "Ghép ảnh mà không cần tải ảnh lên",
+      "lede": "Chọn 2 đến 9 ảnh, chọn bố cục và khung hình (vuông, story, A4 và nhiều khung khác), di chuyển và thu phóng từng ảnh trong khung của nó, rồi thêm khoảng cách, bo góc, màu nền và chữ. Mọi thứ diễn ra ngay trên thiết bị của bạn.",
+      "steps": [
+        "Chọn 2 đến 9 ảnh. Thứ tự trong danh sách là thứ tự trong ảnh ghép.",
+        "Chọn bố cục và khung hình, di chuyển và thu phóng từng ảnh, rồi chỉnh khoảng cách, góc, nền và chữ.",
+        "Chọn kích thước và định dạng, rồi nhấp “Tải ảnh ghép xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Một ảnh ghép có thể có bao nhiêu ảnh?",
+          "Từ 1 đến 9. Mỗi số lượng ảnh có các bố cục riêng, như đặt cạnh nhau, xếp trên dưới, một ảnh lớn kèm các ảnh nhỏ hơn, hoặc dạng lưới. Nếu bạn thêm hơn 9 ảnh, 9 ảnh đầu tiên sẽ được dùng."
+        ],
+        [
+          "Tôi có thể di chuyển hoặc phóng to từng ảnh không?",
+          "Có. Mở “Ảnh”, chạm vào một ảnh để chọn, rồi kéo để chọn phần hiển thị trong khung, và dùng “Thu phóng” để nhìn gần hơn. Để đổi chỗ ảnh, hãy đổi thứ tự của chúng trong danh sách tệp."
+        ],
+        [
+          "Tôi có thể lưu những kích thước nào?",
+          "“Vuông”, “Dọc 4:5” và “Story 9:16” cho mạng xã hội, “Ngang 16:9”, và “In A4” để in: 1080 hoặc 2160 px ở cạnh ngắn, hoặc 2480 px cho A4 ở 300 dpi. Dưới dạng JPG, PNG hoặc WebP, không có watermark."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "ghép ảnh online",
+        "ghép ảnh miễn phí",
+        "ghép nhiều ảnh thành một",
+        "làm ảnh collage",
+        "ghép ảnh không watermark"
+      ]
+    },
+    "photo-editor": {
+      "name": "Chỉnh sửa ảnh",
+      "summary": "Cắt, xoay, làm sáng và thêm chữ hoặc biểu tượng cảm xúc vào ảnh, ngay trong trình duyệt.",
+      "action": "Tải ảnh xuống",
+      "title": "Chỉnh Sửa Ảnh Miễn Phí, Không Tải Lên — Cắt, Thêm Chữ, Emoji | Fizzdoc",
+      "description": "Chỉnh ảnh miễn phí trong trình duyệt: cắt vuông, 4:5 hoặc khung story, chỉnh ánh sáng và màu, thêm bộ lọc, chữ hoặc emoji. Không tải lên, không cần đăng ký.",
+      "h1": "Chỉnh sửa ảnh online mà không cần tải lên",
+      "lede": "Cắt ảnh vuông hoặc khung story, xoay và lật, chỉnh độ sáng, độ tương phản và màu sắc, chọn bộ lọc chỉ với một chạm, rồi thêm chữ hoặc biểu tượng cảm xúc. Những chỉnh sửa ảnh hằng ngày, làm ngay trên thiết bị của bạn, lưu với kích thước đầy đủ.",
+      "steps": [
+        "Chọn một bức ảnh.",
+        "Cắt, xoay, chỉnh ánh sáng và màu, chọn bộ lọc, hoặc thêm chữ và biểu tượng cảm xúc. Bản xem trước cập nhật ngay khi bạn chỉnh.",
+        "Chọn kích thước và định dạng, rồi nhấp “Tải ảnh xuống”."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Chỉnh sửa có làm giảm chất lượng ảnh không?",
+          "Không hơn việc lưu ảnh thông thường. Mọi thay đổi đều được vẽ lại từ ảnh gốc của bạn, nên các chỉnh sửa không bao giờ chồng chất lên nhau, và ảnh được lưu ở kích thước đầy đủ trừ khi bạn chọn cỡ nhỏ hơn. JPG và WebP được lưu ở chất lượng cao; PNG không mất chất lượng."
+        ],
+        [
+          "Vị trí trong ảnh chụp bằng điện thoại có được giữ lại không?",
+          "Không. Ảnh được lưu là một tệp mới chỉ chứa hình ảnh, nên các thông tin ẩn như vị trí GPS, ngày tháng và mẫu điện thoại đều được bỏ đi."
+        ],
+        [
+          "Tôi có cần tài khoản không?",
+          "Không. Mở trang, chọn ảnh và chỉnh sửa. Không cần đăng ký, không có gì được lưu ở bất kỳ đâu, và không giới hạn số ảnh bạn chỉnh."
+        ],
+        [
+          "Có dùng được trên điện thoại của tôi không?",
+          "Có. Trên điện thoại, ảnh nằm ở phía trên, các công cụ nằm trên một thanh ở dưới cùng, và bạn có thể kéo ngang trên ảnh để đổi độ sáng, độ tương phản, độ bão hòa hoặc độ ấm."
+        ],
+        [
+          "Làm sao để cắt ảnh vuông hoặc 4:5 cho Instagram?",
+          "Mở “Cắt và xoay” rồi chọn “Vuông” hoặc “Dọc 4:5”, sau đó kéo ảnh để chọn phần được giữ lại trong khung. Còn có cả “Story 9:16” và “Ngang 16:9”."
+        ],
+        [
+          "Tôi có thể thêm chữ tiếng Hindi hoặc ngôn ngữ khác không?",
+          "Có. Gõ bằng bất kỳ ngôn ngữ nào: các kiểu “Dễ thương”, “Ấm áp” và “TO” đều có chữ Hindi (Devanagari), còn các hệ chữ khác như Bengal, Tamil hay Telugu sẽ dùng phông chữ có sẵn trên thiết bị của bạn."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "chỉnh sửa ảnh online miễn phí",
+        "cắt ảnh vuông",
+        "chèn chữ vào ảnh",
+        "bộ lọc ảnh online",
+        "chỉnh ảnh không cần tải lên"
       ]
     }
   }

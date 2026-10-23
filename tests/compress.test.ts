@@ -67,7 +67,7 @@ function findImage(pdf: PDFDocument) {
 describe('compressPdfBytes', () => {
   it('recompresses a JPEG image as a smaller DCTDecode stream', async () => {
     const input = await pdfWithJpeg();
-    const output = await compressPdfBytes(input, 'light', fakeCodec(true));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(true));
     expect(output.length).toBeLessThan(input.length);
     const image = findImage(await PDFDocument.load(output));
     expect(image.dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
@@ -76,18 +76,34 @@ describe('compressPdfBytes', () => {
     expect((image.dict.lookup(PDFName.of('Length')) as PDFNumber).asNumber()).toBe(image.getContents().length);
   });
 
-  it('downscales past the level long-side cap', async () => {
+  it('never enlarges an image that is already below the level’s resolution', async () => {
     const input = await pdfWithJpeg();
-    const output = await compressPdfBytes(input, 'strong', fakeCodec(true)); // 1400 cap, image is only 120x80 so untouched
+    const output = await compressPdfBytes(input, 'high', fakeCodec(true)); // 120 pt page at 110 DPI allows 183 px; the image is 120x80
     const image = findImage(await PDFDocument.load(output));
     expect((image.dict.lookup(PDFName.of('Width')) as PDFNumber).asNumber()).toBe(120);
     expect((image.dict.lookup(PDFName.of('Height')) as PDFNumber).asNumber()).toBe(80);
   });
 
+  it('caps an image at the level’s DPI for the largest page', async () => {
+    const sides: Record<string, number> = {};
+    for (const level of ['low', 'medium', 'high', 'extreme'] as const) {
+      const pdf = await PDFDocument.create();
+      pdf.addPage([72, 36]); // 1 × 0.5 inch
+      pdf.addPage([144, 72]); // 2 × 1 inch: the largest page
+      // A thin strip keeps the test fast; at 500 px it is still wider than every level's cap (at most 400 px).
+      pdf.context.register(pdf.context.stream(zlibSync(new Uint8Array(500 * 10 * 3).fill(128)), {
+        Type: 'XObject', Subtype: 'Image', Width: 500, Height: 10, ColorSpace: 'DeviceRGB', BitsPerComponent: 8, Filter: 'FlateDecode',
+      }));
+      const image = findImage(await PDFDocument.load(await compressPdfBytes(await pdf.save(), level, fakeCodec(true))));
+      sides[level] = (image.dict.lookup(PDFName.of('Width')) as PDFNumber).asNumber();
+    }
+    expect(sides).toEqual({ low: 400, medium: 300, high: 220, extreme: 144 }); // 2 inches × DPI
+  });
+
   it('leaves the image untouched when recompressing would not shrink it', async () => {
     const input = await pdfWithJpeg();
     const before = findImage(await PDFDocument.load(input));
-    const output = await compressPdfBytes(input, 'light', fakeCodec(false));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(false));
     const after = findImage(await PDFDocument.load(output));
     expect(after.getContents()).toEqual(before.getContents());
     expect(after.dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
@@ -95,7 +111,7 @@ describe('compressPdfBytes', () => {
 
   it('recompresses an 8-bit FlateDecode DeviceRGB image', async () => {
     const input = await pdfWithFlateImage(40, 20, 'DeviceRGB');
-    const output = await compressPdfBytes(input, 'light', fakeCodec(true));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(true));
     const image = findImage(await PDFDocument.load(output));
     expect(image.dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
     expect((image.dict.lookup(PDFName.of('Width')) as PDFNumber).asNumber()).toBe(40);
@@ -103,7 +119,7 @@ describe('compressPdfBytes', () => {
 
   it('recompresses an 8-bit FlateDecode DeviceGray image, turning it into DeviceRGB', async () => {
     const input = await pdfWithFlateImage(40, 20, 'DeviceGray');
-    const output = await compressPdfBytes(input, 'light', fakeCodec(true));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(true));
     const image = findImage(await PDFDocument.load(output));
     expect(image.dict.lookup(PDFName.of('ColorSpace'))).toBe(PDFName.of('DeviceRGB'));
   });
@@ -128,7 +144,7 @@ describe('compressPdfBytes', () => {
   it('recompresses an image with a soft mask but never the mask itself', async () => {
     const input = await pdfWithSoftMask();
     const maskBefore = theMask(await PDFDocument.load(input)).getContents();
-    const output = await compressPdfBytes(input, 'light', fakeCodec(true));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(true));
     const loaded = await PDFDocument.load(output);
     expect(images(loaded)).toHaveLength(2);
     expect(withMask(loaded).dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
@@ -140,7 +156,7 @@ describe('compressPdfBytes', () => {
   it('skips an image whose soft mask expects pre-blended (/Matte) colours', async () => {
     const input = await pdfWithSoftMask(true);
     const before = withMask(await PDFDocument.load(input)).getContents();
-    const output = await compressPdfBytes(input, 'light', fakeCodec(true));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(true));
     expect(withMask(await PDFDocument.load(output)).getContents()).toEqual(before);
   });
 
@@ -151,7 +167,7 @@ describe('compressPdfBytes', () => {
       pdf.context.register(pdf.context.stream(zlibSync(new Uint8Array(40 * 20 * n).fill(128)), {
         Type: 'XObject', Subtype: 'Image', Width: 40, Height: 20, ColorSpace: ['ICCBased', profile], BitsPerComponent: 8, Filter: 'FlateDecode',
       }));
-      const output = await compressPdfBytes(await pdf.save(), 'light', fakeCodec(true));
+      const output = await compressPdfBytes(await pdf.save(), 'medium', fakeCodec(true));
       const image = findImage(await PDFDocument.load(output));
       expect(image.dict.lookup(PDFName.of('Filter'))).toBe(PDFName.of('DCTDecode'));
       const colorSpace = image.dict.lookup(PDFName.of('ColorSpace'));
@@ -163,14 +179,14 @@ describe('compressPdfBytes', () => {
   it('skips images with an unsupported filter or color space', async () => {
     const input = await pdfWithFlateImage(10, 10, 'DeviceRGB', { ColorSpace: 'DeviceCMYK' });
     const before = findImage(await PDFDocument.load(input));
-    const output = await compressPdfBytes(input, 'light', fakeCodec(true));
+    const output = await compressPdfBytes(input, 'medium', fakeCodec(true));
     const after = findImage(await PDFDocument.load(output));
     expect(after.getContents()).toEqual(before.getContents());
   });
 
   it('rejects an encrypted PDF and a file that is not a PDF at all', async () => {
-    await expect(compressPdfBytes(fixture('user-password.pdf'), 'light')).rejects.toThrow('PDF_PASSWORD');
-    await expect(compressPdfBytes(new TextEncoder().encode('not a pdf'), 'light')).rejects.toThrow('INVALID_PDF');
+    await expect(compressPdfBytes(fixture('user-password.pdf'), 'medium')).rejects.toThrow('PDF_PASSWORD');
+    await expect(compressPdfBytes(new TextEncoder().encode('not a pdf'), 'medium')).rejects.toThrow('INVALID_PDF');
   });
 });
 

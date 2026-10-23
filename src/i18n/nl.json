@@ -11,7 +11,7 @@
     "footer.about": "Privé-documenttools. Je bestanden worden op je eigen apparaat verwerkt en nooit geüpload.",
     "footer.license": "Open source (Apache-2.0)",
     "footer.licenses": "Licenties van derden",
-    "footer.builtOn": "Gebouwd op qpdf, pdf.js en pdf-lib",
+    "footer.builtOn": "Gebouwd op qpdf, pdf.js, pdf-lib, ONNX Runtime en Whisper",
     "star.title": "Gratis en open source. Voor altijd.",
     "star.text": "Geen advertenties, geen accounts, geen servers die naar je bestanden kijken. Heeft Fizzdoc je tijd bespaard? Een ster op GitHub helpt meer mensen het te vinden.",
     "star.button": "Geef Fizzdoc een ster op GitHub",
@@ -42,6 +42,8 @@
     "search.count": "{n} passende tools",
     "search.none": "Geen tool komt overeen. Probeer “pdf”, “afbeelding” of “audio”.",
     "home.chip": "Verwerkt op dit apparaat",
+    "home.createTitle": "Bewerken en maken",
+    "home.createLede": "Verbeter een foto, maak een collage, haal de achtergrond weg of maak er een sticker van, alles op je eigen apparaat.",
     "home.toolsTitle": "Elke tool, standaard privé",
     "home.toolsLede": "Kies een tool. Je bestand wordt op dit apparaat verwerkt en komt nooit bij een server terecht.",
     "home.whatTitle": "Wat is {name}?",
@@ -93,6 +95,10 @@
     "ws.compression": "Compressie",
     "ws.balanced": "Gebalanceerd — beste kwaliteit",
     "ws.strong": "Sterk — kleinste bestand",
+    "ws.levelLow": "Licht — beste kwaliteit",
+    "ws.levelMedium": "Gebalanceerd — aanbevolen",
+    "ws.levelHigh": "Sterk — kleiner bestand",
+    "ws.levelExtreme": "Extreem — kleinste bestand",
     "ws.saveAs": "Opslaan als",
     "ws.fmtOriginal": "Zelfde formaat als elk bestand",
     "ws.fmtJpeg": "JPG — foto's, overal te openen",
@@ -169,6 +175,11 @@
     "error.NO_PAGES_LEFT": "Dat zou alle pagina's verwijderen. Behoud er minstens één.",
     "error.WRONG_FILE_COUNT": "Voeg het aantal bestanden toe dat deze tool nodig heeft.",
     "error.PROCESSING_FAILED": "Er ging iets mis tijdens de verwerking. Je originele bestand is ongewijzigd.",
+    "offline.needed": "Je bent offline en deze tool staat nog niet op dit apparaat. Hij heeft één keer internet nodig: maak verbinding en probeer het opnieuw.",
+    "offline.ready": "Klaar: deze tool werkt nu op dit apparaat, ook met wifi of mobiele data uit.",
+    "offline.badge": "Werkt offline",
+    "offline.install": "Fizzdoc installeren",
+    "offline.iosSteps": "Om Fizzdoc op iPhone of iPad te installeren, tik je op de knop Deel en daarna op ‘Zet op beginscherm’.",
     "error.NO_PASSWORD": "Voer het wachtwoord in dat je wilt toevoegen.",
     "error.PASSWORDS_DIFFER": "De twee wachtwoorden komen niet overeen.",
     "error.NOT_OFFICE": "Dit bestand is geen geldig Word-, Excel- of PowerPoint-document.",
@@ -261,8 +272,75 @@
     "bg.sharp": "Scherpere randen (haar, vacht)",
     "bg.sharpNote": "Doet een gedetailleerdere ronde op je grafische chip. De eerste keer wordt zo’n {mb} MB gedownload.",
     "bg.sharpFailed": "Scherpere randen lukten niet op dit apparaat, dus het eerste resultaat blijft staan.",
-    "bg.shareSticker": "Delen via WhatsApp",
-    "bg.stickerNote": "Sticker klaar: 512 × 512, transparante achtergrond, witte rand. Bewaar hem of deel hem op je telefoon meteen via WhatsApp.",
+    "bg.shareSticker": "Opslaan in Foto’s",
+    "pe.preview": "Voorbeeld van de bewerkte foto",
+    "pe.crop": "Bijsnijden en draaien",
+    "pe.shape": "Vorm",
+    "pe.original": "Origineel",
+    "pe.square": "Vierkant",
+    "pe.portrait": "Staand 4:5",
+    "pe.wide": "Breed 16:9",
+    "pe.story": "Story 9:16",
+    "pe.zoom": "Zoom",
+    "pe.dragHint": "Sleep de foto om te kiezen wat er in beeld blijft.",
+    "pe.turn": "Draaien en spiegelen",
+    "pe.left": "Linksom draaien",
+    "pe.right": "Rechtsom draaien",
+    "pe.flipH": "Horizontaal spiegelen",
+    "pe.flipV": "Verticaal spiegelen",
+    "pe.light": "Licht en kleur",
+    "pe.brightness": "Helderheid",
+    "pe.contrast": "Contrast",
+    "pe.saturation": "Verzadiging",
+    "pe.warmth": "Warmte",
+    "pe.reset": "Terugzetten",
+    "pe.swipeHint": "Sleep op de foto naar links of rechts om het te veranderen.",
+    "pe.looks": "Filters",
+    "pe.bw": "Zwart-wit",
+    "pe.vivid": "Levendig",
+    "pe.warm": "Warm",
+    "pe.cool": "Koel",
+    "pe.fade": "Vervaagd",
+    "pe.sepia": "Sepia",
+    "pe.noir": "Noir",
+    "co.preview": "Voorbeeld van de collage",
+    "co.layout": "Indeling",
+    "co.photo": "Foto",
+    "co.space": "Ruimte",
+    "co.gap": "Tussenruimte",
+    "co.corners": "Ronde hoeken",
+    "co.a4": "A4-afdruk",
+    "co.max": "Alleen de eerste 9 foto's worden gebruikt.",
+    "co.order": "Wil je foto's verwisselen? Verander dan hun volgorde in de lijst hierboven.",
+    "co.tapHint": "Tik op een foto om hem te kiezen en sleep dan om hem in zijn vak te verplaatsen.",
+    "st.text": "Tekst",
+    "st.hint": "Sleep de tekst over de afbeelding. Knijp met twee vingers, of gebruik de schuifjes, om hem groter te maken en te draaien.",
+    "st.add": "Tekst toevoegen",
+    "st.addEmoji": "Emoji toevoegen",
+    "st.sample": "Hoi!",
+    "st.textLabel": "Je tekst",
+    "st.style": "Lettertypestijl",
+    "st.funny": "Grappig",
+    "st.cute": "Schattig",
+    "st.cozy": "Knus",
+    "st.big": "GROOT",
+    "st.serious": "Serieus",
+    "st.color": "Kleur",
+    "st.white": "Wit",
+    "st.black": "Zwart",
+    "st.green": "Groen",
+    "st.yellow": "Geel",
+    "st.red": "Rood",
+    "st.blue": "Blauw",
+    "st.size": "Grootte",
+    "st.turn": "Draaien",
+    "st.delete": "Tekst verwijderen",
+    "bg.stickerNote": "Sticker klaar: 512 × 512, transparante achtergrond, witte rand.",
+    "wa.title": "Voeg hem toe aan WhatsApp",
+    "wa.why": "Geen enkele website kan een sticker rechtstreeks in WhatsApp zetten: een gedeeld bestand komt aan als foto. De eigen stickermaker van WhatsApp doet de laatste stap en bewaart de sticker daarna bij je stickers.",
+    "wa.android": "Android: download de sticker. Open in WhatsApp een chat (een chat met jezelf kan ook), tik op de emojiknop, dan op Stickers › Maken, en kies de sticker uit je foto’s. Tik op Verzenden.",
+    "wa.iphone": "iPhone (iOS 17 of nieuwer): tik op “Opslaan in Foto’s” en bewaar de afbeelding. Open in WhatsApp een chat, tik op Stickers › Sticker maken › Foto gebruiken en kies de afbeelding. Tik op Verzenden.",
+    "wa.computer": "Op een computer: download de sticker, stuur hem naar je telefoon en volg daar de stappen hierboven.",
     "bg.magicErase": "Tik om te verwijderen",
     "bg.magicRestore": "Tik om te houden",
     "bg.magicHint": "Sneller: kies Tik om te verwijderen of Tik om te houden en tik op een restje achtergrond of een ontbrekend stuk. Het hele gebied in die kleur wordt in één keer hersteld.",
@@ -294,6 +372,7 @@
     "footer.madeBy": "Ontworpen en gebouwd door",
     "footer.feedback": "Meld een bug of stel een tool voor",
     "footer.compare": "Alternatieven voor bekende tools",
+    "footer.privacy": "Privacy",
     "format.audio": "Audio",
     "ws.chooseAudio": "Kies een MP3- of M4A-bestand",
     "ws.chooseAudios": "Kies MP3- of M4A-bestanden",
@@ -741,7 +820,7 @@
       "lede": "Maak een PDF klein genoeg om te e-mailen of naar een portaal te uploaden. Fizzdoc comprimeert te grote foto's en scans opnieuw en laat tekst en vectorafbeeldingen ongemoeid.",
       "steps": [
         "Voeg één PDF-bestand toe.",
-        "Kies Gebalanceerd of Sterke compressie.",
+        "Kies hoe sterk je comprimeert: Licht, Gebalanceerd, Sterk of Extreem.",
         "Klik op “PDF comprimeren” en download het kleinere bestand."
       ],
       "faq": [
@@ -1721,8 +1800,8 @@
       "name": "Achtergrond Verwijderen",
       "summary": "Knip een persoon, product of huisdier uit en zet er alles achter wat je wilt.",
       "action": "Afbeelding downloaden",
-      "title": "Achtergrond Verwijderen Gratis — Zonder Uploaden | Fizzdoc",
-      "description": "Verwijder de achtergrond van elke foto gratis en in volledige resolutie: transparante PNG, wit, elke kleur of je eigen foto. Er wordt niets geüpload.",
+      "title": "Achtergrond Verwijderen Gratis — Zonder Upload of Watermerk | Fizzdoc",
+      "description": "Verwijder gratis een fotoachtergrond op je apparaat: transparante PNG, wit, elke kleur of vervaging, in volle resolutie zonder watermerk. Niets wordt geüpload.",
       "h1": "Verwijder de achtergrond van elke foto",
       "lede": "Kies een foto en de achtergrond verdwijnt vanzelf. Laat hem transparant, of zet er wit, een kleur, een zachte vervaging of een andere foto achter. De AI draait op je eigen apparaat, dus je foto verlaat het nooit.",
       "steps": [
@@ -1742,6 +1821,22 @@
         [
           "Hoe werkt het zonder uploaden?",
           "Een open-source AI-model (BiRefNet) draait in je browser, op je grafische chip als je apparaat die heeft. Het wordt één keer gedownload, ongeveer 110 MB, en werkt daarna zelfs offline. Telefoons met weinig geheugen gebruiken een kleiner model (U²-Net)."
+        ],
+        [
+          "Is er een watermerk of een limiet?",
+          "Geen watermerk, geen credits, geen account en geen dagelijkse limiet. Het resultaat wordt opgeslagen in de oorspronkelijke resolutie van je foto; alleen het geheugen van je apparaat bepaalt hoe groot een foto kan zijn."
+        ],
+        [
+          "Werkt het op een telefoon?",
+          "Ja, in elke moderne browser op je telefoon. Telefoons gebruiken een kleiner model (4.6 MB), zodat het tabblad niet zonder geheugen komt te zitten. Daardoor zijn de randen bij haar iets zachter dan op een laptop."
+        ],
+        [
+          "Hoe maak ik de achtergrond wit?",
+          "Zodra de achtergrond is verwijderd, kies je Wit onder Achtergrond en sla je op als JPG of PNG. Je kunt ook elke kleur, een vervaging van de oorspronkelijke achtergrond of een andere eigen foto kiezen."
+        ],
+        [
+          "Kan ik de achtergrond van een GIF of video verwijderen?",
+          "Ja. GIF Achtergrond Verwijderen behoudt elk beeld en de timing ervan, en Video Achtergrond Verwijderen behoudt het geluid. Beide werken ook op je eigen apparaat."
         ],
         [
           "Is Fizzdoc gratis?",
@@ -2949,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Witte Achtergrond",
+      "summary": "Zet in één stap een strakke witte achtergrond achter elke foto.",
+      "action": "Afbeelding downloaden",
+      "title": "Achtergrond Wit Maken Gratis — Foto op Wit, Zonder Upload | Fizzdoc",
+      "description": "Maak een fotoachtergrond gratis wit, direct op je apparaat, voor webshops, profielen en formulieren. Volle resolutie, geen watermerk, niets geüpload.",
+      "h1": "Maak de achtergrond van een foto wit",
+      "lede": "Kies een foto en de achtergrond wordt vanzelf egaal wit: voor productfoto’s in webshops, profielfoto’s en formulieren. De AI draait op je eigen apparaat en de foto behoudt zijn volle resolutie.",
+      "steps": [
+        "Kies een foto. De achtergrond wordt meteen verwijderd en door wit vervangen.",
+        "Werk een plekje bij als dat nodig is, voeg een schaduw toe of snijd de foto vierkant bij voor webshops.",
+        "Kies het formaat en klik op “Afbeelding downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Is het wit echt zuiver wit?",
+          "Ja. De achtergrond wordt gevuld met zuiver wit (#FFFFFF), waar de meeste webshops en formulieren om vragen. Randen van haar en vacht worden opgeschoond, zodat ze mooi in het wit overlopen."
+        ],
+        [
+          "Kan ik het gebruiken voor een pasfoto of ID-foto?",
+          "Je krijgt een egale witte achtergrond, maar elk land heeft eigen regels voor formaat, belichting en houding. Controleer die voordat je afdrukt; Fizzdoc belooft geen officiële goedkeuring."
+        ],
+        [
+          "Kan ik ook een andere kleur kiezen?",
+          "Ja. Onder Achtergrond kun je overschakelen naar elke kleur, een vervaging van het origineel, je eigen foto of helemaal geen achtergrond voor een transparante PNG."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "achtergrond wit maken",
+        "foto achtergrond wit maken",
+        "witte achtergrond foto",
+        "productfoto witte achtergrond",
+        "witte achtergrond toevoegen"
+      ]
+    },
+    "blur-background": {
+      "name": "Achtergrond Vervagen",
+      "summary": "Houd het onderwerp scherp en maak alles erachter zacht, net als bij portretmodus.",
+      "action": "Afbeelding downloaden",
+      "title": "Achtergrond Vervagen Gratis — Volle Grootte, Zonder Upload | Fizzdoc",
+      "description": "Vervaag gratis de achtergrond van een foto en houd de persoon of het product scherp. Werkt op je apparaat in volle resolutie, zonder watermerk of upload.",
+      "h1": "Vervaag de achtergrond van een foto",
+      "lede": "Kies een foto en de achtergrond wordt zacht, terwijl de persoon, het huisdier of het product scherp blijft, net als bij een portretfoto. De AI vindt het onderwerp op je eigen apparaat en de foto behoudt zijn volle resolutie.",
+      "steps": [
+        "Kies een foto. Het onderwerp wordt gevonden en de achtergrond wordt meteen vervaagd.",
+        "Werk een plekje bij dat de AI heeft gemist, of zet er een kleur of een andere foto achter.",
+        "Kies het formaat en klik op “Afbeelding downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Werkt het zoals de portretmodus?",
+          "Het geeft een vergelijkbaar effect: het onderwerp blijft scherp en de achtergrond wordt vervaagd. Het meet geen diepte, dus alles achter het onderwerp wordt even sterk vervaagd."
+        ],
+        [
+          "Gaat de foto in kwaliteit achteruit?",
+          "Nee. De foto behoudt zijn volle resolutie; alleen de achtergrond wordt zachter gemaakt. Je kunt ook een kleinere kopie opslaan."
+        ],
+        [
+          "Kan ik de achtergrond ook helemaal verwijderen?",
+          "Ja. Kies onder Achtergrond Geen voor een transparante PNG, of Wit, elke kleur of een andere foto."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "achtergrond vervagen",
+        "foto achtergrond vervagen",
+        "achtergrond wazig maken",
+        "achtergrond blurren",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "WhatsApp-stickermaker",
       "summary": "Maak van elke foto een sticker: achtergrond weg, witte rand, klaar voor WhatsApp.",
@@ -2959,8 +3140,8 @@
       "lede": "Kies een foto van een vriend, je huisdier of jezelf. De achtergrond verdwijnt, er komt een witte stickerrand omheen en je krijgt een sticker die klaar is voor WhatsApp: 512 × 512 WebP, transparante achtergrond, onder 100 KB. De AI draait op je eigen apparaat.",
       "steps": [
         "Kies een foto. De achtergrond gaat weg en de stickerrand wordt toegevoegd.",
-        "Werk een plekje bij als dat nodig is, of zet de rand uit.",
-        "Klik op “Sticker downloaden” of tik op je telefoon op “Delen via WhatsApp”."
+        "Voeg tekst of emoji toe als je wilt, werk een plekje bij of zet de rand uit.",
+        "Download de sticker (tik op een iPhone op “Opslaan in Foto’s”), open dan in WhatsApp Stickers › Maken en kies hem."
       ],
       "faq": [
         [
@@ -2969,7 +3150,7 @@
         ],
         [
           "Hoe zet ik de sticker in WhatsApp?",
-          "Tik op je telefoon op “Delen via WhatsApp” en stuur hem naar een chat (een chat met jezelf kan ook). Tik daarna in de chat op de sticker en kies “Toevoegen aan favorieten”. Op een computer download je het WebP-bestand en stuur je het via WhatsApp Web of Desktop."
+          "Geen enkele website kan stickers rechtstreeks aan WhatsApp toevoegen, dus de eigen stickermaker van WhatsApp doet de laatste stap. Op Android download je de sticker, tik je in een chat op de emojiknop › Stickers › Maken en kies je hem uit je foto’s. Op een iPhone (iOS 17 of nieuwer) tik je op “Opslaan in Foto’s”, daarna in een chat op Stickers › Sticker maken › Foto gebruiken en kies je hem. Tik op Verzenden en WhatsApp bewaart hem bij je stickers. Op een computer stuur je het bestand naar je telefoon en doe je het daar."
         ],
         [
           "Is dit van WhatsApp?",
@@ -2986,6 +3167,104 @@
         "foto naar sticker",
         "gratis stickers maken",
         "transparante sticker webp"
+      ]
+    },
+    "collage-maker": {
+      "name": "Collagemaker",
+      "summary": "Zet 2 tot 9 foto's in één afbeelding, met tussenruimte, ronde hoeken en tekst.",
+      "action": "Collage downloaden",
+      "title": "Gratis Fotocollage Maken — Zonder Upload, Zonder Watermerk | Fizzdoc",
+      "description": "Maak gratis een fotocollage in je browser: indeling voor 2 tot 9 foto's, tussenruimte, hoeken, formaat en tekst naar keuze. Geen upload, account of watermerk.",
+      "h1": "Maak een fotocollage zonder je foto's te uploaden",
+      "lede": "Kies 2 tot 9 foto's, kies een indeling en een vorm (vierkant, story, A4 en meer), verplaats en zoom elke foto in zijn vak, en voeg tussenruimte, ronde hoeken, een achtergrondkleur en tekst toe. Alles gebeurt op je eigen apparaat.",
+      "steps": [
+        "Kies 2 tot 9 foto's. De volgorde in de lijst is de volgorde in de collage.",
+        "Kies een indeling en een vorm, verplaats en zoom elke foto, en stel tussenruimte, hoeken, achtergrond en tekst in.",
+        "Kies het formaat en het bestandstype en klik dan op “Collage downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Hoeveel foto's kan een collage hebben?",
+          "Van 1 tot 9. Elk aantal foto's heeft eigen indelingen, zoals naast elkaar, onder elkaar, één grote foto met kleinere foto's, of een raster. Voeg je er meer dan 9 toe, dan worden de eerste 9 gebruikt."
+        ],
+        [
+          "Kan ik elke foto verplaatsen of erop inzoomen?",
+          "Ja. Open Foto, tik op een foto om hem te kiezen, sleep hem om te kiezen wat er in zijn vak te zien is en gebruik Zoom om dichterbij te komen. Wil je foto's verwisselen? Verander dan hun volgorde in de bestandenlijst."
+        ],
+        [
+          "Welke formaten kan ik opslaan?",
+          "Vierkant, Staand 4:5 en Story 9:16 voor sociale media, Breed 16:9, en A4-afdruk om te printen: 1080 of 2160 px aan de korte zijde, of 2480 px voor A4 bij 300 dpi. Als JPG, PNG of WebP, zonder watermerk."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "fotocollage maken",
+        "collage maken gratis",
+        "foto's samenvoegen",
+        "collage maker online",
+        "fotocollage zonder watermerk"
+      ]
+    },
+    "photo-editor": {
+      "name": "Foto-editor",
+      "summary": "Snijd een foto bij, draai hem, maak hem lichter en zet er tekst of emoji op, direct in je browser.",
+      "action": "Foto downloaden",
+      "title": "Gratis Foto-editor Zonder Upload — Bijsnijden, Tekst, Emoji | Fizzdoc",
+      "description": "Bewerk gratis een foto in je browser: bijsnijden tot vierkant, 4:5 of story, licht en kleur aanpassen, filter, tekst of emoji toevoegen. Geen upload of account.",
+      "h1": "Bewerk een foto online zonder hem te uploaden",
+      "lede": "Snijd bij tot een vierkant of een story, draai en spiegel, pas helderheid, contrast en kleur aan, kies met één tik een filter en zet er tekst of emoji op. Alledaagse fotobewerkingen, gedaan op je eigen apparaat en opgeslagen op volle grootte.",
+      "steps": [
+        "Kies een foto.",
+        "Snijd bij, draai, pas licht en kleur aan, kies een filter of voeg tekst en emoji toe. Het voorbeeld verandert meteen mee.",
+        "Kies het formaat en het bestandstype en klik dan op “Foto downloaden”."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Gaat de kwaliteit achteruit door het bewerken?",
+          "Niet meer dan door het opslaan zelf. Elke wijziging wordt opnieuw getekend vanuit je originele foto, dus bewerkingen stapelen zich nooit op, en de foto wordt op volle grootte opgeslagen, tenzij je een kleiner formaat kiest. JPG en WebP worden in hoge kwaliteit opgeslagen; PNG is verliesvrij."
+        ],
+        [
+          "Blijft de locatie van mijn telefoonfoto bewaard?",
+          "Nee. De opgeslagen foto is een nieuw bestand met alleen de afbeelding erin, dus verborgen gegevens zoals de GPS-locatie, de datum en het telefoonmodel worden weggelaten."
+        ],
+        [
+          "Heb ik een account nodig?",
+          "Nee. Open de pagina, kies een foto en bewerk hem. Je hoeft je niet aan te melden, er wordt nergens iets bewaard en er is geen limiet op het aantal foto's dat je bewerkt."
+        ],
+        [
+          "Werkt het op mijn telefoon?",
+          "Ja. Op een telefoon blijft de foto bovenaan, staan de tools in een balk onderaan en kun je zijwaarts over de foto slepen om helderheid, contrast, verzadiging of warmte te veranderen."
+        ],
+        [
+          "Hoe maak ik een foto vierkant of 4:5 voor Instagram?",
+          "Open Bijsnijden en draaien, kies Vierkant of Staand 4:5 en sleep de foto om te kiezen wat er in beeld blijft. Story 9:16 en Breed 16:9 zijn er ook."
+        ],
+        [
+          "Kan ik tekst in het Hindi of andere talen toevoegen?",
+          "Ja. Typ in elke taal: de stijlen Schattig, Knus en GROOT bevatten Hindi-letters (Devanagari), en andere schriften, zoals Bengaals, Tamil of Telugu, gebruiken het eigen lettertype van je apparaat."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "foto bewerken online gratis",
+        "foto bijsnijden vierkant",
+        "tekst op foto zetten",
+        "foto filters online",
+        "foto bewerken zonder uploaden"
       ]
     }
   }

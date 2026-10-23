@@ -11,7 +11,7 @@
     "footer.about": "Gizliliğe önem veren belge araçları. Dosyalarınız cihazınızda işlenir ve asla yüklenmez.",
     "footer.license": "Açık kaynak (Apache-2.0)",
     "footer.licenses": "Üçüncü taraf lisansları",
-    "footer.builtOn": "qpdf, pdf.js ve pdf-lib üzerine inşa edilmiştir",
+    "footer.builtOn": "qpdf, pdf.js, pdf-lib, ONNX Runtime ve Whisper üzerine inşa edilmiştir",
     "star.title": "Ücretsiz ve açık kaynak. Sonsuza dek.",
     "star.text": "Reklam yok, hesap yok, dosyalarınıza bakan sunucu yok. Fizzdoc zamandan kazandırdıysa, GitHub'da bir yıldız daha çok kişinin onu bulmasına yardımcı olur.",
     "star.button": "Fizzdoc'u GitHub'da yıldızla",
@@ -42,6 +42,8 @@
     "search.count": "{n} eşleşen araç",
     "search.none": "Eşleşen araç yok. “pdf”, “görsel” veya “ses” deneyin.",
     "home.chip": "Bu cihazda işlenir",
+    "home.createTitle": "Düzenle ve oluştur",
+    "home.createLede": "Fotoğrafı düzeltin, kolaj yapın, arka planı kaldırın ya da çıkartmaya dönüştürün; hepsi kendi cihazınızda.",
     "home.toolsTitle": "Her araç, varsayılan olarak gizli",
     "home.toolsLede": "Bir araç seçin. Dosyanız bu cihazda işlenir ve hiçbir sunucuya dokunmaz.",
     "home.whatTitle": "{name} nedir?",
@@ -93,6 +95,10 @@
     "ws.compression": "Sıkıştırma",
     "ws.balanced": "Dengeli — en iyi kalite",
     "ws.strong": "Güçlü — en küçük dosya",
+    "ws.levelLow": "Hafif — en iyi kalite",
+    "ws.levelMedium": "Dengeli — önerilen",
+    "ws.levelHigh": "Güçlü — daha küçük dosya",
+    "ws.levelExtreme": "Aşırı — en küçük dosya",
     "ws.saveAs": "Farklı kaydet",
     "ws.fmtOriginal": "Her dosyayla aynı format",
     "ws.fmtJpeg": "JPG — fotoğraflar, her yerde açılır",
@@ -169,6 +175,11 @@
     "error.NO_PAGES_LEFT": "Bu, tüm sayfaları kaldırır. En az bir sayfa bırakın.",
     "error.WRONG_FILE_COUNT": "Bu aracın ihtiyaç duyduğu sayıda dosya ekleyin.",
     "error.PROCESSING_FAILED": "İşlenirken bir sorun oluştu. Orijinal dosyanız değişmedi.",
+    "offline.needed": "Çevrimdışısınız ve bu araç henüz bu cihazda değil. Bir kez internet gerekiyor: bağlanın ve yeniden deneyin.",
+    "offline.ready": "Hazır: bu araç artık Wi-Fi veya mobil veri kapalıyken de bu cihazda çalışıyor.",
+    "offline.badge": "Çevrimdışı çalışır",
+    "offline.install": "Fizzdoc’u yükle",
+    "offline.iosSteps": "Fizzdoc’u iPhone veya iPad’e yüklemek için Paylaş düğmesine, ardından “Ana Ekrana Ekle”ye dokunun.",
     "error.NO_PASSWORD": "Eklemek istediğiniz parolayı yazın.",
     "error.PASSWORDS_DIFFER": "İki parola birbiriyle eşleşmiyor.",
     "error.NOT_OFFICE": "Bu dosya geçerli bir Word, Excel veya PowerPoint belgesi değil.",
@@ -261,8 +272,75 @@
     "bg.sharp": "Daha keskin kenarlar (saç, tüy)",
     "bg.sharpNote": "Grafik çipinizde daha ayrıntılı bir geçiş yapar. İlk seferde yaklaşık {mb} MB indirir.",
     "bg.sharpFailed": "Daha keskin kenarlar bu cihazda çalışmadı, bu yüzden ilk sonuç korundu.",
-    "bg.shareSticker": "WhatsApp’ta paylaş",
-    "bg.stickerNote": "Çıkartma hazır: 512 × 512, şeffaf arka plan, beyaz kenar. Kaydedin ya da telefondan doğrudan WhatsApp’ta paylaşın.",
+    "bg.shareSticker": "Fotoğraflar’a kaydet",
+    "pe.preview": "Düzenlenen fotoğrafın önizlemesi",
+    "pe.crop": "Kırp ve döndür",
+    "pe.shape": "Şekil",
+    "pe.original": "Orijinal",
+    "pe.square": "Kare",
+    "pe.portrait": "Dikey 4:5",
+    "pe.wide": "Geniş 16:9",
+    "pe.story": "Hikaye 9:16",
+    "pe.zoom": "Yakınlaştırma",
+    "pe.dragHint": "Karede ne kalacağını seçmek için fotoğrafı sürükleyin.",
+    "pe.turn": "Döndür ve çevir",
+    "pe.left": "Sola döndür",
+    "pe.right": "Sağa döndür",
+    "pe.flipH": "Yatay çevir",
+    "pe.flipV": "Dikey çevir",
+    "pe.light": "Işık ve renk",
+    "pe.brightness": "Parlaklık",
+    "pe.contrast": "Kontrast",
+    "pe.saturation": "Doygunluk",
+    "pe.warmth": "Sıcaklık",
+    "pe.reset": "Sıfırla",
+    "pe.swipeHint": "Değiştirmek için fotoğrafın üzerinde sağa sola sürükleyin.",
+    "pe.looks": "Filtreler",
+    "pe.bw": "Siyah beyaz",
+    "pe.vivid": "Canlı",
+    "pe.warm": "Sıcak",
+    "pe.cool": "Soğuk",
+    "pe.fade": "Soluk",
+    "pe.sepia": "Sepya",
+    "pe.noir": "Noir",
+    "co.preview": "Kolajın önizlemesi",
+    "co.layout": "Düzen",
+    "co.photo": "Fotoğraf",
+    "co.space": "Boşluk",
+    "co.gap": "Aralık",
+    "co.corners": "Yuvarlak köşeler",
+    "co.a4": "A4 baskı",
+    "co.max": "Yalnızca ilk 9 fotoğraf kullanılır.",
+    "co.order": "Fotoğrafların yerini değiştirmek için yukarıdaki listede sıralarını değiştirin.",
+    "co.tapHint": "Seçmek için bir fotoğrafa dokunun, sonra çerçevesinde kaydırmak için sürükleyin.",
+    "st.text": "Metin",
+    "st.hint": "Metni resmin üzerinde sürükleyin. Boyutunu değiştirmek ve döndürmek için iki parmakla sıkıştırın ya da kaydırıcıları kullanın.",
+    "st.add": "Metin ekle",
+    "st.addEmoji": "Emoji ekle",
+    "st.sample": "Merhaba!",
+    "st.textLabel": "Metniniz",
+    "st.style": "Yazı tipi stili",
+    "st.funny": "Komik",
+    "st.cute": "Sevimli",
+    "st.cozy": "Sıcak",
+    "st.big": "BÜYÜK",
+    "st.serious": "Ciddi",
+    "st.color": "Renk",
+    "st.white": "Beyaz",
+    "st.black": "Siyah",
+    "st.green": "Yeşil",
+    "st.yellow": "Sarı",
+    "st.red": "Kırmızı",
+    "st.blue": "Mavi",
+    "st.size": "Boyut",
+    "st.turn": "Döndür",
+    "st.delete": "Metni sil",
+    "bg.stickerNote": "Çıkartma hazır: 512 × 512, şeffaf arka plan, beyaz kenar.",
+    "wa.title": "WhatsApp’a ekleyin",
+    "wa.why": "Hiçbir web sitesi çıkartmayı doğrudan WhatsApp’a ekleyemez: paylaşılan dosya fotoğraf olarak ulaşır. Son adımı WhatsApp’ın kendi çıkartma oluşturucusu yapar ve ardından çıkartmayı çıkartmalarınız arasında saklar.",
+    "wa.android": "Android: çıkartmayı indirin. WhatsApp’ta herhangi bir sohbeti açın (kendinizle sohbet de olur), emoji düğmesine, ardından Çıkartmalar › Oluştur’a dokunun ve çıkartmayı fotoğraflarınızdan seçin. Gönder’e dokunun.",
+    "wa.iphone": "iPhone (iOS 17 veya üstü): “Fotoğraflar’a kaydet”e dokunun ve resmi kaydedin. WhatsApp’ta herhangi bir sohbeti açın, Çıkartmalar › Çıkartma oluştur › Fotoğraf kullan’a dokunun ve resmi seçin. Gönder’e dokunun.",
+    "wa.computer": "Bilgisayarda: çıkartmayı indirin, telefonunuza gönderin ve yukarıdaki adımları orada uygulayın.",
     "bg.magicErase": "Dokun ve kaldır",
     "bg.magicRestore": "Dokun ve tut",
     "bg.magicHint": "Daha hızlı: Dokun ve kaldır ya da Dokun ve tut seçin, sonra kalan arka plan parçasına veya eksik kısma dokunun. O renkteki alanın tamamı tek seferde düzelir.",
@@ -294,6 +372,7 @@
     "footer.madeBy": "Tasarlayan ve geliştiren",
     "footer.feedback": "Hata bildir veya araç öner",
     "footer.compare": "Bilinen araçlara alternatifler",
+    "footer.privacy": "Gizlilik",
     "format.audio": "Ses",
     "ws.chooseAudio": "Bir MP3 veya M4A dosyası seçin",
     "ws.chooseAudios": "MP3 veya M4A dosyaları seçin",
@@ -741,7 +820,7 @@
       "lede": "Bir PDF'i e-postayla göndermeye ya da bir portale yüklemeye yetecek kadar küçültün. Fizzdoc aşırı büyük fotoğraf ve taramaları yeniden sıkıştırır, metne ve vektör grafiklere dokunmaz.",
       "steps": [
         "Bir PDF dosyası ekleyin.",
-        "Dengeli veya Güçlü sıkıştırmayı seçin.",
+        "Ne kadar sıkıştırılacağını seçin: Hafif, Dengeli, Güçlü veya Aşırı.",
         "“PDF'i Sıkıştır”a tıklayın ve daha küçük dosyayı indirin."
       ],
       "faq": [
@@ -1721,8 +1800,8 @@
       "name": "Arka Planı Sil",
       "summary": "Bir kişiyi, ürünü ya da evcil hayvanı kesip çıkarın ve arkasına istediğinizi koyun.",
       "action": "Görseli indir",
-      "title": "Fotoğraf Arka Planı Silme Ücretsiz — Yükleme Yok | Fizzdoc",
-      "description": "Her fotoğrafın arka planını ücretsiz silin, tam çözünürlükle: şeffaf PNG, beyaz, istediğiniz renk veya kendi fotoğrafınız. Hiçbir şey yüklenmez.",
+      "title": "Fotoğraf Arka Planı Silme Ücretsiz — Yükleme ve Filigran Yok | Fizzdoc",
+      "description": "Fotoğraf arka planını cihazınızda ücretsiz silin: şeffaf PNG, beyaz, istediğiniz renk veya bulanıklık, tam çözünürlükte ve filigransız. Fotoğrafınız yüklenmez.",
       "h1": "Her fotoğrafın arka planını silin",
       "lede": "Bir fotoğraf seçin, arka plan kendiliğinden kaybolsun. Şeffaf bırakın ya da arkasına beyaz, istediğiniz bir renk, yumuşak bir bulanıklık veya başka bir fotoğraf koyun. Yapay zeka kendi cihazınızda çalışır, bu yüzden fotoğrafınız cihazınızdan hiç çıkmaz.",
       "steps": [
@@ -1742,6 +1821,22 @@
         [
           "Yüklemeden nasıl çalışıyor?",
           "Açık kaynaklı bir yapay zeka modeli (BiRefNet) tarayıcınızın içinde çalışır, cihazda ekran kartı varsa onun üzerinde. Bir kez, yaklaşık 110 MB iner, sonra çevrimdışıyken bile çalışır. Belleği az telefonlar daha küçük bir model (U²-Net) kullanır."
+        ],
+        [
+          "Filigran veya sınır var mı?",
+          "Filigran yok, kredi yok, kayıt yok, günlük limit yok. Sonuç fotoğrafınızın kendi çözünürlüğünde kaydedilir; bir fotoğrafın ne kadar büyük olabileceğini yalnızca cihazınızın belleği sınırlar."
+        ],
+        [
+          "Telefonda çalışır mı?",
+          "Evet, her modern telefon tarayıcısında. Sekmenin belleği tükenmesin diye telefonlar daha küçük bir model (4.6 MB) kullanır, bu yüzden saç kenarları dizüstü bilgisayara göre biraz daha yumuşak olur."
+        ],
+        [
+          "Arka planı nasıl beyaz yaparım?",
+          "Arka plan silindikten sonra Arka plan bölümünden Beyaz'ı seçin, ardından JPG veya PNG olarak kaydedin. İsterseniz herhangi bir renk, orijinal arka planın bulanık hâli ya da kendinize ait başka bir fotoğraf da seçebilirsiniz."
+        ],
+        [
+          "GIF'in veya videonun arka planını silebilir miyim?",
+          "Evet. GIF Arka Planı Silme her kareyi ve zamanlamasını korur, Video Arka Planı Silme ise sesi korur. İkisi de aynı şekilde cihazınızda çalışır."
         ],
         [
           "Fizzdoc ücretsiz mi?",
@@ -2949,6 +3044,92 @@
         "remove gif background"
       ]
     },
+    "make-background-white": {
+      "name": "Beyaz Arka Plan",
+      "summary": "Her fotoğrafın arkasına tek adımda temiz, beyaz bir arka plan koyun.",
+      "action": "Görseli indir",
+      "title": "Arka Planı Beyaz Yapma Ücretsiz — Beyaz Fon, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğraf arka planını cihazınızda ücretsiz beyaz yapın: online mağaza ilanları, profiller ve formlar için. Tam çözünürlük, filigran yok, hiçbir şey yüklenmez.",
+      "h1": "Fotoğrafın arka planını beyaz yapın",
+      "lede": "Bir fotoğraf seçin, arka planı kendiliğinden düz beyaz olsun: online mağaza ilanları, profil fotoğrafları ve formlar için. Yapay zeka kendi cihazınızda çalışır ve fotoğraf tam çözünürlüğünü korur.",
+      "steps": [
+        "Bir fotoğraf seçin. Arka plan hemen silinir ve yerine beyaz gelir.",
+        "Gerekirse bir yeri düzeltin, gölge ekleyin ya da online mağaza ilanları için kare kırpın.",
+        "Boyutu seçin, sonra “Görseli indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Beyaz, saf beyaz mı?",
+          "Evet. Arka plan, çoğu mağaza ve formun istediği saf beyazla (#FFFFFF) doldurulur. Saç ve tüy kenarları temizlenir, böylece beyazla kaynaşır."
+        ],
+        [
+          "Pasaport veya kimlik fotoğrafı için kullanabilir miyim?",
+          "Düz beyaz bir arka plan verir, ancak her ülkenin boyut, ışık ve duruş için kendi kuralları vardır. Baskıdan önce bunları kontrol edin; Fizzdoc resmi onay alınacağına dair söz vermez."
+        ],
+        [
+          "Bunun yerine başka bir renk seçebilir miyim?",
+          "Evet. Arka plan bölümünden herhangi bir renge, orijinalin bulanık hâline ya da kendi fotoğrafınıza geçebilir veya şeffaf bir PNG için arka planı tamamen boş bırakabilirsiniz."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "arka planı beyaz yapma",
+        "fotoğraf arka planını beyaz yapma",
+        "beyaz arka plan fotoğraf",
+        "ürün fotoğrafı beyaz fon",
+        "fotoğrafa beyaz arka plan ekleme"
+      ]
+    },
+    "blur-background": {
+      "name": "Arka Planı Bulanıklaştır",
+      "summary": "Konuyu net tutun, arkasındaki her şeyi portre modundaki gibi yumuşatın.",
+      "action": "Görseli indir",
+      "title": "Arka Planı Bulanıklaştır Ücretsiz — Tam Boyut, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğrafın arka planını ücretsiz bulanıklaştırın, kişi veya ürün net kalsın. Cihazınızda tam çözünürlükte çalışır; filigran yok, yükleme yok.",
+      "h1": "Fotoğrafın arka planını bulanıklaştırın",
+      "lede": "Bir fotoğraf seçin; kişi, evcil hayvan ya da ürün net kalırken arka plan yumuşasın, tıpkı bir portre çekimi gibi. Yapay zeka konuyu kendi cihazınızda bulur ve fotoğraf tam çözünürlüğünü korur.",
+      "steps": [
+        "Bir fotoğraf seçin. Konu bulunur ve arka plan hemen bulanıklaştırılır.",
+        "Yapay zekanın atladığı bir yeri düzeltin ya da arkaya bir renk veya başka bir fotoğraf koyun.",
+        "Boyutu seçin, sonra “Görseli indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Portre modu gibi mi çalışır?",
+          "Benzer bir görünüm verir: konu net kalır, arka plan bulanıklaşır. Derinlik ölçmez, bu yüzden konunun arkasındaki her şey aynı miktarda bulanıklaştırılır."
+        ],
+        [
+          "Fotoğrafın kalitesi düşer mi?",
+          "Hayır. Fotoğraf tam çözünürlüğünü korur; yalnızca arka plan yumuşatılır. İsterseniz daha küçük bir kopya da kaydedebilirsiniz."
+        ],
+        [
+          "Bunun yerine arka planı tamamen silebilir miyim?",
+          "Evet. Arka plan bölümünden şeffaf bir PNG için Yok'u ya da Beyaz'ı, herhangi bir rengi veya başka bir fotoğrafı seçin."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "arka plan bulanıklaştırma",
+        "fotoğraf arka planı bulanıklaştırma",
+        "arka planı bulanık yapma",
+        "fotoğrafın arkasını bulanıklaştırma",
+        "blur background"
+      ]
+    },
     "whatsapp-sticker-maker": {
       "name": "WhatsApp çıkartma yapıcı",
       "summary": "Her fotoğrafı çıkartmaya çevirin: arka plan silinir, beyaz kenar eklenir, WhatsApp’a hazır.",
@@ -2959,8 +3140,8 @@
       "lede": "Bir arkadaşınızın, evcil hayvanınızın ya da kendinizin fotoğrafını seçin. Arka plan kaybolur, beyaz çıkartma kenarı eklenir ve WhatsApp’a hazır bir çıkartma elde edersiniz: 512 × 512 WebP, şeffaf arka plan, 100 KB’ın altında. Yapay zekâ kendi cihazınızda çalışır.",
       "steps": [
         "Bir fotoğraf seçin. Arka plan silinir ve çıkartma kenarı eklenir.",
-        "Gerekirse bir yeri düzeltin ya da kenarı kapatın.",
-        "“Çıkartmayı indir”e tıklayın ya da telefonda “WhatsApp’ta paylaş”a dokunun."
+        "İsterseniz metin veya emoji ekleyin, bir yeri düzeltin ya da kenarı kapatın.",
+        "Çıkartmayı indirin (iPhone’da “Fotoğraflar’a kaydet”e dokunun), sonra WhatsApp’ta Çıkartmalar › Oluştur’u açın ve çıkartmayı seçin."
       ],
       "faq": [
         [
@@ -2969,7 +3150,7 @@
         ],
         [
           "Çıkartmayı WhatsApp’a nasıl eklerim?",
-          "Telefonda “WhatsApp’ta paylaş”a dokunup herhangi bir sohbete gönderin (kendinizle sohbet de olur). Sonra sohbette çıkartmaya dokunup “Favorilere ekle”yi seçin. Bilgisayarda WebP dosyasını indirip WhatsApp Web veya Desktop’tan gönderin."
+          "Hiçbir web sitesi çıkartmaları WhatsApp’a doğrudan ekleyemez, bu yüzden son adımı WhatsApp’ın kendi çıkartma oluşturucusu yapar. Android’de çıkartmayı indirin, sonra herhangi bir sohbette emoji düğmesi › Çıkartmalar › Oluştur’a dokunun ve çıkartmayı fotoğraflarınızdan seçin. iPhone’da (iOS 17 veya üstü) “Fotoğraflar’a kaydet”e dokunun, sonra bir sohbette Çıkartmalar › Çıkartma oluştur › Fotoğraf kullan’a dokunun ve çıkartmayı seçin. Gönder’e dokunun; WhatsApp çıkartmayı çıkartmalarınız arasında saklar. Bilgisayarda dosyayı telefonunuza gönderin ve işlemi orada yapın."
         ],
         [
           "Bunu WhatsApp mı yapıyor?",
@@ -2986,6 +3167,104 @@
         "fotoğrafı çıkartma yap",
         "ücretsiz çıkartma oluştur",
         "şeffaf çıkartma webp"
+      ]
+    },
+    "collage-maker": {
+      "name": "Kolaj Yapıcı",
+      "summary": "2 ila 9 fotoğrafı aralık, yuvarlak köşeler ve yazıyla tek bir resimde birleştirin.",
+      "action": "Kolajı indir",
+      "title": "Ücretsiz Fotoğraf Kolajı Yapma — Yükleme Yok, Filigran Yok | Fizzdoc",
+      "description": "Tarayıcıda ücretsiz fotoğraf kolajı yapın: 2 ila 9 fotoğraf için düzen seçin, aralığı, köşeleri ve boyutu ayarlayın, yazı ekleyin. Yükleme, kayıt, filigran yok.",
+      "h1": "Fotoğraflarınızı yüklemeden kolaj yapın",
+      "lede": "2 ila 9 fotoğraf seçin, bir düzen ve bir şekil (kare, hikaye, A4 ve daha fazlası) seçin, her fotoğrafı kendi çerçevesinde kaydırıp yakınlaştırın; aralık, yuvarlak köşeler, arka plan rengi ve yazı ekleyin. Her şey kendi cihazınızda yapılır.",
+      "steps": [
+        "2 ila 9 fotoğraf seçin. Listedeki sıra, kolajdaki sıradır.",
+        "Bir düzen ve şekil seçin, her fotoğrafı kaydırıp yakınlaştırın; aralığı, köşeleri, arka planı ve yazıyı ayarlayın.",
+        "Boyutu ve formatı seçin, sonra “Kolajı indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Bir kolajda kaç fotoğraf olabilir?",
+          "1 ile 9 arası. Her fotoğraf sayısının kendi düzenleri vardır: yan yana, alt alta, büyük bir fotoğrafla birkaç küçük fotoğraf ya da ızgara gibi. 9'dan fazla eklerseniz ilk 9 fotoğraf kullanılır."
+        ],
+        [
+          "Her fotoğrafı kaydırabilir veya yakınlaştırabilir miyim?",
+          "Evet. Fotoğraf sekmesini açın, seçmek için bir fotoğrafa dokunun, sonra çerçevede neyin görüneceğini seçmek için sürükleyin ve yaklaşmak için Yakınlaştırma kaydırıcısını kullanın. Fotoğrafların yerini değiştirmek için dosya listesindeki sıralarını değiştirin."
+        ],
+        [
+          "Hangi boyutlarda kaydedebilirim?",
+          "Sosyal medya için Kare, Dikey 4:5 ve Hikaye 9:16, ayrıca Geniş 16:9 ve yazdırmak için A4 baskı: kısa kenarda 1080 veya 2160 px, A4 için ise 300 dpi'da 2480 px. JPG, PNG veya WebP olarak, filigransız."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "fotoğraf kolajı yapma",
+        "ücretsiz kolaj yapma",
+        "fotoğraf birleştirme",
+        "online kolaj yapma",
+        "filigransız kolaj yapma"
+      ]
+    },
+    "photo-editor": {
+      "name": "Fotoğraf Düzenleyici",
+      "summary": "Fotoğrafı kırpın, döndürün, aydınlatın ve üzerine yazı ya da emoji ekleyin, doğrudan tarayıcınızda.",
+      "action": "Fotoğrafı indir",
+      "title": "Fotoğraf Düzenleme Ücretsiz — Kırp, Yazı, Emoji, Yükleme Yok | Fizzdoc",
+      "description": "Fotoğrafı tarayıcıda ücretsiz düzenleyin: kare, 4:5 veya hikaye boyutuna kırpın, ışığı ve rengi düzeltin, filtre, yazı veya emoji ekleyin. Yükleme ve kayıt yok.",
+      "h1": "Fotoğrafı yüklemeden çevrimiçi düzenleyin",
+      "lede": "Kare ya da hikaye boyutuna kırpın, döndürün ve çevirin, parlaklığı, kontrastı ve rengi düzeltin, tek dokunuşla bir filtre seçin, yazı ya da emoji ekleyin. Günlük fotoğraf düzenlemeleri kendi cihazınızda yapılır ve tam boyutta kaydedilir.",
+      "steps": [
+        "Bir fotoğraf seçin.",
+        "Kırpın, döndürün, ışığı ve rengi ayarlayın, bir filtre seçin ya da yazı ve emoji ekleyin. Önizleme siz ilerledikçe güncellenir.",
+        "Boyutu ve formatı seçin, sonra “Fotoğrafı indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Düzenleme kaliteyi düşürür mü?",
+          "Kaydetmenin düşürdüğünden fazla değil. Her değişiklik orijinal fotoğrafınızdan yeniden çizilir, bu yüzden düzenlemeler üst üste birikmez ve daha küçük bir boyut seçmediğiniz sürece fotoğraf tam boyutunda kaydedilir. JPG ve WebP yüksek kalitede kaydedilir; PNG kayıpsızdır."
+        ],
+        [
+          "Telefon fotoğrafımdaki konum bilgisi kalıyor mu?",
+          "Hayır. Kaydedilen fotoğraf yalnızca resmin kendisini içeren yeni bir dosyadır, bu yüzden GPS konumu, tarih ve telefon modeli gibi gizli bilgiler dışarıda kalır."
+        ],
+        [
+          "Hesap gerekiyor mu?",
+          "Hayır. Sayfayı açın, bir fotoğraf seçin ve düzenleyin. Kayıt olmanız gerekmez, hiçbir şey hiçbir yere kaydedilmez ve düzenleyebileceğiniz fotoğraf sayısında sınır yoktur."
+        ],
+        [
+          "Telefonumda çalışır mı?",
+          "Evet. Telefonda fotoğraf üstte kalır, araçlar alttaki bir çubukta durur; parlaklığı, kontrastı, doygunluğu veya sıcaklığı değiştirmek için fotoğrafın üzerinde sağa sola sürükleyebilirsiniz."
+        ],
+        [
+          "Instagram için fotoğrafı nasıl kare veya 4:5 yaparım?",
+          "Kırp ve döndür'ü açın, Kare veya Dikey 4:5'i seçin, sonra çerçevede neyin kalacağını seçmek için fotoğrafı sürükleyin. Hikaye 9:16 ve Geniş 16:9 da var."
+        ],
+        [
+          "Hintçe veya başka dillerde yazı ekleyebilir miyim?",
+          "Evet. Herhangi bir dilde yazın: Sevimli, Sıcak ve BÜYÜK stilleri Hintçe (Devanagari) harfleri içerir; Bengalce, Tamilce veya Teluguca gibi diğer yazı sistemleri ise cihazınızın kendi yazı tipini kullanır."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "ücretsiz fotoğraf düzenleme",
+        "fotoğrafı kare kırpma",
+        "fotoğrafa yazı ekleme",
+        "online fotoğraf filtreleri",
+        "yüklemeden fotoğraf düzenleme"
       ]
     }
   }

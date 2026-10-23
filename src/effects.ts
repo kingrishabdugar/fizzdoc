@@ -155,9 +155,39 @@ function setUpShare() {
   });
 }
 
+/** iPhone and iPad (iPadOS reports itself as a Mac, but with touch). */
+export const isAppleMobile = () => /iP(hone|ad|od)/.test(navigator.userAgent) || (/Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+
+/**
+ * "Install Fizzdoc": opens the browser's own install prompt where it offers one (Chrome, Edge). iPhone
+ * and iPad have no prompt, so there the button opens the Add to Home Screen steps (a native popover).
+ */
+function setUpInstall() {
+  const button = document.getElementById('install-btn');
+  if (!button || matchMedia('(display-mode: standalone)').matches || (navigator as { standalone?: boolean }).standalone) return;
+  let offer: (Event & { prompt(): Promise<unknown> }) | undefined;
+  addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    offer = event as typeof offer;
+    button.hidden = false;
+  });
+  addEventListener('appinstalled', () => (button.hidden = true));
+  button.addEventListener('click', async () => {
+    if (!offer) return;
+    await offer.prompt();
+    offer = undefined; // a prompt can only be shown once
+    button.hidden = true;
+  });
+  if (isAppleMobile()) {
+    button.setAttribute('popovertarget', 'install-tip');
+    button.hidden = false;
+  }
+}
+
 export function setUpEffects() {
   setUpThemeToggle();
   setUpShare();
+  setUpInstall();
   setUpLanguage();
   setUpRipple();
   document.querySelectorAll<HTMLElement>('[data-spring]').forEach(springDrag);

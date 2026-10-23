@@ -19,7 +19,9 @@ type LocalJob = (files: File[], options: Options) => Promise<Output | Printable>
 
 type Failure = ErrorCode | LocalError['code'] | 'ENGINE_FAILED' | 'PASSWORDS_DIFFER';
 
-const errorText = (code: Failure, vars?: Record<string, string | number>) => t(`error.${code}` as UiKey, vars);
+/** Offline, a generic failure almost always means the tool's files never reached this device. */
+const errorText = (code: Failure, vars?: Record<string, string | number>) =>
+  !navigator.onLine && (code === 'PROCESSING_FAILED' || code === 'ENGINE_FAILED') ? t('offline.needed') : t(`error.${code}` as UiKey, vars);
 
 const SUFFIX: Record<Op, string> = {
   merge: 'merged',
@@ -91,11 +93,14 @@ function setUp(op: ToolOp) {
   const busy = () => !!worker || localBusy;
   let printFrame: HTMLIFrameElement | undefined;
   // The on-page editors (Edit PDF, Redact PDF) follow the chosen file.
-  type Editor = { save(options: Options, onProgress: (fraction: number) => void): Promise<Output>; destroy(): void };
+  // update() is for editors that use the whole list (the Collage Maker): it follows adds, removals and reordering.
+  type Editor = { save(options: Options, onProgress: (fraction: number) => void): Promise<Output>; destroy(): void; update?(files: File[]): void };
   const EDITORS: Partial<Record<ToolOp, (file: File, viewer: HTMLElement) => Promise<Editor>>> = {
     'edit-pdf': async (file, view) => (await import('./tools/edit-pdf')).openEditor(file, view),
     'audio-split': async (file, view) => (await import('./tools/audio-split')).openSplitter(file, view),
     'remove-bg': async (file, view) => (await import('./tools/remove-bg')).openBackgroundEditor(file, view, options()),
+    'photo-edit': async (file, view) => (await import('./tools/photo-edit')).openPhotoEditor(file, view),
+    collage: async (_, view) => (await import('./tools/collage')).openCollage(files, view),
     'redact-pdf': async (file, view) => {
       const redactor = await (await import('./tools/redact-pdf')).openRedactor(file, view);
       return { save: (o, onProgress) => redactor.save(rasterOptions(o), onProgress), destroy: redactor.destroy };
@@ -132,7 +137,10 @@ function setUp(op: ToolOp) {
       (await import('./engine/stamp')).watermarkPdf(f[0], { text: o.text ?? '', opacity: (number(o.opacity) ?? 20) / 100 }),
     'office-clean': async (f) => (await import('./engine/local')).cleanOffice(f[0]),
     'office-images': async (f) => (await import('./engine/local')).extractOfficeImages(f[0]),
-    'compress-pdf': async (f, o) => (await import('./engine/compress')).compressPdf(f[0], { level: o.level === 'strong' ? 'strong' : 'light' }),
+    'compress-pdf': async (f, o) => {
+      const { PDF_LEVELS, compressPdf } = await import('./engine/compress');
+      return compressPdf(f[0], { level: o.level && o.level in PDF_LEVELS ? (o.level as keyof typeof PDF_LEVELS) : 'medium' });
+    },
     'office-compress': async (f, o) => (await import('./engine/compress')).compressOffice(f[0], { level: o.level === 'strong' ? 'strong' : 'light' }),
     'image-convert': async (f, o) =>
       (await import('./engine/compress')).convertImages(f, {
@@ -190,6 +198,8 @@ function setUp(op: ToolOp) {
     'edit-pdf': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'redact-pdf': async (_, o) => (await editor!.ready).save(o, progressLabel),
     'remove-bg': async (_, o) => (await editor!.ready).save(o, progressLabel),
+    'photo-edit': async (_, o) => (await editor!.ready).save(o, progressLabel),
+    collage: async (_, o) => (await editor!.ready).save(o, progressLabel),
     'audio-split': async () => (await editor!.ready).save({}, progressLabel),
     'audio-merge': async (f) => {
       const { parseAudio, write, formatTime, extension } = await import('./engine/audio');
@@ -207,7 +217,10 @@ function setUp(op: ToolOp) {
   /** The editor follows the chosen file: opening a new one replaces it, removing it closes it. */
   function syncEditor() {
     const open = EDITORS[op];
-    if (!open || editor?.file === files[0]) return;
+    if (!open) return;
+    // The collage follows the whole list in place: adding, removing or reordering photos.
+    if (op === 'collage' && editor && files.length) return void editor.ready.then((e) => e.update?.(files), () => {});
+    if (editor?.file === files[0]) return;
     editor?.ready.then((e) => e.destroy(), () => {});
     viewer!.replaceChildren();
     editor = undefined;
@@ -459,6 +472,7 @@ function setUp(op: ToolOp) {
         return item;
       }),
     );
+    noteOfflineReady();
   }
 
   function show(blob: Blob, name: string, summary: string) {
@@ -554,6 +568,30 @@ function setUp(op: ToolOp) {
     result.hidden = false;
   }
 
+  /** After a tool's first run with the service worker in charge, everything it needs is on this device, so say once that it works offline. */
+  function noteOfflineReady() {
+    if (!navigator.serviceWorker?.controller) return;
+    try {
+      if (localStorage.getItem(`fizzdoc-offline-${op}`)) return;
+      localStorage.setItem(`fizzdoc-offline-${op}`, '1');
+    } catch {
+      return; // storage blocked: skip the note rather than repeat it every time
+    }
+    warnings.append(Object.assign(document.createElement('li'), { textContent: t('offline.ready') }));
+    showOfflineBadge();
+  }
+  /** "Works offline" under the tool's name, once that first run has happened on this device. */
+  function showOfflineBadge() {
+    const badge = $('offline-badge');
+    try {
+      if (badge) badge.hidden = !(navigator.serviceWorker?.controller && localStorage.getItem(`fizzdoc-offline-${op}`));
+    } catch {
+      // storage blocked: no badge
+    }
+  }
+  showOfflineBadge();
+  navigator.serviceWorker?.addEventListener('controllerchange', showOfflineBadge);
+
   // Local jobs can't be interrupted mid-way, so Cancel lets go of them and ignores their result.
   let localJob = 0;
   async function runLocal(job: LocalJob) {
@@ -569,6 +607,7 @@ function setUp(op: ToolOp) {
       else {
         show(output.blob, output.name, output.summary);
         warnings.replaceChildren(...(output.notes ?? []).map((key) => Object.assign(document.createElement('li'), { textContent: t(key as UiKey) })));
+        noteOfflineReady();
       }
     } catch (error) {
       if (id === localJob) fail(error);
@@ -668,3 +707,5 @@ setUpEffects();
 setUpSearch();
 const op = document.body.dataset.tool as ToolOp | '';
 if (op) setUp(op);
+// Offline use: keeps every opened page and the tools' code on the device (src/sw.js).
+if (import.meta.env.PROD && 'serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));

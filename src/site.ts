@@ -14,6 +14,8 @@ export type ToolOp =
   | 'edit-pdf'
   | 'redact-pdf'
   | 'remove-bg'
+  | 'photo-edit'
+  | 'collage'
   | 'scan-pdf'
   | 'ocr-pdf'
   | 'pdf-to-word'
@@ -630,7 +632,7 @@ TOOLS.push(
       'Reduce PDF file size in your browser by recompressing oversized images. Text stays selectable and sharp. Nothing is uploaded; free and open source.',
     h1: 'Compress a PDF — without uploading it',
     lede: 'Make a PDF small enough to email or upload to a portal. Fizzdoc recompresses oversized photos and scans and leaves text and vector graphics untouched.',
-    steps: ['Add one PDF file.', 'Choose Balanced or Strong compression.', 'Click “Compress PDF” and download the smaller file.'],
+    steps: ['Add one PDF file.', 'Choose how much to compress: Light, Balanced, Strong or Extreme.', 'Click “Compress PDF” and download the smaller file.'],
     faq: [
       PRIVACY_FAQ[0],
       [
@@ -1247,9 +1249,9 @@ TOOLS.push(
     name: 'Remove Background',
     summary: 'Cut out a person, product or pet and put anything behind it.',
     action: 'Download image',
-    title: 'Remove Background from Image Free — Full HD, No Upload | Fizzdoc',
+    title: 'Remove Background Free — Full Size, No Upload, No Watermark | Fizzdoc',
     description:
-      'Remove the background from any photo for free, at full resolution: clear PNG, white, any colour, a blur or your own photo. Nothing is uploaded.',
+      'Remove a photo background free, on your device: clear PNG, white, any colour or blur, at full resolution with no watermark. Your photo is never uploaded.',
     h1: 'Remove the background from any photo',
     lede: 'Choose a photo and the background disappears by itself. Keep it clear, or put white, any colour, a soft blur or another photo behind. The AI runs on your own device, so your picture never leaves it.',
     steps: [
@@ -1267,6 +1269,10 @@ TOOLS.push(
         'How does it work without uploading?',
         'An open-source AI model (BiRefNet) runs inside your browser, on your graphics chip when the device has one. It downloads once, about 110 MB, and then works even offline. Phones with little memory use a smaller model (U²-Net).',
       ],
+      ['Is there a watermark or a limit?', 'No watermark, no credits, no sign-up and no daily limit. The result is saved at your photo’s own resolution; only your device’s memory limits how big a photo can be.'],
+      ['Does it work on a phone?', 'Yes, in any modern phone browser. Phones use a smaller model (4.6 MB) so the tab doesn’t run out of memory, so edges on hair are a little softer than on a laptop.'],
+      ['How do I make the background white?', 'Once the background is removed, pick White under Background, then save as JPG or PNG. You can also pick any colour, a blur of the original background, or another photo of yours.'],
+      ['Can I remove the background from a GIF or a video?', 'Yes. Remove GIF Background keeps every frame and its timing, and Remove Video Background keeps the sound. Both run on your device too.'],
       PRIVACY_FAQ[1],
     ],
     input: { accept: 'image/*' },
@@ -1329,6 +1335,66 @@ TOOLS.push(
   {
     op: 'remove-bg',
     format: 'image',
+    slug: 'make-background-white',
+    name: 'White Background',
+    summary: 'Put a clean white background behind any photo, in one step.',
+    action: 'Download image',
+    title: 'Make Background White Free — Photo on White, No Upload | Fizzdoc',
+    description:
+      'Make a photo background white for free, right on your device, for shop listings, profiles and forms. Full resolution, no watermark, nothing uploaded.',
+    h1: 'Make a photo’s background white',
+    lede: 'Choose a photo and its background turns plain white by itself: for online shop listings, profile pictures and forms. The AI runs on your own device, and the photo keeps its full resolution.',
+    steps: [
+      'Choose a photo. The background is removed and replaced with white straight away.',
+      'Touch up any spot if needed, add a shadow, or crop to a square for shop listings.',
+      'Choose the size, then click “Download image”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      ['Is the white pure white?', 'Yes. The background is filled with pure white (#FFFFFF), which most shops and forms ask for. The edges of hair and fur are cleaned so they blend into the white.'],
+      [
+        'Can I use it for a passport or ID photo?',
+        'It gives a plain white background, but every country has its own rules for size, lighting and pose. Check them before printing; Fizzdoc doesn’t promise official approval.',
+      ],
+      ['Can I pick another colour instead?', 'Yes. Under Background you can switch to any colour, a blur of the original, your own photo, or no background at all for a clear PNG.'],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { bg: 'white' },
+    input: { accept: 'image/*' },
+  },
+  {
+    op: 'remove-bg',
+    format: 'image',
+    slug: 'blur-background',
+    name: 'Blur Background',
+    summary: 'Keep the subject sharp and soften everything behind it, like portrait mode.',
+    action: 'Download image',
+    title: 'Blur Photo Background Free — Full Size, No Upload | Fizzdoc',
+    description:
+      'Blur the background of a photo for free and keep the person or product sharp. Runs on your device at full resolution, with no watermark and no upload.',
+    h1: 'Blur the background of a photo',
+    lede: 'Choose a photo and the background goes soft while the person, pet or product stays sharp, like a portrait shot. The AI finds the subject on your own device, and the photo keeps its full resolution.',
+    steps: [
+      'Choose a photo. The subject is found and the background is blurred straight away.',
+      'Touch up any spot the AI missed, or switch to a colour or another photo behind.',
+      'Choose the size, then click “Download image”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      [
+        'Does it work like portrait mode?',
+        'It gives a similar look: the subject stays sharp and the background is blurred. It doesn’t measure depth, so everything behind the subject is blurred the same amount.',
+      ],
+      ['Will the photo lose quality?', 'No. The photo keeps its full resolution; only the background is softened. You can also save a smaller copy.'],
+      ['Can I remove the background completely instead?', 'Yes. Under Background pick None for a clear PNG, or White, any colour or another photo.'],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { bg: 'blur' },
+    input: { accept: 'image/*' },
+  },
+  {
+    op: 'remove-bg',
+    format: 'image',
     slug: 'whatsapp-sticker-maker',
     name: 'WhatsApp Sticker Maker',
     summary: 'Turn any photo into a sticker: background removed, white outline, ready for WhatsApp.',
@@ -1340,14 +1406,14 @@ TOOLS.push(
     lede: 'Choose a photo of a friend, a pet or yourself. The background disappears, a white sticker outline is added, and you get a WhatsApp-ready sticker: 512 × 512 WebP, clear background, under 100 KB. The AI runs on your own device.',
     steps: [
       'Choose a photo. The background is removed and the sticker outline is added.',
-      'Touch up any spot if needed, or turn the outline off.',
-      'Click “Download sticker”, or on a phone tap “Share to WhatsApp”.',
+      'Add text or emoji if you like, touch up any spot, or turn the outline off.',
+      'Download the sticker (on iPhone, tap “Save to Photos”), then in WhatsApp open Stickers › Create and pick it.',
     ],
     faq: [
       PRIVACY_FAQ[0],
       [
         'How do I add the sticker to WhatsApp?',
-        'On a phone, tap “Share to WhatsApp” and send it to any chat (a chat with yourself works too). Then tap the sticker in the chat and choose “Add to favourites” to keep it. On a computer, download the WebP file and send it from WhatsApp Web or Desktop.',
+        'No website can add stickers to WhatsApp directly, so WhatsApp’s own sticker maker does the last step. On Android, download the sticker, then in any chat tap the emoji button › Stickers › Create and pick it from your photos. On iPhone (iOS 17 or later), tap “Save to Photos”, then in a chat tap Stickers › Create sticker › Use a photo and pick it. Tap Send, and WhatsApp keeps it in your sticker tray. On a computer, send the file to your phone and do it there.',
       ],
       [
         'Is this made by WhatsApp?',
@@ -1356,6 +1422,76 @@ TOOLS.push(
       PRIVACY_FAQ[1],
     ],
     preset: { format: 'sticker' },
+    input: { accept: 'image/*' },
+  },
+  {
+    op: 'collage',
+    format: 'image',
+    slug: 'collage-maker',
+    name: 'Collage Maker',
+    summary: 'Put 2 to 9 photos in one picture, with a gap, round corners and text.',
+    action: 'Download collage',
+    title: 'Free Photo Collage Maker — No Upload, No Watermark | Fizzdoc',
+    description:
+      'Make a photo collage free in your browser: pick a layout for 2 to 9 photos, set the gap, corners and size, add text. No upload, no sign-up, no watermark.',
+    h1: 'Make a photo collage without uploading your photos',
+    lede: 'Choose 2 to 9 photos, pick a layout and a shape (square, story, A4 and more), move and zoom each photo in its frame, and add a gap, round corners, a background colour and text. It all happens on your device.',
+    steps: [
+      'Choose 2 to 9 photos. The order of the list is the order in the collage.',
+      'Pick a layout and a shape, move and zoom each photo, and set the gap, corners, background and text.',
+      'Pick the size and format, then click “Download collage”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      [
+        'How many photos can a collage have?',
+        'From 1 to 9. Each number of photos has its own layouts, such as side by side, stacked, one big photo with smaller ones, or a grid. If you add more than 9, the first 9 are used.',
+      ],
+      [
+        'Can I move or zoom each photo?',
+        'Yes. Open Photo, tap a photo to pick it, then drag it to choose what shows in its frame, and use Zoom to get closer. To swap photos, change their order in the file list.',
+      ],
+      [
+        'What sizes can I save?',
+        'Square, Portrait 4:5 and Story 9:16 for social media, Wide 16:9, and A4 for printing: 1080 or 2160 px on the short side, or 2480 px for A4 at 300 dpi. As JPG, PNG or WebP, with no watermark.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    input: { accept: 'image/*', multiple: true },
+  },
+  {
+    op: 'photo-edit',
+    format: 'image',
+    slug: 'photo-editor',
+    name: 'Photo Editor',
+    summary: 'Crop, turn, brighten and add words or emoji to a photo, right in your browser.',
+    action: 'Download photo',
+    title: 'Free Photo Editor, No Upload or Sign-Up — Crop, Text, Emoji | Fizzdoc',
+    description:
+      'Edit a photo free in your browser: crop to square, 4:5 or story size, fix light and colour, add a look, text or emoji. No upload, no sign-up, full size.',
+    h1: 'Edit a photo online without uploading it',
+    lede: 'Crop to a square or a story, turn and flip, fix brightness, contrast and colour, pick a one-tap look, and add words or emoji. Everyday photo edits, done on your own device, saved at full size.',
+    steps: [
+      'Choose a photo.',
+      'Crop, turn, adjust the light and colour, pick a look, or add text and emoji. The preview updates as you go.',
+      'Pick the size and format, then click “Download photo”.',
+    ],
+    faq: [
+      PRIVACY_FAQ[0],
+      [
+        'Does editing lower the quality?',
+        'No more than saving does. Every change is drawn again from your original photo, so edits never pile up, and the photo is saved at its full size unless you pick a smaller one. JPG and WebP are saved at high quality; PNG is lossless.',
+      ],
+      [
+        'Is the location from my phone photo kept?',
+        'No. The saved photo is a new file with only the picture in it, so hidden details such as the GPS location, the date and the phone model are left out.',
+      ],
+      ['Do I need an account?', 'No. Open the page, choose a photo and edit it. There is no sign-up, nothing is saved anywhere, and there is no limit on how many photos you edit.'],
+      ['Does it work on my phone?', 'Yes. On a phone the photo stays on top, the tools sit in a bar at the bottom, and you can drag sideways on the photo to change brightness, contrast, saturation or warmth.'],
+      ['How do I make a photo square or 4:5 for Instagram?', 'Open Crop and turn and pick Square or Portrait 4:5, then drag the photo to choose what stays in the frame. Story 9:16 and Wide 16:9 are there too.'],
+      ['Can I add text in Hindi or other languages?', 'Yes. Type in any language: the Cute, Cozy and BIG styles include Hindi (Devanagari) letters, and other scripts, such as Bengali, Tamil or Telugu, use your device’s own font.'],
+      PRIVACY_FAQ[1],
+    ],
     input: { accept: 'image/*' },
   },
 );
@@ -1849,6 +1985,34 @@ const KEYWORDS: Record<string, string[]> = {
     'change video background',
     'remove video background without green screen',
     'transparent background video',
+  ],
+  'collage-maker': [
+    'photo collage maker',
+    'collage maker online free',
+    'combine photos into one',
+    'picture grid maker',
+    'photo collage without watermark',
+  ],
+  'photo-editor': [
+    'free online photo editor',
+    'crop photo to square',
+    'add text to photo',
+    'photo filters online',
+    'edit photo without uploading',
+  ],
+  'make-background-white': [
+    'make background white',
+    'white background photo',
+    'change photo background to white',
+    'product photo white background',
+    'white background for profile picture',
+  ],
+  'blur-background': [
+    'blur background',
+    'blur photo background',
+    'portrait mode online',
+    'blur background of picture free',
+    'background blur editor',
   ],
   'whatsapp-sticker-maker': [
     'whatsapp sticker maker',

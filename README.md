@@ -8,7 +8,7 @@
 <h3 align="center">Free, private tools for PDF, images, audio, Word, Excel and PowerPoint that never see your files.</h3>
 
 <p align="center">
-  68 tools — compress, convert, edit, redact, remove backgrounds, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
+  72 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
   <strong>No uploads. No sign-up. No watermark. No limits. Free forever. 16 languages.</strong>
 </p>
 
@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://fizzdoc.com"><strong>Open Fizzdoc →</strong></a> &nbsp;·&nbsp;
-  <a href="#-all-68-tools"><strong>All tools</strong></a> &nbsp;·&nbsp;
+  <a href="#-all-72-tools"><strong>All tools</strong></a> &nbsp;·&nbsp;
   <a href="#-how-it-works"><strong>How it works</strong></a> &nbsp;·&nbsp;
   <a href="CONTRIBUTING.md"><strong>Contribute</strong></a>
 </p>
@@ -27,7 +27,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-22c55e?style=flat-square" alt="Apache-2.0 license"></a>
   <img src="https://img.shields.io/badge/bytes%20uploaded-0-16a34a?style=flat-square" alt="0 bytes uploaded">
   <img src="https://img.shields.io/badge/price-free%20forever-16a34a?style=flat-square" alt="Free forever">
-  <img src="https://img.shields.io/badge/tools-68-e5322d?style=flat-square" alt="68 tools">
+  <img src="https://img.shields.io/badge/tools-72-e5322d?style=flat-square" alt="72 tools">
   <img src="https://img.shields.io/badge/languages-16-2f6fdb?style=flat-square" alt="16 languages">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-8b5cf6?style=flat-square" alt="PRs welcome"></a>
 </p>
@@ -53,12 +53,13 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | What you get | |
 |---|---|
 | 🔒 **Your file stays on your device** | No upload endpoint exists, and the CSP blocks connections to any other site |
-| 🧰 **68 tools in one place** | PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid |
+| 🧰 **72 tools in one place** | PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid |
 | ✏️ **Edit PDF text in its own font** | Changed lines are rewritten inside the PDF with its embedded font, size and colour |
 | 🎙️ **Speech to text on the device** | Whisper runs in the browser: TXT, SRT or VTT, offline after a one-time download |
 | 🆓 **Free forever** | No account, no daily limits, no watermark, no premium tier |
 | 🌍 **16 languages** | Including Hindi, Bengali, Marathi, Tamil and Telugu |
 | 📱 **Nothing to install** | Any modern browser, on phones too |
+| ✈️ **Works with the internet off** | Open a tool once, then turn off Wi-Fi or mobile data: it keeps working, an easy way to check that nothing is uploaded |
 | 📖 **Open source** | Apache-2.0, every line on GitHub |
 
 <p align="center">
@@ -108,7 +109,9 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | **Edit text** in a PDF, or **black out** personal details for good | [Edit PDF](https://fizzdoc.com/edit-pdf/) · [Redact PDF](https://fizzdoc.com/redact-pdf/) |
 | Turn a PDF into an **editable Word** file, or Word into PDF | [PDF to Word](https://fizzdoc.com/pdf-to-word/) · [Word to PDF](https://fizzdoc.com/word-to-pdf/) |
 | **Remove the password** from a bank statement, or add one | [Unlock PDF](https://fizzdoc.com/unlock-pdf/) · [Protect PDF](https://fizzdoc.com/protect-pdf/) |
-| **Remove the background** from a photo, or put white, a colour, a blur or another photo behind, at full resolution | [Remove Background](https://fizzdoc.com/remove-background/) |
+| **Remove the background** from a photo, or put white, a colour, a blur or another photo behind, at full resolution | [Remove Background](https://fizzdoc.com/remove-background/) · [White background](https://fizzdoc.com/make-background-white/) · [Blur background](https://fizzdoc.com/blur-background/) |
+| **Edit a photo**: crop it square or to story size, fix the light and colour, add a look, text or emoji | [Photo Editor](https://fizzdoc.com/photo-editor/) |
+| **Make a collage** of 2 to 9 photos for a post, a story or an A4 print | [Collage Maker](https://fizzdoc.com/collage-maker/) |
 | **Copy text** from a scanned PDF, a photo or a screenshot | [OCR PDF](https://fizzdoc.com/ocr-pdf/) · [Image to Text](https://fizzdoc.com/image-to-text/) |
 | Combine **photos or screenshots into one PDF** | [JPG to PDF](https://fizzdoc.com/jpg-to-pdf/) · [PNG to PDF](https://fizzdoc.com/png-to-pdf/) |
 | Convert **everyday formats**: PNG ↔ JPG, WebP → JPG, Excel ↔ CSV | [Convert Image](https://fizzdoc.com/convert-image/) · [Excel to CSV](https://fizzdoc.com/excel-to-csv/) · [CSV to Excel](https://fizzdoc.com/csv-to-excel/) |
@@ -116,7 +119,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | Export a **Mermaid diagram as PNG or SVG** for slides, docs or a README | [Mermaid to PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid to SVG](https://fizzdoc.com/mermaid-to-svg/) |
 | **Remove hidden author and company names** before sharing an Office file or PDF | [Word](https://fizzdoc.com/remove-word-metadata/) · [Excel](https://fizzdoc.com/remove-excel-metadata/) · [PowerPoint](https://fizzdoc.com/remove-powerpoint-metadata/) · [PDF](https://fizzdoc.com/remove-pdf-metadata/) |
 
-## 🧰 All 68 tools
+## 🧰 All 72 tools
 
 | Format | Tools |
 |---|---|
@@ -125,7 +128,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | **Word** | [Word → PDF](https://fizzdoc.com/word-to-pdf/) · [Compress](https://fizzdoc.com/compress-word/) · [Remove metadata](https://fizzdoc.com/remove-word-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-word/) |
 | **Excel** | [Excel → CSV](https://fizzdoc.com/excel-to-csv/) · [CSV → Excel](https://fizzdoc.com/csv-to-excel/) · [Excel → JSON](https://fizzdoc.com/excel-to-json/) · [JSON → Excel](https://fizzdoc.com/json-to-excel/) · [Compress](https://fizzdoc.com/compress-excel/) · [Remove metadata](https://fizzdoc.com/remove-excel-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-excel/) |
 | **PowerPoint** | [Compress](https://fizzdoc.com/compress-powerpoint/) · [Remove metadata](https://fizzdoc.com/remove-powerpoint-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-powerpoint/) |
-| **Images** | [Remove background](https://fizzdoc.com/remove-background/) (AI on your device, full resolution) · [Remove GIF background](https://fizzdoc.com/remove-gif-background/) · [Remove video background](https://fizzdoc.com/remove-video-background/) (no green screen, sound kept) · [WhatsApp sticker maker](https://fizzdoc.com/whatsapp-sticker-maker/) · [Compress](https://fizzdoc.com/compress-image/) (to [20 KB](https://fizzdoc.com/compress-image-to-20kb/), [50 KB](https://fizzdoc.com/compress-image-to-50kb/), [100 KB](https://fizzdoc.com/compress-image-to-100kb/) for forms) · [Resize](https://fizzdoc.com/resize-image/) (larger or smaller) · [Convert](https://fizzdoc.com/convert-image/) · [PNG → JPG](https://fizzdoc.com/png-to-jpg/) · [JPG → PNG](https://fizzdoc.com/jpg-to-png/) · [WebP → JPG](https://fizzdoc.com/webp-to-jpg/) · [JPG → WebP](https://fizzdoc.com/jpg-to-webp/) · [Image → Text](https://fizzdoc.com/image-to-text/) (select text right on the photo, like Live Text) · [Mermaid → PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid → SVG](https://fizzdoc.com/mermaid-to-svg/) (diagrams from code, with a preview and ready-to-use examples) |
+| **Images** | [Remove background](https://fizzdoc.com/remove-background/) (AI on your device, full resolution) · [White background](https://fizzdoc.com/make-background-white/) · [Blur background](https://fizzdoc.com/blur-background/) · [Remove GIF background](https://fizzdoc.com/remove-gif-background/) · [Remove video background](https://fizzdoc.com/remove-video-background/) (no green screen, sound kept) · [WhatsApp sticker maker](https://fizzdoc.com/whatsapp-sticker-maker/) (text in fun fonts and emoji you drag into place) · [Photo editor](https://fizzdoc.com/photo-editor/) (crop to square or story size, turn, light and colour, looks, text and emoji) · [Collage maker](https://fizzdoc.com/collage-maker/) (2 to 9 photos, square, story or A4) · [Compress](https://fizzdoc.com/compress-image/) (to [20 KB](https://fizzdoc.com/compress-image-to-20kb/), [50 KB](https://fizzdoc.com/compress-image-to-50kb/), [100 KB](https://fizzdoc.com/compress-image-to-100kb/) for forms) · [Resize](https://fizzdoc.com/resize-image/) (larger or smaller) · [Convert](https://fizzdoc.com/convert-image/) · [PNG → JPG](https://fizzdoc.com/png-to-jpg/) · [JPG → PNG](https://fizzdoc.com/jpg-to-png/) · [WebP → JPG](https://fizzdoc.com/webp-to-jpg/) · [JPG → WebP](https://fizzdoc.com/jpg-to-webp/) · [Image → Text](https://fizzdoc.com/image-to-text/) (select text right on the photo, like Live Text) · [Mermaid → PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid → SVG](https://fizzdoc.com/mermaid-to-svg/) (diagrams from code, with a preview and ready-to-use examples) |
 | **Audio** | [Cut & Split Audio](https://fizzdoc.com/split-audio/) (trim or split an MP3/M4A on a waveform, preview every part) · [Merge Audio](https://fizzdoc.com/merge-audio/) (listen before you download) — no re-encoding, so no quality loss · [Audio to Text](https://fizzdoc.com/audio-to-text/) · [MP3 to Text](https://fizzdoc.com/mp3-to-text/) · [Video to Text](https://fizzdoc.com/video-to-text/) · [Subtitle Generator](https://fizzdoc.com/subtitle-generator/) (SRT/VTT) — speech to text with OpenAI's Whisper running on your device; the model downloads once, then works offline |
 
 **Google Docs, Sheets and Slides** work too: download as .docx / .xlsx / .pptx and use the matching tool. Nothing is sent to Google.
@@ -184,7 +187,7 @@ When something genuinely can't be carried over (a digital signature, accessibili
   <a href="https://fizzdoc.com/architecture.html">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/assets/architecture-dark.png">
-      <img src="docs/assets/architecture-light.png" width="900" alt="Fizzdoc architecture: a build step prerenders static pages to Cloudflare Pages; in the browser tab, the page controller hands files to the qpdf worker, pdf.js / pdf-lib / fflate, the OCR engine and the Whisper speech worker, and the result is saved straight back to the visitor's device">
+      <img src="docs/assets/architecture-light.png" width="900" alt="Fizzdoc architecture: a build step prerenders static pages to Cloudflare Pages; a service worker keeps an offline copy; in the browser tab, the page controller hands files to the qpdf worker, pdf.js / pdf-lib / fflate, the OCR engine and the Whisper speech worker, and the result is saved straight back to the visitor's device">
     </picture>
   </a>
 </p>
@@ -210,9 +213,15 @@ There isn't one. Your browser does the work, so Fizzdoc is just static files tha
 </details>
 
 <details>
+<summary><strong>Is it a free alternative to iLovePDF, Smallpdf, remove.bg or TinyPNG?</strong></summary>
+
+It does the same everyday jobs, free and without uploading your files. There's a page for each, listing the Fizzdoc tools for the jobs people usually go there for: [iLovePDF](https://fizzdoc.com/ilovepdf-alternative/) · [Smallpdf](https://fizzdoc.com/smallpdf-alternative/) · [Adobe Acrobat online](https://fizzdoc.com/adobe-acrobat-online-alternative/) · [PDF24](https://fizzdoc.com/pdf24-alternative/) · [Sejda](https://fizzdoc.com/sejda-alternative/) · [remove.bg](https://fizzdoc.com/remove-bg-alternative/) · [Pixelcut](https://fizzdoc.com/pixelcut-alternative/) · [Photoroom](https://fizzdoc.com/photoroom-alternative/) · [iLoveIMG](https://fizzdoc.com/iloveimg-alternative/) · [TinyPNG](https://fizzdoc.com/tinypng-alternative/) · [CloudConvert](https://fizzdoc.com/cloudconvert-alternative/) · [MP3Cut](https://fizzdoc.com/mp3cut-alternative/). Fizzdoc is independent and not affiliated with any of them; the names belong to their owners.
+</details>
+
+<details>
 <summary><strong>Does it work offline or on a phone?</strong></summary>
 
-It works in any modern browser on phones, tablets and desktops. An installable offline app is on the roadmap.
+It works in any modern browser on phones, tablets and desktops. Open a tool once while online and it keeps working with Wi-Fi or mobile data turned off. You can also install it as an app: the install button in the header on Chrome and Edge, or Share → Add to Home Screen on iPhone and iPad. Audio to Text, OCR and Remove Background need one online run to download their model, then work offline too.
 </details>
 
 <details>
@@ -256,7 +265,6 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started. First-time contributors 
 
 ## 🗺️ Roadmap
 
-- [ ] Installable offline app (PWA)
 - [ ] Sign PDF (draw or type a signature)
 - [ ] Page thumbnails with drag-and-drop reordering
 - [ ] OCR in more languages, downloaded on demand
@@ -303,6 +311,7 @@ Fizzdoc would not exist without these open-source projects and the people who ma
 | [Whisper](https://github.com/openai/whisper) and [Transformers.js](https://github.com/huggingface/transformers.js) | Speech to text, on the device | [OpenAI](https://github.com/openai) and [Hugging Face](https://github.com/huggingface) |
 | [fflate](https://github.com/101arrowz/fflate) | Reads and writes Word, Excel, PowerPoint and ZIP files | [@101arrowz](https://github.com/101arrowz) |
 | [Inter](https://github.com/rsms/inter) | The typeface | [@rsms](https://github.com/rsms) |
+| [Bangers](https://github.com/googlefonts/bangers), [Baloo 2](https://github.com/EkType/Baloo2), [Kalam](https://github.com/itfoundry/kalam) and [Teko](https://github.com/googlefonts/teko) | The sticker text styles, with Hindi letters in Baloo 2, Kalam and Teko | Vernon Adams, [Ek Type](https://github.com/EkType) and [Indian Type Foundry](https://github.com/itfoundry) |
 | [Archify](https://github.com/tt-a1i/archify) | Generates the interactive architecture map | [@tt-a1i](https://github.com/tt-a1i) |
 
 Built and tested with [Vite](https://github.com/vitejs/vite), [TypeScript](https://github.com/microsoft/TypeScript), [Vitest](https://github.com/vitest-dev/vitest) and [Playwright](https://github.com/microsoft/playwright). Full license details are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

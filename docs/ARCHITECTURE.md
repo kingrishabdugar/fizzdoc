@@ -22,6 +22,7 @@ flowchart LR
   end
 
   subgraph Browser["Visitor's browser tab"]
+    sw["/sw.js (src/sw.js)<br/>offline copy of pages and tool code"]
     app["src/app.ts<br/>UI state, file list, download"]
     fx["src/effects.ts<br/>theme · ripple · spring drag"]
     worker["src/engine/worker.ts<br/>one Web Worker per job"]
@@ -31,7 +32,8 @@ flowchart LR
     app -- "dynamic import" --> local
   end
 
-  Host -- "GET only" --> Browser
+  Host -- "GET only" --> sw
+  sw -- "cached files" --> app
 ```
 
 ## Request flow for a PDF job (merge, split, rotate, delete, unlock, protect, clean)
@@ -69,6 +71,7 @@ sequenceDiagram
 | `vite.config.ts` | Serves pages in dev, emits one HTML file per tool at build | `seo.ts` |
 | `src/app.ts` | Page controller: file intake, validation, job dispatch, result | engine types |
 | `src/effects.ts` | Optional visual touches; transform/opacity only, honours reduced motion | – |
+| `src/sw.js` | Service worker, written to `/sw.js` by the build: pages network-first, tool code kept on the device, model and runtime binaries (.onnx, .wasm) passed through to their tools' own caches | – |
 | `src/engine/worker.ts` | Worker entry: loads qpdf, mounts files, relays password prompts | `pdf.ts`, qpdf-wasm |
 | `src/engine/pdf.ts` | Environment-agnostic qpdf runner: preflight, fidelity warnings, command | – |
 | `src/engine/local.ts` | Jobs that don't need qpdf: Office metadata/images, JPG→PDF, PDF→JPG | fflate, pdf-lib, pdf.js |
@@ -82,6 +85,8 @@ sequenceDiagram
 | `src/engine/transcribe.ts` | Speech to text, SRT and VTT with Whisper in a worker; model cached once in Cache Storage | transformers.js, ONNX Runtime |
 | `src/tools/edit-pdf.ts` | In-page PDF editor: change text, add text, white-out | pdf.js, pdf-lib, `pdf-text.ts` |
 | `src/tools/ocr-viewer.ts` | Image with selectable recognized text (Live Text style) | – |
+| `src/tools/photo-edit.ts`, `src/engine/photo.ts` | Photo Editor: crop shapes with drag-to-frame, turn and flip, light and colour as plain pixel maths, one-tap looks, text and emoji layers (shared with the Sticker Maker), saved at full size | Canvas |
+| `src/tools/collage.ts` | Collage Maker: 1 to 9 photos in equal-cell layouts (`cells`/`place` in `photo.ts`), each moved and zoomed in its frame; previews use small copies, saving decodes one photo at a time at full size. Shares its tabs, rulers and icons with the Photo Editor (`editor-ui.ts`) | Canvas |
 
 ## Design decisions
 
@@ -91,6 +96,9 @@ sequenceDiagram
   files, passwords and the WASM heap go away together. No shared state between jobs.
 - **Lazy engines.** The first page load is about 15 KB of gzipped app code plus CSS and font. qpdf (1.3 MB),
   pdf.js, pdf-lib and the OCR engine (about 6 MB, self-hosted) load only when a tool that needs them runs.
+- **Offline after the first visit.** A service worker keeps every opened page and the code of every tool
+  (the hashed `/assets/` files, about 10 MB) on the device, so tools keep working with the internet off.
+  Pages still come from the network first, and the AI models stay in their tools' own caches.
 - **Native PDF writer for documents.** Word, text and Markdown → PDF prepare a print-ready page and use
   the browser's own “Save as PDF”, which gets every language, script and font right with zero extra code.
 - **Fidelity is reported, not hidden.** `pdf.ts` inspects the input first and returns warnings

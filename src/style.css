@@ -364,9 +364,34 @@ main {
     max-width: 84px;
   }
 }
+.install-btn[hidden] {
+  display: none;
+}
+.install-tip {
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-md);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 /* The smallest phones: the theme already follows the device, so its switch gives way to sharing. */
 @media (max-width: 380px) {
-  .site-header .theme-toggle:not(.share-btn) {
+  .site-header .theme-toggle:not(.share-btn):not(.install-btn) {
+    display: none;
+  }
+}
+/* Phones with the install button: the theme switch, and on the smallest ones the brand name, make room. */
+@media (max-width: 440px) {
+  .site-header .install-btn:not([hidden]) ~ .theme-toggle {
+    display: none;
+  }
+}
+@media (max-width: 380px) {
+  .site-header:has(.install-btn:not([hidden])) .brand > span:last-child {
     display: none;
   }
 }
@@ -1954,4 +1979,370 @@ dialog p {
 }
 .share-nudge {
   margin-top: 14px;
+}
+
+/* WhatsApp Sticker Maker: WhatsApp's greens, a chat-wallpaper hero with the heading drawn as a sticker,
+   the intro as a sent message, and the preview shown on a chat background, the way the sticker will look. */
+[data-page='whatsapp-sticker-maker'] {
+  --accent: #008069;
+  --accent-2: #005c4b; /* darker end, so white button text stays readable (AA) */
+  --chat: light-dark(#efeae2, #0b141a);
+  --chat-dots: light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.05));
+  --bubble: light-dark(#d9fdd3, #005c4b);
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool,
+[data-page='whatsapp-sticker-maker'] .bg-stage {
+  background: radial-gradient(circle, var(--chat-dots) 1.5px, transparent 2px) 0 0 / 22px 22px, var(--chat);
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool {
+  position: relative;
+  margin-top: 16px;
+  padding: 40px 16px 32px;
+  border-radius: 28px;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool h1 {
+  max-width: 16ch;
+  color: #111b21;
+  font-weight: 800;
+  rotate: -2deg;
+  text-shadow:
+    3px 0 #fff, -3px 0 #fff, 0 3px #fff, 0 -3px #fff, 2px 2px #fff, -2px -2px #fff, 2px -2px #fff, -2px 2px #fff,
+    0 6px 14px rgb(0 0 0 / 0.25);
+}
+[data-page='whatsapp-sticker-maker'] .tool-mark {
+  border: 3px solid #fff;
+  rotate: 6deg;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool .lede {
+  position: relative;
+  max-width: 560px;
+  padding: 10px 14px 22px;
+  border-radius: 12px 0 12px 12px;
+  background: var(--bubble);
+  color: var(--text);
+  text-align: start;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 0.13);
+}
+/* The bubble's tail, and the two blue "read" ticks. */
+[data-page='whatsapp-sticker-maker'] .hero-tool .lede::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  border: 8px solid transparent;
+  border-top-color: var(--bubble);
+  border-left-color: var(--bubble);
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool .lede::after {
+  content: '✓✓' / '';
+  position: absolute;
+  right: 10px;
+  bottom: 2px;
+  color: #53bdeb;
+  font-size: 0.8rem;
+  letter-spacing: -0.3em;
+}
+/* Two emoji stickers stuck on the corners of the hero. */
+[data-page='whatsapp-sticker-maker'] .hero-tool::before,
+[data-page='whatsapp-sticker-maker'] .hero-tool::after {
+  position: absolute;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  line-height: 1;
+  filter: drop-shadow(2px 0 #fff) drop-shadow(-2px 0 #fff) drop-shadow(0 2px #fff) drop-shadow(0 -2px #fff) drop-shadow(0 4px 6px rgb(0 0 0 / 0.2));
+  animation: sticker-wobble 3s ease-in-out infinite alternate;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool::before {
+  content: '😂' / '';
+  top: 18px;
+  left: 6%;
+  rotate: -14deg;
+}
+[data-page='whatsapp-sticker-maker'] .hero-tool::after {
+  content: '🔥' / '';
+  right: 6%;
+  bottom: 22px;
+  rotate: 12deg;
+  animation-delay: -1.5s;
+}
+@keyframes sticker-wobble {
+  to {
+    translate: 0 -6px;
+    scale: 1.06;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-page='whatsapp-sticker-maker'] .hero-tool::before,
+  [data-page='whatsapp-sticker-maker'] .hero-tool::after {
+    animation: none;
+  }
+}
+@media (max-width: 560px) {
+  /* Phones: the stickers move to the top corners, clear of the text. */
+  [data-page='whatsapp-sticker-maker'] .hero-tool::after {
+    top: 18px;
+    bottom: auto;
+  }
+}
+
+/* "Works offline" next to the tool page's promise line, once the tool has run on this device. */
+.offline-badge {
+  color: light-dark(#15803d, #4ade80);
+  font-weight: 600;
+}
+
+/* Photo Editor: a warm marigold accent (white text on it passes AA), a soft warm band behind the heading,
+   and crop marks on the heading's corners, like a photo being framed. */
+[data-page='photo-editor'] {
+  --accent: #a15c00;
+  --accent-2: #874d00;
+  --accent-soft: light-dark(#fff4e2, #2b1d0a);
+}
+[data-page='photo-editor'] .hero-tool {
+  margin-top: 16px;
+  padding: 40px 16px 32px;
+  border-radius: 28px;
+  background: var(--accent-soft);
+}
+[data-page='photo-editor'] .hero-tool h1 {
+  position: relative;
+  padding: 6px 14px;
+}
+[data-page='photo-editor'] .hero-tool h1::before,
+[data-page='photo-editor'] .hero-tool h1::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--accent);
+  pointer-events: none;
+}
+[data-page='photo-editor'] .hero-tool h1::before {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+[data-page='photo-editor'] .hero-tool h1::after {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* Home: "Edit and create", four big photo-tool cards, each with its own colour and a small drawing in plain CSS.
+   Laptops: four tall cards. Phones: compact rows with the drawing at the end. */
+.create-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.create-card {
+  --tone: #a15c00;
+  --tint: light-dark(#fff4e2, #2b1d0a);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s, translate 0.2s;
+}
+.create-card:hover,
+.create-card:focus-visible {
+  border-color: var(--tone);
+  box-shadow: var(--shadow-md);
+  translate: 0 -2px;
+}
+.create-card strong {
+  margin-top: 8px;
+  font-size: 1.05rem;
+}
+.create-card > span:last-child {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+.create-collage-maker {
+  --tone: #0f766e;
+  --tint: light-dark(#e6f6f4, #0b2422);
+}
+.create-remove-background {
+  --tone: #8b5cf6;
+  --tint: light-dark(#f1ecff, #1d1530);
+}
+.create-whatsapp-sticker-maker {
+  --tone: #008069;
+  --tint: light-dark(#efeae2, #0b141a);
+}
+.create-art {
+  position: relative;
+  display: block;
+  height: 132px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--tint);
+}
+.create-art i {
+  position: absolute;
+}
+/* Photo Editor: a photo with crop marks and a slider under it. */
+.create-photo-editor .create-art i:nth-child(1) {
+  inset: 18px 22% 34px;
+  border-radius: 6px;
+  background: linear-gradient(#8ecae6 0 60%, #52b788 60%);
+}
+.create-photo-editor .create-art i:nth-child(2),
+.create-photo-editor .create-art i:nth-child(3) {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--tone);
+}
+.create-photo-editor .create-art i:nth-child(2) {
+  top: 12px;
+  left: calc(22% - 6px);
+  border-right: 0;
+  border-bottom: 0;
+}
+.create-photo-editor .create-art i:nth-child(3) {
+  right: calc(22% - 6px);
+  bottom: 28px;
+  border-left: 0;
+  border-top: 0;
+}
+.create-photo-editor .create-art i:nth-child(4) {
+  right: 22%;
+  bottom: 14px;
+  left: 22%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--tone) 0 62%, var(--line-strong) 62%);
+}
+/* Collage Maker: one big photo and three small ones. */
+.create-collage-maker .create-art i {
+  border-radius: 6px;
+}
+.create-collage-maker .create-art i:nth-child(1) {
+  top: 14px;
+  bottom: 14px;
+  left: 14px;
+  width: calc(50% - 18px);
+  background: linear-gradient(160deg, #ffb703, #fb8500);
+}
+.create-collage-maker .create-art i:nth-child(2) {
+  top: 14px;
+  right: 14px;
+  width: calc(50% - 18px);
+  height: calc(50% - 18px);
+  background: linear-gradient(160deg, #8ecae6, #219ebc);
+}
+.create-collage-maker .create-art i:nth-child(3),
+.create-collage-maker .create-art i:nth-child(4) {
+  bottom: 14px;
+  width: calc(25% - 13px);
+  height: calc(50% - 18px);
+}
+.create-collage-maker .create-art i:nth-child(3) {
+  right: calc(25% + 1px);
+  background: linear-gradient(160deg, #95d5b2, #2d6a4f);
+}
+.create-collage-maker .create-art i:nth-child(4) {
+  right: 14px;
+  background: linear-gradient(160deg, #cdb4db, #7b2cbf);
+}
+/* Remove Background: the photo on one side, see-through on the other. */
+.create-remove-background .create-art i:nth-child(1) {
+  inset: 0 50% 0 0;
+  background: linear-gradient(#bde0fe, #a2d2ff);
+}
+.create-remove-background .create-art i:nth-child(2) {
+  inset: 0 0 0 50%;
+  background: repeating-conic-gradient(light-dark(#e4e4e7, #27272a) 0% 25%, light-dark(#fafafa, #18181b) 0% 50%) 50% / 14px 14px;
+}
+.create-remove-background .create-art i:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  width: 72px;
+  height: 92px;
+  border-radius: 36px 36px 10px 10px;
+  translate: -50% 0;
+  background: var(--tone);
+}
+.create-remove-background .create-art i:nth-child(4) {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: #fff;
+  transition: left 0.3s;
+}
+/* WhatsApp Sticker Maker: a chat with a sticker and a sent bubble. */
+.create-whatsapp-sticker-maker .create-art {
+  background: radial-gradient(circle, light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.05)) 1.5px, transparent 2px) 0 0 / 18px 18px, var(--tint);
+}
+.create-whatsapp-sticker-maker .create-art i:nth-child(1)::before {
+  content: '😂' / '';
+  position: absolute;
+  top: 14px;
+  left: 18%;
+  font-size: 3rem;
+  line-height: 1;
+  rotate: -10deg;
+  filter: drop-shadow(2px 0 #fff) drop-shadow(-2px 0 #fff) drop-shadow(0 2px #fff) drop-shadow(0 -2px #fff);
+}
+.create-whatsapp-sticker-maker .create-art i:nth-child(2) {
+  right: 14px;
+  bottom: 18px;
+  width: 46%;
+  height: 34px;
+  border-radius: 10px 0 10px 10px;
+  background: light-dark(#d9fdd3, #005c4b);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .create-whatsapp-sticker-maker:hover .create-art i:nth-child(1)::before {
+    rotate: 6deg;
+  }
+  .create-remove-background:hover .create-art i:nth-child(4) {
+    left: 70%;
+  }
+}
+@media (max-width: 900px) {
+  .create-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Phones: compact rows, the drawing at the end. */
+@media (max-width: 560px) {
+  .create-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .create-card {
+    display: grid;
+    grid-template-columns: 1fr 84px;
+    grid-template-rows: auto 1fr;
+    column-gap: 12px;
+    padding: 12px;
+  }
+  .create-art {
+    grid-row: 1 / 3;
+    grid-column: 2;
+    height: 72px;
+    border-radius: 12px;
+  }
+  .create-card strong {
+    margin-top: 0;
+  }
+  .create-whatsapp-sticker-maker .create-art i:nth-child(1)::before {
+    top: 10px;
+    left: 8px;
+    font-size: 2rem;
+  }
 }

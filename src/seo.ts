@@ -4,6 +4,7 @@ import { SHARE_ICON, shareLinks } from './share';
 import { existsSync, readFileSync } from 'node:fs';
 import { LANGS, UI, fill, type Lang, type Strings, type UiKey } from './i18n.ts';
 import { ALTERNATIVES, ALTERNATIVES_HUB, type Alternative } from './alternatives.ts';
+import { PRIVACY } from './privacy.ts';
 import { FORMATS, HOME, SITE, TOOLS, type Format, type Tool, type ToolOp } from './site.ts';
 
 type ToolCopy = Pick<Tool, 'name' | 'summary' | 'action' | 'title' | 'description' | 'h1' | 'lede' | 'steps' | 'faq'>;
@@ -31,6 +32,8 @@ export interface Page {
   tool?: Tool;
   /** A comparison page ("iLovePDF alternative"), or 'hub' for the list of them. English only. */
   alt?: Alternative | 'hub';
+  /** The privacy page. English only. */
+  privacy?: true;
 }
 
 const prefix = (lang: Lang) => (lang === 'en' ? '' : `/${lang}`);
@@ -40,8 +43,11 @@ export const PAGES: Page[] = [
   ...SITE_LANGS.flatMap((lang) => [{ path: pathOf(lang), lang }, ...TOOLS.map((tool) => ({ path: pathOf(lang, tool), lang, tool }))]),
   { path: `/${ALTERNATIVES_HUB.slug}/`, lang: 'en' as Lang, alt: 'hub' as const },
   ...ALTERNATIVES.map((alt) => ({ path: `/${alt.slug}/`, lang: 'en' as Lang, alt })),
+  { path: `/${PRIVACY.slug}/`, lang: 'en' as Lang, privacy: true as const },
 ];
 const altCopy = (alt: Alternative | 'hub') => (alt === 'hub' ? ALTERNATIVES_HUB : alt);
+/** Title, description and FAQ of an English-only page (a comparison or the privacy page). */
+const englishOnly = (page: Page) => (page.privacy ? PRIVACY : page.alt && altCopy(page.alt));
 
 /** Everything a page needs in one language. */
 function copy(lang: Lang) {
@@ -53,6 +59,10 @@ function copy(lang: Lang) {
   return { lang, t, tool, home, link, ui: catalog.ui ?? {} };
 }
 export type Copy = ReturnType<typeof copy>;
+
+/** What the service worker says, in each language, when a page that was never opened is asked for offline. */
+export const offlineText = () =>
+  Object.fromEntries(SITE_LANGS.map((lang) => [lang, { needed: esc(copy(lang).t('offline.needed')), home: esc(copy(lang).t('nav.home')), link: pathOf(lang) }]));
 
 // The page may only talk to its own origin: the privacy promise, enforced by the browser.
 const CSP = [
@@ -97,6 +107,8 @@ const ICON_PATHS: Record<ToolOp, string> = {
   transcribe: '<path d="M3 11v2M6.5 8v8M10 10v4"/><path d="M14 7h7M14 12h7M14 17h4"/>',
   'edit-pdf': '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
   'remove-bg': '<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><circle cx="12" cy="9.5" r="2.8"/><path d="M7 18a5 5 0 0 1 10 0"/>',
+  'photo-edit': '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  collage: '<rect x="3" y="3" width="8" height="18" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>',
   'redact-pdf': '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><rect x="7" y="12" width="10" height="3" fill="currentColor"/><path d="M7 18h6"/>',
   'scan-pdf': '<path d="M5 3h14v8H5z"/><path d="M3 11h18v4H3z"/><path d="M7 15v6h10v-6"/><path d="M9 18h6"/>',
   'ocr-pdf': SCAN,
@@ -169,16 +181,83 @@ const toolGroups = (c: Copy) => `${toolGroup(c, 'pdf')}
 
 const CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 
-const proofHtml = (c: Copy) => `
+// The open-source engines a tool runs on, named on its page. Without a tool (home, comparisons), the main ones.
+const ENGINE = {
+  qpdf: 'https://qpdf.readthedocs.io/',
+  'pdf.js': 'https://mozilla.github.io/pdf.js/',
+  'pdf-lib': 'https://pdf-lib.js.org/',
+  BiRefNet: 'https://github.com/ZhengPeng7/BiRefNet',
+  'ONNX Runtime': 'https://onnxruntime.ai/',
+  Whisper: 'https://github.com/openai/whisper',
+  'Transformers.js': 'https://huggingface.co/docs/transformers.js',
+  'tesseract.js': 'https://tesseract.projectnaptha.com/',
+  Mermaid: 'https://mermaid.js.org/',
+  fflate: 'https://github.com/101arrowz/fflate',
+  'gifuct-js': 'https://github.com/matt-way/gifuct-js',
+  gifenc: 'https://github.com/mattdesl/gifenc',
+  Mediabunny: 'https://mediabunny.dev/',
+  Canvas: 'https://developer.mozilla.org/docs/Web/API/Canvas_API',
+  'Web Audio': 'https://developer.mozilla.org/docs/Web/API/Web_Audio_API',
+} as const;
+type Engine = keyof typeof ENGINE;
+const PDF_ENGINES: Engine[] = ['qpdf', 'pdf.js', 'pdf-lib'];
+const OP_ENGINES: Partial<Record<ToolOp, Engine[]>> = {
+  'remove-bg': ['BiRefNet', 'ONNX Runtime'],
+  transcribe: ['Whisper', 'Transformers.js'],
+  'image-ocr': ['tesseract.js'],
+  'ocr-pdf': ['tesseract.js', 'pdf.js', 'pdf-lib'],
+  'mermaid-image': ['Mermaid'],
+  'image-convert': ['Canvas', 'fflate'],
+  'photo-edit': ['Canvas'],
+  collage: ['Canvas'],
+  'audio-split': ['Web Audio', 'fflate'],
+  'audio-merge': ['Web Audio', 'fflate'],
+  // Word, Excel and PowerPoint files are ZIP archives of XML.
+  'office-clean': ['fflate'],
+  'office-images': ['fflate'],
+  'office-compress': ['fflate'],
+  'word-to-pdf': ['fflate'],
+  'excel-to-csv': ['fflate'],
+  'csv-to-excel': ['fflate'],
+  'excel-to-json': ['fflate'],
+  'json-to-excel': ['fflate'],
+};
+function enginesHtml(tool?: Tool) {
+  const names: Engine[] = !tool
+    ? [...PDF_ENGINES, 'ONNX Runtime', 'Whisper']
+    : tool.slug === 'remove-gif-background'
+      ? ['BiRefNet', 'ONNX Runtime', 'gifuct-js', 'gifenc']
+      : tool.slug === 'remove-video-background'
+        ? ['BiRefNet', 'ONNX Runtime', 'Mediabunny']
+        : (OP_ENGINES[tool.op] ?? PDF_ENGINES);
+  const links = names.map((name) => `<a href="${ENGINE[name]}">${name}</a>`);
+  return links.length > 1 ? `${links.slice(0, -1).join(', ')} &amp; ${links.at(-1)}` : links[0];
+}
+
+const proofHtml = (c: Copy, tool?: Tool) => `
 <section class="section proof" aria-labelledby="proof">
   <div class="section-head"><h2 id="proof">${esc(c.t('proof.title'))}</h2><p>${esc(c.t('proof.lede'))}</p></div>
   <ul class="proof-grid">
     ${(['noUpload', 'csp', 'check'] as const).map((k) => `<li>${CHECK}<strong>${esc(c.t(`proof.${k}`))}</strong><span>${esc(c.t(`proof.${k}Text`))}</span></li>`).join('\n    ')}
-    <li>${CHECK}<strong>${esc(c.t('proof.open'))}</strong><span>${esc(c.t('proof.openText')).replace('{github}', `<a href="${SITE.repo}">GitHub</a>`).replace('{engines}', '<a href="https://qpdf.readthedocs.io/">qpdf</a>, <a href="https://mozilla.github.io/pdf.js/">pdf.js</a> &amp; <a href="https://pdf-lib.js.org/">pdf-lib</a>')}</span></li>
+    <li>${CHECK}<strong>${esc(c.t('proof.open'))}</strong><span>${esc(c.t('proof.openText')).replace('{github}', `<a href="${SITE.repo}">GitHub</a>`).replace('{engines}', enginesHtml(tool))}</span></li>
   </ul>
 </section>`;
 
 // File cards beside the home hero; draggable, they spring back when released.
+// The photo tools people come for most, as four big cards right under the home page's hero. Each card's
+// drawing is plain CSS (no words), so nothing needs translating but the section's title and intro.
+const CREATE = ['photo-editor', 'collage-maker', 'remove-background', 'whatsapp-sticker-maker'];
+const createHtml = (c: Copy) => `
+<section class="section create" aria-labelledby="create-title">
+  <div class="section-head"><h2 id="create-title">${esc(c.t('home.createTitle'))}</h2><p>${esc(c.t('home.createLede'))}</p></div>
+  <ul class="create-grid">
+    ${CREATE.map((slug) => {
+      const tool = c.tool(TOOLS.find((t) => t.slug === slug)!);
+      return `<li><a class="create-card create-${slug}" data-spring href="${c.link(tool)}"><span class="create-art" aria-hidden="true"><i></i><i></i><i></i><i></i></span><strong>${esc(tool.name)}</strong><span>${esc(tool.summary)}</span></a></li>`;
+    }).join('\n    ')}
+  </ul>
+</section>`;
+
 const heroArt = (c: Copy) => `
 <div class="hero-art" aria-hidden="true">
   ${FORMAT_ORDER.slice(0, 4).map((f) => `<div class="file-card fmt-${f}" data-spring><span class="badge fmt-${f}">${FORMATS[f].badge}</span><i></i><i></i><i></i><i></i></div>`).join('\n  ')}
@@ -252,6 +331,8 @@ function optionsHtml(c: Copy, tool: Tool) {
   if (tool.op === 'remove-bg' && tool.preset?.format === 'sticker') return '<input type="hidden" name="format" value="sticker">';
   if (tool.op === 'remove-bg')
     return `<label>${esc(c.t('ws.saveAs'))}<select name="format">${option('auto', c.t('ws.fmtAuto'))}${option('png', c.t('ws.fmtPng'))}${option('jpg', c.t('ws.fmtJpeg'))}${option('webp', c.t('ws.fmtWebp'))}</select></label>`;
+  if (tool.op === 'photo-edit' || tool.op === 'collage')
+    return `<label>${esc(c.t('ws.saveAs'))}<select name="format">${option('jpg', c.t('ws.fmtJpeg'))}${option('png', c.t('ws.fmtPng'))}${option('webp', c.t('ws.fmtWebp'))}</select></label>`;
   if (tool.op === 'mermaid-image')
     return `<label class="code">${esc(c.t('ws.mermaidCode'))}<textarea name="code" rows="9" spellcheck="false" autocapitalize="off" autocomplete="off">${esc(MERMAID_SAMPLE)}</textarea></label>
     <label>${esc(c.t('ws.saveAs'))}<select name="format">${option('png', c.t('ws.fmtPng'))}${option('svg', c.t('ws.fmtSvg'), tool.preset?.format === 'svg')}</select></label>
@@ -266,7 +347,9 @@ function optionsHtml(c: Copy, tool: Tool) {
   if (tool.op === 'pdf-to-jpg')
     return `<label>${esc(c.t('ws.quality'))}<select name="dpi">${option('72', c.t('ws.dpiLow'))}${option('150', c.t('ws.dpiStandard'), true)}${option('300', c.t('ws.dpiHigh'))}</select></label>`;
   if (tool.op === 'excel-to-json') return `<label class="check"><input name="header" type="checkbox" checked> ${esc(c.t('ws.header'))}</label>`;
-  if (tool.op === 'compress-pdf' || tool.op === 'office-compress')
+  if (tool.op === 'compress-pdf')
+    return `<label>${esc(c.t('ws.compression'))}<select name="level">${option('low', c.t('ws.levelLow'))}${option('medium', c.t('ws.levelMedium'), true)}${option('high', c.t('ws.levelHigh'))}${option('extreme', c.t('ws.levelExtreme'))}</select></label>`;
+  if (tool.op === 'office-compress')
     return `<label>${esc(c.t('ws.compression'))}<select name="level">${option('light', c.t('ws.balanced'))}${option('strong', c.t('ws.strong'))}</select></label>`;
   if (mode === 'compress') {
     // "Under 100 KB" as asked by exam, job and government forms; filled in on the fixed-size pages.
@@ -310,7 +393,7 @@ function workspaceHtml(c: Copy, tool: Tool) {
               : null;
   const { accept, choose, multiple } = input(c, tool);
   return `
-<section class="workspace${['edit-pdf', 'redact-pdf', 'audio-split', 'remove-bg'].includes(tool.op) ? ' wide' : ''}" id="workspace" data-multiple="${multiple}" aria-label="${esc(tool.name)}">
+<section class="workspace${['edit-pdf', 'redact-pdf', 'audio-split', 'remove-bg', 'photo-edit', 'collage'].includes(tool.op) ? ' wide' : ''}" id="workspace" data-multiple="${multiple}" aria-label="${esc(tool.name)}">
   <label class="drop" id="drop">
     <input id="file-input" type="file" accept="${accept}"${multiple ? ' multiple' : ''}>
     <span class="drop-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4"/><path d="m6 10 6-6 6 6"/><path d="M4 20h16"/></svg></span>
@@ -318,7 +401,7 @@ function workspaceHtml(c: Copy, tool: Tool) {
     <span>${esc(c.t(multiple ? 'ws.dropMany' : 'ws.dropOne'))}</span>
   </label>
   <ol id="file-list" class="file-list" aria-label="${esc(c.t('ws.files'))}"></ol>
-  ${['edit-pdf', 'redact-pdf', 'image-ocr', 'audio-split', 'remove-bg'].includes(tool.op) ? '<div id="viewer" class="viewer"></div>' : ''}
+  ${['edit-pdf', 'redact-pdf', 'image-ocr', 'audio-split', 'remove-bg', 'photo-edit', 'collage'].includes(tool.op) ? '<div id="viewer" class="viewer"></div>' : ''}
   ${multiple ? `<p class="hint" id="reorder-hint" hidden>${esc(c.t('ws.reorder'))}</p>` : ''}
   <div class="options">
     ${
@@ -373,6 +456,15 @@ const passwordDialog = (c: Copy) => `<dialog id="password-dialog" aria-labelledb
 
 function mainHtml(c: Copy, page: Page) {
   if (page.alt) return altHtml(c, page.alt);
+  if (page.privacy)
+    return `
+<nav class="crumbs" aria-label="${esc(c.t('crumbs.label'))}"><a href="${c.link()}">${SITE.name}</a><span aria-hidden="true">/</span><span aria-current="page">${PRIVACY.h1}</span></nav>
+<section class="hero hero-tool">
+  <h1>${esc(PRIVACY.h1)}</h1>
+  <p class="lede">${esc(PRIVACY.lede)}</p>
+</section>
+${faqHtml(c, PRIVACY.faq)}
+${proofHtml(c)}`;
   if (!page.tool) {
     const home = c.home;
     const merge = TOOLS.find((t) => t.slug === 'merge-pdf');
@@ -396,6 +488,7 @@ function mainHtml(c: Copy, page: Page) {
   </div>
   ${heroArt(c)}
 </section>
+${createHtml(c)}
 <section class="section" id="tools" aria-labelledby="tools-title">
   <div class="section-head"><h2 id="tools-title">${esc(c.t('home.toolsTitle'))}</h2><p>${esc(c.t('home.toolsLede'))}</p></div>
   ${toolGroups(c)}
@@ -408,14 +501,18 @@ ${proofHtml(c)}
 ${faqHtml(c, home.faq)}`;
   }
   const tool = c.tool(page.tool);
-  const related = [...TOOLS.filter((t) => t.slug !== tool.slug && t.format === tool.format), ...TOOLS.filter((t) => t.format !== tool.format)].slice(0, 8);
+  // Photo tools point to each other first; then the same kind of file, then everything else.
+  const photo = PHOTO_TOOLS.includes(tool.slug) ? PHOTO_TOOLS.map((slug) => TOOLS.find((t) => t.slug === slug)!) : [];
+  const related = [...new Set([...photo, ...TOOLS.filter((t) => t.format === tool.format), ...TOOLS.filter((t) => t.format !== tool.format)])]
+    .filter((t) => t.slug !== tool.slug)
+    .slice(0, 8);
   return `
 <nav class="crumbs" aria-label="${esc(c.t('crumbs.label'))}"><a href="${c.link()}">${SITE.name}</a><span aria-hidden="true">/</span><a href="${c.link()}#${tool.format}">${esc(c.t('group.title', { format: c.t(`format.${tool.format}`) }))}</a><span aria-hidden="true">/</span><span aria-current="page">${esc(tool.name)}</span></nav>
 <section class="hero hero-tool">
   <span class="tool-mark" aria-hidden="true">${icon(tool.op)}</span>
   <h1>${esc(tool.h1)}</h1>
   <p class="lede">${esc(tool.lede)}</p>
-  <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>${esc(c.t('tool.eyebrow'))}</p>
+  <p class="eyebrow"><span class="pulse" aria-hidden="true"></span>${esc(c.t('tool.eyebrow'))}<span id="offline-badge" class="offline-badge" hidden> · ✓ ${esc(c.t('offline.badge'))}</span></p>
 </section>
 ${workspaceHtml(c, tool)}
 <section class="section" aria-labelledby="how">
@@ -424,7 +521,7 @@ ${workspaceHtml(c, tool)}
   ${tool.keywords?.length ? `<div class="uses"><h3>${esc(c.t('tool.uses'))}</h3><ul>${tool.keywords.map((k) => `<li>${esc(k)}</li>`).join('')}</ul></div>` : ''}
 </section>
 ${examplesHtml(c, tool)}
-${proofHtml(c)}
+${proofHtml(c, tool)}
 ${faqHtml(c, tool.faq)}
 <section class="section" aria-labelledby="more">
   <div class="section-head"><h2 id="more">${esc(c.t('tool.more'))}</h2></div>
@@ -472,8 +569,18 @@ function examplesHtml(c: Copy, tool: Tool) {
 }
 
 // English reads "How to merge PDF"; other languages use their own pattern with the tool's name.
-const howTo = (c: Copy, tool: Tool) =>
-  c.lang === 'en' ? `How to ${tool.name[0].toLowerCase()}${tool.name.slice(1)}` : c.t('tool.how', { tool: tool.name });
+// English "How to" headings: a name that starts with a verb reads on ("How to merge PDF"), "X to Y"
+// names are conversions ("How to convert PDF to JPG"), and the rest are used ("How to use OCR PDF").
+const VERB = /^(Add|Compress|Convert|Cut|Delete|Edit|Extract|Merge|Protect|Redact|Remove|Reorder|Resize|Rotate|Split|Unlock|Watermark) /;
+/** Names that keep their capital in a sentence ("How to remove Word metadata"). */
+const PROPER = new Set(['Word', 'Excel', 'PowerPoint', 'Markdown', 'Mermaid', 'WhatsApp', 'Aadhaar']);
+/** The photo tools, linked to each other first under "More tools". */
+const PHOTO_TOOLS = ['photo-editor', 'collage-maker', 'remove-background', 'make-background-white', 'blur-background', 'whatsapp-sticker-maker', 'compress-image', 'resize-image', 'convert-image', 'remove-gif-background', 'remove-video-background'];
+const howTo = (c: Copy, tool: Tool) => {
+  if (c.lang !== 'en') return c.t('tool.how', { tool: tool.name });
+  if (VERB.test(tool.name)) return `How to ${tool.name.replace(/\b[A-Z][a-z]+\b/g, (word) => (PROPER.has(word) ? word : word.toLowerCase()))}`;
+  return / to /.test(tool.name) ? `How to convert ${tool.name}` : `How to use ${tool.name}`;
+};
 
 // Every tool linked from every page's footer, grouped by format: helps visitors and crawlers alike.
 const footerHtml = (c: Copy) =>
@@ -493,6 +600,15 @@ const OG_LOCALE: Record<Lang, string> = {
 function jsonLd(c: Copy, page: Page) {
   const url = SITE.url + page.path;
   if (page.alt) return altJsonLd(page.alt, url);
+  if (page.privacy)
+    return JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        { '@type': 'WebPage', name: PRIVACY.title, description: PRIVACY.description, url, inLanguage: 'en', isPartOf: { '@id': `${SITE.url}/#org` } },
+        { '@type': 'Organization', '@id': `${SITE.url}/#org`, name: SITE.name, url: `${SITE.url}/`, logo: `${SITE.url}/icon-512.png`, sameAs: [SITE.repo] },
+        { '@type': 'FAQPage', inLanguage: 'en', mainEntity: PRIVACY.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+      ],
+    }).replace(/</g, '\\u003c');
   const tool = page.tool && c.tool(page.tool);
   const faq = tool ? tool.faq : c.home.faq;
   const author = { '@id': `${SITE.url}/#author` };
@@ -502,7 +618,7 @@ function jsonLd(c: Copy, page: Page) {
     name: tool ? `${SITE.name} ${tool.name}` : SITE.name,
     url,
     description: tool ? tool.description : c.home.description,
-    applicationCategory: 'UtilitiesApplication',
+    applicationCategory: tool?.format === 'image' ? 'MultimediaApplication' : 'UtilitiesApplication',
     operatingSystem: 'Any',
     browserRequirements: 'Requires JavaScript and WebAssembly',
     isAccessibleForFree: true,
@@ -667,7 +783,7 @@ const ogImage = (lang: Lang) => (lang !== 'en' && existsSync(new URL(`../public/
 const formatStars = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '')}k` : String(n));
 
 /** The same page in every language: for hreflang links and the language menu. */
-const alternates = (page: Page) => (page.alt ? [{ lang: 'en' as Lang, path: page.path }] : SITE_LANGS.map((lang) => ({ lang, path: pathOf(lang, page.tool) })));
+const alternates = (page: Page) => (englishOnly(page) ? [{ lang: 'en' as Lang, path: page.path }] : SITE_LANGS.map((lang) => ({ lang, path: pathOf(lang, page.tool) })));
 
 // Each language's "choose your language" tip, so a Hindi-speaking visitor on an English page reads it in Hindi.
 const LANG_TIPS = JSON.stringify(Object.fromEntries(SITE_LANGS.map((lang) => [lang, copy(lang).t('lang.tip')])));
@@ -698,8 +814,9 @@ export function notFoundPage(template: string, stars?: number) {
 export function renderPage(template: string, page: Page, withCsp: boolean, stars?: number) {
   const c = copy(page.lang);
   const tool = page.tool && c.tool(page.tool);
-  const title = page.alt ? altCopy(page.alt).title : tool?.title ?? c.home.title;
-  const description = page.alt ? altCopy(page.alt).description : tool?.description ?? c.home.description;
+  const only = englishOnly(page);
+  const title = only ? only.title : tool?.title ?? c.home.title;
+  const description = only ? only.description : tool?.description ?? c.home.description;
   const url = SITE.url + page.path;
   const head = [
     withCsp ? `<meta http-equiv="Content-Security-Policy" content="${CSP}">` : '',
@@ -707,7 +824,7 @@ export function renderPage(template: string, page: Page, withCsp: boolean, stars
     `<meta name="description" content="${esc(description)}">`,
     `<link rel="canonical" href="${url}">`,
     ...alternates(page).map(({ lang, path }) => `<link rel="alternate" hreflang="${lang}" href="${SITE.url}${path}">`),
-    `<link rel="alternate" hreflang="x-default" href="${SITE.url}${page.alt ? page.path : pathOf('en', page.tool)}">`,
+    `<link rel="alternate" hreflang="x-default" href="${SITE.url}${only ? page.path : pathOf('en', page.tool)}">`,
     `<meta property="og:type" content="website">`,
     `<meta property="og:site_name" content="${SITE.name}">`,
     `<meta property="og:title" content="${esc(title)}">`,
@@ -740,7 +857,7 @@ export function renderPage(template: string, page: Page, withCsp: boolean, stars
     .replaceAll('{{home}}', c.link())
     .replace(/\{\{t:([\w.]+)\}\}/g, (_, key: UiKey) => esc(c.t(key)))
     .replaceAll('<!--stars-->', stars ? `<span class="star-count">${formatStars(stars)}</span>` : '')
-    .replace('data-tool=""', `data-tool="${page.tool?.op ?? ''}"${page.tool ? ` data-format="${page.tool.format}"` : ''}`);
+    .replace('data-tool=""', `data-tool="${page.tool?.op ?? ''}"${page.tool ? ` data-format="${page.tool.format}" data-page="${page.tool.slug}"` : ''}`);
 }
 
 export const fileName = (page: Page) => (page.path === '/' ? 'index.html' : `${page.path.slice(1)}index.html`);
@@ -801,6 +918,15 @@ ${HOME.what}
 - Source code: ${SITE.repo} (open source, Apache-2.0; issues and pull requests welcome)
 - Made by: Rishab Dugar
 
+## Quick answers
+
+- **How do I remove the background from a photo without uploading it?** Open ${SITE.url}/remove-background/ and choose the photo. An AI model (BiRefNet) runs in the browser on the device, removes the background at the photo's full resolution, and saves a clear PNG, or white, any colour, a blur or another photo behind it. Free, no watermark, no sign-up, works offline after the first run.
+- **How do I make a photo's background white?** ${SITE.url}/make-background-white/ opens with white picked: choose the photo and save as JPG or PNG. To blur the background instead and keep the subject sharp: ${SITE.url}/blur-background/.
+- **Can I remove the background from a GIF or a video?** Yes: ${SITE.url}/remove-gif-background/ keeps every frame and its timing; ${SITE.url}/remove-video-background/ keeps the sound.
+- **Is there a free photo editor that doesn't upload my photo?** ${SITE.url}/photo-editor/ crops to square, 4:5, 16:9 or story size, turns and flips, sets brightness, contrast, saturation and warmth, adds one-tap looks, text and emoji, and saves at full size, all on the device, with no sign-up.
+- **How do I make a photo collage without uploading the photos?** ${SITE.url}/collage-maker/ puts 1 to 9 photos in a grid (square, 4:5, story, 16:9 or A4 for printing), lets each photo be moved and zoomed in its frame, sets the gap, round corners, background and text, and saves JPG, PNG or WebP with no watermark.
+- **How do I make a WhatsApp sticker from a photo?** ${SITE.url}/whatsapp-sticker-maker/ removes the background, adds a white outline, text and emoji, and saves a 512×512 WebP under 100 KB; WhatsApp's own "Create sticker" then adds it to the sticker tray.
+
 ## Why Fizzdoc instead of other online file tools
 
 - **Files are never uploaded.** Most online converters and PDF sites send the file to their server to process it. Fizzdoc does the work inside the browser tab, and its Content Security Policy blocks the page from sending a file anywhere. This can be checked in the browser's Network tab.
@@ -834,6 +960,7 @@ The site is available in ${SITE_LANGS.length} languages: ${SITE_LANGS.map((lang)
 - Someone wants to cut, trim or join MP3 or M4A audio without re-encoding it and without installing an app.
 - Someone needs a transcript or subtitles (SRT or VTT) of a recording, voice note, lecture or video and doesn't want to upload it to a transcription service: [Audio to Text](${SITE.url}/audio-to-text/), [MP3 to Text](${SITE.url}/mp3-to-text/), [Video to Text](${SITE.url}/video-to-text/) and the [Subtitle Generator](${SITE.url}/subtitle-generator/) run OpenAI's Whisper model in the browser.
 - Someone needs a photo, product shot, signature, animated GIF or short video with the background removed or replaced (transparent PNG, white, a colour, a blur or another photo) without uploading it or paying for full resolution: [Remove Background](${SITE.url}/remove-background/), [Remove GIF Background](${SITE.url}/remove-gif-background/) and [Remove Video Background](${SITE.url}/remove-video-background/) run the BiRefNet model on the device (GPU through WebGPU, or CPU), keep the full resolution and add no watermark. There is also a shadow, a sticker outline, a square crop for online shops, tap-to-remove touch-ups, and a [WhatsApp Sticker Maker](${SITE.url}/whatsapp-sticker-maker/) that saves a 512×512 WebP sticker.
+- Someone wants a quick everyday photo edit without uploading the photo or signing up: the [Photo Editor](${SITE.url}/photo-editor/) crops to square, 4:5, 16:9 or story size, turns and flips, sets brightness, contrast, saturation and warmth, offers one-tap looks (black and white, vivid, warm, cool, fade, sepia, noir), adds text and emoji, and saves JPG, PNG or WebP at full size without the photo's location data.
 - Someone needs to convert Word, Excel, PowerPoint, CSV, Markdown or text files, clean their hidden metadata or pull out their images, including files downloaded from Google Docs, Sheets and Slides.
 - Someone needs to turn a spreadsheet into JSON for code or an API, open a JSON file in Excel, or export a Mermaid diagram as a PNG or SVG, without pasting company data into an online converter.
 - Someone is on a work or school device where uploading files to third-party sites is not allowed, or on a phone with no app installed.

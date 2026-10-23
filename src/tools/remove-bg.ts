@@ -6,6 +6,7 @@ import { compose, frameFor, removeBackground, render, subjectBox, type Backdrop,
 import { decodeGif, encodeGif, type GifFrame } from '../engine/gif';
 import { areaBox, regionAt } from '../engine/magic';
 import type { Output } from '../engine/local';
+import { isAppleMobile } from '../effects';
 import { t } from '../i18n';
 
 export interface BackgroundEditor {
@@ -38,6 +39,8 @@ const element = <K extends keyof HTMLElementTagNameMap>(tag: K, className = '', 
   if (text) node.textContent = text;
   return node;
 };
+
+type StickerText = ReturnType<typeof import('./sticker-text').stickerText>;
 
 export async function openBackgroundEditor(file: File, viewer: HTMLElement, preset: Record<string, string> = {}): Promise<BackgroundEditor> {
   // Videos: the first frame is the preview; the whole video is done when it's saved.
@@ -185,7 +188,13 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       canvas.height = height;
     }
   };
-  const draw = () => (animated ? compose(canvas, frames[shown].cut, frames[shown].photo, backdrop) : compose(canvas, cut, photo, backdrop, look()));
+  // The Sticker Maker's text, drawn over the cut-out (see sticker-text.ts).
+  let text: StickerText | undefined;
+  const draw = () => {
+    if (animated) return compose(canvas, frames[shown].cut, frames[shown].photo, backdrop);
+    compose(canvas, cut, photo, backdrop, look());
+    text?.draw(preview, canvas.width, canvas.height, true);
+  };
   let timer: ReturnType<typeof setTimeout> | undefined;
   const play = () => {
     draw();
@@ -274,8 +283,8 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     backdrop = { kind: 'blur', amount: 0.012 };
   });
   blur.querySelector('.bg-chip')!.classList.add('bg-chip-blur');
-  // Pages like "white background" start with that colour picked.
-  (colors.get(preset.bg as 'white') ?? none).click();
+  // Pages like "white background" or "blur background" start with that picked.
+  (preset.bg === 'blur' ? blur : (colors.get(preset.bg ?? '') ?? none)).click();
 
   // ---- Style: shadow, outline, crop ----
   const toggle = (label: string, onChange: (on: boolean) => void) => {
@@ -354,30 +363,42 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   fillSizes();
 
   sizeBox.hidden = sticker; // stickers are always 512×512
-  /** The sticker as a WebP file: 512×512, the quality lowered step by step until it fits 100 KB. */
-  const makeSticker = async () => {
+  /** The sticker, 512×512: a WebP with the quality lowered step by step until it fits 100 KB, or a PNG for the photo library. */
+  const makeSticker = async (type = 'image/webp') => {
+    await document.fonts.ready;
     for (const quality of [0.92, 0.8, 0.7, 0.6, 0.5, 0.4]) {
       const canvas = new OffscreenCanvas(STICKER, STICKER);
       compose(canvas, cut, photo, backdrop, look());
-      const blob = await canvas.convertToBlob({ type: 'image/webp', quality });
-      if (blob.size <= STICKER_BYTES || quality === 0.4) return new File([blob], `${file.name.replace(/\.[^.]+$/, '')}-sticker.webp`, { type: 'image/webp' });
+      text?.draw(canvas.getContext('2d')!, STICKER, STICKER);
+      const blob = await canvas.convertToBlob({ type, quality });
+      if (type !== 'image/webp' || blob.size <= STICKER_BYTES || quality === 0.4)
+        return new File([blob], `${file.name.replace(/\.[^.]+$/, '')}-sticker.${type.slice(6)}`, { type });
     }
     throw new Error('unreachable');
   };
   if (sticker) {
+    text = (await import('./sticker-text')).stickerText(canvas, draw, () => stage.classList.contains('painting'));
+    note.after(text.panel);
     note.textContent = t('bg.stickerNote');
-    const probe = new File([new Uint8Array(1)], 'sticker.webp', { type: 'image/webp' });
-    if (navigator.canShare?.({ files: [probe] })) {
-      const share = element('button', 'bg-btn bg-share', t('bg.shareSticker'));
-      share.type = 'button';
-      share.onclick = async () => {
+    // No website can add a sticker to WhatsApp (a shared file arrives as a photo), so the steps for
+    // WhatsApp's own sticker maker sit right above the Download button.
+    const steps = element('div', 'bg-group wa-steps');
+    const lines = (['wa.why', 'wa.android', 'wa.iphone', 'wa.computer'] as const).map((key) => element('p', '', t(key)));
+    steps.append(element('strong', '', t('wa.title')), ...lines);
+    viewer.append(steps);
+    // iPhone and iPad save downloads to Files, but WhatsApp picks stickers from Photos: the share sheet's "Save Image" puts it there.
+    const probe = new File([new Uint8Array(1)], 'sticker.png', { type: 'image/png' });
+    if (isAppleMobile() && navigator.canShare?.({ files: [probe] })) {
+      const save = element('button', 'bg-btn bg-share', t('bg.shareSticker'));
+      save.type = 'button';
+      save.onclick = async () => {
         try {
-          await navigator.share({ files: [await makeSticker()] });
+          await navigator.share({ files: [await makeSticker('image/png')] });
         } catch {
           // closed the share sheet: nothing to do
         }
       };
-      styleBox.append(share);
+      lines[2].after(save); // under the iPhone steps
     }
   }
 
