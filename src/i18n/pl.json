@@ -1262,6 +1262,76 @@
         "word na pdf na telefonie"
       ]
     },
+    "word-to-html": {
+      "name": "Word na HTML",
+      "summary": "Zamień plik .docx na samodzielny plik HTML.",
+      "action": "Konwertuj na HTML",
+      "title": "Word na HTML za Darmo — DOCX na HTML | Fizzdoc",
+      "description": "Zamień dokument Word na plik HTML w przeglądarce, z formatowaniem, tabelami, linkami i obrazami. Nic nie jest wysyłane. Za darmo.",
+      "h1": "Konwertuj dokument Word na HTML",
+      "lede": "Uzyskaj samodzielny plik .html z pliku .docx, z formatowaniem, tabelami, linkami i obrazami w środku. Twój dokument nigdy nie opuszcza urządzenia.",
+      "steps": [
+        "Dodaj jeden plik .docx.",
+        "Kliknij „Konwertuj na HTML”.",
+        "Pobierz plik .html."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Czy obrazy są w pliku HTML?",
+          "Tak. Obsługiwane obrazy są osadzane w pliku HTML, więc nie potrzebuje on osobnych plików z obrazami."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "konwersja Word na HTML",
+        "DOCX na HTML za darmo",
+        "zamiana Word na HTML",
+        "eksport Word do HTML",
+        "Word na stronę WWW bez wysyłania"
+      ]
+    },
+    "word-to-markdown": {
+      "name": "Word na Markdown",
+      "summary": "Zamień plik .docx na Markdown z nagłówkami, listami i tabelami.",
+      "action": "Konwertuj na Markdown",
+      "title": "Word na Markdown za Darmo — DOCX na MD | Fizzdoc",
+      "description": "Zamień dokument Word na Markdown w przeglądarce. Nagłówki, listy, tabele, linki i opisy obrazów zostają; nic nie jest wysyłane. Za darmo.",
+      "h1": "Konwertuj dokument Word na Markdown",
+      "lede": "Zamień plik .docx na plik Markdown z nagłówkami, listami, tabelami, linkami i opisami obrazów, gotowy do notatek, dokumentacji lub GitHuba.",
+      "steps": [
+        "Dodaj jeden plik .docx.",
+        "Kliknij „Konwertuj na Markdown”.",
+        "Pobierz plik .md."
+      ],
+      "faq": [
+        [
+          "Czy moje pliki są gdzieś przesyłane?",
+          "Nie. Fizzdoc wykonuje całą pracę w karcie przeglądarki, korzystając z otwartoźródłowych silników skompilowanych do WebAssembly i JavaScript. Twój plik jest odczytywany z urządzenia, przetwarzany lokalnie, a wynik trafia od razu z powrotem na Twoje urządzenie. Możesz to sam sprawdzić: otwórz narzędzia deweloperskie przeglądarki, przejdź do zakładki Sieć i uruchom zadanie — żadne żądanie nie przenosi Twojego pliku."
+        ],
+        [
+          "Co zostaje zachowane?",
+          "Nagłówki, pogrubiony i pochylony tekst, linki, listy i komórki tabel są zamieniane na Markdown. Obrazy są zastępowane tekstem alternatywnym."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "konwersja Word na Markdown",
+        "DOCX na MD za darmo",
+        "zamiana Word na Markdown",
+        "Word na Markdown dla GitHuba",
+        "eksport Word do Markdown"
+      ]
+    },
     "excel-to-csv": {
       "name": "Excel na CSV",
       "summary": "Wyeksportuj każdy arkusz pliku .xlsx do CSV.",

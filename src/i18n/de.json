@@ -1262,6 +1262,76 @@
         "word zu pdf am handy"
       ]
     },
+    "word-to-html": {
+      "name": "Word in HTML umwandeln",
+      "summary": "Eine .docx in eine eigenständige HTML-Datei umwandeln.",
+      "action": "In HTML umwandeln",
+      "title": "Word in HTML Umwandeln Kostenlos — DOCX zu HTML | Fizzdoc",
+      "description": "Ein Word-Dokument im Browser in eine HTML-Datei umwandeln, mit Formatierung, Tabellen, Links und Bildern. Nichts wird hochgeladen. Kostenlos.",
+      "h1": "Ein Word-Dokument in HTML umwandeln",
+      "lede": "Aus einer .docx wird eine eigenständige .html, mit Formatierung, Tabellen, Links und Bildern direkt in der Datei. Ihr Dokument verlässt Ihr Gerät nie.",
+      "steps": [
+        "Eine .docx-Datei hinzufügen.",
+        "Auf „In HTML umwandeln“ klicken.",
+        "Die .html-Datei herunterladen."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Sind die Bilder im HTML enthalten?",
+          "Ja. Unterstützte Bilder werden direkt in die HTML-Datei eingebettet, sie braucht also keine separaten Bilddateien."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "Word in HTML umwandeln",
+        "DOCX zu HTML kostenlos",
+        "Word-Dokument als HTML",
+        "Word nach HTML exportieren",
+        "Word als Webseite ohne Upload"
+      ]
+    },
+    "word-to-markdown": {
+      "name": "Word in Markdown umwandeln",
+      "summary": "Eine .docx mit Überschriften, Listen und Tabellen in Markdown umwandeln.",
+      "action": "In Markdown umwandeln",
+      "title": "Word in Markdown Umwandeln Kostenlos — DOCX zu MD | Fizzdoc",
+      "description": "Ein Word-Dokument im Browser in Markdown umwandeln. Überschriften, Listen, Tabellen, Links und Bildbeschreibungen bleiben; nichts wird hochgeladen.",
+      "h1": "Ein Word-Dokument in Markdown umwandeln",
+      "lede": "Eine .docx wird zur Markdown-Datei mit Überschriften, Listen, Tabellen, Links und Bildbeschreibungen, bereit für Notizen, Dokumentation oder GitHub.",
+      "steps": [
+        "Eine .docx-Datei hinzufügen.",
+        "Auf „In Markdown umwandeln“ klicken.",
+        "Die .md-Datei herunterladen."
+      ],
+      "faq": [
+        [
+          "Werden meine Dateien irgendwohin hochgeladen?",
+          "Nein. Fizzdoc erledigt die Arbeit direkt in Ihrem Browser-Tab, mit Open-Source-Engines, die zu WebAssembly und JavaScript kompiliert sind. Ihre Datei wird von Ihrem Gerät gelesen, lokal verarbeitet, und das Ergebnis wird direkt wieder auf Ihrem Gerät gespeichert. Sie können das selbst überprüfen: Öffnen Sie die Entwicklertools Ihres Browsers, wechseln Sie zum Netzwerk-Tab und führen Sie einen Vorgang aus — keine Anfrage enthält Ihre Datei."
+        ],
+        [
+          "Was bleibt erhalten?",
+          "Überschriften, fetter und kursiver Text, Links, Listen und Tabellenzellen werden zu Markdown. Bilder werden durch ihren Alternativtext dargestellt."
+        ],
+        [
+          "Ist Fizzdoc kostenlos?",
+          "Ja, und das bleibt so: keine Anmeldung, kein Wasserzeichen, kein Tageslimit und keine Premium-Stufe. Fizzdoc ist Open Source unter der Apache-2.0-Lizenz, sodass jeder seine eigene Kopie betreiben kann."
+        ]
+      ],
+      "keywords": [
+        "Word in Markdown umwandeln",
+        "DOCX zu MD kostenlos",
+        "Word-Dokument als Markdown",
+        "Word nach Markdown für GitHub",
+        "Word nach Markdown exportieren"
+      ]
+    },
     "excel-to-csv": {
       "name": "Excel in CSV umwandeln",
       "summary": "Jedes Tabellenblatt einer .xlsx als CSV exportieren.",

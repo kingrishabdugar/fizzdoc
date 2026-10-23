@@ -1262,6 +1262,76 @@
         "telefonda word'den pdf'e"
       ]
     },
+    "word-to-html": {
+      "name": "Word'den HTML'e",
+      "summary": ".docx dosyasını bağımsız bir HTML dosyasına dönüştürün.",
+      "action": "HTML'e Dönüştür",
+      "title": "Word'den HTML'e Ücretsiz — DOCX'ten HTML'e | Fizzdoc",
+      "description": "Word belgesini tarayıcınızda stilleri, tabloları, bağlantıları ve görselleriyle birlikte HTML dosyasına dönüştürün. Hiçbir şey yüklenmez. Ücretsiz.",
+      "h1": "Word belgesini HTML'e dönüştürün",
+      "lede": ".docx dosyasından stiller, tablolar, bağlantılar ve görseller içinde olan bağımsız bir .html elde edin. Belgeniz cihazınızdan hiç çıkmaz.",
+      "steps": [
+        "Bir .docx dosyası ekleyin.",
+        "“HTML'e Dönüştür”e tıklayın.",
+        ".html dosyasını indirin."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Görseller HTML'e dahil mi?",
+          "Evet. Desteklenen görseller HTML dosyasının içine eklenir, bu yüzden ayrı görsel dosyalarına ihtiyaç duymaz."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "Word'ü HTML'e dönüştürme",
+        "DOCX'ten HTML'e ücretsiz",
+        "Word belgesini HTML yapma",
+        "Word'ü HTML olarak dışa aktarma",
+        "yüklemeden Word'den web sayfası"
+      ]
+    },
+    "word-to-markdown": {
+      "name": "Word'den Markdown'a",
+      "summary": ".docx dosyasını başlıklar, listeler ve tablolarla Markdown'a dönüştürün.",
+      "action": "Markdown'a Dönüştür",
+      "title": "Word'den Markdown'a Ücretsiz — DOCX'ten MD'ye | Fizzdoc",
+      "description": "Word belgesini tarayıcınızda Markdown'a dönüştürün. Başlıklar, listeler, tablolar, bağlantılar ve görsel açıklamaları korunur; hiçbir şey yüklenmez.",
+      "h1": "Word belgesini Markdown'a dönüştürün",
+      "lede": ".docx dosyasını başlıkları, listeleri, tabloları, bağlantıları ve görsel açıklamalarıyla notlar, belgeler veya GitHub için hazır bir Markdown dosyasına çevirin.",
+      "steps": [
+        "Bir .docx dosyası ekleyin.",
+        "“Markdown'a Dönüştür”e tıklayın.",
+        ".md dosyasını indirin."
+      ],
+      "faq": [
+        [
+          "Dosyalarım herhangi bir yere yükleniyor mu?",
+          "Hayır. Fizzdoc, WebAssembly ve JavaScript'e derlenmiş açık kaynaklı motorları kullanarak işlemi tarayıcı sekmenizin içinde yapar. Dosyanız cihazınızdan okunur, yerel olarak işlenir ve sonuç doğrudan cihazınıza kaydedilir. Bunu kendiniz de kontrol edebilirsiniz: tarayıcınızın geliştirici araçlarını açın, Ağ (Network) sekmesine gidin ve bir işlem çalıştırın — hiçbir istek dosyanızı taşımaz."
+        ],
+        [
+          "Neler korunur?",
+          "Başlıklar, kalın ve italik metin, bağlantılar, listeler ve tablo hücreleri Markdown'a dönüştürülür. Görseller alternatif metinleriyle gösterilir."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "Word'ü Markdown'a dönüştürme",
+        "DOCX'ten MD'ye ücretsiz",
+        "Word belgesini Markdown yapma",
+        "GitHub için Word'den Markdown'a",
+        "Word'ü Markdown olarak dışa aktarma"
+      ]
+    },
     "excel-to-csv": {
       "name": "Excel'den CSV'ye",
       "summary": "Bir .xlsx'in her sayfasını CSV olarak dışa aktarın.",

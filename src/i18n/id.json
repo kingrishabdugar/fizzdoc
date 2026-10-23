@@ -1262,6 +1262,76 @@
         "word ke pdf di hp"
       ]
     },
+    "word-to-html": {
+      "name": "Word ke HTML",
+      "summary": "Ubah .docx menjadi file HTML mandiri.",
+      "action": "Konversi ke HTML",
+      "title": "Word ke HTML Gratis — DOCX ke HTML | Fizzdoc",
+      "description": "Ubah dokumen Word menjadi file HTML di browser, lengkap dengan gaya, tabel, tautan, dan gambarnya. Tidak ada yang diunggah. Gratis.",
+      "h1": "Ubah dokumen Word ke HTML",
+      "lede": "Dapatkan file .html mandiri dari .docx, dengan gaya, tabel, tautan, dan gambar di dalam file. Dokumen Anda tidak pernah meninggalkan perangkat.",
+      "steps": [
+        "Tambahkan satu file .docx.",
+        "Klik “Konversi ke HTML”.",
+        "Unduh file .html."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apakah gambar ikut di HTML?",
+          "Ya. Gambar yang didukung disematkan langsung di file HTML, jadi tidak bergantung pada file gambar terpisah."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "cara ubah Word ke HTML",
+        "DOCX ke HTML gratis",
+        "konversi dokumen Word ke HTML",
+        "ekspor Word ke HTML",
+        "Word ke halaman web tanpa unggah"
+      ]
+    },
+    "word-to-markdown": {
+      "name": "Word ke Markdown",
+      "summary": "Ubah .docx ke Markdown dengan judul, daftar, dan tabel.",
+      "action": "Konversi ke Markdown",
+      "title": "Word ke Markdown Gratis — DOCX ke MD | Fizzdoc",
+      "description": "Ubah dokumen Word ke Markdown di browser. Judul, daftar, tabel, tautan, dan deskripsi gambar tetap ada; tidak ada yang diunggah. Gratis.",
+      "h1": "Ubah dokumen Word ke Markdown",
+      "lede": "Ubah .docx menjadi file Markdown dengan judul, daftar, tabel, tautan, dan deskripsi gambarnya, siap untuk catatan, dokumentasi, atau GitHub.",
+      "steps": [
+        "Tambahkan satu file .docx.",
+        "Klik “Konversi ke Markdown”.",
+        "Unduh file .md."
+      ],
+      "faq": [
+        [
+          "Apakah file saya diunggah ke suatu tempat?",
+          "Tidak. Fizzdoc melakukan semua proses di dalam tab browser Anda, menggunakan mesin open source yang dikompilasi ke WebAssembly dan JavaScript. File Anda dibaca dari perangkat Anda, diproses secara lokal, dan hasilnya langsung disimpan kembali ke perangkat Anda. Anda bisa membuktikannya sendiri: buka developer tools browser Anda, lihat tab Network, lalu jalankan sebuah proses — tidak ada request yang membawa file Anda."
+        ],
+        [
+          "Apa saja yang dipertahankan?",
+          "Judul, teks tebal dan miring, tautan, daftar, dan sel tabel diubah ke Markdown. Gambar ditampilkan lewat teks alternatifnya."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "cara ubah Word ke Markdown",
+        "DOCX ke MD gratis",
+        "konversi dokumen Word ke Markdown",
+        "Word ke Markdown untuk GitHub",
+        "ekspor Word ke Markdown"
+      ]
+    },
     "excel-to-csv": {
       "name": "Excel ke CSV",
       "summary": "Ekspor setiap sheet dari .xlsx ke CSV.",
