@@ -1,5 +1,7 @@
 # Fizzdoc MCP server
 
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/github-com-kingrishabdugar-fizzdoc-tree-main-mcp)
+
 **Fizzdoc's PDF, audio and Office tools for AI agents — your files never leave your computer.**
 
 Ask Claude Code, Codex, Claude Desktop, Cursor or any other [MCP](https://modelcontextprotocol.io) client to *"merge these PDFs"*, *"cut the first 30 seconds of this MP3"* or *"remove the author name before I send this"*. The agent calls Fizzdoc on your machine instead of uploading your file to a website or writing a throwaway script.
