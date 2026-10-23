@@ -1,17 +1,19 @@
 import { readFileSync } from 'node:fs';
-import { strFromU8, unzipSync } from 'fflate';
+import { strFromU8, strToU8, unzipSync, zipSync } from 'fflate';
 import { describe, expect, it } from 'vitest';
 import { fixIndic } from '../src/engine/convert';
 import {
   buildDocxPackage,
   buildPptxPackage,
   docxToHtml,
+  docxToHtmlFile,
   headingStyles,
   linesFromItems,
   paragraphsFromLines,
   parseXml,
   type DocParagraph,
 } from '../src/engine/office';
+import { docxToMarkdown } from '../src/engine/office-markdown';
 
 const file = (name: string, type = '') =>
   new File([readFileSync(new URL(`./fixtures/${name}`, import.meta.url))], name, { type });
@@ -101,6 +103,77 @@ describe('docxToHtml', () => {
     expect(html).toContain('break-before:page');
     expect(html).toMatch(/<img src="data:image\/png;base64,/);
   });
+
+  it('exports a standalone HTML file with its images inlined', async () => {
+    const output = await docxToHtmlFile(file('rich.docx'));
+    expect(output.name).toBe('rich.html');
+    expect(output.blob.type).toBe('text/html;charset=utf-8');
+    const html = await output.blob.text();
+    expect(html).toContain('<!doctype html>');
+    expect(html).toMatch(/<img src="data:image\/png;base64,/);
+  });
+
+  it('converts rich.docx to Markdown with headings, lists and table cells', async () => {
+    const output = await docxToMarkdown(file('rich.docx'));
+    expect(output.name).toBe('rich.md');
+    expect(output.blob.type).toBe('text/markdown;charset=utf-8');
+    const markdown = await output.blob.text();
+    expect(markdown).toContain('# Rich document');
+    expect(markdown).toContain('# Custom-styled heading');
+    expect(markdown).toContain('**Bold**');
+    expect(markdown).toContain('*italic*');
+    expect(markdown).toContain('[link](https://example.com)');
+    expect(markdown).toMatch(/- Bullet one\n  - Nested bullet/);
+    expect(markdown).toMatch(/1\. Numbered one\n2\. Numbered two/);
+    expect(markdown).toContain('| Spans two columns |  |');
+    expect(markdown).toContain('| --- | --- |');
+    expect(markdown).toContain('| Merged down | B1 |');
+    expect(markdown).toContain('|  | B2 shaded |');
+    expect(markdown).toContain('Before break\nAfter break');
+  });
+
+  it('preserves all six Word heading levels in Markdown', async () => {
+    const entries = unzipSync(readFileSync(new URL('./fixtures/rich.docx', import.meta.url)));
+    const styles = strFromU8(entries['word/styles.xml']).replace(
+      '</w:styles>',
+      `${[2, 3, 4, 5, 6].map((level) => `<w:style w:type="paragraph" w:styleId="Heading${level}"><w:name w:val="heading ${level}"/></w:style>`).join('')}</w:styles>`,
+    );
+    const paragraphs = [1, 2, 3, 4, 5, 6]
+      .map((level) => `<w:p><w:pPr><w:pStyle w:val="Heading${level}"/></w:pPr><w:r><w:t>Level ${level}</w:t></w:r></w:p>`)
+      .join('');
+    const document = strFromU8(entries['word/document.xml']).replace('<w:sectPr', `${paragraphs}<w:sectPr`);
+    entries['word/styles.xml'] = strToU8(styles);
+    entries['word/document.xml'] = strToU8(document);
+
+    const output = await docxToMarkdown(new File([zipSync(entries)], 'headings.docx'));
+    const markdown = await output.blob.text();
+    for (let level = 1; level <= 6; level++) {
+      expect(markdown).toContain(`${'#'.repeat(level)} Level ${level}`);
+    }
+  });
+
+  it('uses the Word image description as Markdown alt text', async () => {
+    const entries = unzipSync(readFileSync(new URL('./fixtures/rich.docx', import.meta.url)));
+    const document = strFromU8(entries['word/document.xml']).replace(
+      '<wp:extent',
+      '<wp:docPr id="1" name="Figure" descr="Revenue chart"/><wp:extent',
+    );
+    entries['word/document.xml'] = strToU8(document);
+    const output = await docxToMarkdown(new File([zipSync(entries)], 'described.docx'));
+    expect(await output.blob.text()).toContain('Revenue chart');
+  });
+
+  it('escapes parentheses and spaces in Markdown link destinations', async () => {
+    const entries = unzipSync(readFileSync(new URL('./fixtures/rich.docx', import.meta.url)));
+    const relationships = strFromU8(entries['word/_rels/document.xml.rels']).replace(
+      'https://example.com',
+      'https://example.com/a_(b c)',
+    );
+    entries['word/_rels/document.xml.rels'] = strToU8(relationships);
+    const output = await docxToMarkdown(new File([zipSync(entries)], 'linked.docx'));
+    expect(await output.blob.text()).toContain('[link](https://example.com/a_%28b%20c%29)');
+  });
+
 });
 
 describe('pdfToDocx text grouping (pure)', () => {

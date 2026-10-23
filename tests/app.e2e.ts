@@ -868,6 +868,29 @@ test('prepares Word and Markdown documents for Save as PDF without running their
   expect(seen.violations).toEqual([]);
 });
 
+test('exports Word documents to Markdown and standalone HTML', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/word-to-markdown/');
+  await page.locator('#file-input').setInputFiles(file('rich.docx'));
+  await page.getByRole('button', { name: 'Convert to Markdown' }).click();
+  await expect(page.locator('#status')).toContainText('Done');
+  const markdown = await downloadBytes(page);
+  expect(markdown.name).toBe('rich.md');
+  expect(markdown.bytes.toString('utf8')).toContain('# Rich document');
+  expect(markdown.bytes.toString('utf8')).toContain('| Merged down | B1 |');
+
+  await page.goto('/word-to-html/');
+  await page.locator('#file-input').setInputFiles(file('rich.docx'));
+  await page.getByRole('button', { name: 'Convert to HTML' }).click();
+  await expect(page.locator('#status')).toContainText('Done');
+  const html = await downloadBytes(page);
+  expect(html.name).toBe('rich.html');
+  expect(html.bytes.toString('utf8')).toContain('<!doctype html>');
+  expect(html.bytes.toString('utf8')).toMatch(/<img src="data:image\/png;base64,/);
+  expect(seen.violations).toEqual([]);
+  expect(seen.requests.filter((r) => !/^(http:\/\/localhost[:/]|blob:|data:)/.test(r.url))).toEqual([]);
+});
+
 test('converts between Excel and CSV', async ({ page }) => {
   await page.goto('/csv-to-excel/');
   await page.locator('#file-input').setInputFiles(file('data.csv'));

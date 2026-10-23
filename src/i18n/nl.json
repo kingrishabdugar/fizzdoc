@@ -1262,6 +1262,76 @@
         "word naar pdf op telefoon"
       ]
     },
+    "word-to-html": {
+      "name": "Word naar HTML",
+      "summary": "Zet een .docx om in een losstaand HTML-bestand.",
+      "action": "Naar HTML converteren",
+      "title": "Word naar HTML Gratis — DOCX naar HTML | Fizzdoc",
+      "description": "Zet een Word-document in je browser om in een HTML-bestand, met opmaak, tabellen, links en afbeeldingen. Er wordt niets geüpload. Gratis.",
+      "h1": "Een Word-document naar HTML converteren",
+      "lede": "Maak van een .docx een losstaand .html-bestand, met opmaak, tabellen, links en afbeeldingen in het bestand zelf. Je document verlaat je apparaat nooit.",
+      "steps": [
+        "Voeg één .docx-bestand toe.",
+        "Klik op “Naar HTML converteren”.",
+        "Download het .html-bestand."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Zitten de afbeeldingen in de HTML?",
+          "Ja. Ondersteunde afbeeldingen worden in het HTML-bestand zelf gezet, dus het hangt niet af van losse afbeeldingsbestanden."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "Word naar HTML omzetten",
+        "DOCX naar HTML gratis",
+        "Word-document als HTML",
+        "Word exporteren naar HTML",
+        "Word naar webpagina zonder upload"
+      ]
+    },
+    "word-to-markdown": {
+      "name": "Word naar Markdown",
+      "summary": "Zet een .docx om naar Markdown met koppen, lijsten en tabellen.",
+      "action": "Naar Markdown converteren",
+      "title": "Word naar Markdown Gratis — DOCX naar MD | Fizzdoc",
+      "description": "Zet een Word-document in je browser om naar Markdown. Koppen, lijsten, tabellen, links en beschrijvingen van afbeeldingen blijven; niets wordt geüpload.",
+      "h1": "Een Word-document naar Markdown converteren",
+      "lede": "Maak van een .docx een Markdown-bestand met koppen, lijsten, tabellen, links en beschrijvingen van afbeeldingen, klaar voor notities, documentatie of GitHub.",
+      "steps": [
+        "Voeg één .docx-bestand toe.",
+        "Klik op “Naar Markdown converteren”.",
+        "Download het .md-bestand."
+      ],
+      "faq": [
+        [
+          "Worden mijn bestanden ergens geüpload?",
+          "Nee. Fizzdoc doet het werk in je browsertab, met opensource-engines die zijn gecompileerd naar WebAssembly en JavaScript. Je bestand wordt van je apparaat gelezen, lokaal verwerkt, en het resultaat wordt direct weer op je apparaat opgeslagen. Je kunt dit zelf controleren: open de ontwikkelaarstools van je browser, ga naar het tabblad Netwerk en voer een taak uit — er wordt geen enkel verzoek met je bestand verstuurd."
+        ],
+        [
+          "Wat blijft behouden?",
+          "Koppen, vette en cursieve tekst, links, lijsten en tabelcellen worden Markdown. Afbeeldingen worden weergegeven met hun alt-tekst."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "Word naar Markdown omzetten",
+        "DOCX naar MD gratis",
+        "Word-document als Markdown",
+        "Word naar Markdown voor GitHub",
+        "Word exporteren naar Markdown"
+      ]
+    },
     "excel-to-csv": {
       "name": "Excel naar CSV",
       "summary": "Exporteer elk blad van een .xlsx naar CSV.",

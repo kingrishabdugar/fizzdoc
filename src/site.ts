@@ -23,6 +23,7 @@ export type ToolOp =
   | 'pdf-to-text'
   | 'text-to-pdf'
   | 'word-to-pdf'
+  | 'word-export'
   | 'excel-to-csv'
   | 'csv-to-excel'
   | 'excel-to-json'
@@ -900,6 +901,48 @@ TOOLS.push(
       SAVE_AS_PDF,
       PRIVACY_FAQ[1],
     ],
+  },
+  {
+    op: 'word-export',
+    format: 'word',
+    slug: 'word-to-html',
+    name: 'Word to HTML',
+    summary: 'Convert a .docx to a standalone HTML file.',
+    action: 'Convert to HTML',
+    title: 'Word to HTML Free — DOCX to HTML, No Upload | Fizzdoc',
+    description:
+      'Convert a Word document to a standalone HTML file in your browser, keeping its styles, tables, links and images. Nothing is uploaded. Free.',
+    h1: 'Convert a Word document to HTML',
+    lede: 'Get a standalone .html from a .docx, with styles, tables, links and images embedded in the file. Your document never leaves your device.',
+    steps: ['Add one .docx file.', 'Click “Convert to HTML”.', 'Download the .html file.'],
+    faq: [
+      PRIVACY_FAQ[0],
+      ['Are images included in the HTML?', 'Yes. Supported images are inlined in the HTML file, so it does not depend on separate image files.'],
+      PRIVACY_FAQ[1],
+    ],
+    input: { accept: '.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
+    preset: { format: 'html' },
+  },
+  {
+    op: 'word-export',
+    format: 'word',
+    slug: 'word-to-markdown',
+    name: 'Word to Markdown',
+    summary: 'Convert a .docx to Markdown with headings, lists and tables.',
+    action: 'Convert to Markdown',
+    title: 'Word to Markdown Free — DOCX to MD, No Upload | Fizzdoc',
+    description:
+      'Convert a Word document to Markdown in your browser. Keep headings, lists, tables, links and image descriptions; nothing is uploaded. Free and open source.',
+    h1: 'Convert a Word document to Markdown',
+    lede: 'Turn a .docx into a Markdown file with its headings, lists, tables, links and image descriptions, ready for notes, docs or GitHub.',
+    steps: ['Add one .docx file.', 'Click “Convert to Markdown”.', 'Download the .md file.'],
+    faq: [
+      PRIVACY_FAQ[0],
+      ['What is kept?', 'Headings, bold and italic text, links, lists and table cells are converted to Markdown. Images are represented by their alt text.'],
+      PRIVACY_FAQ[1],
+    ],
+    input: { accept: '.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
+    preset: { format: 'md' },
   },
   {
     op: 'excel-to-csv',
@@ -1856,6 +1899,20 @@ const KEYWORDS: Record<string, string[]> = {
     'Google Docs to PDF',
     'resume to PDF',
     'Word to PDF on phone'
+  ],
+  'word-to-html': [
+    'HTML from DOCX',
+    'Word to HTML',
+    'DOCX HTML converter',
+    'export Word to HTML',
+    'convert Word document to HTML'
+  ],
+  'word-to-markdown': [
+    'Markdown from DOCX',
+    'Word to MD',
+    'DOCX Markdown converter',
+    'export Word to Markdown',
+    'convert Word document to Markdown'
   ],
   'excel-to-csv': [
     'convert XLSX to CSV',

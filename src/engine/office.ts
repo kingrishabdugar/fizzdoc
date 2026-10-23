@@ -249,7 +249,9 @@ function renderDrawing(drawing: XNode, media: Record<string, string>): string {
   const width = extent ? Math.round(Number(extent.attrs.cx) / EMU_PER_PX) : undefined;
   const height = extent ? Math.round(Number(extent.attrs.cy) / EMU_PER_PX) : undefined;
   const sizeAttr = width && height ? ` width="${width}" height="${height}"` : '';
-  return `<img src="${data}"${sizeAttr} alt="">`;
+  const properties = deep(drawing, 'wp:docPr')[0];
+  const alt = properties?.attrs.descr || properties?.attrs.title || '';
+  return `<img src="${data}"${sizeAttr} alt="${escapeAttr(alt)}">`;
 }
 
 interface TableCell { colSpan: number; rowSpan: number; shade?: string; html: string }
@@ -457,6 +459,15 @@ table.page-frame > tfoot td { padding-top: 14pt; color: #444; }
 ${content}
 </body></html>`;
   return { html, title: docTitle };
+}
+
+export async function docxToHtmlFile(file: File): Promise<Output> {
+  const { html } = await docxToHtml(file);
+  return {
+    blob: new Blob([html], { type: 'text/html;charset=utf-8' }),
+    name: `${baseName(file)}.html`,
+    summary: '1 file',
+  };
 }
 
 // ---------------------------------------------------------------------------

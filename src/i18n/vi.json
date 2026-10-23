@@ -1262,6 +1262,76 @@
         "word sang pdf trên điện thoại"
       ]
     },
+    "word-to-html": {
+      "name": "Word sang HTML",
+      "summary": "Chuyển .docx thành một tệp HTML độc lập.",
+      "action": "Chuyển sang HTML",
+      "title": "Word sang HTML Miễn Phí — DOCX sang HTML | Fizzdoc",
+      "description": "Chuyển tài liệu Word thành tệp HTML ngay trong trình duyệt, giữ định dạng, bảng, liên kết và hình ảnh. Không tải lên gì cả. Miễn phí.",
+      "h1": "Chuyển tài liệu Word sang HTML",
+      "lede": "Tạo một tệp .html độc lập từ .docx, với định dạng, bảng, liên kết và hình ảnh nằm ngay trong tệp. Tài liệu của bạn không bao giờ rời khỏi thiết bị.",
+      "steps": [
+        "Thêm một tệp .docx.",
+        "Bấm “Chuyển sang HTML”.",
+        "Tải tệp .html về."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Hình ảnh có nằm trong HTML không?",
+          "Có. Hình ảnh được hỗ trợ sẽ được nhúng ngay trong tệp HTML, nên không cần tệp hình ảnh riêng."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "chuyển Word sang HTML",
+        "DOCX sang HTML miễn phí",
+        "đổi tài liệu Word thành HTML",
+        "xuất Word ra HTML",
+        "Word thành trang web không tải lên"
+      ]
+    },
+    "word-to-markdown": {
+      "name": "Word sang Markdown",
+      "summary": "Chuyển .docx sang Markdown kèm tiêu đề, danh sách và bảng.",
+      "action": "Chuyển sang Markdown",
+      "title": "Word sang Markdown Miễn Phí — DOCX sang MD | Fizzdoc",
+      "description": "Chuyển tài liệu Word sang Markdown ngay trong trình duyệt. Giữ tiêu đề, danh sách, bảng, liên kết và mô tả hình ảnh; không tải lên gì cả.",
+      "h1": "Chuyển tài liệu Word sang Markdown",
+      "lede": "Biến .docx thành tệp Markdown với tiêu đề, danh sách, bảng, liên kết và mô tả hình ảnh, sẵn sàng cho ghi chú, tài liệu hoặc GitHub.",
+      "steps": [
+        "Thêm một tệp .docx.",
+        "Bấm “Chuyển sang Markdown”.",
+        "Tải tệp .md về."
+      ],
+      "faq": [
+        [
+          "Tệp của tôi có được tải lên đâu không?",
+          "Không. Fizzdoc xử lý mọi thứ ngay trong tab trình duyệt của bạn, sử dụng các engine mã nguồn mở được biên dịch sang WebAssembly và JavaScript. Tệp của bạn được đọc từ thiết bị, xử lý cục bộ, rồi kết quả được lưu thẳng trở lại thiết bị. Bạn có thể tự kiểm chứng: mở công cụ dành cho nhà phát triển của trình duyệt, vào tab Network và thực hiện một thao tác — sẽ không có yêu cầu nào mang theo tệp của bạn."
+        ],
+        [
+          "Những gì được giữ lại?",
+          "Tiêu đề, chữ đậm và nghiêng, liên kết, danh sách và ô bảng được chuyển sang Markdown. Hình ảnh được thay bằng văn bản thay thế của nó."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "chuyển Word sang Markdown",
+        "DOCX sang MD miễn phí",
+        "đổi tài liệu Word thành Markdown",
+        "Word sang Markdown cho GitHub",
+        "xuất Word ra Markdown"
+      ]
+    },
     "excel-to-csv": {
       "name": "Excel sang CSV",
       "summary": "Xuất mọi trang tính của một .xlsx ra CSV.",

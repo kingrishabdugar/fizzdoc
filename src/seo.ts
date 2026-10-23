@@ -116,6 +116,7 @@ const ICON_PATHS: Record<ToolOp, string> = {
   'pdf-to-word': CONVERT,
   'pdf-to-powerpoint': CONVERT,
   'word-to-pdf': CONVERT,
+  'word-export': CONVERT,
   'excel-to-csv': CONVERT,
   'csv-to-excel': CONVERT,
   'excel-to-json': CONVERT,
