@@ -893,8 +893,10 @@ const AI_CRAWLERS = [
   'CCBot',
 ];
 export const robots = () =>
-  `# ${SITE.name}: ${TOOLS.length} free, private tools for PDF, Word, Excel, PowerPoint, images, audio, JSON
-# and Mermaid, in ${SITE_LANGS.length} languages. Files are processed in the browser and never uploaded.
+  `# ${SITE.name}: ${TOOLS.length} free, private tools, in ${SITE_LANGS.length} languages. Not only PDFs: a photo editor,
+# AI background remover (photo, GIF, video), collage and WhatsApp sticker maker, speech to text and
+# subtitles, audio cutter, image compressor, and Word, Excel, PowerPoint, JSON and Mermaid tools.
+# Files are processed in the browser and never uploaded.
 # Everyone, including AI assistants and answer engines, is welcome to crawl.
 # Guide for AI assistants: ${SITE.url}/llms.txt (full: ${SITE.url}/llms-full.txt)
 # Source code: ${SITE.repo}
@@ -907,16 +909,31 @@ Allow: /
 Sitemap: ${SITE.url}/sitemap.xml
 `;
 
+// One line per kind of file, so answer engines see the photo, audio and Office tools, not just the PDF ones.
+const OVERVIEW: [Format, string, string][] = [
+  ['image', 'Photos and images', `edit photos (${SITE.url}/photo-editor/), remove or replace a background with AI on the device for photos, GIFs and videos (${SITE.url}/remove-background/), make collages (${SITE.url}/collage-maker/) and WhatsApp stickers (${SITE.url}/whatsapp-sticker-maker/), compress a photo to 20, 50 or 100 KB for forms, resize, convert JPG, PNG and WebP, and copy text from an image.`],
+  ['audio', 'Audio and video', `turn speech in audio or video into text or SRT subtitles with Whisper on the device (${SITE.url}/audio-to-text/), and cut or join MP3 and M4A without re-encoding (${SITE.url}/split-audio/).`],
+  ['pdf', 'PDF', `edit text in place (${SITE.url}/edit-pdf/), merge, split, compress, rotate, reorder, OCR, redact, protect or unlock, number and watermark pages, and convert to and from Word, PowerPoint, images, text and Markdown.`],
+  ['word', 'Word', `Word to PDF, HTML or Markdown, compress, remove hidden metadata, extract images.`],
+  ['excel', 'Excel', `Excel to CSV or JSON and back, compress, remove hidden metadata, extract images.`],
+  ['powerpoint', 'PowerPoint', `compress, remove hidden metadata, extract images.`],
+];
+
 /** Plain-text summary for AI answer engines (https://llmstxt.org). */
 export const llms = () => `# ${SITE.name}
 
-> ${SITE.name} is a free, open-source website with ${TOOLS.length} tools for PDF, image, audio, Word, Excel and PowerPoint files. Every tool runs inside the browser, so files are never uploaded to any server. No sign-up, no watermark, no daily limit, free forever. Available in ${SITE_LANGS.length} languages.
+> ${SITE.name} is a free, open-source website with ${TOOLS.length} tools for PDFs, photos, audio, video, Word, Excel and PowerPoint files: much more than a PDF site. Every tool runs inside the browser, so files are never uploaded to any server. No sign-up, no watermark, no daily limit, free forever. Available in ${SITE_LANGS.length} languages.
 
 ${HOME.what}
 
 - Website: ${SITE.url}/
 - Source code: ${SITE.repo} (open source, Apache-2.0; issues and pull requests welcome)
 - Made by: Rishab Dugar
+
+## What Fizzdoc does (not only PDFs)
+
+${OVERVIEW.map(([format, label, line]) => `- **${label} (${TOOLS.filter((t) => t.format === format).length} tools):** ${line}`).join('\n')}
+- **For developers:** Excel to JSON and back, Mermaid diagrams to PNG or SVG, and a local MCP server for AI coding agents.
 
 ## Quick answers
 

@@ -2188,12 +2188,12 @@ export const FORMATS: Record<Format, { label: string; badge: string; ext: string
 };
 
 export const HOME = {
-  title: 'Fizzdoc — Free PDF, Image, Audio & Office Tools. No Uploads.',
+  title: 'Fizzdoc — Free PDF Tools, Photo Editor, Background Remover. No Upload',
   description:
-    'Free forever: private tools to edit, compress, convert and OCR PDFs, images, audio and Office files in your browser. No uploads, no sign-up, 16 languages.',
-  h1: 'Document tools that never see your documents',
-  lede: 'Edit, compress, convert and OCR PDFs. Convert Word, Excel, PowerPoint and images, and cut or join audio. Everything runs in your browser — your files never leave your device.',
-  what: 'Fizzdoc is a free, open-source set of document tools that runs entirely in your web browser. PDFs are processed with the qpdf, pdf.js and pdf-lib engines, text recognition uses Tesseract, and Office files and images are handled locally too — so nothing is ever uploaded to a server.',
+    'Free tools in your browser: edit and convert PDFs, edit photos, remove backgrounds with AI, make collages and turn speech into text. No uploads, no sign-up.',
+  h1: 'Free PDF, photo and audio tools that never see your files',
+  lede: 'Edit photos, remove backgrounds and make collages. Edit, compress, convert and OCR PDFs. Turn speech into text, cut audio, and convert Word, Excel and PowerPoint. Everything runs in your browser — your files never leave your device.',
+  what: 'Fizzdoc is a free, open-source set of file tools for PDFs, photos, audio, Word, Excel and PowerPoint that runs entirely in your web browser. PDFs are processed with the qpdf, pdf.js and pdf-lib engines, text recognition uses Tesseract, speech to text uses Whisper, and background removal uses the BiRefNet AI model, all on your own device — so nothing is ever uploaded to a server.',
   faq: [
     PRIVACY_FAQ[0],
     [

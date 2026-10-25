@@ -430,11 +430,11 @@
     "ws.dpiLow": "Bassa (file più piccolo, per il web)"
   },
   "home": {
-    "title": "Fizzdoc — Strumenti Gratis per PDF, Immagini e Audio",
-    "description": "Gratis per sempre: modifica, comprimi, converti e usa l'OCR su PDF, immagini, audio e file Office nel browser. Nessun upload, niente registrazione.",
-    "h1": "Strumenti per documenti che non vedono mai i tuoi documenti",
-    "lede": "Modifica, comprimi, converti ed esegui OCR sui PDF. Converti Word, Excel, PowerPoint e immagini, e taglia o unisci audio. Tutto funziona nel tuo browser — i tuoi file non lasciano mai il tuo dispositivo.",
-    "what": "Fizzdoc è un insieme gratuito e open source di strumenti per documenti che funziona interamente nel tuo browser. I PDF vengono elaborati con i motori qpdf, pdf.js e pdf-lib, il riconoscimento del testo usa Tesseract, e anche i file Office e le immagini vengono gestiti in locale — così niente viene mai caricato su un server.",
+    "title": "Fizzdoc — Strumenti PDF, editor foto e rimozione sfondo gratis",
+    "description": "Strumenti gratis nel browser: modifica e converti PDF, ritocca foto, rimuovi lo sfondo con l’IA, crea collage e trasforma la voce in testo. Nessun upload.",
+    "h1": "Strumenti gratis per PDF, foto e audio che non vedono mai i tuoi file",
+    "lede": "Ritocca le foto, rimuovi lo sfondo e crea collage. Modifica, comprimi, converti e fai l’OCR dei PDF. Trasforma la voce in testo, taglia l’audio e converti Word, Excel e PowerPoint. Tutto avviene nel tuo browser: i tuoi file non lasciano mai il tuo dispositivo.",
+    "what": "Fizzdoc è una raccolta gratuita e open source di strumenti per PDF, foto, audio, Word, Excel e PowerPoint che funziona interamente nel browser. I PDF sono elaborati con i motori qpdf, pdf.js e pdf-lib, il riconoscimento del testo usa Tesseract, la trascrizione usa Whisper e la rimozione dello sfondo il modello di IA BiRefNet, tutto sul tuo dispositivo: niente viene mai caricato su un server.",
     "faq": [
       [
         "I miei file vengono caricati da qualche parte?",

@@ -430,11 +430,11 @@
     "ws.dpiLow": "Niska (najmniejszy plik, do internetu)"
   },
   "home": {
-    "title": "Fizzdoc — Darmowe PDF, obrazy, audio i Office. Bez wysyłania.",
-    "description": "Zawsze za darmo: prywatne narzędzia do edycji, kompresji, konwersji i OCR plików PDF, obrazów, audio i Office. Bez wysyłania, bez rejestracji, 16 języków.",
-    "h1": "Narzędzia do dokumentów, które nigdy nie widzą Twoich dokumentów",
-    "lede": "Edytuj, kompresuj, konwertuj i rób OCR plików PDF. Konwertuj Word, Excel, PowerPoint i obrazy, a także przycinaj lub łącz audio. Wszystko działa w przeglądarce — Twoje pliki nigdy nie opuszczają urządzenia.",
-    "what": "Fizzdoc to darmowy, otwartoźródłowy zestaw narzędzi do dokumentów, który działa w całości w Twojej przeglądarce internetowej. Pliki PDF są przetwarzane silnikami qpdf, pdf.js i pdf-lib, rozpoznawanie tekstu korzysta z Tesseract, a pliki Office i obrazy również są obsługiwane lokalnie — dzięki temu nic nigdy nie trafia na serwer.",
+    "title": "Fizzdoc — Darmowe narzędzia PDF, edytor zdjęć i usuwanie tła",
+    "description": "Darmowe narzędzia w przeglądarce: edytuj i konwertuj PDF, edytuj zdjęcia, usuwaj tło z AI, twórz kolaże i zamieniaj mowę na tekst. Bez wysyłania i rejestracji.",
+    "h1": "Darmowe narzędzia do PDF, zdjęć i audio, które nie widzą Twoich plików",
+    "lede": "Edytuj zdjęcia, usuwaj tło i twórz kolaże. Edytuj, kompresuj, konwertuj PDF i rozpoznawaj w nich tekst (OCR). Zamieniaj mowę na tekst, przycinaj audio i konwertuj Word, Excel i PowerPoint. Wszystko dzieje się w przeglądarce — pliki nigdy nie opuszczają Twojego urządzenia.",
+    "what": "Fizzdoc to darmowy, otwartoźródłowy zestaw narzędzi do PDF, zdjęć, audio, Worda, Excela i PowerPointa, który działa w całości w przeglądarce. PDF-y są przetwarzane silnikami qpdf, pdf.js i pdf-lib, rozpoznawanie tekstu używa Tesseract, zamiana mowy na tekst używa Whisper, a usuwanie tła modelu AI BiRefNet, wszystko na Twoim urządzeniu — więc nic nigdy nie trafia na serwer.",
     "faq": [
       [
         "Czy moje pliki są gdzieś przesyłane?",

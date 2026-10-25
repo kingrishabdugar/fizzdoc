@@ -430,11 +430,11 @@
     "ws.dpiLow": "Laag (kleinste bestand, voor het web)"
   },
   "home": {
-    "title": "Fizzdoc — Gratis PDF-, Afbeeldings- & Audiotools. Geen Upload.",
-    "description": "Voor altijd gratis: privétools om PDF's, afbeeldingen, audio en Office te bewerken, comprimeren, converteren en OCR'en. Geen upload, 16 talen.",
-    "h1": "Documenttools die je documenten nooit te zien krijgen",
-    "lede": "Bewerk, comprimeer, converteer en OCR PDF's. Converteer Word, Excel, PowerPoint en afbeeldingen, en knip of voeg audio samen. Alles draait in je browser — je bestanden verlaten je apparaat nooit.",
-    "what": "Fizzdoc is een gratis, open-source verzameling documenttools die volledig in je webbrowser draait. PDF's worden verwerkt met de engines qpdf, pdf.js en pdf-lib, tekstherkenning gebruikt Tesseract, en ook Office-bestanden en afbeeldingen worden lokaal verwerkt — zodat er nooit iets naar een server wordt geüpload.",
+    "title": "Fizzdoc — Gratis PDF-tools, foto-editor en achtergrond verwijderen",
+    "description": "Gratis tools in je browser: pdf’s bewerken en omzetten, foto’s bewerken, achtergrond weghalen met AI, collages maken en spraak omzetten naar tekst. Geen upload.",
+    "h1": "Gratis pdf-, foto- en audiotools die je bestanden nooit zien",
+    "lede": "Bewerk foto’s, verwijder achtergronden en maak collages. Bewerk, comprimeer, converteer en OCR pdf’s. Zet spraak om naar tekst, knip audio en converteer Word, Excel en PowerPoint. Alles gebeurt in je browser — je bestanden verlaten nooit je apparaat.",
+    "what": "Fizzdoc is een gratis, open-source verzameling tools voor pdf’s, foto’s, audio, Word, Excel en PowerPoint die volledig in je webbrowser draait. Pdf’s worden verwerkt met de engines qpdf, pdf.js en pdf-lib, tekstherkenning gebruikt Tesseract, spraak naar tekst gebruikt Whisper en het verwijderen van achtergronden het AI-model BiRefNet, alles op je eigen apparaat — dus er wordt nooit iets naar een server geüpload.",
     "faq": [
       [
         "Worden mijn bestanden ergens geüpload?",

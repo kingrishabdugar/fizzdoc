@@ -430,11 +430,11 @@
     "ws.dpiLow": "Rendah (file terkecil, untuk web)"
   },
   "home": {
-    "title": "Fizzdoc — Alat PDF, Gambar, Audio & Office Gratis. Tanpa Upload.",
-    "description": "Gratis selamanya: alat privat untuk edit, kompres, konversi, dan OCR file PDF, gambar, audio, dan Office di browser. Tanpa upload, tanpa daftar, 16 bahasa.",
-    "h1": "Alat dokumen yang tidak pernah melihat dokumen Anda",
-    "lede": "Edit, kompres, konversi, dan OCR PDF. Konversi Word, Excel, PowerPoint, dan gambar, serta potong atau gabungkan audio. Semuanya berjalan di browser Anda — file Anda tidak pernah meninggalkan perangkat Anda.",
-    "what": "Fizzdoc adalah kumpulan alat dokumen gratis dan open source yang berjalan sepenuhnya di browser web Anda. PDF diproses dengan mesin qpdf, pdf.js, dan pdf-lib, pengenalan teks memakai Tesseract, dan file Office serta gambar juga ditangani secara lokal — jadi tidak ada yang pernah diunggah ke server.",
+    "title": "Fizzdoc — Alat PDF, Editor Foto & Hapus Background Gratis",
+    "description": "Alat gratis di browser: edit dan ubah PDF, edit foto, hapus background dengan AI, buat kolase, dan ubah suara jadi teks. Tanpa unggah, tanpa daftar.",
+    "h1": "Alat PDF, foto, dan audio gratis yang tak pernah melihat file Anda",
+    "lede": "Edit foto, hapus background, dan buat kolase. Edit, kompres, ubah, dan OCR PDF. Ubah suara jadi teks, potong audio, dan ubah Word, Excel, serta PowerPoint. Semuanya berjalan di browser Anda — file tidak pernah keluar dari perangkat Anda.",
+    "what": "Fizzdoc adalah kumpulan alat gratis dan open source untuk PDF, foto, audio, Word, Excel, dan PowerPoint yang berjalan sepenuhnya di browser web Anda. PDF diproses dengan mesin qpdf, pdf.js, dan pdf-lib, pengenalan teks memakai Tesseract, suara ke teks memakai Whisper, dan penghapusan background memakai model AI BiRefNet, semuanya di perangkat Anda sendiri — jadi tidak ada yang pernah diunggah ke server.",
     "faq": [
       [
         "Apakah file saya diunggah ke suatu tempat?",

@@ -430,11 +430,11 @@
     "ws.dpiLow": "Thấp (tệp nhỏ nhất, cho web)"
   },
   "home": {
-    "title": "Fizzdoc — Công Cụ PDF, Ảnh, Âm Thanh & Office Miễn Phí",
-    "description": "Miễn phí mãi mãi: công cụ riêng tư để chỉnh sửa, nén, chuyển đổi, OCR tệp PDF, ảnh, âm thanh và Office. Không tải lên, không đăng ký, 16 ngôn ngữ.",
-    "h1": "Công cụ tài liệu không bao giờ nhìn thấy tài liệu của bạn",
-    "lede": "Chỉnh sửa, nén, chuyển đổi và OCR PDF. Chuyển đổi Word, Excel, PowerPoint và ảnh, và cắt hoặc ghép âm thanh. Mọi thứ chạy ngay trong trình duyệt — tệp của bạn không bao giờ rời khỏi thiết bị.",
-    "what": "Fizzdoc là bộ công cụ xử lý tài liệu miễn phí, mã nguồn mở, chạy hoàn toàn trong trình duyệt web của bạn. Tệp PDF được xử lý bằng các engine qpdf, pdf.js và pdf-lib, nhận dạng văn bản dùng Tesseract, còn tệp Office và hình ảnh cũng được xử lý ngay tại chỗ — nên không có gì bao giờ được tải lên máy chủ.",
+    "title": "Fizzdoc — Công cụ PDF, chỉnh sửa ảnh và xóa phông miễn phí",
+    "description": "Công cụ miễn phí ngay trên trình duyệt: sửa và chuyển đổi PDF, chỉnh ảnh, xóa phông bằng AI, ghép ảnh và chuyển giọng nói thành văn bản. Không tải lên.",
+    "h1": "Công cụ PDF, ảnh và âm thanh miễn phí không bao giờ thấy tệp của bạn",
+    "lede": "Chỉnh ảnh, xóa phông và ghép ảnh. Sửa, nén, chuyển đổi và OCR PDF. Chuyển giọng nói thành văn bản, cắt âm thanh và chuyển đổi Word, Excel, PowerPoint. Mọi thứ chạy trong trình duyệt — tệp của bạn không bao giờ rời khỏi thiết bị.",
+    "what": "Fizzdoc là bộ công cụ miễn phí, mã nguồn mở cho PDF, ảnh, âm thanh, Word, Excel và PowerPoint, chạy hoàn toàn trong trình duyệt web của bạn. PDF được xử lý bằng các engine qpdf, pdf.js và pdf-lib, nhận dạng chữ dùng Tesseract, giọng nói thành văn bản dùng Whisper và xóa phông dùng mô hình AI BiRefNet, tất cả trên thiết bị của bạn — nên không có gì được tải lên máy chủ.",
     "faq": [
       [
         "Tệp của tôi có được tải lên đâu không?",

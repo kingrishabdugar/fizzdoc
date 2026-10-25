@@ -430,11 +430,11 @@
     "ws.dpiLow": "Niedrig (kleinste Datei, fürs Web)"
   },
   "home": {
-    "title": "Fizzdoc — Kostenlose PDF-, Bild-, Audio- & Office-Tools",
-    "description": "Für immer kostenlos: PDFs, Bilder, Audio und Office im Browser bearbeiten, komprimieren, konvertieren und per OCR erfassen. Kein Upload, keine Anmeldung.",
-    "h1": "Dokumenten-Tools, die Ihre Dokumente nie zu sehen bekommen",
-    "lede": "PDFs bearbeiten, komprimieren, konvertieren und per OCR erfassen. Word, Excel, PowerPoint und Bilder konvertieren sowie Audio schneiden oder zusammenfügen. Alles läuft im Browser — Ihre Dateien verlassen nie Ihr Gerät.",
-    "what": "Fizzdoc ist eine kostenlose Open-Source-Sammlung von Dokumenten-Tools, die vollständig in Ihrem Webbrowser läuft. PDFs werden mit den Engines qpdf, pdf.js und pdf-lib verarbeitet, die Texterkennung nutzt Tesseract, und auch Office-Dateien und Bilder werden lokal verarbeitet — es wird also nie etwas auf einen Server hochgeladen.",
+    "title": "Fizzdoc — Kostenlose PDF-Tools, Fotoeditor & Hintergrund entfernen",
+    "description": "Kostenlose Tools im Browser: PDFs bearbeiten und umwandeln, Fotos bearbeiten, Hintergrund per KI entfernen, Collagen machen, Sprache in Text. Kein Upload.",
+    "h1": "Kostenlose PDF-, Foto- und Audio-Tools, die deine Dateien nie sehen",
+    "lede": "Fotos bearbeiten, Hintergründe entfernen und Collagen erstellen. PDFs bearbeiten, komprimieren, umwandeln und per OCR erkennen. Sprache in Text umwandeln, Audio schneiden und Word, Excel und PowerPoint umwandeln. Alles läuft in deinem Browser – deine Dateien verlassen nie dein Gerät.",
+    "what": "Fizzdoc ist eine kostenlose Open-Source-Sammlung von Tools für PDFs, Fotos, Audio, Word, Excel und PowerPoint, die komplett in deinem Browser läuft. PDFs werden mit den Engines qpdf, pdf.js und pdf-lib verarbeitet, die Texterkennung nutzt Tesseract, Sprache zu Text nutzt Whisper und das Entfernen von Hintergründen das KI-Modell BiRefNet, alles auf deinem eigenen Gerät – deshalb wird nie etwas auf einen Server hochgeladen.",
     "faq": [
       [
         "Werden meine Dateien irgendwohin hochgeladen?",
