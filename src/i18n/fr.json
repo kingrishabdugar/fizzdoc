@@ -430,11 +430,11 @@
     "ws.dpiLow": "Basse (fichier le plus léger, pour le web)"
   },
   "home": {
-    "title": "Fizzdoc — Outils Gratuits PDF, Image, Audio et Office",
-    "description": "Gratuit pour toujours : modifiez, compressez, convertissez et OCR vos PDF, images, audio et fichiers Office dans le navigateur. Sans envoi, sans inscription.",
-    "h1": "Des outils de documents qui ne voient jamais vos documents",
-    "lede": "Modifiez, compressez, convertissez et faites de l'OCR sur vos PDF. Convertissez Word, Excel, PowerPoint et images, et coupez ou fusionnez de l'audio. Tout se passe dans votre navigateur — vos fichiers ne quittent jamais votre appareil.",
-    "what": "Fizzdoc est une suite d'outils de documents gratuite et open source qui fonctionne entièrement dans votre navigateur web. Les PDF sont traités avec les moteurs qpdf, pdf.js et pdf-lib, la reconnaissance de texte utilise Tesseract, et les fichiers Office et les images sont aussi traités localement — rien n'est jamais envoyé à un serveur.",
+    "title": "Fizzdoc — Outils PDF, éditeur photo et suppression de fond gratuits",
+    "description": "Outils gratuits dans le navigateur : modifiez et convertissez des PDF, retouchez vos photos, supprimez le fond par IA, créez des collages, transcrivez la voix.",
+    "h1": "Des outils PDF, photo et audio gratuits qui ne voient jamais vos fichiers",
+    "lede": "Retouchez vos photos, supprimez le fond et créez des collages. Modifiez, compressez, convertissez et passez à l’OCR vos PDF. Transformez la voix en texte, coupez l’audio et convertissez Word, Excel et PowerPoint. Tout se passe dans votre navigateur : vos fichiers ne quittent jamais votre appareil.",
+    "what": "Fizzdoc est un ensemble gratuit et open source d’outils pour les PDF, les photos, l’audio, Word, Excel et PowerPoint, qui fonctionne entièrement dans votre navigateur. Les PDF sont traités avec les moteurs qpdf, pdf.js et pdf-lib, la reconnaissance de texte utilise Tesseract, la transcription utilise Whisper et la suppression de fond le modèle d’IA BiRefNet, le tout sur votre propre appareil : rien n’est jamais envoyé à un serveur.",
     "faq": [
       [
         "Mes fichiers sont-ils envoyés quelque part ?",

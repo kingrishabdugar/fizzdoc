@@ -430,11 +430,11 @@
     "ws.dpiLow": "Düşük (en küçük dosya, web için)"
   },
   "home": {
-    "title": "Fizzdoc — Ücretsiz PDF, Görsel, Ses ve Office. Yüklemesiz.",
-    "description": "Sonsuza dek ücretsiz: PDF, görsel, ses ve Office dosyalarını düzenleyen, sıkıştıran, dönüştüren, OCR yapan özel araçlar. Yükleme yok, kayıt yok, 16 dil.",
-    "h1": "Belgelerinizi hiç görmeyen belge araçları",
-    "lede": "PDF düzenleyin, sıkıştırın, dönüştürün ve OCR uygulayın. Word, Excel, PowerPoint ve görselleri dönüştürün, sesi kesin veya birleştirin. Her şey tarayıcınızda çalışır — dosyalarınız cihazınızdan asla çıkmaz.",
-    "what": "Fizzdoc, tamamen web tarayıcınızın içinde çalışan ücretsiz, açık kaynaklı bir belge araçları setidir. PDF'ler qpdf, pdf.js ve pdf-lib motorlarıyla işlenir, metin tanıma Tesseract kullanır ve Office dosyaları ile görseller de yerel olarak işlenir — böylece hiçbir şey bir sunucuya yüklenmez.",
+    "title": "Fizzdoc — Ücretsiz PDF Araçları, Fotoğraf Düzenleyici, Arka Plan Silme",
+    "description": "Tarayıcıda ücretsiz araçlar: PDF düzenleyin ve dönüştürün, fotoğraf düzenleyin, yapay zekâyla arka planı silin, kolaj yapın, sesi yazıya çevirin. Yükleme yok.",
+    "h1": "Dosyalarınızı asla görmeyen ücretsiz PDF, fotoğraf ve ses araçları",
+    "lede": "Fotoğraf düzenleyin, arka planı silin ve kolaj yapın. PDF düzenleyin, sıkıştırın, dönüştürün ve OCR uygulayın. Sesi yazıya çevirin, ses kesin; Word, Excel ve PowerPoint dönüştürün. Her şey tarayıcınızda olur — dosyalarınız cihazınızdan hiç çıkmaz.",
+    "what": "Fizzdoc; PDF, fotoğraf, ses, Word, Excel ve PowerPoint dosyaları için tamamen web tarayıcınızda çalışan ücretsiz, açık kaynaklı bir araç setidir. PDF’ler qpdf, pdf.js ve pdf-lib motorlarıyla işlenir, metin tanıma Tesseract’ı, sesten yazıya Whisper’ı, arka plan silme ise BiRefNet yapay zekâ modelini kullanır; hepsi kendi cihazınızda — bu yüzden hiçbir şey sunucuya yüklenmez.",
     "faq": [
       [
         "Dosyalarım herhangi bir yere yükleniyor mu?",

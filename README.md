@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-<h3 align="center">Free, private tools for PDF, images, audio, Word, Excel and PowerPoint that never see your files.</h3>
+<h3 align="center">Free, private PDF, photo, audio and Office tools that never see your files.</h3>
 
 <p align="center">
   74 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>

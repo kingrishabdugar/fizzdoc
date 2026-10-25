@@ -430,11 +430,11 @@
     "ws.dpiLow": "Baja (archivo más pequeño, para la web)"
   },
   "home": {
-    "title": "Fizzdoc — Herramientas Gratis de PDF, Imagen, Audio y Office",
-    "description": "Gratis para siempre: edita, comprime, convierte y aplica OCR a PDF, imágenes, audio y Office en tu navegador. Sin subidas, sin registro, 16 idiomas.",
-    "h1": "Herramientas de documentos que nunca ven tus documentos",
-    "lede": "Edita, comprime, convierte y aplica OCR a PDF. Convierte Word, Excel, PowerPoint e imágenes, y corta o une audio. Todo funciona en tu navegador — tus archivos nunca salen de tu dispositivo.",
-    "what": "Fizzdoc es un conjunto de herramientas de documentos gratuito y de código abierto que funciona por completo en tu navegador web. Los PDF se procesan con los motores qpdf, pdf.js y pdf-lib, el reconocimiento de texto usa Tesseract, y los archivos de Office y las imágenes también se gestionan localmente — así que nunca se sube nada a un servidor.",
+    "title": "Fizzdoc — Herramientas PDF, editor de fotos y quitar fondo gratis",
+    "description": "Herramientas gratis en tu navegador: edita y convierte PDF, edita fotos, quita fondos con IA, crea collages y pasa voz a texto. Sin subir archivos ni registro.",
+    "h1": "Herramientas gratis de PDF, fotos y audio que nunca ven tus archivos",
+    "lede": "Edita fotos, quita fondos y crea collages. Edita, comprime, convierte y aplica OCR a PDF. Pasa voz a texto, corta audio y convierte Word, Excel y PowerPoint. Todo ocurre en tu navegador: tus archivos nunca salen de tu dispositivo.",
+    "what": "Fizzdoc es un conjunto gratuito y de código abierto de herramientas para PDF, fotos, audio, Word, Excel y PowerPoint que funciona por completo en tu navegador. Los PDF se procesan con los motores qpdf, pdf.js y pdf-lib, el reconocimiento de texto usa Tesseract, la voz a texto usa Whisper y la eliminación de fondos usa el modelo de IA BiRefNet, todo en tu propio dispositivo, así que nada se sube nunca a un servidor.",
     "faq": [
       [
         "¿Se suben mis archivos a algún sitio?",

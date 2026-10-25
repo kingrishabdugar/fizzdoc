@@ -430,11 +430,11 @@
     "ws.dpiLow": "Baixa (arquivo menor, para a web)"
   },
   "home": {
-    "title": "Fizzdoc — Ferramentas Grátis de PDF, Imagem, Áudio e Office",
-    "description": "Grátis para sempre: edite, comprima, converta e use OCR em PDF, imagens, áudio e Office no navegador. Sem upload, sem cadastro, 16 idiomas.",
-    "h1": "Ferramentas de documentos que nunca veem seus documentos",
-    "lede": "Edite, comprima, converta e use OCR em PDFs. Converta Word, Excel, PowerPoint e imagens, e corte ou junte áudio. Tudo roda no seu navegador — seus arquivos nunca saem do seu dispositivo.",
-    "what": "O Fizzdoc é um conjunto gratuito e open source de ferramentas de documentos que roda inteiramente no seu navegador. Os PDFs são processados com os mecanismos qpdf, pdf.js e pdf-lib, o reconhecimento de texto usa o Tesseract, e arquivos do Office e imagens também são tratados localmente — então nada é enviado a um servidor.",
+    "title": "Fizzdoc — Ferramentas PDF, editor de fotos e remover fundo grátis",
+    "description": "Ferramentas grátis no navegador: edite e converta PDF, edite fotos, remova fundos com IA, faça colagens e transforme voz em texto. Sem upload e sem cadastro.",
+    "h1": "Ferramentas grátis de PDF, fotos e áudio que nunca veem seus arquivos",
+    "lede": "Edite fotos, remova fundos e faça colagens. Edite, comprima, converta e faça OCR de PDF. Transforme voz em texto, corte áudio e converta Word, Excel e PowerPoint. Tudo acontece no seu navegador: seus arquivos nunca saem do seu dispositivo.",
+    "what": "O Fizzdoc é um conjunto gratuito e de código aberto de ferramentas para PDF, fotos, áudio, Word, Excel e PowerPoint que roda inteiramente no seu navegador. Os PDF são processados com os motores qpdf, pdf.js e pdf-lib, o reconhecimento de texto usa Tesseract, a voz em texto usa Whisper e a remoção de fundo usa o modelo de IA BiRefNet, tudo no seu próprio dispositivo, então nada é enviado a um servidor.",
     "faq": [
       [
         "Meus arquivos são enviados para algum lugar?",
