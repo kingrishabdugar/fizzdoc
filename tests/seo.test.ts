@@ -18,6 +18,7 @@ const LANGS = [
   "tr",
   "id",
   "vi",
+  "ja",
 ];
 type Entry = { title: string; description: string; keywords?: string[] };
 const catalog = (lang: string) =>

@@ -595,6 +595,7 @@ const footerHtml = (c: Copy) =>
 const OG_LOCALE: Record<Lang, string> = {
   en: 'en_US', hi: 'hi_IN', bn: 'bn_IN', mr: 'mr_IN', ta: 'ta_IN', te: 'te_IN', es: 'es_ES', pt: 'pt_BR',
   fr: 'fr_FR', de: 'de_DE', it: 'it_IT', nl: 'nl_NL', pl: 'pl_PL', tr: 'tr_TR', id: 'id_ID', vi: 'vi_VN',
+  ja: 'ja_JP',
 };
 
 function jsonLd(c: Copy, page: Page) {
