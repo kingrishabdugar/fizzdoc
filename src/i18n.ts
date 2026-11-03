@@ -18,6 +18,7 @@ export const LANGS = {
   tr: 'Türkçe',
   id: 'Bahasa Indonesia',
   vi: 'Tiếng Việt',
+  ja: '日本語',
 } as const;
 export type Lang = keyof typeof LANGS;
 
