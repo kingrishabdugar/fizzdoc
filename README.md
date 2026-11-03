@@ -9,7 +9,7 @@
 
 <p align="center">
   74 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
-  <strong>No uploads. No sign-up. No watermark. No limits. Free forever. 16 languages.</strong>
+  <strong>No uploads. No sign-up. No watermark. No limits. Free forever. 17 languages.</strong>
 </p>
 
 <p align="center"><sub>Open source. Edits PDF text in the file’s own font, transcribes audio with Whisper on your device, and never hands your files to anyone.</sub></p>
@@ -28,7 +28,7 @@
   <img src="https://img.shields.io/badge/bytes%20uploaded-0-16a34a?style=flat-square" alt="0 bytes uploaded">
   <img src="https://img.shields.io/badge/price-free%20forever-16a34a?style=flat-square" alt="Free forever">
   <img src="https://img.shields.io/badge/tools-74-e5322d?style=flat-square" alt="74 tools">
-  <img src="https://img.shields.io/badge/languages-16-2f6fdb?style=flat-square" alt="16 languages">
+  <img src="https://img.shields.io/badge/languages-17-2f6fdb?style=flat-square" alt="17 languages">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-8b5cf6?style=flat-square" alt="PRs welcome"></a>
 </p>
 
@@ -57,7 +57,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | ✏️ **Edit PDF text in its own font** | Changed lines are rewritten inside the PDF with its embedded font, size and colour |
 | 🎙️ **Speech to text on the device** | Whisper runs in the browser: TXT, SRT or VTT, offline after a one-time download |
 | 🆓 **Free forever** | No account, no daily limits, no watermark, no premium tier |
-| 🌍 **16 languages** | Including Hindi, Bengali, Marathi, Tamil and Telugu |
+| 🌍 **17 languages** | Including Hindi, Bengali, Marathi, Tamil and Telugu |
 | 📱 **Nothing to install** | Any modern browser, on phones too |
 | ✈️ **Works with the internet off** | Open a tool once, then turn off Wi-Fi or mobile data: it keeps working, an easy way to check that nothing is uploaded |
 | 📖 **Open source** | Apache-2.0, every line on GitHub |
@@ -88,8 +88,8 @@ Most free online file tools ask you to upload your contract, payslip, bank state
       <a href="https://fizzdoc.com/merge-pdf/"><img src="docs/assets/merge.gif" alt="Merging and reordering PDFs" width="100%"></a>
     </td>
     <td width="50%" valign="top">
-      <strong>🌍 16 languages</strong><br>
-      <sub>Every page, tool and error message, from Hindi and Tamil to German and Vietnamese.</sub><br><br>
+      <strong>🌍 17 languages</strong><br>
+      <sub>Every page, tool and error message, from Hindi and Tamil to German, Vietnamese and Japanese.</sub><br><br>
       <a href="https://fizzdoc.com/hi/"><img src="docs/assets/lang.gif" alt="Fizzdoc in Hindi, Spanish, Tamil, German, Bengali and Vietnamese" width="100%"></a>
     </td>
   </tr>
@@ -133,7 +133,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 
 **Google Docs, Sheets and Slides** work too: download as .docx / .xlsx / .pptx and use the matching tool. Nothing is sent to Google.
 
-**Languages:** English · हिन्दी · বাংলা · मराठी · தமிழ் · తెలుగు · Español · Português · Français · Deutsch · Italiano · Nederlands · Polski · Türkçe · Bahasa Indonesia · Tiếng Việt — [add yours](CONTRIBUTING.md#-translate-fizzdoc-no-coding-needed).
+**Languages:** English · हिन्दी · বাংলা · मराठी · தமிழ் · తెలుగు · Español · Português · Français · Deutsch · Italiano · Nederlands · Polski · Türkçe · Bahasa Indonesia · Tiếng Việt · 日本語 — [add yours](CONTRIBUTING.md#-translate-fizzdoc-no-coding-needed).
 
 ## 🤖 Use it from AI agents (MCP)
 
@@ -196,7 +196,7 @@ When something genuinely can't be carried over (a digital signature, accessibili
 
 - **Static site, zero backend.** Nothing to scale, nothing to breach, nothing to pay for.
 - **Lazy engines.** First load is about 15 KB of gzipped app code; each engine, including the Whisper speech model, downloads only when a tool needs it.
-- **One registry drives everything.** Add a tool in `src/site.ts` and its page, SEO tags, sitemap entry and footer link appear in all 16 languages.
+- **One registry drives everything.** Add a tool in `src/site.ts` and its page, SEO tags, sitemap entry and footer link appear in all 17 languages.
 
 Explore the interactive [architecture map](https://fizzdoc.com/architecture.html) or read [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
