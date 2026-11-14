@@ -232,7 +232,7 @@ export async function openCollage(files: File[], viewer: HTMLElement): Promise<C
     const picked = sizeSelect.value || String(SIZES[0]);
     sizeSelect.replaceChildren(...SIZES.map((short) => new Option(t('bg.widthOption', { w: bySide(short)[0], h: bySide(short)[1] }), String(short))));
     sizeSelect.value = picked;
-    canvas.tabIndex = ui.current() === 'photo' ? 0 : -1; // arrow keys move the picked photo
+    canvas.tabIndex = ui.current() === 'photo' || canvas.classList.contains('st-has-text') ? 0 : -1; // arrow keys move the picked photo, and text layers
     draw();
   }
 

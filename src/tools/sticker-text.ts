@@ -90,7 +90,7 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
 
   // ---- Panel ----
   const panel = element('fieldset', 'bg-group st-panel');
-  panel.append(element('legend', '', t('st.text')), element('p', 'bg-hint', t('st.hint')));
+  panel.append(element('legend', '', t('st.text')), element('p', 'bg-hint', t('st.hint')), element('p', 'bg-hint', t('st.keys')));
   const add = element('button', 'bg-btn st-add', t('st.add'));
   add.type = 'button';
   const input = element('textarea', 'st-input');
@@ -154,6 +154,7 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
   const sync = () => {
     controls.hidden = !selected;
     canvas.classList.toggle('st-has-text', layers.length > 0);
+    if (layers.length) canvas.tabIndex = 0; // the keyboard moves layers too
     if (!selected) return;
     styleRow.hidden = colorRow.hidden = selected.style === 'emoji'; // an emoji keeps its own colours
     input.value = selected.text;
@@ -264,6 +265,24 @@ export function stickerText(canvas: HTMLCanvasElement, redraw: () => void, paint
     },
     { passive: false },
   );
+  // Without a pointer: arrow keys move the selected layer (Shift for bigger steps), Page Up and
+  // Page Down pick another one, Delete removes it.
+  canvas.addEventListener('keydown', (event) => {
+    if (painting() || !layers.length) return;
+    const step = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    if (event.key === 'PageDown' || event.key === 'PageUp') {
+      const next = selected ? layers.indexOf(selected) + (event.key === 'PageDown' ? 1 : layers.length - 1) : 0;
+      select(layers[next % layers.length]);
+    } else if (!selected) return;
+    else if (step) {
+      const by = event.shiftKey ? 0.1 : 0.02;
+      selected.x = Math.min(1, Math.max(0, selected.x + step[0] * by));
+      selected.y = Math.min(1, Math.max(0, selected.y + step[1] * by));
+      redraw();
+    } else if (event.key === 'Delete' || event.key === 'Backspace') remove.click();
+    else return;
+    event.preventDefault();
+  });
 
   sync();
   return { panel, draw };
