@@ -1223,6 +1223,22 @@
         "eksportuj notatki markdown jako pdf"
       ]
     },
+    "view": {
+      "name": "Otwórz dowolny plik",
+      "summary": "Obejrzyj PDF, Word, Excel, obraz lub plik tekstowy w przeglądarce.",
+      "action": "Otwórz",
+      "title": "Darmowa przeglądarka plików: PDF, Word, Excel online | Fizzdoc",
+      "description": "Otwórz i przeczytaj za darmo PDF, Word, Excel, CSV, obraz, tekst lub Markdown w przeglądarce. Bez wysyłania, bez rejestracji, bez instalowania aplikacji.",
+      "h1": "Otwórz dowolny plik w przeglądarce",
+      "lede": "Wybierz plik, a otworzy się na stronie: PDF, Word, Excel, CSV, obrazy, tekst i Markdown. Nic nie trzeba instalować, a plik nigdy nie opuszcza Twojego urządzenia.",
+      "keywords": [
+        "przeglądarka plików online",
+        "otwórz pdf online",
+        "przeglądarka docx",
+        "otwórz plik excel online",
+        "podgląd pliku bez wysyłania"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word na PDF",
       "summary": "Konwertuj .docx na PDF, wszystkie języki są obsługiwane.",

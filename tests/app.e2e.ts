@@ -1816,3 +1816,50 @@ test('shares Fizzdoc: the phone’s share sheet, or links to the big networks an
   expect(await mobile.evaluate(() => document.documentElement.scrollWidth)).toBe(390);
   await phone.close();
 });
+
+test('opens any file on the page: PDF, Word, sheets, image, text, and says so for a kind it can’t show', async ({ page, baseURL }) => {
+  const seen = watch(page);
+  const dialogs: string[] = [];
+  page.on('dialog', (dialog) => (dialogs.push(dialog.message()), void dialog.dismiss()));
+  await page.goto('/view/');
+  const viewer = page.locator('#viewer');
+  const open = (name: string) => page.locator('#file-input').setInputFiles(file(name));
+  // Nothing to run or download here: the file is the whole page.
+  await expect(page.locator('#run')).toBeHidden();
+
+  await open('bookmarks.pdf');
+  await expect(viewer.locator('canvas.vw-page').first()).toHaveAttribute('width', /\d/);
+  expect(await viewer.locator('canvas.vw-page').count()).toBeGreaterThan(1);
+
+  // A converted document sits in a frame with scripts off and no access to the page.
+  await open('report.docx');
+  const frame = viewer.locator('iframe.vw-frame');
+  await expect(frame).toHaveAttribute('sandbox', '');
+  expect((await frame.getAttribute('srcdoc'))!.length).toBeGreaterThan(500);
+
+  await open('notes.md');
+  await expect(viewer.frameLocator('iframe.vw-frame').getByText('bold')).toBeVisible();
+
+  await open('data.csv');
+  await expect(viewer.getByRole('cell', { name: 'Smith, Jane' })).toBeVisible();
+  await expect(viewer.getByRole('cell', { name: '007' })).toBeVisible(); // shown as written, not as a number
+
+  await open('sheet.xlsx');
+  await expect(viewer.locator('table.vw-table td').first()).toBeVisible();
+
+  await open('photo.png');
+  await expect(viewer.locator('img.vw-image')).toHaveJSProperty('complete', true);
+  expect(await viewer.locator('img.vw-image').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+
+  await open('deck.pptx');
+  await expect(viewer).toContainText('can’t be shown yet');
+
+  // The script inside the Markdown file never ran, and nothing left the page.
+  expect(dialogs).toEqual([]);
+  const origin = new URL(baseURL!).origin;
+  for (const request of seen.requests) {
+    if (request.url.startsWith('blob:') || request.url.startsWith('about:')) continue;
+    expect(new URL(request.url).origin, request.url).toBe(origin);
+  }
+  expect(seen.violations).toEqual([]);
+});

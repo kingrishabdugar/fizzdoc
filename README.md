@@ -8,7 +8,7 @@
 <h3 align="center">Free, private PDF, photo, audio and Office tools that never see your files.</h3>
 
 <p align="center">
-  74 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
+  75 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
   <strong>No uploads. No sign-up. No watermark. No limits. Free forever. 17 languages.</strong>
 </p>
 
@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="https://fizzdoc.com"><strong>Open Fizzdoc →</strong></a> &nbsp;·&nbsp;
-  <a href="#-all-74-tools"><strong>All tools</strong></a> &nbsp;·&nbsp;
+  <a href="#-all-75-tools"><strong>All tools</strong></a> &nbsp;·&nbsp;
   <a href="#-how-it-works"><strong>How it works</strong></a> &nbsp;·&nbsp;
   <a href="CONTRIBUTING.md"><strong>Contribute</strong></a>
 </p>
@@ -27,7 +27,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-22c55e?style=flat-square" alt="Apache-2.0 license"></a>
   <img src="https://img.shields.io/badge/bytes%20uploaded-0-16a34a?style=flat-square" alt="0 bytes uploaded">
   <img src="https://img.shields.io/badge/price-free%20forever-16a34a?style=flat-square" alt="Free forever">
-  <img src="https://img.shields.io/badge/tools-74-e5322d?style=flat-square" alt="74 tools">
+  <img src="https://img.shields.io/badge/tools-75-e5322d?style=flat-square" alt="75 tools">
   <img src="https://img.shields.io/badge/languages-17-2f6fdb?style=flat-square" alt="17 languages">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-8b5cf6?style=flat-square" alt="PRs welcome"></a>
 </p>
@@ -53,7 +53,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | What you get | |
 |---|---|
 | 🔒 **Your file stays on your device** | No upload endpoint exists, and the CSP blocks connections to any other site |
-| 🧰 **74 tools in one place** | PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid |
+| 🧰 **75 tools in one place** | PDF, Word, Excel, PowerPoint, images, audio, JSON and Mermaid |
 | ✏️ **Edit PDF text in its own font** | Changed lines are rewritten inside the PDF with its embedded font, size and colour |
 | 🎙️ **Speech to text on the device** | Whisper runs in the browser: TXT, SRT or VTT, offline after a one-time download |
 | 🆓 **Free forever** | No account, no daily limits, no watermark, no premium tier |
@@ -119,11 +119,11 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | Export a **Mermaid diagram as PNG or SVG** for slides, docs or a README | [Mermaid to PNG](https://fizzdoc.com/mermaid-to-png/) · [Mermaid to SVG](https://fizzdoc.com/mermaid-to-svg/) |
 | **Remove hidden author and company names** before sharing an Office file or PDF | [Word](https://fizzdoc.com/remove-word-metadata/) · [Excel](https://fizzdoc.com/remove-excel-metadata/) · [PowerPoint](https://fizzdoc.com/remove-powerpoint-metadata/) · [PDF](https://fizzdoc.com/remove-pdf-metadata/) |
 
-## 🧰 All 74 tools
+## 🧰 All 75 tools
 
 | Format | Tools |
 |---|---|
-| **PDF** | [Edit PDF](https://fizzdoc.com/edit-pdf/) (change text in place, in the PDF’s own font) · [Redact](https://fizzdoc.com/redact-pdf/) (black out text for good) · [Compress](https://fizzdoc.com/compress-pdf/) · [Merge](https://fizzdoc.com/merge-pdf/) · [Split](https://fizzdoc.com/split-pdf/) · [Extract pages](https://fizzdoc.com/extract-pdf-pages/) · [Reorder pages](https://fizzdoc.com/reorder-pdf-pages/) · [Rotate](https://fizzdoc.com/rotate-pdf/) · [Delete pages](https://fizzdoc.com/delete-pdf-pages/) · [Page numbers](https://fizzdoc.com/add-page-numbers-to-pdf/) · [Watermark](https://fizzdoc.com/watermark-pdf/) · [Unlock](https://fizzdoc.com/unlock-pdf/) (incl. [Aadhaar](https://fizzdoc.com/unlock-aadhaar-pdf/), [e-PAN](https://fizzdoc.com/unlock-pan-card-pdf/), [bank statements](https://fizzdoc.com/unlock-bank-statement-pdf/), [ITR-V](https://fizzdoc.com/unlock-itr-pdf/)) · [Protect (AES-256)](https://fizzdoc.com/protect-pdf/) · [Remove metadata](https://fizzdoc.com/remove-pdf-metadata/) · [OCR](https://fizzdoc.com/ocr-pdf/) · [PDF → Scanned PDF](https://fizzdoc.com/pdf-to-scanned-pdf/) |
+| **PDF** | [Open any file](https://fizzdoc.com/view/) (a quick viewer for PDF, Word, Excel, images and text) · [Edit PDF](https://fizzdoc.com/edit-pdf/) (change text in place, in the PDF’s own font) · [Redact](https://fizzdoc.com/redact-pdf/) (black out text for good) · [Compress](https://fizzdoc.com/compress-pdf/) · [Merge](https://fizzdoc.com/merge-pdf/) · [Split](https://fizzdoc.com/split-pdf/) · [Extract pages](https://fizzdoc.com/extract-pdf-pages/) · [Reorder pages](https://fizzdoc.com/reorder-pdf-pages/) · [Rotate](https://fizzdoc.com/rotate-pdf/) · [Delete pages](https://fizzdoc.com/delete-pdf-pages/) · [Page numbers](https://fizzdoc.com/add-page-numbers-to-pdf/) · [Watermark](https://fizzdoc.com/watermark-pdf/) · [Unlock](https://fizzdoc.com/unlock-pdf/) (incl. [Aadhaar](https://fizzdoc.com/unlock-aadhaar-pdf/), [e-PAN](https://fizzdoc.com/unlock-pan-card-pdf/), [bank statements](https://fizzdoc.com/unlock-bank-statement-pdf/), [ITR-V](https://fizzdoc.com/unlock-itr-pdf/)) · [Protect (AES-256)](https://fizzdoc.com/protect-pdf/) · [Remove metadata](https://fizzdoc.com/remove-pdf-metadata/) · [OCR](https://fizzdoc.com/ocr-pdf/) · [PDF → Scanned PDF](https://fizzdoc.com/pdf-to-scanned-pdf/) |
 | **PDF conversions** | [PDF → Word](https://fizzdoc.com/pdf-to-word/) · [PDF → PowerPoint](https://fizzdoc.com/pdf-to-powerpoint/) · [PDF → JPG](https://fizzdoc.com/pdf-to-jpg/) · [PDF → PNG](https://fizzdoc.com/pdf-to-png/) · [PDF → Text](https://fizzdoc.com/pdf-to-text/) · [PDF → Markdown](https://fizzdoc.com/pdf-to-markdown/) · [JPG → PDF](https://fizzdoc.com/jpg-to-pdf/) · [PNG → PDF](https://fizzdoc.com/png-to-pdf/) · [Text → PDF](https://fizzdoc.com/text-to-pdf/) · [Markdown → PDF](https://fizzdoc.com/markdown-to-pdf/) |
 | **Word** | [Word → PDF](https://fizzdoc.com/word-to-pdf/) · [Word → HTML](https://fizzdoc.com/word-to-html/) · [Word → Markdown](https://fizzdoc.com/word-to-markdown/) · [Compress](https://fizzdoc.com/compress-word/) · [Remove metadata](https://fizzdoc.com/remove-word-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-word/) |
 | **Excel** | [Excel → CSV](https://fizzdoc.com/excel-to-csv/) · [CSV → Excel](https://fizzdoc.com/csv-to-excel/) · [Excel → JSON](https://fizzdoc.com/excel-to-json/) · [JSON → Excel](https://fizzdoc.com/json-to-excel/) · [Compress](https://fizzdoc.com/compress-excel/) · [Remove metadata](https://fizzdoc.com/remove-excel-metadata/) · [Extract images](https://fizzdoc.com/extract-images-from-excel/) |

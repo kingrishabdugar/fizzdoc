@@ -1223,6 +1223,22 @@
         "markdown notlarını pdf olarak dışa aktarma"
       ]
     },
+    "view": {
+      "name": "Herhangi Bir Dosyayı Aç",
+      "summary": "PDF, Word, Excel, görsel veya metin dosyasını tarayıcıda görüntüleyin.",
+      "action": "Aç",
+      "title": "Ücretsiz Dosya Görüntüleyici: PDF, Word, Excel Çevrimiçi Aç | Fizzdoc",
+      "description": "PDF, Word, Excel, CSV, görsel, metin veya Markdown dosyasını tarayıcıda ücretsiz açın ve okuyun. Yükleme yok, kayıt yok, uygulama kurmak yok.",
+      "h1": "Herhangi bir dosyayı tarayıcınızda açın",
+      "lede": "Bir dosya seçin, sayfada açılsın: PDF, Word, Excel, CSV, görseller, metin ve Markdown. Kurulacak bir şey yok ve dosya cihazınızdan hiç çıkmaz.",
+      "keywords": [
+        "çevrimiçi dosya görüntüleyici",
+        "pdf çevrimiçi aç",
+        "docx görüntüleyici",
+        "excel dosyası çevrimiçi aç",
+        "yüklemeden dosya görüntüle"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word'den PDF'e",
       "summary": "Bir .docx'i PDF'e dönüştürün, tüm diller desteklenir.",

@@ -1223,6 +1223,22 @@
         "exporter des notes markdown en pdf"
       ]
     },
+    "view": {
+      "name": "Ouvrir un fichier",
+      "summary": "Regardez un PDF, Word, Excel, une image ou un fichier texte dans le navigateur.",
+      "action": "Ouvrir",
+      "title": "Visionneuse de fichiers gratuite : PDF, Word, Excel en ligne | Fizzdoc",
+      "description": "Ouvrez et lisez gratuitement un PDF, Word, Excel, CSV, une image, du texte ou du Markdown dans le navigateur. Sans envoi, sans inscription, sans appli.",
+      "h1": "Ouvrez n’importe quel fichier dans votre navigateur",
+      "lede": "Choisissez un fichier et il s’ouvre dans la page : PDF, Word, Excel, CSV, images, texte et Markdown. Rien à installer, et le fichier ne quitte jamais votre appareil.",
+      "keywords": [
+        "visionneuse de fichiers en ligne",
+        "ouvrir pdf en ligne",
+        "visionneuse docx",
+        "ouvrir fichier excel en ligne",
+        "voir un fichier sans envoi"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word en PDF",
       "summary": "Convertissez un .docx en PDF, toutes langues prises en charge.",

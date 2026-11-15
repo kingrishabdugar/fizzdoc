@@ -1695,6 +1695,11 @@ dialog p {
 .viewer:empty {
   display: none;
 }
+/* This tool has nothing to run or download. */
+[data-tool='view'] .actions,
+[data-tool='view'] #file-list {
+  display: none;
+}
 .viewer {
   margin-top: 16px;
 }

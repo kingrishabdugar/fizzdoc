@@ -1223,6 +1223,22 @@
         "Markdown 表 PDF 出力"
       ]
     },
+    "view": {
+      "name": "ファイルを開く",
+      "summary": "PDF、Word、Excel、画像、テキストファイルをブラウザでそのまま見られます。",
+      "action": "開く",
+      "title": "無料ファイルビューア：PDF・Word・Excelを開く、アップロード不要 | Fizzdoc",
+      "description": "PDF、Word、Excel、CSV、画像、テキスト、Markdownのファイルを、ブラウザの中で無料で開いて読めます。アップロードも会員登録もアプリのインストールも不要です。",
+      "h1": "どんなファイルもブラウザで開く",
+      "lede": "ファイルを選ぶと、そのページで開きます。PDF、Word、Excel、CSV、画像、テキスト、Markdownに対応。インストールは不要で、ファイルが端末の外に出ることはありません。",
+      "keywords": [
+        "ファイル ビューア オンライン",
+        "PDF 開く オンライン",
+        "docx ビューア",
+        "Excel ファイル 開く オンライン",
+        "ファイル 閲覧 アップロード不要"
+      ]
+    },
     "word-to-pdf": {
       "name": "WordをPDFに変換",
       "summary": ".docxをPDFに変換します。すべての言語に対応しています。",

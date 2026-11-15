@@ -15,6 +15,7 @@ export type ToolOp =
   | 'redact-pdf'
   | 'remove-bg'
   | 'photo-edit'
+  | 'view'
   | 'collage'
   | 'scan-pdf'
   | 'ocr-pdf'
@@ -878,6 +879,32 @@ TOOLS.push(
       PRIVACY_FAQ[1],
     ],
     input: { accept: '.md,.markdown,text/markdown' },
+  },
+  {
+    op: 'view',
+    format: 'pdf',
+    slug: 'view',
+    name: 'Open Any File',
+    summary: 'Look at a PDF, Word, Excel, image or text file right in your browser.',
+    action: 'Open',
+    title: 'Free File Viewer — Open PDF, Word, Excel Online, No Upload | Fizzdoc',
+    description:
+      'Open and read a PDF, Word document, Excel sheet, CSV, image, text or Markdown file for free in your browser. No upload, no sign-up, no app to install.',
+    h1: 'Open any file in your browser',
+    lede: 'Choose a file and it opens on the page: PDF, Word, Excel, CSV, images, text and Markdown. Nothing to install and nothing to pick first, and the file never leaves your device.',
+    steps: ['Choose a file, or drop it on the page.', 'Read it right there. Long PDFs and big sheets load as you scroll.', 'Choose another file to open it instead.'],
+    faq: [
+      PRIVACY_FAQ[0],
+      ['Which files can I open?', 'PDF, Word (.docx), Excel (.xlsx), CSV, images (JPG, PNG, WebP, GIF, SVG and more), plain text, JSON and Markdown. PowerPoint is coming next.'],
+      [
+        'Does a Word file look exactly like it does in Word?',
+        'Close, but not exact. The text, headings, lists, tables and pictures are shown; page breaks and some layout details can differ. To keep the exact look, save the document as a PDF in Word first.',
+      ],
+      ['Is it safe to open a file someone sent me?', 'The file is only shown. Nothing inside it can run: documents are displayed in a locked frame with scripts switched off, and the page cannot send anything anywhere.'],
+      ['Can I edit the file?', 'This page only shows it. To change a PDF use Edit PDF, and for photos use the Photo Editor.'],
+      PRIVACY_FAQ[1],
+    ],
+    input: { accept: '.pdf,.docx,.xlsx,.csv,.tsv,.txt,.md,.json,image/*' },
   },
   {
     op: 'word-to-pdf',
@@ -2014,6 +2041,7 @@ const KEYWORDS: Record<string, string[]> = {
     'blur background of picture free',
     'background blur editor',
   ],
+  view: ['file viewer online', 'open pdf online', 'docx viewer', 'open excel file online', 'view file without uploading'],
   'whatsapp-sticker-maker': [
     'whatsapp sticker maker',
     'make sticker from photo',

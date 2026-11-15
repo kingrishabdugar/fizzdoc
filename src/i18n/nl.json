@@ -1223,6 +1223,22 @@
         "markdown notities exporteren als pdf"
       ]
     },
+    "view": {
+      "name": "Open elk bestand",
+      "summary": "Bekijk een pdf, Word, Excel, afbeelding of tekstbestand in je browser.",
+      "action": "Openen",
+      "title": "Gratis bestandsviewer: pdf, Word, Excel online openen | Fizzdoc",
+      "description": "Open en lees gratis een pdf, Word, Excel, CSV, afbeelding, tekst of Markdown in je browser. Geen upload, geen account, geen app om te installeren.",
+      "h1": "Open elk bestand in je browser",
+      "lede": "Kies een bestand en het opent op de pagina: pdf, Word, Excel, CSV, afbeeldingen, tekst en Markdown. Niets te installeren, en het bestand verlaat je apparaat nooit.",
+      "keywords": [
+        "bestandsviewer online",
+        "pdf online openen",
+        "docx viewer",
+        "excel bestand online openen",
+        "bestand bekijken zonder upload"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word naar PDF",
       "summary": "Converteer een .docx naar PDF, alle talen ondersteund.",

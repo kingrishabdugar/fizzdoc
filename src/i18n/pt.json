@@ -1223,6 +1223,22 @@
         "exportar anotações markdown como pdf"
       ]
     },
+    "view": {
+      "name": "Abrir qualquer arquivo",
+      "summary": "Veja um PDF, Word, Excel, imagem ou arquivo de texto no navegador.",
+      "action": "Abrir",
+      "title": "Visualizador de arquivos grátis: PDF, Word, Excel sem upload | Fizzdoc",
+      "description": "Abra e leia grátis um PDF, Word, Excel, CSV, imagem, texto ou Markdown no navegador. Sem upload, sem cadastro e sem instalar nenhum aplicativo.",
+      "h1": "Abra qualquer arquivo no navegador",
+      "lede": "Escolha um arquivo e ele abre na página: PDF, Word, Excel, CSV, imagens, texto e Markdown. Não há nada para instalar e o arquivo nunca sai do seu dispositivo.",
+      "keywords": [
+        "visualizador de arquivos online",
+        "abrir pdf online",
+        "visualizador docx",
+        "abrir arquivo excel online",
+        "ver arquivo sem upload"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word para PDF",
       "summary": "Converta um .docx em PDF, com suporte a todos os idiomas.",
