@@ -201,7 +201,7 @@ export async function openPhotoEditor(file: File, viewer: HTMLElement): Promise<
     const movable = state.shape !== 'original' || state.zoom > 1;
     dragHint.hidden = !movable;
     canvas.classList.toggle('pe-movable', movable);
-    canvas.tabIndex = movable ? 0 : -1; // arrow keys move the frame too
+    canvas.tabIndex = movable || canvas.classList.contains('st-has-text') ? 0 : -1; // arrow keys move the frame, and text layers
     // The centre the frame really has (it stops at the photo's edges), so the next drag starts from there.
     const { tw, th, box } = kept();
     const [bx, by, w, h] = box;

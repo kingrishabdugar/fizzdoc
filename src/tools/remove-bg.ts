@@ -190,10 +190,26 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   };
   // The Sticker Maker's text, drawn over the cut-out (see sticker-text.ts).
   let text: StickerText | undefined;
+  // Where the keyboard's brush is, in photo pixels; set by the arrow keys while a touch-up tool is on.
+  let keyAt: [number, number] | undefined;
   const draw = () => {
     if (animated) return compose(canvas, frames[shown].cut, frames[shown].photo, backdrop);
     compose(canvas, cut, photo, backdrop, look());
     text?.draw(preview, canvas.width, canvas.height, true);
+    if (!keyAt) return;
+    // A ring the size of the brush, light on dark so it shows on any photo.
+    const [fx, fy, fw, fh] = frame;
+    const scale = canvas.width / canvas.getBoundingClientRect().width;
+    preview.save();
+    preview.beginPath();
+    preview.arc(((keyAt[0] - fx) / fw) * canvas.width, ((keyAt[1] - fy) / fh) * canvas.height, (Number(brush.value) / 2) * scale, 0, Math.PI * 2);
+    preview.lineWidth = 4 * scale;
+    preview.strokeStyle = '#000';
+    preview.stroke();
+    preview.lineWidth = 2 * scale;
+    preview.strokeStyle = '#fff';
+    preview.stroke();
+    preview.restore();
   };
   let timer: ReturnType<typeof setTimeout> | undefined;
   const play = () => {
@@ -257,6 +273,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   upload.type = 'file';
   upload.accept = 'image/*';
   upload.className = 'bg-hidden';
+  upload.setAttribute('aria-label', t('bg.photo'));
   const photoChoice = choice(t('bg.photo'), () => {
     if (!ownPhoto) {
       upload.click();
@@ -403,7 +420,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   }
 
   // ---- Touch up ----
-  touch.append(element('p', 'bg-hint', t('bg.touchHint')), element('p', 'bg-hint', t('bg.magicHint')));
+  touch.append(element('p', 'bg-hint', t('bg.touchHint')), element('p', 'bg-hint', t('bg.magicHint')), element('p', 'bg-hint', t('bg.keys')));
   const tools = element('div', 'bg-tools');
   const modes: HTMLButtonElement[] = [];
   type Mode = 'erase' | 'restore' | 'magicErase' | 'magicRestore';
@@ -416,6 +433,11 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       mode = mode === key ? null : key;
       for (const other of modes) other.setAttribute('aria-pressed', String(other === button && mode === key));
       stage.classList.toggle('painting', mode !== null);
+      canvas.tabIndex = mode || canvas.classList.contains('st-has-text') ? 0 : -1; // the keyboard paints too
+      if (!mode && keyAt) {
+        keyAt = undefined;
+        draw();
+      }
       // The brush works on the picture: bring it into view.
       if (mode) stage.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     };
@@ -649,6 +671,33 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
     canvas.addEventListener('pointermove', paint);
     canvas.addEventListener('pointerup', end, { once: true });
     canvas.addEventListener('pointercancel', end, { once: true });
+  });
+  // Without a pointer: arrow keys move a ring over the picture (Shift for bigger steps), and
+  // Space or Enter paints, or taps, where it is.
+  canvas.addEventListener('keydown', (event) => {
+    if (!mode) return;
+    const step = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    const [fx, fy, fw, fh] = frame;
+    const [x, y] = keyAt ?? [fx + fw / 2, fy + fh / 2];
+    if (step) {
+      const by = (event.shiftKey ? 0.1 : 0.02) * fw;
+      keyAt = [Math.min(fx + fw - 1, Math.max(fx, x + step[0] * by)), Math.min(fy + fh - 1, Math.max(fy, y + step[1] * by))];
+      draw();
+    } else if (event.key === ' ' || event.key === 'Enter') {
+      keyAt = [x, y];
+      if (mode === 'magicErase' || mode === 'magicRestore') magicTap(x, y, mode === 'magicRestore');
+      else {
+        stroke = new Map();
+        dab(x, y, (Number(brush.value) / 2) * (fw / canvas.getBoundingClientRect().width));
+        finish();
+      }
+    } else return;
+    event.preventDefault();
+  });
+  canvas.addEventListener('blur', () => {
+    if (!keyAt) return;
+    keyAt = undefined;
+    draw();
   });
 
   // ---- Sharper edges: the 1024 px model, offered when the photo was done on a graphics chip ----

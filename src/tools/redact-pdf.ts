@@ -105,7 +105,7 @@ export function findBoxes(items: TextItemLike[], find: Finder, measure = measure
   return boxes;
 }
 
-type Viewport = { width: number; convertToViewportPoint(x: number, y: number): number[]; convertToPdfPoint(x: number, y: number): number[] };
+type Viewport = { width: number; height: number; convertToViewportPoint(x: number, y: number): number[]; convertToPdfPoint(x: number, y: number): number[] };
 
 /** Axis-aligned CSS-pixel rectangle of a PDF-space box. */
 function screenBox(viewport: Viewport, box: Box, dpr: number) {
@@ -181,6 +181,8 @@ export async function openRedactor(file: File, viewer: HTMLElement): Promise<Red
   }
   const views: PageView[] = [];
   let marks: Box[][] = Array.from({ length: doc.numPages }, () => []);
+  // The box the keyboard is moving, if any (see enableKeys).
+  let keyBox: Box | undefined;
   const history: Box[][][] = [];
   const change = (next: Box[][]) => {
     history.push(marks);
@@ -209,7 +211,7 @@ export async function openRedactor(file: File, viewer: HTMLElement): Promise<Red
     view.overlay.replaceChildren(
       ...marks[index].map((box) => {
         const mark = document.createElement('div');
-        mark.className = 'redact-box';
+        mark.className = box === keyBox ? 'redact-box key' : 'redact-box';
         place(mark, screenBox(viewport, box, view.dpr));
         const remove = button('×', 'redact-remove');
         remove.setAttribute('aria-label', t('rd.remove'));
@@ -273,6 +275,56 @@ export async function openRedactor(file: File, viewer: HTMLElement): Promise<Red
     });
   }
 
+  // Without a pointer: on a focused page, Enter puts a box in the middle, arrow keys move it
+  // (with Shift they resize it), Delete removes it and Escape lets go of it.
+  function enableKeys(view: PageView, index: number) {
+    view.overlay.tabIndex = 0;
+    view.overlay.setAttribute('role', 'group');
+    view.overlay.setAttribute('aria-label', t('rd.pageKeys', { n: index + 1 }));
+    view.overlay.addEventListener('keydown', (event) => {
+      const viewport = view.viewport;
+      if (!viewport || event.target !== view.overlay) return;
+      const { width, height } = viewport;
+      const toBox = (left: number, top: number, right: number, bottom: number): Box => {
+        const [ax, ay] = viewport.convertToPdfPoint(left, top);
+        const [bx, by] = viewport.convertToPdfPoint(right, bottom);
+        return { x0: Math.min(ax, bx), y0: Math.min(ay, by), x1: Math.max(ax, bx), y1: Math.max(ay, by) };
+      };
+      const active = keyBox && marks[index].includes(keyBox) ? keyBox : undefined;
+      const step = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+      if (event.key === 'Enter' && !active) {
+        const added = (keyBox = toBox(width * 0.4, height * 0.475, width * 0.6, height * 0.525));
+        change(marks.map((page, i) => (i === index ? [...page, added] : page)));
+      } else if (!active) return;
+      else if (step) {
+        const [ax, ay] = viewport.convertToViewportPoint(active.x0, active.y0);
+        const [bx, by] = viewport.convertToViewportPoint(active.x1, active.y1);
+        let [left, top, right, bottom] = [Math.min(ax, bx), Math.min(ay, by), Math.max(ax, bx), Math.max(ay, by)];
+        const dx = step[0] * width * 0.01;
+        const dy = step[1] * height * 0.01;
+        if (event.shiftKey) {
+          right = Math.min(width, Math.max(left + 8, right + dx));
+          bottom = Math.min(height, Math.max(top + 8, bottom + dy));
+        } else {
+          const mx = Math.min(width - right, Math.max(-left, dx));
+          const my = Math.min(height - bottom, Math.max(-top, dy));
+          [left, top, right, bottom] = [left + mx, top + my, right + mx, bottom + my];
+        }
+        // One Undo step takes the whole box away, so moving it isn't added to the history.
+        const moved = (keyBox = toBox(left, top, right, bottom));
+        marks = marks.map((page, i) => (i === index ? page.map((box) => (box === active ? moved : box)) : page));
+        refresh();
+      } else if (event.key === 'Delete' || event.key === 'Backspace') {
+        keyBox = undefined;
+        change(marks.map((page, i) => (i === index ? page.filter((box) => box !== active) : page)));
+      } else if (event.key === 'Escape') {
+        keyBox = undefined;
+        refresh();
+      } else return;
+      event.preventDefault();
+    });
+  }
+
   const first = (await doc.getPage(1)).getViewport({ scale: 1 });
   const observer = new IntersectionObserver(
     (entries) => {
@@ -299,6 +351,7 @@ export async function openRedactor(file: File, viewer: HTMLElement): Promise<Red
     const view: PageView = { wrapper, canvas, overlay, dpr: 1 };
     views.push(view);
     enableDrawing(view, index);
+    enableKeys(view, index);
     observer.observe(wrapper);
   }
 
