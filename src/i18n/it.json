@@ -1223,6 +1223,22 @@
         "esportare appunti markdown come pdf"
       ]
     },
+    "view": {
+      "name": "Apri qualsiasi file",
+      "summary": "Guarda un PDF, Word, Excel, un’immagine o un file di testo nel browser.",
+      "action": "Apri",
+      "title": "Visualizzatore di file gratis: PDF, Word, Excel senza upload | Fizzdoc",
+      "description": "Apri e leggi gratis un PDF, Word, Excel, CSV, un’immagine, un testo o un Markdown nel browser. Nessun upload, nessuna registrazione, nessuna app.",
+      "h1": "Apri qualsiasi file nel browser",
+      "lede": "Scegli un file e si apre nella pagina: PDF, Word, Excel, CSV, immagini, testo e Markdown. Niente da installare, e il file non lascia mai il tuo dispositivo.",
+      "keywords": [
+        "visualizzatore file online",
+        "aprire pdf online",
+        "visualizzatore docx",
+        "aprire file excel online",
+        "vedere file senza upload"
+      ]
+    },
     "word-to-pdf": {
       "name": "Da Word a PDF",
       "summary": "Converti un .docx in PDF, tutte le lingue supportate.",

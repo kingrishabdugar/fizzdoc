@@ -1,0 +1,56 @@
+/* Open any file: the page shows the file, nothing else. */
+.vw-pages {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+.vw-page {
+  width: min(100%, 900px);
+  background: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.2);
+}
+.vw-frame {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+.vw-image {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.vw-text {
+  max-height: 80vh;
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.vw-scroll {
+  max-height: 80vh;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.vw-sheet {
+  margin: 16px 0 8px;
+}
+.vw-table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.vw-table td {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.vw-table tr:first-child td {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  font-weight: 600;
+}

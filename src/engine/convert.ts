@@ -667,6 +667,16 @@ async function readWorkbook(file: File): Promise<Workbook> {
   return { sheets, text, value };
 }
 
+/** Every sheet of a workbook, or the one table of a CSV file, as text cells: for showing on a page. */
+export async function tables(file: File): Promise<{ name: string; rows: string[][] }[]> {
+  if (/\.(csv|tsv)$/i.test(file.name)) {
+    const raw = (await file.text()).replace(/^﻿/, '');
+    return [{ name: baseName(file), rows: parseCsv(raw, detectDelimiter(raw)) }];
+  }
+  const book = await readWorkbook(file);
+  return book.sheets.map((sheet) => ({ name: sheet.name, rows: sheet.rows.map((row) => row.map(book.text)) }));
+}
+
 export async function xlsxToCsv(file: File): Promise<Output> {
   const book = await readWorkbook(file);
   const sheets = book.sheets.map((sheet) => ({

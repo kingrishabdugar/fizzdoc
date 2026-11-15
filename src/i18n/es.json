@@ -1223,6 +1223,22 @@
         "exportar notas markdown a pdf"
       ]
     },
+    "view": {
+      "name": "Abrir cualquier archivo",
+      "summary": "Mira un PDF, Word, Excel, imagen o archivo de texto en tu navegador.",
+      "action": "Abrir",
+      "title": "Visor de archivos gratis: abre PDF, Word y Excel sin subir | Fizzdoc",
+      "description": "Abre y lee gratis un PDF, Word, Excel, CSV, imagen, texto o Markdown en tu navegador. Sin subir archivos, sin registro y sin instalar ninguna app.",
+      "h1": "Abre cualquier archivo en tu navegador",
+      "lede": "Elige un archivo y se abre en la página: PDF, Word, Excel, CSV, imágenes, texto y Markdown. No hay nada que instalar y el archivo nunca sale de tu dispositivo.",
+      "keywords": [
+        "visor de archivos online",
+        "abrir pdf online",
+        "visor docx",
+        "abrir archivo excel online",
+        "ver archivo sin subirlo"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word a PDF",
       "summary": "Convierte un .docx a PDF, con todos los idiomas.",

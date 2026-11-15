@@ -1223,6 +1223,22 @@
         "ekspor catatan markdown jadi pdf"
       ]
     },
+    "view": {
+      "name": "Buka File Apa Saja",
+      "summary": "Lihat file PDF, Word, Excel, gambar, atau teks langsung di browser.",
+      "action": "Buka",
+      "title": "Penampil File Gratis: Buka PDF, Word, Excel Tanpa Unggah | Fizzdoc",
+      "description": "Buka dan baca file PDF, Word, Excel, CSV, gambar, teks, atau Markdown gratis di browser. Tanpa unggah, tanpa daftar, tanpa memasang aplikasi.",
+      "h1": "Buka file apa saja di browser Anda",
+      "lede": "Pilih file dan file itu terbuka di halaman: PDF, Word, Excel, CSV, gambar, teks, dan Markdown. Tidak ada yang perlu dipasang, dan file tidak pernah keluar dari perangkat Anda.",
+      "keywords": [
+        "penampil file online",
+        "buka pdf online",
+        "penampil docx",
+        "buka file excel online",
+        "lihat file tanpa unggah"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word ke PDF",
       "summary": "Konversi .docx ke PDF, semua bahasa didukung.",

@@ -1223,6 +1223,22 @@
         "markdown-notizen als pdf exportieren"
       ]
     },
+    "view": {
+      "name": "Beliebige Datei öffnen",
+      "summary": "PDF, Word, Excel, Bild oder Textdatei direkt im Browser ansehen.",
+      "action": "Öffnen",
+      "title": "Kostenloser Datei-Viewer: PDF, Word, Excel online öffnen | Fizzdoc",
+      "description": "PDF, Word, Excel, CSV, Bild, Text oder Markdown kostenlos im Browser öffnen und lesen. Kein Upload, keine Anmeldung, keine App zu installieren.",
+      "h1": "Jede Datei im Browser öffnen",
+      "lede": "Datei auswählen, und sie öffnet sich auf der Seite: PDF, Word, Excel, CSV, Bilder, Text und Markdown. Nichts zu installieren, und die Datei verlässt nie dein Gerät.",
+      "keywords": [
+        "datei viewer online",
+        "pdf online öffnen",
+        "docx viewer",
+        "excel datei online öffnen",
+        "datei ansehen ohne upload"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word in PDF umwandeln",
       "summary": "Eine .docx in PDF umwandeln, alle Sprachen unterstützt.",

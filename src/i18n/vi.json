@@ -1223,6 +1223,22 @@
         "xuất ghi chú markdown thành pdf"
       ]
     },
+    "view": {
+      "name": "Mở mọi tệp",
+      "summary": "Xem tệp PDF, Word, Excel, ảnh hoặc văn bản ngay trong trình duyệt.",
+      "action": "Mở",
+      "title": "Trình xem tệp miễn phí: mở PDF, Word, Excel không tải lên | Fizzdoc",
+      "description": "Mở và đọc miễn phí tệp PDF, Word, Excel, CSV, ảnh, văn bản hoặc Markdown ngay trong trình duyệt. Không tải lên, không đăng ký, không cần cài ứng dụng.",
+      "h1": "Mở mọi tệp ngay trong trình duyệt",
+      "lede": "Chọn một tệp và nó mở ngay trên trang: PDF, Word, Excel, CSV, ảnh, văn bản và Markdown. Không cần cài gì, và tệp không bao giờ rời khỏi thiết bị của bạn.",
+      "keywords": [
+        "trình xem tệp online",
+        "mở pdf online",
+        "trình xem docx",
+        "mở tệp excel online",
+        "xem tệp không tải lên"
+      ]
+    },
     "word-to-pdf": {
       "name": "Word sang PDF",
       "summary": "Chuyển .docx sang PDF, hỗ trợ mọi ngôn ngữ.",

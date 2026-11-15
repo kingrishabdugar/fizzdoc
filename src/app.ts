@@ -81,6 +81,7 @@ function setUp(op: ToolOp) {
   // Mirrors the input's accept list (".pdf", "image/*", …) for dropped files.
   const acceptList = input.accept.split(',');
   const accepted = (file: File) =>
+    op === 'view' || // the viewer takes any file, and says which kinds it can't show
     acceptList.some((rule) =>
       rule.startsWith('.') ? file.name.toLowerCase().endsWith(rule) : rule.endsWith('/*') ? file.type.startsWith(rule.slice(0, -1)) : file.type === rule,
     );
@@ -101,6 +102,7 @@ function setUp(op: ToolOp) {
     'remove-bg': async (file, view) => (await import('./tools/remove-bg')).openBackgroundEditor(file, view, options()),
     'photo-edit': async (file, view) => (await import('./tools/photo-edit')).openPhotoEditor(file, view),
     collage: async (_, view) => (await import('./tools/collage')).openCollage(files, view),
+    view: async (file, view) => (await import('./tools/viewer')).openViewer(file, view),
     'redact-pdf': async (file, view) => {
       const redactor = await (await import('./tools/redact-pdf')).openRedactor(file, view);
       return { save: (o, onProgress) => redactor.save(rasterOptions(o), onProgress), destroy: redactor.destroy };
