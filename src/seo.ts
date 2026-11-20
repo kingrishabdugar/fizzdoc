@@ -108,6 +108,7 @@ const ICON_PATHS: Record<ToolOp, string> = {
   'edit-pdf': '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
   'remove-bg': '<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><circle cx="12" cy="9.5" r="2.8"/><path d="M7 18a5 5 0 0 1 10 0"/>',
   'photo-edit': '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/>',
   view: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
   collage: '<rect x="3" y="3" width="8" height="18" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>',
   'redact-pdf': '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><rect x="7" y="12" width="10" height="3" fill="currentColor"/><path d="M7 18h6"/>',
@@ -193,6 +194,7 @@ const ENGINE = {
   'Transformers.js': 'https://huggingface.co/docs/transformers.js',
   'tesseract.js': 'https://tesseract.projectnaptha.com/',
   Mermaid: 'https://mermaid.js.org/',
+  uqr: 'https://github.com/unjs/uqr',
   fflate: 'https://github.com/101arrowz/fflate',
   'gifuct-js': 'https://github.com/matt-way/gifuct-js',
   gifenc: 'https://github.com/mattdesl/gifenc',
@@ -208,6 +210,7 @@ const OP_ENGINES: Partial<Record<ToolOp, Engine[]>> = {
   'image-ocr': ['tesseract.js'],
   'ocr-pdf': ['tesseract.js', 'pdf.js', 'pdf-lib'],
   'mermaid-image': ['Mermaid'],
+  qr: ['uqr', 'pdf-lib'],
   'image-convert': ['Canvas', 'fflate'],
   'photo-edit': ['Canvas'],
   collage: ['Canvas'],
@@ -395,6 +398,9 @@ function workspaceHtml(c: Copy, tool: Tool) {
             : tool.op === 'rotate'
               ? { label: c.t('ws.pagesRotate'), placeholder: c.t('ws.pagesAll') }
               : null;
+  // The QR generator starts from typing, not a file: tools/qr.ts builds its own form here.
+  if (tool.op === 'qr')
+    return `<section class="workspace wide" id="workspace" aria-label="${esc(tool.name)}"><div id="qr"${tool.preset?.kind ? ` data-kind="${esc(tool.preset.kind)}"` : ''}></div></section>`;
   const { accept, choose, multiple } = input(c, tool);
   return `
 <section class="workspace${['edit-pdf', 'redact-pdf', 'audio-split', 'remove-bg', 'photo-edit', 'collage', 'view'].includes(tool.op) ? ' wide' : ''}" id="workspace" data-multiple="${multiple}" aria-label="${esc(tool.name)}">

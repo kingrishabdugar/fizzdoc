@@ -708,6 +708,8 @@ function setUp(op: ToolOp) {
 setUpEffects();
 setUpSearch();
 const op = document.body.dataset.tool as ToolOp | '';
-if (op) setUp(op);
+const qr = document.getElementById('qr');
+if (qr) void import('./tools/qr').then(({ openQr }) => openQr(qr, { kind: qr.dataset.kind ?? '' }));
+else if (op) setUp(op);
 // Offline use: keeps every opened page and the tools' code on the device (src/sw.js).
 if (import.meta.env.PROD && 'serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));

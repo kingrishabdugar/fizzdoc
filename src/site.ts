@@ -17,6 +17,7 @@ export type ToolOp =
   | 'photo-edit'
   | 'view'
   | 'collage'
+  | 'qr'
   | 'scan-pdf'
   | 'ocr-pdf'
   | 'pdf-to-word'
@@ -1487,6 +1488,47 @@ TOOLS.push(
     input: { accept: 'image/*', multiple: true },
   },
   {
+    op: 'qr',
+    format: 'image',
+    slug: 'qr-code-generator',
+    name: 'QR Code Generator',
+    summary: 'Make a styled QR code for a link, UPI, Wi-Fi, contact or WhatsApp, with your logo.',
+    action: 'Download QR code',
+    title: 'Free QR Code Generator with Logo — UPI, Wi-Fi, vCard | Fizzdoc',
+    description:
+      'Make a free QR code with your logo, colours and frame for a link, UPI payment, Wi-Fi, contact card or WhatsApp. Never expires, no sign-up, no upload.',
+    h1: 'Make a QR code with your logo, free',
+    lede: 'Type a link, UPI ID, Wi-Fi login, contact card or WhatsApp number, then style the code: dot and corner shapes, colours and gradients, your logo and a “Scan me” frame. Download it as PNG, SVG, JPG, WebP or PDF. The code never expires, and nothing you type or upload leaves your device.',
+    steps: [
+      'Pick what the code holds (link, UPI, Wi-Fi, contact, WhatsApp and more) and fill in the details.',
+      'Pick a template, or set the shapes, colours, logo and frame yourself. The preview updates as you go.',
+      'Choose the format and size, then click “Download QR code”.',
+    ],
+    faq: [
+      [
+        'Does the QR code expire?',
+        'No. It is a static code: everything it holds is written into the code itself, so it works for as long as the link, UPI ID or Wi-Fi password in it is valid. There is no account, subscription or redirect that can stop it.',
+      ],
+      [
+        'Can I track scans or change the link later?',
+        'No, on purpose. Scan counts and editable (“dynamic”) codes need a server that every scan goes through, which would see who scans your code. Fizzdoc makes the code on your device and never sees it.',
+      ],
+      [
+        'Will it still scan with a logo?',
+        'Yes. With a logo, the strongest error correction (H) is used, which lets a phone read the code with up to 30% of it covered. Keep the logo at the default size or smaller, keep dark dots on a light background, and test it with your phone before printing.',
+      ],
+      [
+        'How do I make a UPI payment QR code?',
+        'Pick UPI, enter your UPI ID (like name@okhdfcbank), your name and, if you like, a fixed amount and note. Any UPI app, including Google Pay, PhonePe, Paytm and BHIM, opens the payment when the code is scanned.',
+      ],
+      [
+        'Which size should I print?',
+        'At least 2 cm across for a code held close, and about one tenth of the scanning distance for posters (3 m away needs a 30 cm code). Download SVG or PDF for print: they stay sharp at any size.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+  },
+  {
     op: 'photo-edit',
     format: 'image',
     slug: 'photo-editor',
@@ -2042,6 +2084,13 @@ const KEYWORDS: Record<string, string[]> = {
     'background blur editor',
   ],
   view: ['file viewer online', 'open pdf online', 'docx viewer', 'open excel file online', 'view file without uploading'],
+  'qr-code-generator': [
+    'QR code generator with logo',
+    'UPI QR code generator',
+    'Wi-Fi QR code generator',
+    'QR code that never expires',
+    'free QR code no sign-up',
+  ],
   'whatsapp-sticker-maker': [
     'whatsapp sticker maker',
     'make sticker from photo',
