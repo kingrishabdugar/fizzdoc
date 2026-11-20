@@ -1471,6 +1471,8 @@ test('removes a picture’s background on the device, keeps its full size, and p
   await page.getByRole('button', { name: 'Erase' }).click();
   // The picture scrolls into view for the brush.
   await expect(page.locator('.bg-canvas')).toBeInViewport();
+  // A ring the size of the brush stands in for the mouse pointer.
+  await expect(page.locator('.bg-canvas')).toHaveCSS('cursor', 'none');
   const box = (await page.locator('.bg-canvas').boundingBox())!;
   await page.mouse.move(box.x + box.width / 2 - 10, box.y + box.height / 2);
   await page.mouse.down();
