@@ -47,6 +47,19 @@
   overflow-wrap: anywhere;
   font: inherit;
 }
+.scan-warn {
+  margin: 0 0 6px;
+  color: var(--danger);
+  font-weight: 600;
+}
+.scan-tools {
+  justify-content: center;
+}
+.scan-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 .scan-detail {
   margin: 0;
   font-weight: 600;

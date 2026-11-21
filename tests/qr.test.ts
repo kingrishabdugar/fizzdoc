@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_STYLE, contrast, payload, svg } from '../src/engine/qr';
-import { wifiFields } from '../src/tools/qr-scan';
+import { linkWarnings, wifiFields } from '../src/tools/qr-scan';
 
 describe('QR payloads', () => {
   it('adds https:// to a bare web address and keeps other schemes', () => {
@@ -65,5 +65,12 @@ describe('QR scanning', () => {
   it('reads Wi-Fi fields back, undoing the escapes the generator adds', () => {
     const code = payload('wifi', { ssid: 'Home;Net', password: 'a:b"c', security: 'WPA' });
     expect(wifiFields(code)).toEqual({ T: 'WPA', S: 'Home;Net', P: 'a:b"c' });
+  });
+
+  it('warns about links that may not go where they seem to', () => {
+    expect(linkWarnings('https://fizzdoc.com/')).toEqual([]);
+    expect(linkWarnings('http://xn--fizzdc-8va.com/')).toHaveLength(2); // not encrypted, look-alike letters
+    expect(linkWarnings('https://paytm.com@203.0.113.9/login')).toHaveLength(2); // @ trick, bare number address
+    expect(linkWarnings('https://bit.ly/abc')).toHaveLength(1);
   });
 });

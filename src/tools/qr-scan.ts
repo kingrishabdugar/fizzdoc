@@ -26,6 +26,24 @@ export function wifiFields(text: string): Record<string, string> {
   return fields;
 }
 
+/** Signs that a link may not go where it seems to. Checked here, so the link is never sent anywhere. */
+export function linkWarnings(text: string): string[] {
+  let url: URL;
+  try {
+    url = new URL(text);
+  } catch {
+    return [];
+  }
+  const out: string[] = [];
+  if (url.protocol === 'http:') out.push(t('scan.warnHttp'));
+  if (url.hostname.split('.').some((part) => part.startsWith('xn--'))) out.push(t('scan.warnLookalike'));
+  if (/^\d+\.\d+\.\d+\.\d+$|^\[/.test(url.hostname)) out.push(t('scan.warnIp'));
+  if (url.username) out.push(t('scan.warnAt', { host: url.hostname }));
+  if (SHORTENERS.includes(url.hostname.replace(/^www\./, ''))) out.push(t('scan.warnShort'));
+  return out;
+}
+const SHORTENERS = ['bit.ly', 'tinyurl.com', 't.co', 'goo.gl', 'is.gd', 'cutt.ly', 'rb.gy', 'ow.ly', 'shorturl.at', 'tiny.cc', 'buff.ly', 'rebrand.ly'];
+
 /** What a code is and what can be done with it: open a link, join Wi-Fi, save a contact, pay… */
 function actionsFor(text: string): HTMLElement[] {
   const out: HTMLElement[] = [];
@@ -42,7 +60,10 @@ function actionsFor(text: string): HTMLElement[] {
     };
     out.push(b);
   };
-  if (/^https?:\/\//i.test(text)) link(text, t('scan.open'));
+  if (/^https?:\/\//i.test(text)) {
+    for (const warning of linkWarnings(text)) out.push(element('p', 'scan-warn', warning));
+    link(text, t('scan.open'));
+  }
   else if (/^WIFI:/i.test(text)) {
     const f = wifiFields(text);
     out.push(element('p', 'scan-detail', t('scan.wifi', { name: f.S ?? '' })));
@@ -71,7 +92,20 @@ export function openScanner(root: HTMLElement) {
   const photoButton = button(t('scan.photo'));
   const photoInput = Object.assign(element('input'), { type: 'file', accept: 'image/*', hidden: true });
   photoInput.setAttribute('aria-label', t('scan.photo'));
-  controls.append(cameraButton, photoButton, photoInput);
+  const csvButton = button(t('scan.csv'));
+  csvButton.hidden = true;
+  controls.append(cameraButton, photoButton, photoInput, csvButton);
+  // Camera tools, shown only when the camera supports them: torch, zoom, and switching cameras.
+  const cameraTools = element('div', 'actions scan-tools');
+  cameraTools.hidden = true;
+  const torch = button(t('scan.torch'));
+  torch.setAttribute('aria-pressed', 'false');
+  const flip = button(t('scan.flip'));
+  const zoom = Object.assign(element('input'), { type: 'range' });
+  zoom.setAttribute('aria-label', t('scan.zoom'));
+  const zoomLabel = element('label', 'scan-zoom', t('scan.zoom'));
+  zoomLabel.append(zoom);
+  cameraTools.append(torch, flip, zoomLabel);
   const hint = element('p', 'hint', t('scan.hint'));
   const stage = element('div', 'scan-stage');
   stage.hidden = true;
@@ -85,13 +119,21 @@ export function openScanner(root: HTMLElement) {
   status.setAttribute('role', 'status');
   const list = element('ol', 'scan-results');
   list.setAttribute('aria-label', t('scan.results'));
-  root.replaceChildren(controls, hint, stage, status, list);
+  root.replaceChildren(controls, hint, stage, cameraTools, status, list);
 
   const seen = new Set<string>();
+  const rows: [string, string][] = [];
+  // Every code read in this visit as a spreadsheet: format and text. Nothing is kept after the page closes.
+  csvButton.onclick = () => {
+    const cell = (value: string) => `"${value.replace(/"/g, '""')}"`;
+    saveFile(['Format,Text', ...rows.map(([format, text]) => `${cell(format)},${cell(text)}`)].join('\r\n'), 'scanned-codes.csv', 'text/csv');
+  };
   const show = (found: Found[]) => {
     for (const code of found) {
       if (!code.text || seen.has(code.text)) continue;
       seen.add(code.text);
+      rows.push([code.format, code.text]);
+      csvButton.hidden = false;
       const item = element('li', 'scan-result');
       const head = element('p', 'scan-format', code.format.replace(/QRCode$/, 'QR code').replace(/^(EAN|UPC)(\w+)$/, '$1-$2'));
       const text = element('pre', 'scan-text', code.text);
@@ -162,7 +204,32 @@ export function openScanner(root: HTMLElement) {
     stream = undefined;
     video.srcObject = null;
     cameraButton.textContent = t('scan.camera');
+    cameraTools.hidden = true;
   }
+  let facing: 'environment' | 'user' = 'environment';
+  /** Offers the torch and zoom only where the camera has them. */
+  const setUpTools = async () => {
+    const track = stream!.getVideoTracks()[0];
+    const can = (track.getCapabilities?.() ?? {}) as MediaTrackCapabilities & { torch?: boolean; zoom?: { min: number; max: number; step: number } };
+    torch.hidden = !can.torch;
+    torch.setAttribute('aria-pressed', 'false');
+    zoomLabel.hidden = !can.zoom;
+    if (can.zoom) Object.assign(zoom, { min: String(can.zoom.min), max: String(can.zoom.max), step: String(can.zoom.step || 0.1), value: String(can.zoom.min) });
+    flip.hidden = (await navigator.mediaDevices.enumerateDevices()).filter((d) => d.kind === 'videoinput').length < 2;
+    cameraTools.hidden = torch.hidden && zoomLabel.hidden && flip.hidden;
+  };
+  const apply = (constraint: Record<string, unknown>) => stream?.getVideoTracks()[0].applyConstraints({ advanced: [constraint as MediaTrackConstraintSet] }).catch(() => {});
+  torch.onclick = () => {
+    const on = torch.getAttribute('aria-pressed') !== 'true';
+    torch.setAttribute('aria-pressed', String(on));
+    void apply({ torch: on });
+  };
+  zoom.oninput = () => void apply({ zoom: Number(zoom.value) });
+  flip.onclick = async () => {
+    facing = facing === 'environment' ? 'user' : 'environment';
+    stopCamera();
+    await startCamera();
+  };
   const frame = element('canvas');
   const tick = async () => {
     if (!stream) return;
@@ -181,10 +248,10 @@ export function openScanner(root: HTMLElement) {
     }
     timer = setTimeout(tick, 150);
   };
-  cameraButton.onclick = async () => {
-    if (stream) return stopCamera();
+  cameraButton.onclick = () => (stream ? stopCamera() : startCamera());
+  async function startCamera() {
     try {
-      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment', width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
+      stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false });
     } catch {
       status.textContent = t('scan.noCamera');
       return;
@@ -196,7 +263,10 @@ export function openScanner(root: HTMLElement) {
     stage.hidden = false;
     cameraButton.textContent = t('scan.stop');
     status.textContent = t('scan.looking');
+    void setUpTools();
     void tick();
-  };
+  }
   addEventListener('pagehide', stopCamera);
+  // The Scan button on the home page opens this page with #camera: start right away.
+  if (location.hash === '#camera') void startCamera();
 }

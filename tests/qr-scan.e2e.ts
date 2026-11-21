@@ -26,6 +26,20 @@ test('reads a QR code and a barcode from photos, and offers the right action for
   await expect(open).toHaveAttribute('href', 'https://fizzdoc.com/');
   await expect(open).toHaveAttribute('rel', 'noopener noreferrer');
   await expect(results.locator('li')).toHaveCount(4);
+
+  // Everything read in this visit, as a spreadsheet.
+  const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Download list (CSV)' }).click()]);
+  expect(download.suggestedFilename()).toBe('scanned-codes.csv');
+});
+
+test('on a phone, the home page has a Scan button at the bottom that opens the camera scanner', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.goto('/');
+  const scan = page.getByRole('link', { name: 'Scan', exact: true });
+  await expect(scan).toBeInViewport();
+  await expect(scan).toHaveAttribute('href', '/qr-code-scanner/#camera');
+  await context.close();
 });
 
 test('a picture with no code says so', async ({ page }) => {
