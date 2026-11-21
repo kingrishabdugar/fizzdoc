@@ -428,7 +428,184 @@
     "bg.gifNote": "Hareketli GIF: her kare işlenir ve GIF olarak kaydedilir. GIF’lerde yumuşak kenar olmaz, bu yüzden “Yok” seçiliyken kenar biraz daha keskin görünür.",
     "bg.videoNote": "Bu ilk kare. Bir arka plan seçip kaydedin: her kare bu cihazda işlenir, burada yaklaşık {min} dk sürer. Bu sekmeyi açık tutun.",
     "bg.greenScreen": "Yeşil ekran",
-    "ws.dpiLow": "Düşük (en küçük dosya, web için)"
+    "ws.dpiLow": "Düşük (en küçük dosya, web için)",
+    "ws.chooseAny": "Açılacak bir dosya seçin",
+    "vw.page": "Sayfa {n} / {total}",
+    "vw.firstRows": "İlk {n} satır gösteriliyor.",
+    "vw.showAll": "{n} satırın tümünü göster",
+    "vw.cut": "Büyük dosya: yalnızca ilk kısım gösteriliyor.",
+    "vw.unknown": "Bu dosya türü henüz gösterilemiyor. PDF, Word (.docx), Excel (.xlsx), CSV, resim, metin ve Markdown dosyaları gösterilebilir.",
+    "rd.pageKeys": "Sayfa {n}. Kutu eklemek için Enter, taşımak için ok tuşları, boyutlandırmak için Shift ve ok tuşları, kaldırmak için Delete.",
+    "bg.keys": "Klavye: bir araç seçiliyken ok tuşları fırçayı resim üzerinde taşır, Boşluk boyar.",
+    "st.keys": "Klavye: ok tuşları seçili metni veya emojiyi taşır, Page Up ve Page Down başka birini seçer, Delete onu kaldırır.",
+    "qr.content": "Kodun içeriği",
+    "qr.kind": "Kod türü",
+    "qr.k.url": "Bağlantı",
+    "qr.k.text": "Metin",
+    "qr.k.email": "E-posta",
+    "qr.k.phone": "Arama",
+    "qr.k.sms": "SMS",
+    "qr.k.whatsapp": "WhatsApp",
+    "qr.k.upi": "UPI ödemesi",
+    "qr.k.wifi": "Wi-Fi",
+    "qr.k.vcard": "Kişi kartı",
+    "qr.k.event": "Etkinlik",
+    "qr.k.location": "Konum",
+    "qr.k.crypto": "Kripto",
+    "qr.f.url": "Web adresi",
+    "qr.f.text": "Metin",
+    "qr.f.to": "E-posta adresi",
+    "qr.f.subject": "Konu",
+    "qr.f.body": "Mesaj",
+    "qr.f.phone": "Telefon numarası",
+    "qr.f.message": "Mesaj",
+    "qr.f.pa": "UPI kimliği (ör. ad@okhdfcbank)",
+    "qr.f.pn": "Ödeyene görünen ad",
+    "qr.f.am": "Tutar ₹ (isteğe bağlı)",
+    "qr.f.tn": "Not (isteğe bağlı)",
+    "qr.f.ssid": "Ağ adı",
+    "qr.f.password": "Şifre",
+    "qr.f.security": "Güvenlik",
+    "qr.f.hidden": "Gizli ağ",
+    "qr.f.first": "Ad",
+    "qr.f.last": "Soyad",
+    "qr.f.email": "E-posta",
+    "qr.f.org": "Şirket",
+    "qr.f.title": "Unvan",
+    "qr.f.website": "Web sitesi",
+    "qr.f.address": "Adres",
+    "qr.f.summary": "Etkinlik adı",
+    "qr.f.start": "Başlangıç",
+    "qr.f.end": "Bitiş",
+    "qr.f.location": "Yer",
+    "qr.f.lat": "Enlem",
+    "qr.f.lng": "Boylam",
+    "qr.f.coin": "Para birimi",
+    "qr.f.wallet": "Cüzdan adresi",
+    "qr.f.amount": "Tutar (isteğe bağlı)",
+    "qr.o.WPA": "WPA / WPA2 / WPA3",
+    "qr.o.WEP": "WEP",
+    "qr.o.nopass": "Şifresiz",
+    "qr.o.bitcoin": "Bitcoin",
+    "qr.o.ethereum": "Ethereum",
+    "qr.o.litecoin": "Litecoin",
+    "qr.templates": "Şablonlar",
+    "qr.t.classic": "Klasik",
+    "qr.t.rounded": "Yuvarlak",
+    "qr.t.dots": "Noktalar",
+    "qr.t.ocean": "Okyanus geçişi",
+    "qr.t.sunset": "Gün batımı geçişi",
+    "qr.t.forest": "Orman",
+    "qr.t.scan": "“Beni tara” etiketi",
+    "qr.t.upi": "UPI ödeme çerçevesi",
+    "qr.t.wifi": "Wi-Fi etiketi",
+    "qr.t.night": "Koyu üzerine açık",
+    "qr.t.radial": "Dairesel geçiş",
+    "qr.t.clear": "Şeffaf arka plan",
+    "qr.shapes": "Şekiller",
+    "qr.dots": "Noktalar",
+    "qr.eyeFrame": "Köşe çerçeveleri",
+    "qr.eyeBall": "Köşe merkezleri",
+    "qr.s.square": "Kare",
+    "qr.s.rounded": "Yuvarlak",
+    "qr.s.extra": "Çok yuvarlak",
+    "qr.s.classy": "Zarif",
+    "qr.s.dots": "Noktalar",
+    "qr.s.circle": "Daire",
+    "qr.s.none": "Yok",
+    "qr.s.linear": "Doğrusal",
+    "qr.s.radial": "Dairesel",
+    "qr.s.label": "Altta etiket",
+    "qr.s.box": "Etiketli kutu",
+    "qr.s.L": "Düşük (%7)",
+    "qr.s.M": "Orta (%15)",
+    "qr.s.Q": "Yüksek (%25)",
+    "qr.s.H": "En yüksek (%30)",
+    "qr.colors": "Renkler",
+    "qr.color": "Noktalar",
+    "qr.gradient": "Geçiş",
+    "qr.color2": "Geçiş sonu",
+    "qr.eyeColor": "Köşeler",
+    "qr.background": "Arka plan",
+    "qr.clear": "Şeffaf arka plan",
+    "qr.logoTitle": "Logo",
+    "qr.logo": "Logonuzu ekleyin",
+    "qr.logoRemove": "Logoyu kaldır",
+    "qr.logoSize": "Logo boyutu",
+    "qr.logoBad": "Bu resim açılamadı. PNG veya JPG deneyin.",
+    "qr.logoHint": "Logonuz bu cihazda kalır. Logo eklenince kodun okunmaya devam etmesi için en güçlü hata düzeltme kullanılır.",
+    "qr.frameTitle": "Çerçeve",
+    "qr.frame": "Çerçeve",
+    "qr.frameText": "Çerçeve metni",
+    "qr.frameColor": "Çerçeve rengi",
+    "qr.more": "Daha fazla",
+    "qr.margin": "Kenar boşluğu",
+    "qr.ecc": "Hata düzeltme",
+    "qr.format": "Biçim",
+    "qr.size": "Boyut",
+    "qr.name": "Dosya adı",
+    "qr.download": "QR kodu indir",
+    "qr.copy": "Resmi kopyala",
+    "qr.share": "Paylaş",
+    "qr.empty": "Bilgileri doldurun, kodunuz burada görünür.",
+    "qr.tooLong": "Bir QR kod için metin çok uzun. Kısaltın.",
+    "qr.previewOf": "Şunun QR kodu: {text}",
+    "qr.lowContrast": "Düşük kontrast: bazı telefonlar bu kodu okuyamayabilir. Daha koyu noktalar veya daha açık arka plan kullanın.",
+    "qr.inverted": "Koyu zeminde açık noktalar: birçok telefon kamerası bunu okuyamaz. Basmadan önce deneyin.",
+    "qr.saved": "{name} kaydedildi.",
+    "qr.copied": "Kopyalandı. İstediğiniz yere yapıştırın.",
+    "qr.copyFailed": "Bu tarayıcı resmi kopyalayamadı. İndir’i kullanın.",
+    "qr.scanOk": "Kontrol edildi: bu kod taranıyor.",
+    "qr.scanBad": "Bu kod kontrolümüzde taranmadı. Daha koyu noktalar, daha küçük logo veya Klasik şablonu deneyin.",
+    "qr.icons": "Hazır simgeler",
+    "qr.i.wifi": "Wi-Fi simgesi",
+    "qr.i.upi": "Rupi simgesi",
+    "qr.i.chat": "Sohbet simgesi",
+    "qr.i.phone": "Telefon simgesi",
+    "qr.i.email": "E-posta simgesi",
+    "qr.i.location": "Konum simgesi",
+    "qr.i.link": "Bağlantı simgesi",
+    "qr.imageTitle": "Arka plan resmi",
+    "qr.image": "Arka plan resmi ekle",
+    "qr.imageRemove": "Arka plan resmini kaldır",
+    "qr.imageHint": "Resim kodun arkasında yumuşak görünür. Noktaları koyu tutun; önizlemenin yanındaki kontrol hâlâ taranıp taranmadığını söyler.",
+    "scan.camera": "Kamerayı kullan",
+    "scan.stop": "Kamerayı durdur",
+    "scan.photo": "Fotoğraf seç",
+    "scan.hint": "Ya da ekran görüntüsü yapıştırın (Ctrl+V) veya bir resmi buraya bırakın.",
+    "scan.cameraView": "Kamera görüntüsü",
+    "scan.results": "Bulunan kodlar",
+    "scan.reading": "Resim okunuyor…",
+    "scan.looking": "Kamerayı bir koda tutun.",
+    "scan.found": "{n} bulundu.",
+    "scan.none": "Kod bulunamadı. Daha net veya daha yakından çekilmiş bir fotoğraf deneyin.",
+    "scan.noCamera": "Kamera açılmadı. Kameraya izin verin ya da bir fotoğraf seçin.",
+    "scan.open": "Aç",
+    "scan.copy": "Metni kopyala",
+    "scan.copied": "Kopyalandı",
+    "scan.copyPassword": "Şifreyi kopyala",
+    "scan.wifi": "Wi-Fi ağı: {name}",
+    "scan.upi": "{name} ({id}) ödemesi {amount}",
+    "scan.pay": "UPI uygulamasıyla öde",
+    "scan.contact": "Kişiyi kaydet",
+    "scan.event": "Takvime ekle",
+    "scan.csv": "Listeyi indir (CSV)",
+    "scan.torch": "Fener",
+    "scan.flip": "Kamerayı değiştir",
+    "scan.zoom": "Yakınlaştır",
+    "scan.warnHttp": "Şifrelenmemiş (http): ağdaki herkes bu sayfayı görebilir veya değiştirebilir.",
+    "scan.warnLookalike": "Adreste başka harfleri taklit eden harfler var. Açmadan önce dikkatle kontrol edin.",
+    "scan.warnIp": "Bağlantı bir web sitesi adına değil, yalnızca rakamlardan oluşan bir adrese gidiyor.",
+    "scan.warnAt": "Gerçek site {host}: @ işaretinden önceki kısım yalnızca yanıltmak için.",
+    "scan.warnShort": "Kısa bağlantı: açılana kadar nereye gittiği görünmez.",
+    "home.scan": "Tara",
+    "home.mine": "Araçlarınız",
+    "home.mineLede": "Sabitlenen ve son kullanılan araçlar. Yalnızca bu tarayıcıda saklanır.",
+    "home.filter": "Şu araçları göster",
+    "home.all": "Tümü",
+    "pin.add": "{name} sabitle",
+    "pin.page": "Ana sayfaya sabitle",
+    "pin.pageOn": "Ana sayfaya sabitlendi"
   },
   "home": {
     "title": "Fizzdoc — Ücretsiz PDF Araçları, Fotoğraf Düzenleyici, Arka Plan Silme",
@@ -3352,6 +3529,264 @@
         "fotoğrafa yazı ekleme",
         "online fotoğraf filtreleri",
         "yüklemeden fotoğraf düzenleme"
+      ]
+    },
+    "qr-code-generator": {
+      "name": "QR Kod Oluşturucu",
+      "summary": "Bağlantı, Wi-Fi, kişi kartı veya WhatsApp için logolu, şık bir QR kod oluşturun.",
+      "action": "QR kodu indir",
+      "title": "Ücretsiz Logolu QR Kod Oluşturucu — Wi-Fi, vCard | Fizzdoc",
+      "description": "Bağlantı, Wi-Fi, kişi kartı veya WhatsApp için logo, renk ve çerçeveli ücretsiz QR kod oluşturun. Süresi dolmaz, hesap yok, yükleme yok.",
+      "h1": "Logonuzla QR kod oluşturun, ücretsiz",
+      "lede": "Bir bağlantı, Wi-Fi bilgisi, kişi kartı veya WhatsApp numarası yazın ve kodu biçimlendirin: nokta ve köşe şekilleri, renkler ve geçişler, logonuz ve “Beni tara” çerçevesi. PNG, SVG, JPG, WebP veya PDF olarak indirin. Kodun süresi asla dolmaz ve yazdığınız ya da eklediğiniz hiçbir şey cihazınızdan çıkmaz.",
+      "steps": [
+        "Kodun ne içereceğini seçin (bağlantı, Wi-Fi, kişi, WhatsApp ve daha fazlası) ve bilgileri doldurun.",
+        "Bir şablon seçin ya da şekil, renk, logo ve çerçeveyi kendiniz ayarlayın. Önizleme anında değişir.",
+        "Biçim ve boyutu seçip “QR kodu indir”e tıklayın."
+      ],
+      "faq": [
+        [
+          "QR kodun süresi doluyor mu?",
+          "Hayır. Bu statik bir koddur: içerdiği her şey kodun kendisine yazılıdır, bu yüzden bağlantı veya Wi-Fi şifresi geçerli olduğu sürece çalışır. Onu kapatabilecek bir hesap, abonelik veya yönlendirme yoktur."
+        ],
+        [
+          "Taramaları sayabilir veya bağlantıyı sonra değiştirebilir miyim?",
+          "Hayır, bilerek. Tarama saymak ve düzenlenebilir (“dinamik”) kodlar, her taramanın geçtiği ve kodunuzu kimin taradığını gören bir sunucu gerektirir. Fizzdoc kodu cihazınızda oluşturur ve asla görmez."
+        ],
+        [
+          "Logoyla da taranır mı?",
+          "Evet. Logo eklendiğinde en güçlü hata düzeltme (H) kullanılır; kodun %30’u kapalı olsa bile okunur. Logoyu varsayılan boyutta ya da daha küçük tutun, açık zeminde koyu noktalar kullanın ve basmadan önce telefonunuzla deneyin."
+        ],
+        [
+          "Hangi boyutta basmalıyım?",
+          "Yakından taranan bir kod için en az 2 cm, afişler için tarama mesafesinin onda biri (3 m’den 30 cm’lik kod). Baskı için SVG veya PDF indirin: her boyutta net kalır."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "logolu QR kod oluşturucu",
+        "Wi-Fi QR kod oluşturma",
+        "süresi dolmayan QR kod",
+        "üyeliksiz ücretsiz QR kod",
+        "kartvizit için QR kod"
+      ]
+    },
+    "qr-code-scanner": {
+      "name": "QR Kod ve Barkod Okuyucu",
+      "summary": "Kamerayla veya bir fotoğraftan QR kod ya da barkod okuyun, çevrimdışı bile.",
+      "action": "Tara",
+      "title": "Ücretsiz QR Kod ve Barkod Okuyucu — Kamera veya Fotoğraf | Fizzdoc",
+      "description": "Kamerayla ya da fotoğraf ve ekran görüntüsünden ücretsiz QR kod veya barkod okuyun. Wi-Fi’ye bağlanın, bağlantı açın, kişi kaydedin. Çevrimdışı çalışır.",
+      "h1": "Kamerayla veya fotoğraftan QR kod ya da barkod tarayın",
+      "lede": "Kamerayı koda tutun, bir fotoğraf seçin ya da ekran görüntüsü yapıştırın. Fizzdoc QR kodları ve barkodları (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec ve dahası), tek görüntüde birden fazlasını bile okur ve hiçbir şeyi açmadan önce her birinin içeriğini gösterir. Çevrimdışı çalışır ve hiçbir şey cihazınızdan çıkmaz.",
+      "steps": [
+        "“Kamerayı kullan”a tıklayıp koda tutun, ya da bir fotoğraf seçin veya ekran görüntüsü yapıştırın.",
+        "Bulunan her kod işaretlenir ve içeriğiyle listelenir.",
+        "Bağlantıyı açın, Wi-Fi şifresini kopyalayın, kişiyi kaydedin veya UPI ile ödeyin, ya da sadece metni kopyalayın."
+      ],
+      "faq": [
+        [
+          "Bilinmeyen bir QR kodu taramak güvenli mi?",
+          "Fizzdoc her kodun tam metnini gösterir ve hiçbir bağlantıyı kendiliğinden açmaz; böylece önce nereye gittiğini kontrol edebilirsiniz. Başka adresleri taklit eden adreslere ve para alacağınızı sanırken göndermenizi isteyen ödeme kodlarına dikkat edin."
+        ],
+        [
+          "Hangi kodları okur?",
+          "QR kodlar (Micro QR dahil), Data Matrix, Aztec, PDF417 ve barkodlar: EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, Codabar, ITF ve DataBar. Tek görüntüde birden fazla kod bulur."
+        ],
+        [
+          "Çevrimdışı çalışır mı?",
+          "Evet. Sayfa internetle bir kez açıldıktan sonra okuyucu bağlantı olmadan kamerayla da fotoğraflarla da çalışır."
+        ],
+        [
+          "Kamera neden açılmıyor?",
+          "Tarayıcı sorduğunda kameraya izin verin. Daha önce reddettiyseniz adresin yanındaki kilit simgesinden tekrar izin verin. Her zaman fotoğraf da seçebilirsiniz."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "resimden QR kod tarama",
+        "kameralı online QR okuyucu",
+        "ücretsiz online barkod okuyucu",
+        "ekran görüntüsünden QR okuma",
+        "uygulamasız çevrimdışı QR okuyucu"
+      ]
+    },
+    "wifi-qr-code-generator": {
+      "name": "Wi-Fi QR Kod Oluşturucu",
+      "summary": "Misafirler şifre yazmadan, bir kodu tarayarak Wi-Fi’nize bağlanır.",
+      "action": "QR kodu indir",
+      "title": "Ücretsiz Wi-Fi QR Kod Oluşturucu — Tara ve Bağlan | Fizzdoc",
+      "description": "Ücretsiz Wi-Fi QR kodu oluşturun: misafirler telefon kamerasıyla tarar ve şifre yazmadan bağlanır. Logo ve çerçeve ekleyin. Hiçbir şey yüklenmez.",
+      "h1": "Wi-Fi QR kodu oluşturun: tara ve bağlan",
+      "lede": "Ağ adını ve şifreyi yazın; misafirler telefon kamerasını koda tutarak bağlanır. Logonuz ve “Wi-Fi’ye bağlan” çerçevesiyle biçimlendirip kafe, ofis, mağaza veya ev için basın. Şifre cihazınızdan asla çıkmaz: kod tarayıcınızda oluşturulur.",
+      "steps": [
+        "Ağ adını (SSID) ve şifreyi yazın, güvenlik türünü seçin (neredeyse her zaman WPA doğrudur).",
+        "Bir şablon seçin ya da renk, logo ve çerçeveyi ayarlayın. Sayfa kodun taranıp taranmadığını kontrol eder.",
+        "PNG veya PDF olarak indirip basın ya da paylaşın."
+      ],
+      "faq": [
+        [
+          "Misafirler Wi-Fi QR kodunu nasıl kullanır?",
+          "Telefon kamerasını (veya Google Lens’i) açıp koda tutarlar. iPhone ve Android “Ağa katıl” gösterir; tek dokunuşla bağlanır, şifre yazmaya gerek yok."
+        ],
+        [
+          "Wi-Fi şifresini QR koda koymak güvenli mi?",
+          "Kod şifreyi içerir: onu tarayabilen herkes, şifreyi okumuş gibi bağlanabilir. Kodu şifreyi zaten paylaşacağınız yere koyun ve ayrı bir misafir ağı düşünün. Fizzdoc şifreyi asla görmez."
+        ],
+        [
+          "Hangi güvenlik türünü seçmeliyim?",
+          "WPA, neredeyse tüm modemlerin kullandığı WPA, WPA2 ve WPA3’ü kapsar. WEP’i yalnızca çok eski modemler için, “Şifresiz”i açık ağlar için seçin. Ağ adı yayınlanmıyorsa “Gizli ağ”ı işaretleyin."
+        ],
+        [
+          "QR kodun süresi doluyor mu?",
+          "Hayır. Kodun içerdiği her şey içine yazılıdır, bu yüzden bilgiler geçerli olduğu sürece çalışır. Onu kapatabilecek bir hesap, abonelik veya yönlendirme yoktur."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "Wi-Fi QR kod oluşturucu",
+        "QR ile Wi-Fi şifresi paylaşma",
+        "tarayarak Wi-Fi’ye bağlanma",
+        "kafe misafir Wi-Fi QR kodu",
+        "logolu WiFi QR kodu"
+      ]
+    },
+    "upi-qr-code-generator": {
+      "name": "UPI QR Kod Oluşturucu",
+      "summary": "Google Pay, PhonePe, Paytm ve BHIM’in okuduğu, UPI kimliğinize özel ödeme QR kodu.",
+      "action": "QR kodu indir",
+      "title": "Ücretsiz UPI QR Kod Oluşturucu — GPay, PhonePe, Paytm | Fizzdoc",
+      "description": "Hindistan’daki mağazanız için ücretsiz UPI ödeme QR kodu: UPI kimliği, ad ve isteğe bağlı sabit tutar. Her UPI uygulamasıyla çalışır. Üyelik yok.",
+      "h1": "UPI ödeme QR kodu oluşturun, ücretsiz",
+      "lede": "UPI kimliğinizi ve adınızı, isterseniz sabit bir tutar ve not girin; Google Pay, PhonePe, Paytm, BHIM ve tüm UPI uygulamalarının okuyabildiği bir ödeme QR kodu alın. Tezgâh için logonuzu ve “UPI ile öde” çerçevesini ekleyin. Banka ya da uygulama kaydı yok, bilgileriniz cihazınızda kalır.",
+      "steps": [
+        "UPI kimliğinizi (ör. ad@okhdfcbank) ve ödeyenlerin göreceği adı girin. Her ödeme aynıysa tutar ve not ekleyin.",
+        "“UPI ödeme çerçevesi” şablonunu ya da kendi renk ve logonuzu seçin.",
+        "PNG veya PDF olarak indirip tezgâh için basın ya da paylaşın."
+      ],
+      "faq": [
+        [
+          "Google Pay, PhonePe ve Paytm ile çalışır mı?",
+          "Evet. NPCI’nin tanımladığı standart UPI ödeme bağlantısını (upi://pay) kullanır; her UPI uygulaması bunu okur. Ödeme doğrudan koddaki UPI kimliğine gider."
+        ],
+        [
+          "Tutarı sabitleyebilir miyim?",
+          "Evet: bir tutar girerseniz uygulama onu doldurulmuş açar. Boş bırakırsanız ödeyen tutarı kendisi yazar; mağaza tezgâhı için idealdir."
+        ],
+        [
+          "Güvenli mi?",
+          "Kod yalnızca UPI kimliğinizi, adınızı ve belirlediğiniz tutarı içerir: PIN veya banka bilgisi yok. Basmadan önce kendi UPI uygulamanızla tarayıp görünen adı kontrol edin. Fizzdoc bilgilerinizi asla görmez."
+        ],
+        [
+          "QR kodun süresi doluyor mu?",
+          "Hayır. Kodun içerdiği her şey içine yazılıdır, bu yüzden bilgiler geçerli olduğu sürece çalışır. Onu kapatabilecek bir hesap, abonelik veya yönlendirme yoktur."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "ücretsiz UPI QR kod oluşturucu",
+        "mağaza için Google Pay QR kodu",
+        "PhonePe QR kod oluşturucu",
+        "tutarlı UPI ödeme QR kodu",
+        "işletme için Paytm QR kodu"
+      ]
+    },
+    "whatsapp-qr-code-generator": {
+      "name": "WhatsApp QR Kod Oluşturucu",
+      "summary": "Numaranızla, hazır bir mesajla WhatsApp sohbeti açan QR kod.",
+      "action": "QR kodu indir",
+      "title": "Ücretsiz WhatsApp QR Kod Oluşturucu — Tek Taramada Sohbet | Fizzdoc",
+      "description": "Numaranızla ve hazır mesajla sohbet açan ücretsiz WhatsApp QR kodu oluşturun. Mağaza, menü ve kartvizitler için ideal. Üyelik yok, yükleme yok.",
+      "h1": "Sohbet açan WhatsApp QR kodu oluşturun",
+      "lede": "Ülke koduyla WhatsApp numaranızı ve isterseniz “Merhaba, sipariş vermek istiyorum” gibi bir mesaj girin. Kodu tarayan herkes, mesajı zaten yazılmış şekilde sizinle sohbet açar. Mağaza, menü, kart veya ambalaj için logonuz ve çerçeveyle biçimlendirin.",
+      "steps": [
+        "Ülke koduyla numarayı (ör. +90 532 123 45 67) ve isteğe bağlı hazır mesajı girin.",
+        "Bir şablon seçin ya da renk, sohbet simgesi veya logo ve çerçeve ayarlayın.",
+        "PNG, SVG veya PDF olarak indirip basın ya da paylaşın."
+      ],
+      "faq": [
+        [
+          "WhatsApp QR kodu nasıl çalışır?",
+          "Numaranızı ve mesajınızı içeren bir wa.me bağlantısı taşır. Tarandığında WhatsApp (veya WhatsApp Business), mesaj yazılı ve gönderilmeye hazır şekilde sizinle sohbet açar."
+        ],
+        [
+          "WhatsApp Business ile çalışır mı?",
+          "Evet. Aynı bağlantı hem WhatsApp hem WhatsApp Business numaralarıyla sohbet açar."
+        ],
+        [
+          "Ülke kodu gerekli mi?",
+          "Evet, her zaman (Türkiye için 90). Boşluklar, tireler ve artı işareti otomatik silinir."
+        ],
+        [
+          "QR kodun süresi doluyor mu?",
+          "Hayır. Kodun içerdiği her şey içine yazılıdır, bu yüzden bilgiler geçerli olduğu sürece çalışır. Onu kapatabilecek bir hesap, abonelik veya yönlendirme yoktur."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "WhatsApp QR kod oluşturucu",
+        "WhatsApp sohbet QR kodu",
+        "wa.me QR kodu",
+        "WhatsApp Business QR kodu",
+        "WhatsApp sohbeti açan QR kod"
+      ]
+    },
+    "vcard-qr-code-generator": {
+      "name": "Kişi Kartı (vCard) QR Kod Oluşturucu",
+      "summary": "Adınızı, telefonunuzu, e-postanızı ve şirketinizi rehbere kaydeden QR kod.",
+      "action": "QR kodu indir",
+      "title": "Ücretsiz vCard QR Kod Oluşturucu — Kişi Kartı QR | Fizzdoc",
+      "description": "Kartvizitiniz için ücretsiz vCard QR kodu: tek tarama ad, telefon, e-posta, şirket ve web sitesini rehbere kaydeder. Üyelik yok, yükleme yok.",
+      "h1": "Kişi kartı (vCard) QR kodu oluşturun",
+      "lede": "Adınızı, telefonunuzu, e-postanızı, şirketinizi, unvanınızı, web sitenizi ve adresinizi doldurun; tek dokunuşla sizi telefon rehberine kaydeden bir QR kod alın. Kartvizitlere, e-posta imzalarına, yaka kartlarına ve stantlara koyun. Bilgileriniz cihazınızda koda dönüşür ve asla yüklenmez.",
+      "steps": [
+        "Paylaşmak istediklerinizi doldurun: ad, telefon, e-posta, şirket, unvan, web sitesi, adres.",
+        "Bir şablon seçin ya da renk, logo ve çerçeveyi ayarlayın.",
+        "Kartlara baskı için SVG veya PDF, ekranlar için PNG indirin."
+      ],
+      "faq": [
+        [
+          "vCard QR kodu taranınca ne olur?",
+          "Telefon kişi kartınızı “Kişilere ekle” düğmesiyle gösterir. Tüm iPhone ve Android kameraları burada kullanılan vCard 3.0 biçimini okur."
+        ],
+        [
+          "vCard QR kodum neden bu kadar sık?",
+          "Her bilgi koda metin ekler. Gerekmeyen alanları çıkarın, logoyu küçük tutun ve telefonların kolay okuması için en az 2,5 cm genişlikte basın."
+        ],
+        [
+          "Bilgileri sonra değiştirebilir miyim?",
+          "Basılmış bir kodda hayır: bilgiler içine yazılıdır. Bilgileriniz değişince yeni bir kod oluşturun; ücretsizdir ve bir dakika sürer."
+        ],
+        [
+          "QR kodun süresi doluyor mu?",
+          "Hayır. Kodun içerdiği her şey içine yazılıdır, bu yüzden bilgiler geçerli olduğu sürece çalışır. Onu kapatabilecek bir hesap, abonelik veya yönlendirme yoktur."
+        ],
+        [
+          "Fizzdoc ücretsiz mi?",
+          "Evet, ve ücretsiz kalacak: kayıt yok, filigran yok, günlük limit yok, ücretli katman yok. Fizzdoc, Apache-2.0 lisansıyla açık kaynaktır, bu yüzden herkes kendi kopyasını çalıştırabilir."
+        ]
+      ],
+      "keywords": [
+        "vCard QR kod oluşturucu",
+        "kartvizit QR kodu",
+        "kişi QR kodu",
+        "rehbere kaydeden QR kod",
+        "dijital kartvizit QR"
       ]
     }
   }
