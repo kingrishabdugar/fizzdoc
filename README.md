@@ -154,6 +154,10 @@ claude mcp add fizzdoc -- npx -y fizzdoc-mcp
 
 On Windows, use `claude mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp`. Setup for Codex and other clients, and the full tool list: [mcp/README.md](mcp/README.md). Image tools are on the way ([#61](https://github.com/kingrishabdugar/fizzdoc/issues/61)).
 
+### Use Fizzdoc in Codex
+
+Add the local server with `codex mcp add fizzdoc -- npx -y fizzdoc-mcp`, then ask Codex to use Fizzdoc for a PDF or audio task. The [Codex setup and project instructions](mcp/README.md#codex-cli) explain the configuration and how to keep Fizzdoc's local-only behavior clear to your agent.
+
 ## 🔒 Private by design — verify it yourself
 
 Safe for bank statements, ID cards, payslips, medical records and client files, because:
