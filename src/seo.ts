@@ -502,6 +502,10 @@ ${proofHtml(c)}`;
   ${heroArt(c)}
 </section>
 <a class="scan-fab" href="${c.link(TOOLS.find((t) => t.slug === 'qr-code-scanner'))}#camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></svg>${esc(c.t('home.scan'))}</a>
+<section class="section mine" id="mine" aria-labelledby="mine-title" hidden>
+  <div class="section-head"><h2 id="mine-title">${esc(c.t('home.mine'))}</h2><p>${esc(c.t('home.mineLede'))}</p></div>
+  <ul class="tool-grid"></ul>
+</section>
 ${createHtml(c)}
 <section class="section" id="tools" aria-labelledby="tools-title">
   <div class="section-head"><h2 id="tools-title">${esc(c.t('home.toolsTitle'))}</h2><p>${esc(c.t('home.toolsLede'))}</p></div>

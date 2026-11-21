@@ -59,6 +59,7 @@ Most free online file tools ask you to upload your contract, payslip, bank state
 | 🆓 **Free forever** | No account, no daily limits, no watermark, no premium tier |
 | 🌍 **17 languages** | Including Hindi, Bengali, Marathi, Tamil and Telugu |
 | 📱 **Nothing to install** | Any modern browser, on phones too |
+| 📌 **Your tools first** | Pin the tools you use; pinned and recently used tools open from the top of the home page (kept in your browser only) |
 | ✈️ **Works with the internet off** | Open a tool once, then turn off Wi-Fi or mobile data: it keeps working, an easy way to check that nothing is uploaded |
 | 📖 **Open source** | Apache-2.0, every line on GitHub |
 

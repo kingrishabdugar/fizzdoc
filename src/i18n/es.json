@@ -268,6 +268,7 @@
     "bg.erase": "Borrar",
     "bg.restore": "Restaurar",
     "bg.brush": "Tamaño del pincel",
+    "bg.soft": "Borde suave",
     "bg.redo": "Rehacer",
     "bg.sharp": "Bordes más finos (pelo, pelaje)",
     "bg.sharpNote": "Hace una pasada más detallada en tu tarjeta gráfica. La primera vez descarga unos {mb} MB.",

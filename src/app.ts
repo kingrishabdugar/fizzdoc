@@ -1,6 +1,7 @@
 import './style.css';
 import '@fontsource-variable/inter';
 import { setUpEffects } from './effects';
+import { setUpMine } from './mine';
 import { setUpSearch } from './search';
 import type { ErrorCode, Job, Op } from './engine/pdf';
 import type { LocalError, Output } from './engine/local';
@@ -707,6 +708,7 @@ function setUp(op: ToolOp) {
 
 setUpEffects();
 setUpSearch();
+setUpMine();
 const op = document.body.dataset.tool as ToolOp | '';
 // The QR tools start from typing or the camera, not a file, so they build their own page.
 const qr = document.getElementById('qr');

@@ -31,6 +31,11 @@
 }
 .bg-stage.painting .bg-canvas {
   cursor: crosshair;
+}
+.bg-stage.brushing .bg-canvas {
+  cursor: none; /* the brush ring shows instead */
+}
+.bg-stage.painting .bg-canvas {
   touch-action: none; /* a finger paints instead of scrolling while Erase or Restore is on */
 }
 
