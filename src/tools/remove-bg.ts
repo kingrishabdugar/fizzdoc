@@ -190,7 +190,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   };
   // The Sticker Maker's text, drawn over the cut-out (see sticker-text.ts).
   let text: StickerText | undefined;
-  // Where the keyboard's brush is, in photo pixels; set by the arrow keys while a touch-up tool is on.
+  // Where the brush ring is, in photo pixels: under the mouse, or moved by the arrow keys, while a touch-up tool is on.
   let keyAt: [number, number] | undefined;
   const draw = () => {
     if (animated) return compose(canvas, frames[shown].cut, frames[shown].photo, backdrop);
@@ -433,6 +433,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       mode = mode === key ? null : key;
       for (const other of modes) other.setAttribute('aria-pressed', String(other === button && mode === key));
       stage.classList.toggle('painting', mode !== null);
+      stage.classList.toggle('brushing', mode === 'erase' || mode === 'restore'); // the ring replaces the cursor
       canvas.tabIndex = mode || canvas.classList.contains('st-has-text') ? 0 : -1; // the keyboard paints too
       if (!mode && keyAt) {
         keyAt = undefined;
@@ -452,6 +453,15 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   brush.setAttribute('aria-label', t('bg.brush'));
   const brushLabel = element('label', 'bg-brush', t('bg.brush'));
   brushLabel.append(brush);
+  // Soft edge: 0 is a hard rubber, 100 fades all the way from the centre, for hair and fuzzy edges.
+  const soft = element('input');
+  soft.type = 'range';
+  soft.min = '0';
+  soft.max = '100';
+  soft.value = '40';
+  soft.setAttribute('aria-label', t('bg.soft'));
+  const softLabel = element('label', 'bg-brush', t('bg.soft'));
+  softLabel.append(soft);
   const undo = element('button', 'bg-btn', t('ed.undo'));
   undo.type = 'button';
   undo.disabled = true;
@@ -476,7 +486,7 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
   zoomOut.type = 'button';
   zoomOut.disabled = true;
   zoomOut.onclick = () => zoomBy(-1);
-  tools.append(modeButton('magicErase'), modeButton('magicRestore'), modeButton('erase'), modeButton('restore'), brushLabel, undo, redo, zoomOut, zoomIn);
+  tools.append(modeButton('magicErase'), modeButton('magicRestore'), modeButton('erase'), modeButton('restore'), brushLabel, softLabel, undo, redo, zoomOut, zoomIn);
   touch.append(tools);
   touch.hidden = animated || !!info; // touch-ups are for still pictures
 
@@ -620,7 +630,8 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       for (let x = x0; x <= x1; x++) {
         const d = Math.hypot(x + 0.5 - cx, y + 0.5 - cy) / radius;
         if (d >= 1) continue;
-        const strength = d < 0.6 ? 1 : (1 - d) / 0.4;
+        const core = 1 - Number(soft.value) / 100;
+        const strength = d < core ? 1 : (1 - d) / (1 - core);
         const o = (y * W + x) * 4;
         if (mode === 'erase') pixels[o + 3] = Math.round(pixels[o + 3] * (1 - strength));
         else {
@@ -635,14 +646,25 @@ export async function openBackgroundEditor(file: File, viewer: HTMLElement, pres
       }
     cutContext.putImageData(cutout, 0, 0, x0, y0, x1 - x0 + 1, y1 - y0 + 1);
   };
+  const toPhoto = (e: PointerEvent): [number, number] => {
+    const box = canvas.getBoundingClientRect();
+    const [fx, fy, fw, fh] = frame;
+    return [fx + ((e.clientX - box.left) / box.width) * fw, fy + ((e.clientY - box.top) / box.height) * fh];
+  };
+  // The ring follows the mouse, so the brush's size and place show before it paints.
+  canvas.addEventListener('pointermove', (event) => {
+    if ((mode !== 'erase' && mode !== 'restore') || event.pointerType === 'touch') return;
+    keyAt = toPhoto(event);
+    if (!event.buttons) draw(); // while painting, paint() draws
+  });
+  canvas.addEventListener('pointerleave', () => {
+    if (!keyAt) return;
+    keyAt = undefined;
+    draw();
+  });
   canvas.addEventListener('pointerdown', (event) => {
     if (!mode || event.button !== 0) return;
     event.preventDefault();
-    const toPhoto = (e: PointerEvent) => {
-      const box = canvas.getBoundingClientRect();
-      const [fx, fy, fw, fh] = frame;
-      return [fx + ((e.clientX - box.left) / box.width) * fw, fy + ((e.clientY - box.top) / box.height) * fh];
-    };
     if (mode === 'magicErase' || mode === 'magicRestore') {
       const [x, y] = toPhoto(event);
       if (x >= 0 && y >= 0 && x < W && y < H) magicTap(x, y, mode === 'magicRestore');

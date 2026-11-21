@@ -268,6 +268,7 @@
     "bg.erase": "Cancella",
     "bg.restore": "Ripristina",
     "bg.brush": "Dimensione del pennello",
+    "bg.soft": "Bordo morbido",
     "bg.redo": "Ripeti",
     "bg.sharp": "Bordi più nitidi (capelli, pelo)",
     "bg.sharpNote": "Fa un passaggio più dettagliato sul chip grafico. La prima volta scarica circa {mb} MB.",

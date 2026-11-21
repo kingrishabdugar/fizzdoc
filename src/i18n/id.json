@@ -268,6 +268,7 @@
     "bg.erase": "Hapus",
     "bg.restore": "Pulihkan",
     "bg.brush": "Ukuran kuas",
+    "bg.soft": "Tepi lembut",
     "bg.redo": "Ulangi",
     "bg.sharp": "Tepi lebih tajam (rambut, bulu)",
     "bg.sharpNote": "Menjalankan proses lebih detail di chip grafis Anda. Pertama kali mengunduh sekitar {mb} MB.",
