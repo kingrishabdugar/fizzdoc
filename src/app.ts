@@ -1,6 +1,7 @@
 import './style.css';
 import '@fontsource-variable/inter';
 import { setUpEffects } from './effects';
+import { setUpMine } from './mine';
 import { setUpSearch } from './search';
 import type { ErrorCode, Job, Op } from './engine/pdf';
 import type { LocalError, Output } from './engine/local';
@@ -707,6 +708,7 @@ function setUp(op: ToolOp) {
 
 setUpEffects();
 setUpSearch();
+setUpMine();
 const op = document.body.dataset.tool as ToolOp | '';
 if (op) setUp(op);
 // Offline use: keeps every opened page and the tools' code on the device (src/sw.js).

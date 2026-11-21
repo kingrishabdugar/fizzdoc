@@ -492,6 +492,10 @@ ${proofHtml(c)}`;
   </div>
   ${heroArt(c)}
 </section>
+<section class="section mine" id="mine" aria-labelledby="mine-title" hidden>
+  <div class="section-head"><h2 id="mine-title">${esc(c.t('home.mine'))}</h2><p>${esc(c.t('home.mineLede'))}</p></div>
+  <ul class="tool-grid"></ul>
+</section>
 ${createHtml(c)}
 <section class="section" id="tools" aria-labelledby="tools-title">
   <div class="section-head"><h2 id="tools-title">${esc(c.t('home.toolsTitle'))}</h2><p>${esc(c.t('home.toolsLede'))}</p></div>
