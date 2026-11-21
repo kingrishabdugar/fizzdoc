@@ -78,7 +78,8 @@ test('photo editor text: arrow keys move it, Delete removes it', async ({ page }
   const before = await picture(page);
   await canvas.press('ArrowUp');
   await canvas.press('Shift+ArrowLeft');
-  expect(await picture(page)).not.toBe(before);
+  // The preview repaints on the next frame, so wait for it.
+  await expect.poll(() => picture(page)).not.toBe(before);
   await canvas.press('Delete');
   await expect(page.getByRole('textbox', { name: 'Your text' })).toBeHidden();
 });
