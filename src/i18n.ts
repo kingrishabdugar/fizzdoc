@@ -361,6 +361,7 @@ export const UI = {
   'bg.erase': 'Erase',
   'bg.restore': 'Restore',
   'bg.brush': 'Brush size',
+  'bg.soft': 'Soft edge',
   'bg.redo': 'Redo',
   'bg.sharp': 'Sharper edges (hair, fur)',
   'bg.sharpNote': 'Runs a more detailed pass on your graphics chip. The first time, it downloads about {mb} MB.',
