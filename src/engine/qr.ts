@@ -90,6 +90,8 @@ export interface Style {
   ecc: 'L' | 'M' | 'Q' | 'H';
   /** A data: URL, so the SVG stays one self-contained file. */
   logo?: string;
+  /** A picture behind the code, softened so the dots stay readable (a data: URL). */
+  image?: string;
   /** Logo width as a share of the code, 0.1–0.3. */
   logoSize: number;
   frame: 'none' | 'label' | 'box';
@@ -220,7 +222,12 @@ export function svg(text: string, style: Style): { svg: string; width: number; h
           ? `<rect x="${box ? 0 : m}" y="${n(height - label)}" width="${n(box ? outer : size)}" height="${n(label)}" rx="${box ? 0 : 1}" fill="${style.frameColor}"/>` +
             `<text x="${n(outer / 2)}" y="${n(height - label / 2)}" fill="${contrast(style.frameColor, '#ffffff') >= 3 ? '#ffffff' : '#000000'}" font-family="system-ui, sans-serif" font-weight="700" font-size="${n(textSize)}" text-anchor="middle" dominant-baseline="central">${xml(style.frameText.trim())}</text>`
           : '');
-  const background = style.background ? `<rect width="${n(outer)}" height="${n(height)}" fill="${style.background}"${box ? ' rx="2"' : ''}/>` : '';
+  // A background picture shows through a light veil, so dark dots on it keep enough contrast.
+  const background =
+    (style.image ? `<image href="${xml(style.image)}" width="${n(outer)}" height="${n(height)}" preserveAspectRatio="xMidYMid slice"/>` : '') +
+    (style.background || style.image
+      ? `<rect width="${n(outer)}" height="${n(height)}" fill="${style.background || '#ffffff'}"${style.image ? ' fill-opacity="0.6"' : ''}${box ? ' rx="2"' : ''}/>`
+      : '');
 
   return {
     width: outer,

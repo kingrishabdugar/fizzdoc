@@ -12,6 +12,11 @@
   /* Phones: the code first, so every change shows without scrolling back up. */
   .qr-side {
     order: -1;
+    position: static;
+  }
+  .qr-preview {
+    width: min(100%, 280px);
+    justify-self: center;
   }
 }
 .qr-side {
@@ -33,6 +38,18 @@
 .qr-preview svg {
   width: 100%;
   height: 100%;
+}
+.qr-check-result {
+  min-height: 1.5em;
+  margin: 0;
+  font-weight: 600;
+}
+.qr-check-result[data-ok='true']::before {
+  content: '✓ ';
+  color: #16a34a;
+}
+.qr-check-result[data-ok='false'] {
+  color: var(--danger);
 }
 .qr-warn {
   min-height: 1.5em;

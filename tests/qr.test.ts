@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { DEFAULT_STYLE, contrast, payload, svg } from '../src/engine/qr';
+import { wifiFields } from '../src/tools/qr-scan';
 
 describe('QR payloads', () => {
   it('adds https:// to a bare web address and keeps other schemes', () => {
@@ -57,5 +58,12 @@ describe('QR drawing', () => {
   it('measures contrast', () => {
     expect(contrast('#000000', '#ffffff')).toBeCloseTo(21);
     expect(contrast('#777777', '#888888')).toBeLessThan(1.5);
+  });
+});
+
+describe('QR scanning', () => {
+  it('reads Wi-Fi fields back, undoing the escapes the generator adds', () => {
+    const code = payload('wifi', { ssid: 'Home;Net', password: 'a:b"c', security: 'WPA' });
+    expect(wifiFields(code)).toEqual({ T: 'WPA', S: 'Home;Net', P: 'a:b"c' });
   });
 });

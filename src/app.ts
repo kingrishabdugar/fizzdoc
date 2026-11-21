@@ -708,8 +708,11 @@ function setUp(op: ToolOp) {
 setUpEffects();
 setUpSearch();
 const op = document.body.dataset.tool as ToolOp | '';
+// The QR tools start from typing or the camera, not a file, so they build their own page.
 const qr = document.getElementById('qr');
+const scanner = document.getElementById('qr-scan');
 if (qr) void import('./tools/qr').then(({ openQr }) => openQr(qr, { kind: qr.dataset.kind ?? '' }));
+else if (scanner) void import('./tools/qr-scan').then(({ openScanner }) => openScanner(scanner));
 else if (op) setUp(op);
 // Offline use: keeps every opened page and the tools' code on the device (src/sw.js).
 if (import.meta.env.PROD && 'serviceWorker' in navigator) addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));

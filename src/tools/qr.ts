@@ -47,6 +47,16 @@ const TEMPLATES: [name: string, style: Partial<Style>][] = [
 ];
 /** A small sample code as a picture: its frame text stays part of the picture, not the button's name. */
 const thumb = (style: Style) => Object.assign(document.createElement('img'), { src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg('Fizzdoc', style).svg)}`, alt: '' });
+/** Built-in logo icons: name, circle colour, white line drawing on a 24×24 grid. */
+const ICONS: [name: string, color: string, glyph: string][] = [
+  ['wifi', '#2563eb', '<path d="M5 10.5a10 10 0 0 1 14 0M7.5 13a6.5 6.5 0 0 1 9 0M10 15.5a3 3 0 0 1 4 0"/><circle cx="12" cy="18" r=".6" fill="#fff"/>'],
+  ['upi', '#e65100', '<path d="M8 7h8M8 10.5h8M10 7c3.5 0 3.5 7 0 7H8l6 4"/>'],
+  ['chat', '#16a34a', '<path d="M6 17.5 7 14a6 6 0 1 1 2.5 2.4z"/>'],
+  ['phone', '#0f766e', '<path d="M8 6h2l1 3-1.5 1a7 7 0 0 0 3.5 3.5l1-1.5 3 1v2a1.5 1.5 0 0 1-1.5 1.5A10 10 0 0 1 6.5 7.5 1.5 1.5 0 0 1 8 6z"/>'],
+  ['email', '#7c3aed', '<rect x="6" y="8" width="12" height="9" rx="1.5"/><path d="m6.5 9 5.5 4 5.5-4"/>'],
+  ['location', '#dc2626', '<path d="M12 19s5-4.5 5-8.5a5 5 0 0 0-10 0c0 4 5 8.5 5 8.5z"/><circle cx="12" cy="10.5" r="1.8"/>'],
+  ['link', '#111827', '<path d="M10.5 13.5a3 3 0 0 0 4.2 0l2.3-2.3a3 3 0 0 0-4.2-4.2l-.8.8M13.5 10.5a3 3 0 0 0-4.2 0L7 12.8a3 3 0 0 0 4.2 4.2l.8-.8"/>'],
+];
 const SIZES = ['256', '512', '1024', '2048', '4096'];
 const FORMATS = ['png', 'svg', 'jpg', 'webp', 'pdf'] as const;
 type Format = (typeof FORMATS)[number];
@@ -208,35 +218,59 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
   const colors = element('div', 'qr-colors');
   colors.append(color.wrap, gradient.wrap, color2.wrap, eyeColor.wrap, background.wrap, clearLabel);
 
-  // Logo: read here, shrunk to 512 px so the SVG stays small, never sent anywhere.
-  const logoInput = Object.assign(element('input'), { type: 'file', accept: 'image/*', className: 'qr-file' });
-  logoInput.setAttribute('aria-label', t('qr.logo'));
-  const logoButton = element('button', 'button', t('qr.logo'));
-  logoButton.type = 'button';
-  logoButton.onclick = () => logoInput.click();
-  const logoRemove = element('button', 'button', t('qr.logoRemove'));
-  logoRemove.type = 'button';
-  logoRemove.onclick = () => {
-    style = { ...style, logo: undefined };
-    update();
-  };
-  logoInput.addEventListener('change', async () => {
-    const file = logoInput.files?.[0];
-    logoInput.value = '';
-    if (!file) return;
-    try {
-      const bitmap = await createImageBitmap(file);
-      const scale = Math.min(1, 512 / Math.max(bitmap.width, bitmap.height));
-      const canvas = document.createElement('canvas');
-      canvas.width = Math.round(bitmap.width * scale);
-      canvas.height = Math.round(bitmap.height * scale);
-      canvas.getContext('2d')!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-      style = { ...style, logo: canvas.toDataURL('image/png') };
+  // Pictures (a logo, a background) are read here and shrunk so the SVG stays small; never sent anywhere.
+  const picture = (key: 'logo' | 'image', add: UiKey, remove: UiKey, max: number) => {
+    const input = Object.assign(element('input'), { type: 'file', accept: 'image/*', className: 'qr-file' });
+    input.setAttribute('aria-label', t(add));
+    const choose = element('button', 'button', t(add));
+    choose.type = 'button';
+    choose.onclick = () => input.click();
+    const drop = element('button', 'button', t(remove));
+    drop.type = 'button';
+    drop.onclick = () => {
+      style = { ...style, [key]: undefined };
       update();
-    } catch {
-      warn.textContent = t('qr.logoBad');
-    }
-  });
+    };
+    input.addEventListener('change', async () => {
+      const file = input.files?.[0];
+      input.value = '';
+      if (!file) return;
+      try {
+        const bitmap = await createImageBitmap(file);
+        const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(bitmap.width * scale);
+        canvas.height = Math.round(bitmap.height * scale);
+        canvas.getContext('2d')!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+        style = { ...style, [key]: key === 'logo' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.85) };
+        update();
+      } catch {
+        warn.textContent = t('qr.logoBad');
+      }
+    });
+    return { input, choose, drop };
+  };
+  const logo = picture('logo', 'qr.logo', 'qr.logoRemove', 512);
+  const image = picture('image', 'qr.image', 'qr.imageRemove', 1200);
+  // Ready-made icons for the most common codes, drawn here (no brand logos).
+  const iconRow = element('div', 'qr-picks');
+  iconRow.setAttribute('role', 'group');
+  iconRow.setAttribute('aria-label', t('qr.icons'));
+  iconRow.append(
+    ...ICONS.map(([name, color, glyph]) => {
+      const src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="${color}"/><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${glyph}</g></svg>`)}`;
+      const pick = element('button', 'qr-pick');
+      pick.type = 'button';
+      pick.title = t(`qr.i.${name}` as UiKey);
+      pick.setAttribute('aria-label', pick.title);
+      pick.append(Object.assign(element('img'), { src, alt: '' }));
+      pick.onclick = () => {
+        style = { ...style, logo: src };
+        update();
+      };
+      return pick;
+    }),
+  );
   const logoSize = Object.assign(element('input'), { type: 'range', min: '10', max: '30', value: String(DEFAULT_STYLE.logoSize * 100) });
   logoSize.addEventListener('input', () => {
     style = { ...style, logoSize: Number(logoSize.value) / 100 };
@@ -245,7 +279,9 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
   const logoSizeLabel = element('label', 'qr-range', t('qr.logoSize'));
   logoSizeLabel.append(logoSize);
   const logoRow = element('div', 'qr-row qr-inline');
-  logoRow.append(logoButton, logoInput, logoRemove, logoSizeLabel);
+  logoRow.append(logo.choose, logo.input, logo.drop, logoSizeLabel);
+  const imageRow = element('div', 'qr-row qr-inline');
+  imageRow.append(image.choose, image.input, image.drop);
 
   const frame = select('frame', 'qr.frame', ['none', 'label', 'box']);
   const frameText = Object.assign(element('input'), { type: 'text', maxLength: 24 });
@@ -279,7 +315,8 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
     section('qr.templates', templates),
     section('qr.shapes', dots.wrap, eyeFrame.wrap, eyeBall.wrap),
     section('qr.colors', colors),
-    section('qr.logoTitle', logoRow, element('p', 'hint', t('qr.logoHint'))),
+    section('qr.logoTitle', iconRow, logoRow, element('p', 'hint', t('qr.logoHint'))),
+    section('qr.imageTitle', imageRow, element('p', 'hint', t('qr.imageHint'))),
     section('qr.frameTitle', frameRow),
     section('qr.more', moreRow),
   );
@@ -288,6 +325,8 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
   // ---- Preview and download ----
   const preview = element('div', 'qr-preview');
   preview.setAttribute('role', 'img');
+  const check = element('p', 'qr-check-result');
+  check.setAttribute('role', 'status');
   const warn = element('p', 'qr-warn');
   warn.setAttribute('role', 'status');
   const format = element('select');
@@ -317,7 +356,7 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
   exportRow.append(formatLabel, sizeLabel, nameLabel);
   const actions = element('div', 'actions');
   actions.append(download, copy, share);
-  side.append(preview, warn, exportRow, actions);
+  side.append(preview, check, warn, exportRow, actions);
 
   let current: ReturnType<typeof svg> | undefined;
   function update() {
@@ -332,7 +371,8 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
     frameText.value = style.frameText;
     frameTextLabel.hidden = frameColor.wrap.hidden = style.frame === 'none';
     margin.value = String(style.margin);
-    logoRemove.hidden = logoSizeLabel.hidden = !style.logo;
+    logo.drop.hidden = logoSizeLabel.hidden = !style.logo;
+    image.drop.hidden = !style.image;
     // A logo covers part of the code, so the strongest error correction is used and can't be changed.
     ecc.input.disabled = !!style.logo;
     if (style.logo) ecc.input.value = 'H';
@@ -359,8 +399,33 @@ export function openQr(root: HTMLElement, preset: Record<string, string> = {}) {
     if (dark.some((c) => contrast(c, bg) < 3)) problems.push(t('qr.lowContrast'));
     else if (style.background && dark.some((c) => contrast(c, '#000000') > contrast(bg, '#000000'))) problems.push(t('qr.inverted'));
     warn.textContent = problems.join(' ');
+    scanCheck(text);
     download.disabled = copy.disabled = share.disabled = !current;
   }
+
+  // Reads the finished code back, as a phone camera would, a moment after the last change.
+  let checkTimer: ReturnType<typeof setTimeout> | undefined;
+  let checking = 0;
+  const scanCheck = (text: string) => {
+    clearTimeout(checkTimer);
+    check.textContent = '';
+    delete check.dataset.ok;
+    if (!current) return;
+    const code = current;
+    const job = ++checking;
+    checkTimer = setTimeout(async () => {
+      try {
+        const { readCodes } = await import('../engine/scan');
+        const found = await readCodes(await raster(code, 600, 'image/png', true));
+        if (job !== checking) return;
+        const ok = found.some((f) => f.text === text);
+        check.dataset.ok = String(ok);
+        check.textContent = t(ok ? 'qr.scanOk' : 'qr.scanBad');
+      } catch {
+        // The reader couldn't load (offline before first use): no verdict rather than a wrong one.
+      }
+    }, 400);
+  };
 
   const fileFor = async (as: Format): Promise<File> => {
     const code = current!;

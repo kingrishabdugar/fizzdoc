@@ -23,6 +23,8 @@ test('makes a UPI, Wi-Fi and link QR code that scans, in every template', async 
   await page.goto('/qr-code-generator/');
   // A link is ready to download before anything is typed.
   expect((await scan(page)).text).toBe('https://fizzdoc.com');
+  // The page reads its own code back and says so.
+  await expect(page.locator('.qr-check-result')).toHaveText('Checked: this code scans.');
 
   await fill(page, 'UPI payment', { 'UPI ID (like name@okhdfcbank)': 'shop@okicici', 'Name shown to the payer': 'Ram Stores', 'Amount in ₹ (optional)': '250' });
   const upi = 'upi://pay?pa=shop%40okicici&pn=Ram%20Stores&am=250&cu=INR';
@@ -45,7 +47,7 @@ test('a logo switches to the strongest error correction, and the code still scan
   await page.goto('/qr-code-generator/');
   const ecc = page.getByLabel('Error correction');
   await expect(ecc).toBeEnabled();
-  await page.locator('.qr-file').setInputFiles(fileURLToPath(new URL('./fixtures/big-photo.jpg', import.meta.url)));
+  await page.locator('.qr-file').first().setInputFiles(fileURLToPath(new URL('./fixtures/big-photo.jpg', import.meta.url)));
   await expect(page.getByRole('button', { name: 'Remove logo' })).toBeVisible();
   await expect(ecc).toBeDisabled();
   await expect(ecc).toHaveValue('H');
@@ -53,6 +55,13 @@ test('a logo switches to the strongest error correction, and the code still scan
   expect((await scan(page)).text).toBe('https://fizzdoc.com');
   await page.getByRole('button', { name: 'Remove logo' }).click();
   await expect(ecc).toBeEnabled();
+
+  // A ready-made icon as the logo, and a photo softly behind the code: it still scans.
+  await page.getByRole('button', { name: 'Wi-Fi icon' }).click();
+  await page.locator('.qr-file').nth(1).setInputFiles(fileURLToPath(new URL('./fixtures/big-photo.jpg', import.meta.url)));
+  await expect(page.getByRole('button', { name: 'Remove background picture' })).toBeVisible();
+  await expect(page.locator('.qr-check-result')).toHaveText('Checked: this code scans.');
+  expect((await scan(page)).text).toBe('https://fizzdoc.com');
 });
 
 test('saves PNG at the chosen size, and SVG, JPG and PDF under the chosen name', async ({ page }) => {

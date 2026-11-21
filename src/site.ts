@@ -18,6 +18,7 @@ export type ToolOp =
   | 'view'
   | 'collage'
   | 'qr'
+  | 'qr-scan'
   | 'scan-pdf'
   | 'ocr-pdf'
   | 'pdf-to-word'
@@ -1529,6 +1530,43 @@ TOOLS.push(
     ],
   },
   {
+    op: 'qr-scan',
+    format: 'image',
+    slug: 'qr-code-scanner',
+    name: 'QR Code & Barcode Scanner',
+    summary: 'Read a QR code or barcode with your camera or from a photo, even offline.',
+    action: 'Scan',
+    title: 'Free QR Code & Barcode Scanner Online — Camera or Photo | Fizzdoc',
+    description:
+      'Scan a QR code or barcode free with your camera or from a photo or screenshot. Join Wi-Fi, open links, save contacts. Works offline; nothing is uploaded.',
+    h1: 'Scan a QR code or barcode, from the camera or a photo',
+    lede: 'Point your camera at a code, choose a photo, or paste a screenshot. Fizzdoc reads QR codes and barcodes (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec and more), several in one picture, and shows what each one holds before you open anything. It works offline, and nothing leaves your device.',
+    steps: [
+      'Click “Use camera” and point it at the code, or choose a photo, or paste a screenshot.',
+      'Each code found is outlined and listed with what it holds.',
+      'Open the link, copy the Wi-Fi password, save the contact or pay with UPI, or just copy the text.',
+    ],
+    faq: [
+      [
+        'Is it safe to scan an unknown QR code?',
+        'Fizzdoc shows the full text of every code and never opens a link by itself, so you can check where it goes first. Watch for look-alike web addresses and for UPI codes that ask you to pay when you expected to receive money.',
+      ],
+      [
+        'Which codes can it read?',
+        'QR codes (including Micro QR), Data Matrix, Aztec, PDF417, and barcodes: EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, Codabar, ITF and DataBar. It finds several codes in one picture.',
+      ],
+      [
+        'Does it work offline?',
+        'Yes. After the page has been opened once with the internet on, the scanner works with no connection, from the camera or from photos.',
+      ],
+      [
+        'Why doesn’t the camera start?',
+        'Allow camera access when the browser asks. If you said no before, allow it again from the lock icon next to the address. You can always choose a photo instead.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+  },
+  {
     op: 'photo-edit',
     format: 'image',
     slug: 'photo-editor',
@@ -2084,6 +2122,13 @@ const KEYWORDS: Record<string, string[]> = {
     'background blur editor',
   ],
   view: ['file viewer online', 'open pdf online', 'docx viewer', 'open excel file online', 'view file without uploading'],
+  'qr-code-scanner': [
+    'scan QR code from image',
+    'QR code scanner online camera',
+    'barcode scanner online free',
+    'read QR code from screenshot',
+    'offline QR scanner no app',
+  ],
   'qr-code-generator': [
     'QR code generator with logo',
     'UPI QR code generator',
