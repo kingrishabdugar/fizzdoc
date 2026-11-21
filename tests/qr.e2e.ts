@@ -103,3 +103,16 @@ test('the QR generator passes the accessibility check and works from the keyboar
   await page.keyboard.type('Cafe');
   await expect(page.locator('.qr-preview')).toHaveAttribute('aria-label', 'QR code for: WIFI:T:WPA;S:Cafe;;');
 });
+
+test('the Wi-Fi, UPI, WhatsApp and contact card pages open on their kind of code', async ({ page }) => {
+  for (const [path, kind, field] of [
+    ['/wifi-qr-code-generator/', 'Wi-Fi', 'Network name'],
+    ['/upi-qr-code-generator/', 'UPI payment', 'UPI ID (like name@okhdfcbank)'],
+    ['/whatsapp-qr-code-generator/', 'WhatsApp', 'Phone number'],
+    ['/vcard-qr-code-generator/', 'Contact card', 'First name'],
+  ]) {
+    await page.goto(path);
+    await expect(page.getByRole('button', { name: kind, exact: true }), path).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByLabel(field, { exact: true }), path).toBeVisible();
+  }
+});

@@ -19,7 +19,7 @@ export const PRIVACY = {
     ],
     [
       'What is kept on my device?',
-      'A few small settings in your browser’s storage: your light or dark theme, whether you closed the language tip, which tools are ready to use offline, and, if the big background model ever crashed a tab, a note to use the small one for 30 days. So that tools work offline, the browser also keeps a copy of the website and, after their first use, the background, speech and text-recognition files. None of this is sent anywhere, and you can delete it at any time in your browser’s settings for fizzdoc.com.',
+      'A few small settings in your browser’s storage: your light or dark theme, whether you closed the language tip, the tools you pinned or opened recently (so they show first on the home page), which tools are ready to use offline, and, if the big background model ever crashed a tab, a note to use the small one for 30 days. So that tools work offline, the browser also keeps a copy of the website and, after their first use, the background, speech and text-recognition files. None of this is sent anywhere, and you can delete it at any time in your browser’s settings for fizzdoc.com.',
     ],
     [
       'What does the company that hosts the website see?',

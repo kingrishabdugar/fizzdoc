@@ -2383,6 +2383,8 @@ dialog p {
     stroke-width: 2;
     stroke-linecap: round;
   }
+}
+
 /* ---- Your tools, pins and filter tabs (mine.ts) ---- */
 .mine .tool-card {
   padding: 14px;

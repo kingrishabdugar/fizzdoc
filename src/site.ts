@@ -1530,6 +1530,158 @@ TOOLS.push(
     ],
   },
   {
+    op: 'qr',
+    format: 'image',
+    slug: 'wifi-qr-code-generator',
+    name: 'Wi-Fi QR Code Generator',
+    summary: 'Guests join your Wi-Fi by scanning a code: no typing the password.',
+    action: 'Download QR code',
+    title: 'Free Wi-Fi QR Code Generator — Scan to Join, No Upload | Fizzdoc',
+    description:
+      'Make a free Wi-Fi QR code: guests scan it with the phone camera and join without typing the password. Add a logo and a frame. Nothing is uploaded.',
+    h1: 'Make a Wi-Fi QR code: scan to join',
+    lede: 'Type your network name and password, and guests join by pointing their phone camera at the code. Style it with your logo and a “Join Wi-Fi” frame, and print it for a café, office, shop or home. The password never leaves your device: the code is made in your browser.',
+    steps: [
+      'Type the network name (SSID) and password, and pick the security type (WPA is almost always right).',
+      'Pick a template, or set the colours, logo and frame. The page checks that the code scans.',
+      'Download as PNG or PDF and print it, or share it.',
+    ],
+    faq: [
+      [
+        'How do guests use a Wi-Fi QR code?',
+        'They open the phone camera (or Google Lens) and point it at the code. iPhones and Android phones show “Join network”; one tap connects, with no password typing.',
+      ],
+      [
+        'Is it safe to put my Wi-Fi password in a QR code?',
+        'The code contains the password, so anyone who can scan it can join, just as if they could read it. Put it where you would share the password anyway, and consider a separate guest network. Fizzdoc never sees the password: the code is made on your device.',
+      ],
+      [
+        'Which security type should I pick?',
+        'WPA covers WPA, WPA2 and WPA3, which almost every router uses. Pick WEP only for very old routers, and “No password” for open networks. Tick “Hidden network” if your network name isn’t broadcast.',
+      ],
+      [
+        'Does the QR code expire?',
+        'No. Everything the code holds is written into the code itself, so it works for as long as the details in it are valid. There is no account, subscription or redirect that can stop it.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { kind: 'wifi' },
+  },
+  {
+    op: 'qr',
+    format: 'image',
+    slug: 'upi-qr-code-generator',
+    name: 'UPI QR Code Generator',
+    summary: 'A payment QR code for your UPI ID that Google Pay, PhonePe, Paytm and BHIM can scan.',
+    action: 'Download QR code',
+    title: 'Free UPI QR Code Generator — GPay, PhonePe, Paytm | Fizzdoc',
+    description:
+      'Make a free UPI payment QR code for your shop or business: your UPI ID, name and an optional fixed amount. Works with every UPI app. No sign-up, no upload.',
+    h1: 'Make a UPI payment QR code, free',
+    lede: 'Enter your UPI ID and name, and optionally a fixed amount and note, and get a payment QR code that Google Pay, PhonePe, Paytm, BHIM and every other UPI app can scan. Add your logo and a “Pay with UPI” frame for the counter. No bank or app sign-up, and your details stay on your device.',
+    steps: [
+      'Enter your UPI ID (like name@okhdfcbank) and the name payers should see. Add an amount and note if every payment is the same.',
+      'Pick the “UPI payment frame” template or your own colours and logo.',
+      'Download as PNG or PDF and print it for your counter, or share it.',
+    ],
+    faq: [
+      [
+        'Will this UPI QR code work with Google Pay, PhonePe and Paytm?',
+        'Yes. It uses the standard UPI payment link (upi://pay) defined by NPCI, which every UPI app reads. The payment goes straight to the UPI ID in the code.',
+      ],
+      [
+        'Can I fix the amount?',
+        'Yes: enter an amount and the app opens with it filled in. Leave it empty so the payer types the amount, which suits a shop counter.',
+      ],
+      [
+        'Is it safe?',
+        'The code only holds your UPI ID, name and the amount you set: no PIN or bank details. Scan it with your own UPI app before printing to check the name shown. Fizzdoc never sees your details.',
+      ],
+      [
+        'Does the QR code expire?',
+        'No. Everything the code holds is written into the code itself, so it works for as long as the details in it are valid. There is no account, subscription or redirect that can stop it.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { kind: 'upi' },
+  },
+  {
+    op: 'qr',
+    format: 'image',
+    slug: 'whatsapp-qr-code-generator',
+    name: 'WhatsApp QR Code Generator',
+    summary: 'A QR code that opens a WhatsApp chat with your number, with a message ready to send.',
+    action: 'Download QR code',
+    title: 'Free WhatsApp QR Code Generator — Chat in One Scan | Fizzdoc',
+    description:
+      'Make a free WhatsApp QR code that opens a chat with your number and a ready message. Great for shops, menus and business cards. No sign-up, no upload.',
+    h1: 'Make a WhatsApp QR code that opens a chat',
+    lede: 'Enter your WhatsApp number with the country code and, if you like, a message such as “Hi, I want to order”. Anyone who scans the code gets a chat with you, the message already typed. Style it with your logo and a frame for your shop, menu, card or packaging.',
+    steps: [
+      'Enter the number with country code (like +91 98765 43210) and an optional ready message.',
+      'Pick a template, or set colours, a chat icon or your logo, and a frame.',
+      'Download as PNG, SVG or PDF and print or share it.',
+    ],
+    faq: [
+      [
+        'How does a WhatsApp QR code work?',
+        'It holds a wa.me link with your number and message. Scanning it opens WhatsApp (or WhatsApp Business) with a chat to you and the message typed in, ready to send.',
+      ],
+      [
+        'Does it work with WhatsApp Business?',
+        'Yes. The same link opens chats on WhatsApp and WhatsApp Business numbers.',
+      ],
+      [
+        'Do I need the country code?',
+        'Yes, always add it (91 for India). Spaces, dashes and the plus sign are removed for you.',
+      ],
+      [
+        'Does the QR code expire?',
+        'No. Everything the code holds is written into the code itself, so it works for as long as the details in it are valid. There is no account, subscription or redirect that can stop it.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { kind: 'whatsapp' },
+  },
+  {
+    op: 'qr',
+    format: 'image',
+    slug: 'vcard-qr-code-generator',
+    name: 'Contact Card (vCard) QR Code Generator',
+    summary: 'A QR code that saves your name, phone, email and company to a phone’s contacts.',
+    action: 'Download QR code',
+    title: 'Free vCard QR Code Generator — Contact Card QR, No Upload | Fizzdoc',
+    description:
+      'Make a free vCard QR code for your business card: scanning it saves your name, phone, email, company and website to contacts. No sign-up, no upload.',
+    h1: 'Make a contact card (vCard) QR code',
+    lede: 'Fill in your name, phone, email, company, job title, website and address, and get a QR code that saves you to a phone’s contacts in one tap. Put it on business cards, email signatures, badges and stands. Your details are turned into the code on your device and never uploaded.',
+    steps: [
+      'Fill in the details you want to share: name, phone, email, company, title, website, address.',
+      'Pick a template, or set colours, your logo and a frame.',
+      'Download as SVG or PDF for printing on cards, or PNG for screens.',
+    ],
+    faq: [
+      [
+        'What happens when someone scans a vCard QR code?',
+        'The phone shows your contact card with an “Add to contacts” button. Every iPhone and Android camera reads the vCard 3.0 format used here.',
+      ],
+      [
+        'Why is my vCard QR code so dense?',
+        'Every detail adds text to the code. Leave out fields you don’t need, keep the logo small, and print it at least 2.5 cm wide so phones read it easily.',
+      ],
+      [
+        'Can I update the details later?',
+        'Not in a printed code: the details are written into it. Make a new code when your details change; it’s free and takes a minute.',
+      ],
+      [
+        'Does the QR code expire?',
+        'No. Everything the code holds is written into the code itself, so it works for as long as the details in it are valid. There is no account, subscription or redirect that can stop it.',
+      ],
+      PRIVACY_FAQ[1],
+    ],
+    preset: { kind: 'vcard' },
+  },
+  {
     op: 'qr-scan',
     format: 'image',
     slug: 'qr-code-scanner',
@@ -2122,6 +2274,10 @@ const KEYWORDS: Record<string, string[]> = {
     'background blur editor',
   ],
   view: ['file viewer online', 'open pdf online', 'docx viewer', 'open excel file online', 'view file without uploading'],
+  'wifi-qr-code-generator': ['Wi-Fi QR code generator', 'share Wi-Fi password with QR code', 'scan to join Wi-Fi', 'guest Wi-Fi QR code for café', 'WiFi QR code with logo'],
+  'upi-qr-code-generator': ['UPI QR code generator free', 'Google Pay QR code for shop', 'PhonePe QR code generator', 'UPI payment QR with amount', 'Paytm QR code for business'],
+  'whatsapp-qr-code-generator': ['WhatsApp QR code generator', 'WhatsApp chat QR code', 'wa.me QR code', 'WhatsApp Business QR code', 'QR code to open WhatsApp chat'],
+  'vcard-qr-code-generator': ['vCard QR code generator', 'business card QR code', 'contact QR code', 'save contact QR code', 'digital business card QR'],
   'qr-code-scanner': [
     'scan QR code from image',
     'QR code scanner online camera',
