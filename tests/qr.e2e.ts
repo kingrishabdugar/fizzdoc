@@ -116,3 +116,14 @@ test('the Wi-Fi, UPI, WhatsApp and contact card pages open on their kind of code
     await expect(page.getByLabel(field, { exact: true }), path).toBeVisible();
   }
 });
+
+test('on a phone the code sits above the form and does not stay stuck over it', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ baseURL, viewport: { width: 390, height: 844 } });
+  const page = await context.newPage();
+  await page.goto('/qr-code-generator/');
+  await expect(page.locator('.qr-side')).toHaveCSS('position', 'static');
+  const side = (await page.locator('.qr-side').boundingBox())!;
+  const form = (await page.locator('.qr-form').boundingBox())!;
+  expect(side.y + side.height).toBeLessThanOrEqual(form.y);
+  await context.close();
+});
