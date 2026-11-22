@@ -428,7 +428,184 @@
     "bg.gifNote": "Geanimeerde GIF: elk beeld wordt bewerkt en als GIF opgeslagen. GIF’s hebben geen zachte randen, dus bij “Geen” is de omtrek iets scherper.",
     "bg.videoNote": "Dit is het eerste beeld. Kies een achtergrond en sla op: elk beeld wordt op dit apparaat bewerkt, hier ongeveer {min} min. Houd dit tabblad open.",
     "bg.greenScreen": "Green screen",
-    "ws.dpiLow": "Laag (kleinste bestand, voor het web)"
+    "ws.dpiLow": "Laag (kleinste bestand, voor het web)",
+    "ws.chooseAny": "Kies een bestand om te openen",
+    "vw.page": "Pagina {n} van {total}",
+    "vw.firstRows": "De eerste {n} rijen worden getoond.",
+    "vw.showAll": "Alle {n} rijen tonen",
+    "vw.cut": "Groot bestand: alleen het eerste deel wordt getoond.",
+    "vw.unknown": "Dit soort bestand kan nog niet worden getoond. PDF, Word (.docx), Excel (.xlsx), CSV, afbeeldingen, tekst en Markdown wel.",
+    "rd.pageKeys": "Pagina {n}. Enter voegt een vak toe, pijltjestoetsen verplaatsen het, Shift en pijltjes wijzigen de grootte, Delete verwijdert het.",
+    "bg.keys": "Toetsenbord: met een gekozen gereedschap bewegen de pijltjestoetsen het penseel over de afbeelding en Spatie schildert.",
+    "st.keys": "Toetsenbord: pijltjestoetsen verplaatsen de gekozen tekst of emoji, Page Up en Page Down kiezen een andere, Delete verwijdert hem.",
+    "qr.content": "Wat de code bevat",
+    "qr.kind": "Soort code",
+    "qr.k.url": "Link",
+    "qr.k.text": "Tekst",
+    "qr.k.email": "E-mail",
+    "qr.k.phone": "Bellen",
+    "qr.k.sms": "Sms",
+    "qr.k.whatsapp": "WhatsApp",
+    "qr.k.upi": "UPI-betaling",
+    "qr.k.wifi": "Wifi",
+    "qr.k.vcard": "Contactkaart",
+    "qr.k.event": "Afspraak",
+    "qr.k.location": "Locatie",
+    "qr.k.crypto": "Crypto",
+    "qr.f.url": "Webadres",
+    "qr.f.text": "Tekst",
+    "qr.f.to": "E-mailadres",
+    "qr.f.subject": "Onderwerp",
+    "qr.f.body": "Bericht",
+    "qr.f.phone": "Telefoonnummer",
+    "qr.f.message": "Bericht",
+    "qr.f.pa": "UPI-ID (zoals naam@okhdfcbank)",
+    "qr.f.pn": "Naam die betalers zien",
+    "qr.f.am": "Bedrag in ₹ (optioneel)",
+    "qr.f.tn": "Notitie (optioneel)",
+    "qr.f.ssid": "Netwerknaam",
+    "qr.f.password": "Wachtwoord",
+    "qr.f.security": "Beveiliging",
+    "qr.f.hidden": "Verborgen netwerk",
+    "qr.f.first": "Voornaam",
+    "qr.f.last": "Achternaam",
+    "qr.f.email": "E-mail",
+    "qr.f.org": "Bedrijf",
+    "qr.f.title": "Functie",
+    "qr.f.website": "Website",
+    "qr.f.address": "Adres",
+    "qr.f.summary": "Naam van de afspraak",
+    "qr.f.start": "Begint",
+    "qr.f.end": "Eindigt",
+    "qr.f.location": "Plaats",
+    "qr.f.lat": "Breedtegraad",
+    "qr.f.lng": "Lengtegraad",
+    "qr.f.coin": "Munt",
+    "qr.f.wallet": "Walletadres",
+    "qr.f.amount": "Bedrag (optioneel)",
+    "qr.o.WPA": "WPA / WPA2 / WPA3",
+    "qr.o.WEP": "WEP",
+    "qr.o.nopass": "Geen wachtwoord",
+    "qr.o.bitcoin": "Bitcoin",
+    "qr.o.ethereum": "Ethereum",
+    "qr.o.litecoin": "Litecoin",
+    "qr.templates": "Sjablonen",
+    "qr.t.classic": "Klassiek",
+    "qr.t.rounded": "Afgerond",
+    "qr.t.dots": "Stippen",
+    "qr.t.ocean": "Oceaanverloop",
+    "qr.t.sunset": "Zonsondergangverloop",
+    "qr.t.forest": "Bos",
+    "qr.t.scan": "“Scan mij”-label",
+    "qr.t.upi": "UPI-betaalkader",
+    "qr.t.wifi": "Wifi-label",
+    "qr.t.night": "Licht op donker",
+    "qr.t.radial": "Radiaal verloop",
+    "qr.t.clear": "Transparante achtergrond",
+    "qr.shapes": "Vormen",
+    "qr.dots": "Punten",
+    "qr.eyeFrame": "Hoekkaders",
+    "qr.eyeBall": "Hoekmiddens",
+    "qr.s.square": "Vierkant",
+    "qr.s.rounded": "Afgerond",
+    "qr.s.extra": "Extra afgerond",
+    "qr.s.classy": "Elegant",
+    "qr.s.dots": "Stippen",
+    "qr.s.circle": "Cirkel",
+    "qr.s.none": "Geen",
+    "qr.s.linear": "Lineair",
+    "qr.s.radial": "Radiaal",
+    "qr.s.label": "Label eronder",
+    "qr.s.box": "Kader met label",
+    "qr.s.L": "Laag (7%)",
+    "qr.s.M": "Gemiddeld (15%)",
+    "qr.s.Q": "Hoog (25%)",
+    "qr.s.H": "Hoogst (30%)",
+    "qr.colors": "Kleuren",
+    "qr.color": "Punten",
+    "qr.gradient": "Verloop",
+    "qr.color2": "Einde verloop",
+    "qr.eyeColor": "Hoeken",
+    "qr.background": "Achtergrond",
+    "qr.clear": "Transparante achtergrond",
+    "qr.logoTitle": "Logo",
+    "qr.logo": "Je logo toevoegen",
+    "qr.logoRemove": "Logo verwijderen",
+    "qr.logoSize": "Logogrootte",
+    "qr.logoBad": "Die afbeelding kon niet worden geopend. Probeer een PNG of JPG.",
+    "qr.logoHint": "Je logo blijft op dit apparaat. Met een logo wordt de sterkste foutcorrectie gebruikt, zodat de code leesbaar blijft.",
+    "qr.frameTitle": "Kader",
+    "qr.frame": "Kader",
+    "qr.frameText": "Kadertekst",
+    "qr.frameColor": "Kaderkleur",
+    "qr.more": "Meer",
+    "qr.margin": "Marge",
+    "qr.ecc": "Foutcorrectie",
+    "qr.format": "Formaat",
+    "qr.size": "Grootte",
+    "qr.name": "Bestandsnaam",
+    "qr.download": "QR-code downloaden",
+    "qr.copy": "Afbeelding kopiëren",
+    "qr.share": "Delen",
+    "qr.empty": "Vul de gegevens in en je code verschijnt hier.",
+    "qr.tooLong": "Te veel tekst voor één QR-code. Maak het korter.",
+    "qr.previewOf": "QR-code voor: {text}",
+    "qr.lowContrast": "Weinig contrast: sommige telefoons lezen deze code niet. Gebruik donkerdere punten of een lichtere achtergrond.",
+    "qr.inverted": "Lichte punten op donkere achtergrond: veel camera’s lezen dit niet. Test voor het printen.",
+    "qr.saved": "{name} opgeslagen.",
+    "qr.copied": "Gekopieerd. Plak het waar je wilt.",
+    "qr.copyFailed": "Deze browser kon de afbeelding niet kopiëren. Gebruik Downloaden.",
+    "qr.scanOk": "Gecontroleerd: deze code scant.",
+    "qr.scanBad": "Deze code scande niet in onze controle. Probeer donkerdere punten, een kleiner logo of het sjabloon Klassiek.",
+    "qr.icons": "Kant-en-klare iconen",
+    "qr.i.wifi": "Wifi-icoon",
+    "qr.i.upi": "Roepie-icoon",
+    "qr.i.chat": "Chaticoon",
+    "qr.i.phone": "Telefoonicoon",
+    "qr.i.email": "E-mailicoon",
+    "qr.i.location": "Locatie-icoon",
+    "qr.i.link": "Linkicoon",
+    "qr.imageTitle": "Achtergrondafbeelding",
+    "qr.image": "Achtergrondafbeelding toevoegen",
+    "qr.imageRemove": "Achtergrondafbeelding verwijderen",
+    "qr.imageHint": "De afbeelding is zacht zichtbaar achter de code. Houd de punten donker; de controle naast het voorbeeld laat zien of hij nog scant.",
+    "scan.camera": "Camera gebruiken",
+    "scan.stop": "Camera stoppen",
+    "scan.photo": "Foto kiezen",
+    "scan.hint": "Of plak een screenshot (Ctrl+V), of sleep een afbeelding hierheen.",
+    "scan.cameraView": "Camerabeeld",
+    "scan.results": "Gevonden codes",
+    "scan.reading": "Afbeelding wordt gelezen…",
+    "scan.looking": "Richt de camera op een code.",
+    "scan.found": "{n} gevonden.",
+    "scan.none": "Geen code gevonden. Probeer een scherpere of dichterbij genomen foto.",
+    "scan.noCamera": "De camera startte niet. Sta cameratoegang toe of kies een foto.",
+    "scan.open": "Openen",
+    "scan.copy": "Tekst kopiëren",
+    "scan.copied": "Gekopieerd",
+    "scan.copyPassword": "Wachtwoord kopiëren",
+    "scan.wifi": "Wifi-netwerk: {name}",
+    "scan.upi": "{name} ({id}) betalen {amount}",
+    "scan.pay": "Betalen met een UPI-app",
+    "scan.contact": "Contact opslaan",
+    "scan.event": "Aan agenda toevoegen",
+    "scan.csv": "Lijst downloaden (CSV)",
+    "scan.torch": "Zaklamp",
+    "scan.flip": "Camera wisselen",
+    "scan.zoom": "Zoom",
+    "scan.warnHttp": "Niet versleuteld (http): iedereen op het netwerk kan deze pagina zien of wijzigen.",
+    "scan.warnLookalike": "Het adres gebruikt letters die op andere lijken. Controleer het goed voor je opent.",
+    "scan.warnIp": "De link gaat naar een adres van alleen cijfers, niet naar een websitenaam.",
+    "scan.warnAt": "De echte website is {host}: het deel voor @ is er alleen om te misleiden.",
+    "scan.warnShort": "Verkorte link: je ziet pas waar hij heen gaat als je hem opent.",
+    "home.scan": "Scannen",
+    "home.mine": "Jouw tools",
+    "home.mineLede": "Vastgezette en recent gebruikte tools. Alleen in deze browser bewaard.",
+    "home.filter": "Tools tonen voor",
+    "home.all": "Alle",
+    "pin.add": "{name} vastzetten",
+    "pin.page": "Vastzetten op start",
+    "pin.pageOn": "Vastgezet op start"
   },
   "home": {
     "title": "Fizzdoc — Gratis PDF-tools, foto-editor en achtergrond verwijderen",
@@ -3352,6 +3529,264 @@
         "tekst op foto zetten",
         "foto filters online",
         "foto bewerken zonder uploaden"
+      ]
+    },
+    "qr-code-generator": {
+      "name": "QR-codegenerator",
+      "summary": "Maak een gestileerde QR-code met je logo voor een link, wifi, contact of WhatsApp.",
+      "action": "QR-code downloaden",
+      "title": "Gratis QR-codegenerator met Logo — Wifi, vCard | Fizzdoc",
+      "description": "Maak gratis een QR-code met je logo, kleuren en kader voor een link, wifi, contactkaart of WhatsApp. Verloopt nooit, geen account, geen upload.",
+      "h1": "Maak een QR-code met je logo, gratis",
+      "lede": "Typ een link, wifi-gegevens, een contactkaart of een WhatsApp-nummer en geef de code stijl: vormen van punten en hoeken, kleuren en verlopen, je logo en een “Scan mij”-kader. Download als PNG, SVG, JPG, WebP of PDF. De code verloopt nooit, en niets van wat je typt of uploadt verlaat je apparaat.",
+      "steps": [
+        "Kies wat de code bevat (link, wifi, contact, WhatsApp en meer) en vul de gegevens in.",
+        "Kies een sjabloon of stel zelf vormen, kleuren, logo en kader in. Het voorbeeld verandert meteen.",
+        "Kies formaat en grootte en klik op “QR-code downloaden”."
+      ],
+      "faq": [
+        [
+          "Verloopt de QR-code?",
+          "Nee. Het is een statische code: alles staat in de code zelf, dus hij werkt zolang de link of het wifi-wachtwoord geldig is. Er is geen account, abonnement of doorverwijzing die hem kan uitschakelen."
+        ],
+        [
+          "Kan ik scans tellen of de link later wijzigen?",
+          "Nee, bewust niet. Scans tellen en wijzigbare (“dynamische”) codes vereisen een server waar elke scan langs gaat, die ziet wie je code scant. Fizzdoc maakt de code op je apparaat en ziet hem nooit."
+        ],
+        [
+          "Scant hij nog met een logo?",
+          "Ja. Met een logo wordt de sterkste foutcorrectie (H) gebruikt, zodat de code ook leesbaar is als 30% bedekt is. Houd het logo op standaardgrootte of kleiner, gebruik donkere punten op een lichte achtergrond en test met je telefoon voor het printen."
+        ],
+        [
+          "Op welk formaat printen?",
+          "Minstens 2 cm voor een code die van dichtbij wordt gescand, en een tiende van de afstand voor posters (vanaf 3 m een code van 30 cm). Download SVG of PDF om te printen: die blijven scherp op elk formaat."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "QR-codegenerator met logo",
+        "wifi QR-code maken",
+        "QR-code die niet verloopt",
+        "gratis QR-code zonder account",
+        "QR-code voor visitekaartje"
+      ]
+    },
+    "qr-code-scanner": {
+      "name": "QR-code- en barcodescanner",
+      "summary": "Lees een QR-code of barcode met de camera of uit een foto, ook offline.",
+      "action": "Scannen",
+      "title": "Gratis QR-code- en Barcodescanner — Camera of Foto | Fizzdoc",
+      "description": "Scan gratis een QR-code of barcode met je camera of uit een foto of screenshot. Verbind met wifi, open links, bewaar contacten. Werkt offline.",
+      "h1": "Scan een QR-code of barcode met de camera of een foto",
+      "lede": "Richt de camera op de code, kies een foto of plak een screenshot. Fizzdoc leest QR-codes en barcodes (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec en meer), ook meerdere in één afbeelding, en laat zien wat elke code bevat voordat er iets opent. Werkt offline, en niets verlaat je apparaat.",
+      "steps": [
+        "Klik op “Camera gebruiken” en richt op de code, of kies een foto, of plak een screenshot.",
+        "Elke gevonden code wordt omlijnd en met de inhoud getoond.",
+        "Open de link, kopieer het wifi-wachtwoord, bewaar het contact of betaal met UPI, of kopieer alleen de tekst."
+      ],
+      "faq": [
+        [
+          "Is het veilig om een onbekende QR-code te scannen?",
+          "Fizzdoc toont de volledige tekst van elke code en opent nooit zelf een link, zodat je eerst kunt zien waar hij heen gaat. Let op adressen die op andere lijken en op betaalcodes die vragen om geld te sturen terwijl je verwachtte te ontvangen."
+        ],
+        [
+          "Welke codes kan hij lezen?",
+          "QR-codes (ook Micro QR), Data Matrix, Aztec, PDF417 en barcodes: EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, Codabar, ITF en DataBar. Hij vindt meerdere codes in één afbeelding."
+        ],
+        [
+          "Werkt het offline?",
+          "Ja. Nadat de pagina één keer met internet is geopend, werkt de scanner zonder verbinding, met camera of foto’s."
+        ],
+        [
+          "Waarom start de camera niet?",
+          "Sta cameratoegang toe als de browser erom vraagt. Heb je eerder geweigerd, sta het dan opnieuw toe via het slotje naast het adres. Je kunt altijd een foto kiezen."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "QR-code scannen uit afbeelding",
+        "online QR-scanner met camera",
+        "gratis barcodescanner online",
+        "QR-code uit screenshot lezen",
+        "offline QR-scanner zonder app"
+      ]
+    },
+    "wifi-qr-code-generator": {
+      "name": "Wifi-QR-codegenerator",
+      "summary": "Gasten verbinden met je wifi door een code te scannen, zonder wachtwoord te typen.",
+      "action": "QR-code downloaden",
+      "title": "Gratis Wifi-QR-codegenerator — Scannen en Verbinden | Fizzdoc",
+      "description": "Maak gratis een wifi-QR-code: gasten scannen hem met de camera en verbinden zonder het wachtwoord te typen. Met logo en kader. Er wordt niets geüpload.",
+      "h1": "Maak een wifi-QR-code: scannen en verbinden",
+      "lede": "Typ de netwerknaam en het wachtwoord, en gasten verbinden door de telefooncamera op de code te richten. Geef hem stijl met je logo en een “Verbind met wifi”-kader en print hem voor een café, kantoor, winkel of thuis. Het wachtwoord verlaat je apparaat nooit: de code wordt in je browser gemaakt.",
+      "steps": [
+        "Typ de netwerknaam (SSID) en het wachtwoord en kies de beveiliging (WPA is bijna altijd goed).",
+        "Kies een sjabloon of stel kleuren, logo en kader in. De pagina controleert of de code scant.",
+        "Download als PNG of PDF en print hem, of deel hem."
+      ],
+      "faq": [
+        [
+          "Hoe gebruiken gasten een wifi-QR-code?",
+          "Ze openen de camera (of Google Lens) en richten op de code. iPhone en Android tonen “Verbinden met netwerk”; één tik en klaar, zonder wachtwoord te typen."
+        ],
+        [
+          "Is het veilig om het wifi-wachtwoord in een QR-code te zetten?",
+          "De code bevat het wachtwoord: wie hem kan scannen, kan verbinden, alsof hij het las. Hang hem alleen op waar je het wachtwoord toch zou delen en overweeg een apart gastennetwerk. Fizzdoc ziet het wachtwoord nooit."
+        ],
+        [
+          "Welke beveiliging kies ik?",
+          "WPA omvat WPA, WPA2 en WPA3, die bijna elke router gebruikt. Kies WEP alleen bij heel oude routers en “Geen wachtwoord” voor open netwerken. Vink “Verborgen netwerk” aan als de naam niet wordt uitgezonden."
+        ],
+        [
+          "Verloopt de QR-code?",
+          "Nee. Alles staat in de code zelf, dus hij werkt zolang de gegevens geldig zijn. Er is geen account, abonnement of doorverwijzing die hem kan uitschakelen."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "wifi QR-codegenerator",
+        "wifi-wachtwoord delen met QR",
+        "scannen om met wifi te verbinden",
+        "gasten-wifi QR-code voor café",
+        "WiFi QR-code met logo"
+      ]
+    },
+    "upi-qr-code-generator": {
+      "name": "UPI-QR-codegenerator",
+      "summary": "Een betaal-QR-code voor je UPI-ID die Google Pay, PhonePe, Paytm en BHIM lezen.",
+      "action": "QR-code downloaden",
+      "title": "Gratis UPI-QR-codegenerator — GPay, PhonePe, Paytm | Fizzdoc",
+      "description": "Maak gratis een UPI-betaal-QR-code voor een winkel in India: UPI-ID, naam en optioneel een vast bedrag. Werkt in elke UPI-app. Zonder account.",
+      "h1": "Maak een UPI-betaal-QR-code, gratis",
+      "lede": "Vul je UPI-ID en naam in, en eventueel een vast bedrag en notitie, en krijg een betaal-QR-code die Google Pay, PhonePe, Paytm, BHIM en elke UPI-app kunnen lezen. Voeg je logo en een “Betaal met UPI”-kader toe voor de kassa. Geen aanmelding bij bank of app, en je gegevens blijven op je apparaat.",
+      "steps": [
+        "Vul je UPI-ID (zoals naam@okhdfcbank) in en de naam die betalers zien. Voeg bedrag en notitie toe als elke betaling gelijk is.",
+        "Kies het sjabloon “UPI-betaalkader” of je eigen kleuren en logo.",
+        "Download als PNG of PDF en print hem voor de kassa, of deel hem."
+      ],
+      "faq": [
+        [
+          "Werkt hij met Google Pay, PhonePe en Paytm?",
+          "Ja. Hij gebruikt de standaard UPI-betaallink (upi://pay) van NPCI, die elke UPI-app leest. De betaling gaat direct naar de UPI-ID in de code."
+        ],
+        [
+          "Kan ik het bedrag vastzetten?",
+          "Ja: vul een bedrag in en de app opent met dat bedrag ingevuld. Laat het leeg zodat de betaler het zelf typt, ideaal aan de winkelkassa."
+        ],
+        [
+          "Is het veilig?",
+          "De code bevat alleen je UPI-ID, naam en het bedrag dat je instelt: geen pincode of bankgegevens. Scan hem met je eigen UPI-app voor het printen om de naam te controleren. Fizzdoc ziet je gegevens nooit."
+        ],
+        [
+          "Verloopt de QR-code?",
+          "Nee. Alles staat in de code zelf, dus hij werkt zolang de gegevens geldig zijn. Er is geen account, abonnement of doorverwijzing die hem kan uitschakelen."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "gratis UPI-QR-codegenerator",
+        "Google Pay QR-code voor winkel",
+        "PhonePe QR-codegenerator",
+        "UPI-betaal-QR met bedrag",
+        "Paytm QR-code voor bedrijf"
+      ]
+    },
+    "whatsapp-qr-code-generator": {
+      "name": "WhatsApp-QR-codegenerator",
+      "summary": "Een QR-code die een WhatsApp-chat opent met je nummer en een klaar bericht.",
+      "action": "QR-code downloaden",
+      "title": "Gratis WhatsApp-QR-codegenerator — Chat in Eén Scan | Fizzdoc",
+      "description": "Maak gratis een WhatsApp-QR-code die een chat opent met je nummer en een klaar bericht. Ideaal voor winkels, menu’s en visitekaartjes. Zonder account.",
+      "h1": "Maak een WhatsApp-QR-code die een chat opent",
+      "lede": "Vul je WhatsApp-nummer met landcode in en eventueel een bericht als “Hallo, ik wil graag bestellen”. Wie de code scant, opent een chat met jou met het bericht al getypt. Geef hem stijl met je logo en een kader voor je winkel, menu, kaartje of verpakking.",
+      "steps": [
+        "Vul het nummer met landcode in (zoals +31 6 12345678) en een optioneel bericht.",
+        "Kies een sjabloon, of stel kleuren, een chat-icoon of je logo, en een kader in.",
+        "Download als PNG, SVG of PDF en print of deel hem."
+      ],
+      "faq": [
+        [
+          "Hoe werkt een WhatsApp-QR-code?",
+          "Hij bevat een wa.me-link met je nummer en bericht. Bij scannen opent WhatsApp (of WhatsApp Business) een chat met jou, met het bericht getypt en klaar om te versturen."
+        ],
+        [
+          "Werkt het met WhatsApp Business?",
+          "Ja. Dezelfde link opent chats met WhatsApp- en WhatsApp Business-nummers."
+        ],
+        [
+          "Heb ik de landcode nodig?",
+          "Ja, altijd (31 voor Nederland, 32 voor België). Spaties, streepjes en het plusteken worden automatisch verwijderd."
+        ],
+        [
+          "Verloopt de QR-code?",
+          "Nee. Alles staat in de code zelf, dus hij werkt zolang de gegevens geldig zijn. Er is geen account, abonnement of doorverwijzing die hem kan uitschakelen."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "WhatsApp-QR-codegenerator",
+        "WhatsApp-chat QR-code",
+        "wa.me QR-code",
+        "WhatsApp Business QR-code",
+        "QR-code die WhatsApp-chat opent"
+      ]
+    },
+    "vcard-qr-code-generator": {
+      "name": "Contactkaart-QR-codegenerator (vCard)",
+      "summary": "Een QR-code die je naam, telefoon, e-mail en bedrijf in de contacten opslaat.",
+      "action": "QR-code downloaden",
+      "title": "Gratis vCard-QR-codegenerator — Contact-QR, Zonder Upload | Fizzdoc",
+      "description": "Maak gratis een vCard-QR-code voor je visitekaartje: één scan bewaart naam, telefoon, e-mail, bedrijf en website in de contacten. Zonder account.",
+      "h1": "Maak een contactkaart-QR-code (vCard)",
+      "lede": "Vul naam, telefoon, e-mail, bedrijf, functie, website en adres in, en krijg een QR-code die jou met één tik in de contacten van een telefoon zet. Voor visitekaartjes, e-mailhandtekeningen, badges en stands. Je gegevens worden op je apparaat een code en worden nooit geüpload.",
+      "steps": [
+        "Vul in wat je wilt delen: naam, telefoon, e-mail, bedrijf, functie, website, adres.",
+        "Kies een sjabloon of stel kleuren, logo en kader in.",
+        "Download SVG of PDF om op kaartjes te printen, of PNG voor schermen."
+      ],
+      "faq": [
+        [
+          "Wat gebeurt er als iemand een vCard-QR-code scant?",
+          "De telefoon toont je contactkaart met een knop “Toevoegen aan contacten”. Elke iPhone- en Android-camera leest het vCard 3.0-formaat dat hier wordt gebruikt."
+        ],
+        [
+          "Waarom is mijn vCard-QR-code zo vol?",
+          "Elk gegeven voegt tekst aan de code toe. Laat overbodige velden weg, houd het logo klein en print hem minstens 2,5 cm breed zodat telefoons hem makkelijk lezen."
+        ],
+        [
+          "Kan ik de gegevens later wijzigen?",
+          "Niet in een geprinte code: de gegevens staan erin. Maak een nieuwe code als ze veranderen; dat is gratis en duurt een minuut."
+        ],
+        [
+          "Verloopt de QR-code?",
+          "Nee. Alles staat in de code zelf, dus hij werkt zolang de gegevens geldig zijn. Er is geen account, abonnement of doorverwijzing die hem kan uitschakelen."
+        ],
+        [
+          "Is Fizzdoc gratis?",
+          "Ja, en het blijft gratis: geen account, geen watermerk, geen dagelijkse limiet en geen premium-abonnement. Fizzdoc is open source onder de Apache-2.0-licentie, dus iedereen kan zijn eigen versie draaien."
+        ]
+      ],
+      "keywords": [
+        "vCard-QR-codegenerator",
+        "QR-code voor visitekaartje",
+        "contact QR-code",
+        "QR-code om contact op te slaan",
+        "digitaal visitekaartje met QR"
       ]
     }
   }

@@ -428,7 +428,184 @@
     "bg.gifNote": "GIF động: mọi khung hình đều được xử lý và lưu thành GIF. GIF không có viền mềm, nên khi chọn “Không” viền sẽ sắc hơn một chút.",
     "bg.videoNote": "Đây là khung hình đầu tiên. Chọn nền rồi lưu: mọi khung hình được xử lý trên thiết bị này, khoảng {min} phút. Hãy giữ tab này mở.",
     "bg.greenScreen": "Phông xanh",
-    "ws.dpiLow": "Thấp (tệp nhỏ nhất, cho web)"
+    "ws.dpiLow": "Thấp (tệp nhỏ nhất, cho web)",
+    "ws.chooseAny": "Chọn một tệp để mở",
+    "vw.page": "Trang {n} / {total}",
+    "vw.firstRows": "Đang hiển thị {n} hàng đầu tiên.",
+    "vw.showAll": "Hiện tất cả {n} hàng",
+    "vw.cut": "Tệp lớn: chỉ hiển thị phần đầu.",
+    "vw.unknown": "Chưa thể hiển thị loại tệp này. Có thể hiển thị PDF, Word (.docx), Excel (.xlsx), CSV, ảnh, văn bản và Markdown.",
+    "rd.pageKeys": "Trang {n}. Nhấn Enter để thêm ô, phím mũi tên để di chuyển, Shift và mũi tên để đổi cỡ, Delete để xóa.",
+    "bg.keys": "Bàn phím: khi đã chọn công cụ, phím mũi tên di chuyển cọ trên ảnh và phím cách để tô.",
+    "st.keys": "Bàn phím: phím mũi tên di chuyển chữ hoặc emoji đang chọn, Page Up và Page Down chọn cái khác, Delete xóa nó.",
+    "qr.content": "Nội dung của mã",
+    "qr.kind": "Loại mã",
+    "qr.k.url": "Liên kết",
+    "qr.k.text": "Văn bản",
+    "qr.k.email": "Email",
+    "qr.k.phone": "Gọi điện",
+    "qr.k.sms": "SMS",
+    "qr.k.whatsapp": "WhatsApp",
+    "qr.k.upi": "Thanh toán UPI",
+    "qr.k.wifi": "Wi-Fi",
+    "qr.k.vcard": "Danh thiếp",
+    "qr.k.event": "Sự kiện",
+    "qr.k.location": "Vị trí",
+    "qr.k.crypto": "Tiền mã hóa",
+    "qr.f.url": "Địa chỉ web",
+    "qr.f.text": "Văn bản",
+    "qr.f.to": "Địa chỉ email",
+    "qr.f.subject": "Tiêu đề",
+    "qr.f.body": "Nội dung",
+    "qr.f.phone": "Số điện thoại",
+    "qr.f.message": "Tin nhắn",
+    "qr.f.pa": "ID UPI (ví dụ ten@okhdfcbank)",
+    "qr.f.pn": "Tên hiển thị cho người trả",
+    "qr.f.am": "Số tiền ₹ (tùy chọn)",
+    "qr.f.tn": "Ghi chú (tùy chọn)",
+    "qr.f.ssid": "Tên mạng",
+    "qr.f.password": "Mật khẩu",
+    "qr.f.security": "Bảo mật",
+    "qr.f.hidden": "Mạng ẩn",
+    "qr.f.first": "Tên",
+    "qr.f.last": "Họ",
+    "qr.f.email": "Email",
+    "qr.f.org": "Công ty",
+    "qr.f.title": "Chức danh",
+    "qr.f.website": "Trang web",
+    "qr.f.address": "Địa chỉ",
+    "qr.f.summary": "Tên sự kiện",
+    "qr.f.start": "Bắt đầu",
+    "qr.f.end": "Kết thúc",
+    "qr.f.location": "Địa điểm",
+    "qr.f.lat": "Vĩ độ",
+    "qr.f.lng": "Kinh độ",
+    "qr.f.coin": "Đồng tiền",
+    "qr.f.wallet": "Địa chỉ ví",
+    "qr.f.amount": "Số tiền (tùy chọn)",
+    "qr.o.WPA": "WPA / WPA2 / WPA3",
+    "qr.o.WEP": "WEP",
+    "qr.o.nopass": "Không mật khẩu",
+    "qr.o.bitcoin": "Bitcoin",
+    "qr.o.ethereum": "Ethereum",
+    "qr.o.litecoin": "Litecoin",
+    "qr.templates": "Mẫu",
+    "qr.t.classic": "Cổ điển",
+    "qr.t.rounded": "Bo tròn",
+    "qr.t.dots": "Chấm",
+    "qr.t.ocean": "Chuyển sắc đại dương",
+    "qr.t.sunset": "Chuyển sắc hoàng hôn",
+    "qr.t.forest": "Rừng",
+    "qr.t.scan": "Nhãn “Quét tôi”",
+    "qr.t.upi": "Khung thanh toán UPI",
+    "qr.t.wifi": "Nhãn Wi-Fi",
+    "qr.t.night": "Sáng trên nền tối",
+    "qr.t.radial": "Chuyển sắc tròn",
+    "qr.t.clear": "Nền trong suốt",
+    "qr.shapes": "Hình dạng",
+    "qr.dots": "Chấm",
+    "qr.eyeFrame": "Khung góc",
+    "qr.eyeBall": "Tâm góc",
+    "qr.s.square": "Vuông",
+    "qr.s.rounded": "Bo tròn",
+    "qr.s.extra": "Bo tròn nhiều",
+    "qr.s.classy": "Thanh lịch",
+    "qr.s.dots": "Chấm",
+    "qr.s.circle": "Tròn",
+    "qr.s.none": "Không",
+    "qr.s.linear": "Tuyến tính",
+    "qr.s.radial": "Tròn",
+    "qr.s.label": "Nhãn bên dưới",
+    "qr.s.box": "Khung có nhãn",
+    "qr.s.L": "Thấp (7%)",
+    "qr.s.M": "Trung bình (15%)",
+    "qr.s.Q": "Cao (25%)",
+    "qr.s.H": "Cao nhất (30%)",
+    "qr.colors": "Màu sắc",
+    "qr.color": "Chấm",
+    "qr.gradient": "Chuyển sắc",
+    "qr.color2": "Cuối chuyển sắc",
+    "qr.eyeColor": "Góc",
+    "qr.background": "Nền",
+    "qr.clear": "Nền trong suốt",
+    "qr.logoTitle": "Logo",
+    "qr.logo": "Thêm logo của bạn",
+    "qr.logoRemove": "Bỏ logo",
+    "qr.logoSize": "Cỡ logo",
+    "qr.logoBad": "Không mở được ảnh đó. Hãy thử PNG hoặc JPG.",
+    "qr.logoHint": "Logo của bạn ở lại trên thiết bị này. Khi có logo, mức sửa lỗi mạnh nhất được dùng để mã vẫn quét được.",
+    "qr.frameTitle": "Khung",
+    "qr.frame": "Khung",
+    "qr.frameText": "Chữ trên khung",
+    "qr.frameColor": "Màu khung",
+    "qr.more": "Thêm",
+    "qr.margin": "Lề",
+    "qr.ecc": "Sửa lỗi",
+    "qr.format": "Định dạng",
+    "qr.size": "Kích thước",
+    "qr.name": "Tên tệp",
+    "qr.download": "Tải mã QR",
+    "qr.copy": "Sao chép ảnh",
+    "qr.share": "Chia sẻ",
+    "qr.empty": "Điền thông tin và mã của bạn sẽ hiện ở đây.",
+    "qr.tooLong": "Quá nhiều văn bản cho một mã QR. Hãy rút gọn.",
+    "qr.previewOf": "Mã QR cho: {text}",
+    "qr.lowContrast": "Độ tương phản thấp: một số điện thoại có thể không đọc được mã này. Dùng chấm tối hơn hoặc nền sáng hơn.",
+    "qr.inverted": "Chấm sáng trên nền tối: nhiều camera điện thoại không đọc được. Hãy thử trước khi in.",
+    "qr.saved": "Đã lưu {name}.",
+    "qr.copied": "Đã sao chép. Dán vào đâu cũng được.",
+    "qr.copyFailed": "Trình duyệt này không sao chép được ảnh. Hãy dùng Tải xuống.",
+    "qr.scanOk": "Đã kiểm tra: mã này quét được.",
+    "qr.scanBad": "Mã này không quét được khi chúng tôi kiểm tra. Thử chấm tối hơn, logo nhỏ hơn hoặc mẫu Cổ điển.",
+    "qr.icons": "Biểu tượng có sẵn",
+    "qr.i.wifi": "Biểu tượng Wi-Fi",
+    "qr.i.upi": "Biểu tượng rupee",
+    "qr.i.chat": "Biểu tượng trò chuyện",
+    "qr.i.phone": "Biểu tượng điện thoại",
+    "qr.i.email": "Biểu tượng email",
+    "qr.i.location": "Biểu tượng vị trí",
+    "qr.i.link": "Biểu tượng liên kết",
+    "qr.imageTitle": "Ảnh nền",
+    "qr.image": "Thêm ảnh nền",
+    "qr.imageRemove": "Bỏ ảnh nền",
+    "qr.imageHint": "Ảnh hiện mờ phía sau mã. Giữ chấm tối; phần kiểm tra cạnh bản xem trước sẽ cho biết mã còn quét được không.",
+    "scan.camera": "Dùng camera",
+    "scan.stop": "Tắt camera",
+    "scan.photo": "Chọn ảnh",
+    "scan.hint": "Hoặc dán ảnh chụp màn hình (Ctrl+V), hoặc thả ảnh vào đây.",
+    "scan.cameraView": "Khung hình camera",
+    "scan.results": "Mã tìm thấy",
+    "scan.reading": "Đang đọc ảnh…",
+    "scan.looking": "Hướng camera vào một mã.",
+    "scan.found": "Tìm thấy {n}.",
+    "scan.none": "Không tìm thấy mã. Hãy thử ảnh rõ hơn hoặc gần hơn.",
+    "scan.noCamera": "Camera không bật. Hãy cho phép truy cập camera, hoặc chọn ảnh.",
+    "scan.open": "Mở",
+    "scan.copy": "Sao chép văn bản",
+    "scan.copied": "Đã sao chép",
+    "scan.copyPassword": "Sao chép mật khẩu",
+    "scan.wifi": "Mạng Wi-Fi: {name}",
+    "scan.upi": "Thanh toán cho {name} ({id}) {amount}",
+    "scan.pay": "Thanh toán bằng ứng dụng UPI",
+    "scan.contact": "Lưu danh bạ",
+    "scan.event": "Thêm vào lịch",
+    "scan.csv": "Tải danh sách (CSV)",
+    "scan.torch": "Đèn pin",
+    "scan.flip": "Đổi camera",
+    "scan.zoom": "Thu phóng",
+    "scan.warnHttp": "Không mã hóa (http): bất kỳ ai trong mạng đều có thể xem hoặc sửa trang này.",
+    "scan.warnLookalike": "Địa chỉ dùng chữ giả mạo chữ khác. Kiểm tra kỹ trước khi mở.",
+    "scan.warnIp": "Liên kết dẫn tới địa chỉ chỉ toàn số, không phải tên trang web.",
+    "scan.warnAt": "Trang web thật là {host}: phần trước @ chỉ để đánh lừa.",
+    "scan.warnShort": "Liên kết rút gọn: không thấy nó dẫn đến đâu cho tới khi mở.",
+    "home.scan": "Quét",
+    "home.mine": "Công cụ của bạn",
+    "home.mineLede": "Công cụ đã ghim và dùng gần đây. Chỉ lưu trong trình duyệt này.",
+    "home.filter": "Hiện công cụ cho",
+    "home.all": "Tất cả",
+    "pin.add": "Ghim {name}",
+    "pin.page": "Ghim vào trang chủ",
+    "pin.pageOn": "Đã ghim vào trang chủ"
   },
   "home": {
     "title": "Fizzdoc — Công cụ PDF, chỉnh sửa ảnh và xóa phông miễn phí",
@@ -3352,6 +3529,264 @@
         "chèn chữ vào ảnh",
         "bộ lọc ảnh online",
         "chỉnh ảnh không cần tải lên"
+      ]
+    },
+    "qr-code-generator": {
+      "name": "Tạo mã QR",
+      "summary": "Tạo mã QR đẹp có logo cho liên kết, Wi-Fi, danh bạ hoặc WhatsApp.",
+      "action": "Tải mã QR",
+      "title": "Tạo Mã QR Miễn Phí Có Logo — Wi-Fi, vCard, WhatsApp | Fizzdoc",
+      "description": "Tạo mã QR miễn phí với logo, màu sắc và khung cho liên kết, Wi-Fi, danh thiếp hoặc WhatsApp. Không hết hạn, không cần tài khoản, không tải lên.",
+      "h1": "Tạo mã QR có logo của bạn, miễn phí",
+      "lede": "Nhập liên kết, thông tin Wi-Fi, danh thiếp hoặc số WhatsApp rồi tùy chỉnh mã: hình dạng chấm và góc, màu và chuyển sắc, logo của bạn và khung “Quét tôi”. Tải về dạng PNG, SVG, JPG, WebP hoặc PDF. Mã không bao giờ hết hạn, và mọi thứ bạn nhập hay thêm vào đều không rời khỏi thiết bị.",
+      "steps": [
+        "Chọn nội dung của mã (liên kết, Wi-Fi, danh bạ, WhatsApp và hơn nữa) rồi điền thông tin.",
+        "Chọn mẫu, hoặc tự chỉnh hình dạng, màu, logo và khung. Bản xem trước đổi ngay.",
+        "Chọn định dạng và kích thước, rồi bấm “Tải mã QR”."
+      ],
+      "faq": [
+        [
+          "Mã QR có hết hạn không?",
+          "Không. Đây là mã tĩnh: mọi nội dung được ghi ngay trong mã, nên mã hoạt động chừng nào liên kết hoặc mật khẩu Wi-Fi còn đúng. Không có tài khoản, gói đăng ký hay chuyển hướng nào có thể tắt nó."
+        ],
+        [
+          "Tôi có đếm lượt quét hoặc đổi liên kết sau được không?",
+          "Không, có chủ ý. Đếm lượt quét và mã chỉnh sửa được (“động”) cần một máy chủ mà mọi lượt quét đi qua, máy chủ đó sẽ thấy ai quét mã của bạn. Fizzdoc tạo mã trên thiết bị của bạn và không bao giờ thấy nó."
+        ],
+        [
+          "Có logo thì còn quét được không?",
+          "Có. Khi có logo, mức sửa lỗi mạnh nhất (H) được dùng, giúp đọc được mã dù bị che tới 30%. Giữ logo ở kích thước mặc định hoặc nhỏ hơn, chấm tối trên nền sáng, và thử bằng điện thoại trước khi in."
+        ],
+        [
+          "Nên in cỡ bao nhiêu?",
+          "Ít nhất 2 cm cho mã quét ở gần, và khoảng một phần mười khoảng cách cho áp phích (cách 3 m thì mã 30 cm). Tải SVG hoặc PDF để in: luôn sắc nét ở mọi cỡ."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "tạo mã QR có logo",
+        "tạo mã QR Wi-Fi",
+        "mã QR không hết hạn",
+        "tạo mã QR miễn phí không cần đăng ký",
+        "mã QR cho danh thiếp"
+      ]
+    },
+    "qr-code-scanner": {
+      "name": "Quét mã QR và mã vạch",
+      "summary": "Đọc mã QR hoặc mã vạch bằng camera hay từ ảnh, kể cả khi ngoại tuyến.",
+      "action": "Quét",
+      "title": "Quét Mã QR và Mã Vạch Miễn Phí — Camera hoặc Ảnh | Fizzdoc",
+      "description": "Quét mã QR hoặc mã vạch miễn phí bằng camera hay từ ảnh, ảnh chụp màn hình. Kết nối Wi-Fi, mở liên kết, lưu danh bạ. Chạy cả khi ngoại tuyến.",
+      "h1": "Quét mã QR hoặc mã vạch bằng camera hoặc ảnh",
+      "lede": "Hướng camera vào mã, chọn ảnh hoặc dán ảnh chụp màn hình. Fizzdoc đọc mã QR và mã vạch (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec và nhiều loại khác), cả nhiều mã trong một ảnh, và cho bạn thấy nội dung từng mã trước khi mở bất cứ thứ gì. Chạy ngoại tuyến, và không gì rời khỏi thiết bị của bạn.",
+      "steps": [
+        "Bấm “Dùng camera” và hướng vào mã, hoặc chọn ảnh, hoặc dán ảnh chụp màn hình.",
+        "Mỗi mã tìm được được khoanh lại và liệt kê kèm nội dung.",
+        "Mở liên kết, sao chép mật khẩu Wi-Fi, lưu danh bạ hoặc thanh toán UPI, hoặc chỉ sao chép văn bản."
+      ],
+      "faq": [
+        [
+          "Quét mã QR lạ có an toàn không?",
+          "Fizzdoc hiển thị toàn bộ văn bản của mỗi mã và không bao giờ tự mở liên kết, nên bạn kiểm tra được nó dẫn đến đâu trước. Cẩn thận với địa chỉ giả mạo địa chỉ khác và mã thanh toán yêu cầu bạn gửi tiền khi bạn tưởng là nhận tiền."
+        ],
+        [
+          "Đọc được những loại mã nào?",
+          "Mã QR (cả Micro QR), Data Matrix, Aztec, PDF417 và mã vạch: EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, Codabar, ITF và DataBar. Tìm được nhiều mã trong một ảnh."
+        ],
+        [
+          "Có chạy ngoại tuyến không?",
+          "Có. Sau khi mở trang một lần khi có mạng, trình quét chạy không cần kết nối, bằng camera hoặc ảnh."
+        ],
+        [
+          "Vì sao camera không bật?",
+          "Cho phép truy cập camera khi trình duyệt hỏi. Nếu trước đó đã từ chối, hãy cho phép lại qua biểu tượng ổ khóa cạnh địa chỉ. Bạn luôn có thể chọn ảnh."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "quét mã QR từ ảnh",
+        "quét QR trực tuyến bằng camera",
+        "quét mã vạch miễn phí",
+        "đọc QR từ ảnh chụp màn hình",
+        "quét QR ngoại tuyến không cần ứng dụng"
+      ]
+    },
+    "wifi-qr-code-generator": {
+      "name": "Tạo mã QR Wi-Fi",
+      "summary": "Khách kết nối Wi-Fi của bạn bằng cách quét mã, không cần gõ mật khẩu.",
+      "action": "Tải mã QR",
+      "title": "Tạo Mã QR Wi-Fi Miễn Phí — Quét Là Kết Nối | Fizzdoc",
+      "description": "Tạo mã QR Wi-Fi miễn phí: khách quét bằng camera điện thoại và kết nối mà không cần gõ mật khẩu. Thêm logo và khung. Không tải gì lên.",
+      "h1": "Tạo mã QR Wi-Fi: quét là kết nối",
+      "lede": "Nhập tên mạng và mật khẩu, khách chỉ cần hướng camera điện thoại vào mã là kết nối. Trang trí bằng logo và khung “Kết nối Wi-Fi” rồi in cho quán cà phê, văn phòng, cửa hàng hoặc nhà. Mật khẩu không bao giờ rời khỏi thiết bị của bạn: mã được tạo ngay trong trình duyệt.",
+      "steps": [
+        "Nhập tên mạng (SSID) và mật khẩu, chọn kiểu bảo mật (hầu như luôn là WPA).",
+        "Chọn mẫu, hoặc chỉnh màu, logo và khung. Trang sẽ kiểm tra mã có quét được không.",
+        "Tải về dạng PNG hoặc PDF rồi in, hoặc chia sẻ."
+      ],
+      "faq": [
+        [
+          "Khách dùng mã QR Wi-Fi thế nào?",
+          "Họ mở camera điện thoại (hoặc Google Lens) và hướng vào mã. iPhone và Android hiện “Kết nối mạng”; chạm một lần là xong, không cần gõ mật khẩu."
+        ],
+        [
+          "Đặt mật khẩu Wi-Fi trong mã QR có an toàn không?",
+          "Mã chứa mật khẩu: ai quét được cũng kết nối được, như thể đọc được mật khẩu. Hãy đặt mã ở nơi bạn vốn sẽ cho mật khẩu, và cân nhắc dùng mạng khách riêng. Fizzdoc không bao giờ thấy mật khẩu."
+        ],
+        [
+          "Nên chọn kiểu bảo mật nào?",
+          "WPA gồm WPA, WPA2 và WPA3, được hầu hết bộ phát dùng. Chỉ chọn WEP cho bộ phát rất cũ, và “Không mật khẩu” cho mạng mở. Đánh dấu “Mạng ẩn” nếu tên mạng không được phát."
+        ],
+        [
+          "Mã QR có hết hạn không?",
+          "Không. Mọi nội dung được ghi ngay trong mã, nên mã hoạt động chừng nào thông tin còn đúng. Không có tài khoản, gói đăng ký hay chuyển hướng nào có thể tắt nó."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "tạo mã QR Wi-Fi",
+        "chia sẻ mật khẩu Wi-Fi bằng QR",
+        "quét để kết nối Wi-Fi",
+        "mã QR Wi-Fi cho khách quán cà phê",
+        "mã QR WiFi có logo"
+      ]
+    },
+    "upi-qr-code-generator": {
+      "name": "Tạo mã QR thanh toán UPI",
+      "summary": "Mã QR thanh toán cho ID UPI của bạn, đọc được bằng Google Pay, PhonePe, Paytm và BHIM.",
+      "action": "Tải mã QR",
+      "title": "Tạo Mã QR UPI Miễn Phí — GPay, PhonePe, Paytm | Fizzdoc",
+      "description": "Tạo mã QR thanh toán UPI miễn phí cho cửa hàng ở Ấn Độ: ID UPI, tên và số tiền cố định tùy chọn. Dùng được với mọi ứng dụng UPI. Không cần đăng ký.",
+      "h1": "Tạo mã QR thanh toán UPI, miễn phí",
+      "lede": "Nhập ID UPI và tên của bạn, thêm số tiền cố định và ghi chú nếu muốn, để có mã QR thanh toán mà Google Pay, PhonePe, Paytm, BHIM và mọi ứng dụng UPI đều quét được. Thêm logo và khung “Thanh toán bằng UPI” cho quầy. Không cần đăng ký ngân hàng hay ứng dụng, dữ liệu của bạn ở lại trên thiết bị.",
+      "steps": [
+        "Nhập ID UPI (ví dụ ten@okhdfcbank) và tên người trả tiền sẽ thấy. Thêm số tiền và ghi chú nếu mọi khoản thanh toán như nhau.",
+        "Chọn mẫu “Khung thanh toán UPI” hoặc màu và logo của bạn.",
+        "Tải về dạng PNG hoặc PDF rồi in cho quầy, hoặc chia sẻ."
+      ],
+      "faq": [
+        [
+          "Có dùng được với Google Pay, PhonePe và Paytm không?",
+          "Có. Mã dùng liên kết thanh toán UPI chuẩn (upi://pay) do NPCI quy định, mọi ứng dụng UPI đều đọc được. Tiền chuyển thẳng tới ID UPI trong mã."
+        ],
+        [
+          "Tôi có cố định số tiền được không?",
+          "Được: nhập số tiền và ứng dụng mở ra với số tiền đó. Để trống để người trả tự nhập, phù hợp với quầy cửa hàng."
+        ],
+        [
+          "Có an toàn không?",
+          "Mã chỉ chứa ID UPI, tên và số tiền bạn đặt: không có mã PIN hay thông tin ngân hàng. Quét bằng ứng dụng UPI của bạn trước khi in để kiểm tra tên hiển thị. Fizzdoc không bao giờ thấy dữ liệu của bạn."
+        ],
+        [
+          "Mã QR có hết hạn không?",
+          "Không. Mọi nội dung được ghi ngay trong mã, nên mã hoạt động chừng nào thông tin còn đúng. Không có tài khoản, gói đăng ký hay chuyển hướng nào có thể tắt nó."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "tạo mã QR UPI miễn phí",
+        "mã QR Google Pay cho cửa hàng",
+        "tạo mã QR PhonePe",
+        "mã QR thanh toán UPI có số tiền",
+        "mã QR Paytm cho doanh nghiệp"
+      ]
+    },
+    "whatsapp-qr-code-generator": {
+      "name": "Tạo mã QR WhatsApp",
+      "summary": "Mã QR mở cuộc trò chuyện WhatsApp với số của bạn và tin nhắn soạn sẵn.",
+      "action": "Tải mã QR",
+      "title": "Tạo Mã QR WhatsApp Miễn Phí — Quét Là Trò Chuyện | Fizzdoc",
+      "description": "Tạo mã QR WhatsApp miễn phí mở cuộc trò chuyện với số của bạn và tin nhắn soạn sẵn. Hợp cho cửa hàng, thực đơn, danh thiếp. Không cần đăng ký.",
+      "h1": "Tạo mã QR WhatsApp mở cuộc trò chuyện",
+      "lede": "Nhập số WhatsApp kèm mã quốc gia và, nếu muốn, một tin nhắn như “Xin chào, tôi muốn đặt hàng”. Ai quét mã cũng mở được cuộc trò chuyện với bạn với tin nhắn đã soạn sẵn. Trang trí bằng logo và khung cho cửa hàng, thực đơn, danh thiếp hay bao bì.",
+      "steps": [
+        "Nhập số kèm mã quốc gia (ví dụ +84 912 345 678) và tin nhắn tùy chọn.",
+        "Chọn mẫu, hoặc chỉnh màu, biểu tượng trò chuyện hoặc logo, và khung.",
+        "Tải về dạng PNG, SVG hoặc PDF rồi in hoặc chia sẻ."
+      ],
+      "faq": [
+        [
+          "Mã QR WhatsApp hoạt động thế nào?",
+          "Mã chứa liên kết wa.me với số và tin nhắn của bạn. Khi quét, WhatsApp (hoặc WhatsApp Business) mở cuộc trò chuyện với bạn, tin nhắn đã gõ sẵn để gửi."
+        ],
+        [
+          "Có dùng được với WhatsApp Business không?",
+          "Có. Cùng một liên kết mở trò chuyện với cả số WhatsApp và WhatsApp Business."
+        ],
+        [
+          "Có cần mã quốc gia không?",
+          "Có, luôn luôn (84 cho Việt Nam). Khoảng trắng, gạch nối và dấu cộng được tự động bỏ."
+        ],
+        [
+          "Mã QR có hết hạn không?",
+          "Không. Mọi nội dung được ghi ngay trong mã, nên mã hoạt động chừng nào thông tin còn đúng. Không có tài khoản, gói đăng ký hay chuyển hướng nào có thể tắt nó."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "tạo mã QR WhatsApp",
+        "mã QR trò chuyện WhatsApp",
+        "mã QR wa.me",
+        "mã QR WhatsApp Business",
+        "mã QR mở chat WhatsApp"
+      ]
+    },
+    "vcard-qr-code-generator": {
+      "name": "Tạo mã QR danh thiếp (vCard)",
+      "summary": "Mã QR lưu tên, số điện thoại, email và công ty của bạn vào danh bạ điện thoại.",
+      "action": "Tải mã QR",
+      "title": "Tạo Mã QR vCard Miễn Phí — QR Danh Thiếp, Không Tải Lên | Fizzdoc",
+      "description": "Tạo mã QR vCard miễn phí cho danh thiếp: quét một lần là lưu tên, điện thoại, email, công ty và trang web vào danh bạ. Không đăng ký, không tải lên.",
+      "h1": "Tạo mã QR danh thiếp (vCard)",
+      "lede": "Điền tên, số điện thoại, email, công ty, chức danh, trang web và địa chỉ để có mã QR lưu bạn vào danh bạ điện thoại chỉ với một chạm. Dùng trên danh thiếp, chữ ký email, thẻ tên và gian hàng. Thông tin của bạn được chuyển thành mã ngay trên thiết bị và không bao giờ bị tải lên.",
+      "steps": [
+        "Điền thông tin muốn chia sẻ: tên, điện thoại, email, công ty, chức danh, trang web, địa chỉ.",
+        "Chọn mẫu, hoặc chỉnh màu, logo và khung.",
+        "Tải SVG hoặc PDF để in lên danh thiếp, hoặc PNG cho màn hình."
+      ],
+      "faq": [
+        [
+          "Quét mã QR vCard thì sao?",
+          "Điện thoại hiện danh thiếp của bạn với nút “Thêm vào danh bạ”. Mọi camera iPhone và Android đều đọc định dạng vCard 3.0 dùng ở đây."
+        ],
+        [
+          "Sao mã QR vCard của tôi dày đặc thế?",
+          "Mỗi thông tin thêm văn bản vào mã. Bỏ các ô không cần, dùng logo nhỏ và in rộng ít nhất 2,5 cm để điện thoại dễ đọc."
+        ],
+        [
+          "Tôi có đổi thông tin sau được không?",
+          "Không với mã đã in: thông tin được ghi trong mã. Khi thông tin thay đổi, hãy tạo mã mới; miễn phí và chỉ mất một phút."
+        ],
+        [
+          "Mã QR có hết hạn không?",
+          "Không. Mọi nội dung được ghi ngay trong mã, nên mã hoạt động chừng nào thông tin còn đúng. Không có tài khoản, gói đăng ký hay chuyển hướng nào có thể tắt nó."
+        ],
+        [
+          "Fizzdoc có miễn phí không?",
+          "Có, và sẽ luôn miễn phí: không cần đăng ký, không watermark, không giới hạn hằng ngày và không có gói trả phí. Fizzdoc là mã nguồn mở theo giấy phép Apache-2.0, nên ai cũng có thể tự chạy một bản sao của riêng mình."
+        ]
+      ],
+      "keywords": [
+        "tạo mã QR vCard",
+        "mã QR cho danh thiếp",
+        "mã QR danh bạ",
+        "mã QR lưu liên hệ",
+        "danh thiếp điện tử có mã QR"
       ]
     }
   }

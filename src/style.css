@@ -2352,6 +2352,39 @@ dialog p {
   }
 }
 
+/* Home page, phones: a Scan button at the bottom centre, within thumb reach, as in UPI and scanner apps. */
+.scan-fab {
+  display: none;
+}
+@media (max-width: 720px) {
+  .scan-fab {
+    position: fixed;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 50%;
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 52px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--ink-text);
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    translate: -50% 0;
+  }
+  .scan-fab svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
 /* ---- Your tools, pins and filter tabs (mine.ts) ---- */
 .mine .tool-card {
   padding: 14px;

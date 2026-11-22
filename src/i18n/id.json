@@ -428,7 +428,184 @@
     "bg.gifNote": "GIF animasi: setiap bingkai diproses dan disimpan sebagai GIF. GIF tidak punya tepi halus, jadi pada “Tidak ada” garis tepinya sedikit lebih tajam.",
     "bg.videoNote": "Ini bingkai pertama. Pilih latar lalu simpan: setiap bingkai diproses di perangkat ini, sekitar {min} menit di sini. Biarkan tab ini terbuka.",
     "bg.greenScreen": "Layar hijau",
-    "ws.dpiLow": "Rendah (file terkecil, untuk web)"
+    "ws.dpiLow": "Rendah (file terkecil, untuk web)",
+    "ws.chooseAny": "Pilih file untuk dibuka",
+    "vw.page": "Halaman {n} dari {total}",
+    "vw.firstRows": "Menampilkan {n} baris pertama.",
+    "vw.showAll": "Tampilkan semua {n} baris",
+    "vw.cut": "File besar: hanya bagian awal yang ditampilkan.",
+    "vw.unknown": "Jenis file ini belum bisa ditampilkan. PDF, Word (.docx), Excel (.xlsx), CSV, gambar, teks, dan Markdown bisa.",
+    "rd.pageKeys": "Halaman {n}. Tekan Enter untuk menambah kotak, panah untuk memindahkannya, Shift dan panah untuk mengubah ukuran, Delete untuk menghapus.",
+    "bg.keys": "Keyboard: dengan alat dipilih, tombol panah menggerakkan kuas di atas gambar dan Spasi mewarnai.",
+    "st.keys": "Keyboard: tombol panah memindahkan teks atau emoji yang dipilih, Page Up dan Page Down memilih yang lain, Delete menghapusnya.",
+    "qr.content": "Isi kode",
+    "qr.kind": "Jenis kode",
+    "qr.k.url": "Tautan",
+    "qr.k.text": "Teks",
+    "qr.k.email": "Email",
+    "qr.k.phone": "Telepon",
+    "qr.k.sms": "SMS",
+    "qr.k.whatsapp": "WhatsApp",
+    "qr.k.upi": "Pembayaran UPI",
+    "qr.k.wifi": "Wi-Fi",
+    "qr.k.vcard": "Kartu kontak",
+    "qr.k.event": "Acara",
+    "qr.k.location": "Lokasi",
+    "qr.k.crypto": "Kripto",
+    "qr.f.url": "Alamat web",
+    "qr.f.text": "Teks",
+    "qr.f.to": "Alamat email",
+    "qr.f.subject": "Subjek",
+    "qr.f.body": "Pesan",
+    "qr.f.phone": "Nomor telepon",
+    "qr.f.message": "Pesan",
+    "qr.f.pa": "ID UPI (misalnya nama@okhdfcbank)",
+    "qr.f.pn": "Nama yang dilihat pembayar",
+    "qr.f.am": "Jumlah dalam ₹ (opsional)",
+    "qr.f.tn": "Catatan (opsional)",
+    "qr.f.ssid": "Nama jaringan",
+    "qr.f.password": "Kata sandi",
+    "qr.f.security": "Keamanan",
+    "qr.f.hidden": "Jaringan tersembunyi",
+    "qr.f.first": "Nama depan",
+    "qr.f.last": "Nama belakang",
+    "qr.f.email": "Email",
+    "qr.f.org": "Perusahaan",
+    "qr.f.title": "Jabatan",
+    "qr.f.website": "Situs web",
+    "qr.f.address": "Alamat",
+    "qr.f.summary": "Nama acara",
+    "qr.f.start": "Mulai",
+    "qr.f.end": "Selesai",
+    "qr.f.location": "Tempat",
+    "qr.f.lat": "Lintang",
+    "qr.f.lng": "Bujur",
+    "qr.f.coin": "Koin",
+    "qr.f.wallet": "Alamat dompet",
+    "qr.f.amount": "Jumlah (opsional)",
+    "qr.o.WPA": "WPA / WPA2 / WPA3",
+    "qr.o.WEP": "WEP",
+    "qr.o.nopass": "Tanpa kata sandi",
+    "qr.o.bitcoin": "Bitcoin",
+    "qr.o.ethereum": "Ethereum",
+    "qr.o.litecoin": "Litecoin",
+    "qr.templates": "Templat",
+    "qr.t.classic": "Klasik",
+    "qr.t.rounded": "Membulat",
+    "qr.t.dots": "Titik",
+    "qr.t.ocean": "Gradasi samudra",
+    "qr.t.sunset": "Gradasi senja",
+    "qr.t.forest": "Hutan",
+    "qr.t.scan": "Label “Pindai saya”",
+    "qr.t.upi": "Bingkai pembayaran UPI",
+    "qr.t.wifi": "Label Wi-Fi",
+    "qr.t.night": "Terang di atas gelap",
+    "qr.t.radial": "Gradasi radial",
+    "qr.t.clear": "Latar transparan",
+    "qr.shapes": "Bentuk",
+    "qr.dots": "Titik",
+    "qr.eyeFrame": "Bingkai sudut",
+    "qr.eyeBall": "Tengah sudut",
+    "qr.s.square": "Persegi",
+    "qr.s.rounded": "Membulat",
+    "qr.s.extra": "Sangat membulat",
+    "qr.s.classy": "Elegan",
+    "qr.s.dots": "Titik",
+    "qr.s.circle": "Lingkaran",
+    "qr.s.none": "Tidak ada",
+    "qr.s.linear": "Linear",
+    "qr.s.radial": "Radial",
+    "qr.s.label": "Label di bawah",
+    "qr.s.box": "Kotak berlabel",
+    "qr.s.L": "Rendah (7%)",
+    "qr.s.M": "Sedang (15%)",
+    "qr.s.Q": "Tinggi (25%)",
+    "qr.s.H": "Tertinggi (30%)",
+    "qr.colors": "Warna",
+    "qr.color": "Titik",
+    "qr.gradient": "Gradasi",
+    "qr.color2": "Akhir gradasi",
+    "qr.eyeColor": "Sudut",
+    "qr.background": "Latar",
+    "qr.clear": "Latar transparan",
+    "qr.logoTitle": "Logo",
+    "qr.logo": "Tambahkan logo Anda",
+    "qr.logoRemove": "Hapus logo",
+    "qr.logoSize": "Ukuran logo",
+    "qr.logoBad": "Gambar itu tidak bisa dibuka. Coba PNG atau JPG.",
+    "qr.logoHint": "Logo Anda tetap di perangkat ini. Dengan logo, koreksi galat terkuat dipakai agar kode tetap bisa dipindai.",
+    "qr.frameTitle": "Bingkai",
+    "qr.frame": "Bingkai",
+    "qr.frameText": "Teks bingkai",
+    "qr.frameColor": "Warna bingkai",
+    "qr.more": "Lainnya",
+    "qr.margin": "Margin",
+    "qr.ecc": "Koreksi galat",
+    "qr.format": "Format",
+    "qr.size": "Ukuran",
+    "qr.name": "Nama file",
+    "qr.download": "Unduh kode QR",
+    "qr.copy": "Salin gambar",
+    "qr.share": "Bagikan",
+    "qr.empty": "Isi detailnya dan kode Anda muncul di sini.",
+    "qr.tooLong": "Teks terlalu panjang untuk satu kode QR. Persingkat.",
+    "qr.previewOf": "Kode QR untuk: {text}",
+    "qr.lowContrast": "Kontras rendah: beberapa ponsel mungkin tidak bisa membaca kode ini. Pakai titik lebih gelap atau latar lebih terang.",
+    "qr.inverted": "Titik terang di latar gelap: banyak kamera ponsel tidak bisa membacanya. Uji sebelum mencetak.",
+    "qr.saved": "{name} tersimpan.",
+    "qr.copied": "Tersalin. Tempel di mana saja.",
+    "qr.copyFailed": "Peramban ini tidak bisa menyalin gambar. Gunakan Unduh.",
+    "qr.scanOk": "Sudah dicek: kode ini bisa dipindai.",
+    "qr.scanBad": "Kode ini tidak terpindai dalam pengecekan kami. Coba titik lebih gelap, logo lebih kecil, atau templat Klasik.",
+    "qr.icons": "Ikon siap pakai",
+    "qr.i.wifi": "Ikon Wi-Fi",
+    "qr.i.upi": "Ikon rupee",
+    "qr.i.chat": "Ikon chat",
+    "qr.i.phone": "Ikon telepon",
+    "qr.i.email": "Ikon email",
+    "qr.i.location": "Ikon lokasi",
+    "qr.i.link": "Ikon tautan",
+    "qr.imageTitle": "Gambar latar",
+    "qr.image": "Tambahkan gambar latar",
+    "qr.imageRemove": "Hapus gambar latar",
+    "qr.imageHint": "Gambar tampil lembut di belakang kode. Jaga titik tetap gelap; pengecekan di samping pratinjau memberi tahu apakah masih bisa dipindai.",
+    "scan.camera": "Pakai kamera",
+    "scan.stop": "Hentikan kamera",
+    "scan.photo": "Pilih foto",
+    "scan.hint": "Atau tempel tangkapan layar (Ctrl+V), atau seret gambar ke sini.",
+    "scan.cameraView": "Tampilan kamera",
+    "scan.results": "Kode yang ditemukan",
+    "scan.reading": "Membaca gambar…",
+    "scan.looking": "Arahkan kamera ke kode.",
+    "scan.found": "Ditemukan {n}.",
+    "scan.none": "Tidak ada kode. Coba foto yang lebih tajam atau lebih dekat.",
+    "scan.noCamera": "Kamera tidak menyala. Izinkan akses kamera, atau pilih foto.",
+    "scan.open": "Buka",
+    "scan.copy": "Salin teks",
+    "scan.copied": "Tersalin",
+    "scan.copyPassword": "Salin kata sandi",
+    "scan.wifi": "Jaringan Wi-Fi: {name}",
+    "scan.upi": "Bayar ke {name} ({id}) {amount}",
+    "scan.pay": "Bayar dengan aplikasi UPI",
+    "scan.contact": "Simpan kontak",
+    "scan.event": "Tambahkan ke kalender",
+    "scan.csv": "Unduh daftar (CSV)",
+    "scan.torch": "Senter",
+    "scan.flip": "Ganti kamera",
+    "scan.zoom": "Zoom",
+    "scan.warnHttp": "Tidak terenkripsi (http): siapa pun di jaringan bisa melihat atau mengubah halaman ini.",
+    "scan.warnLookalike": "Alamatnya memakai huruf yang meniru huruf lain. Periksa baik-baik sebelum membuka.",
+    "scan.warnIp": "Tautan menuju alamat berupa angka, bukan nama situs web.",
+    "scan.warnAt": "Situs aslinya {host}: bagian sebelum @ hanya untuk menyesatkan.",
+    "scan.warnShort": "Tautan pendek: tujuannya tidak terlihat sampai dibuka.",
+    "home.scan": "Pindai",
+    "home.mine": "Alat Anda",
+    "home.mineLede": "Alat yang disematkan dan baru dipakai. Hanya disimpan di peramban ini.",
+    "home.filter": "Tampilkan alat untuk",
+    "home.all": "Semua",
+    "pin.add": "Sematkan {name}",
+    "pin.page": "Sematkan di beranda",
+    "pin.pageOn": "Tersemat di beranda"
   },
   "home": {
     "title": "Fizzdoc — Alat PDF, Editor Foto & Hapus Background Gratis",
@@ -3352,6 +3529,264 @@
         "tambah tulisan di foto",
         "filter foto online",
         "edit foto tanpa upload"
+      ]
+    },
+    "qr-code-generator": {
+      "name": "Pembuat Kode QR",
+      "summary": "Buat kode QR bergaya dengan logo untuk tautan, Wi-Fi, kontak, atau WhatsApp.",
+      "action": "Unduh kode QR",
+      "title": "Pembuat Kode QR Gratis dengan Logo — Wi-Fi, vCard | Fizzdoc",
+      "description": "Buat kode QR gratis dengan logo, warna, dan bingkai untuk tautan, Wi-Fi, kartu kontak, atau WhatsApp. Tidak kedaluwarsa, tanpa akun, tanpa unggah.",
+      "h1": "Buat kode QR dengan logo Anda, gratis",
+      "lede": "Ketik tautan, info Wi-Fi, kartu kontak, atau nomor WhatsApp, lalu atur gaya kodenya: bentuk titik dan sudut, warna dan gradasi, logo Anda, serta bingkai “Pindai saya”. Unduh sebagai PNG, SVG, JPG, WebP, atau PDF. Kodenya tidak pernah kedaluwarsa, dan apa pun yang Anda ketik atau tambahkan tidak keluar dari perangkat Anda.",
+      "steps": [
+        "Pilih isi kode (tautan, Wi-Fi, kontak, WhatsApp, dan lainnya) lalu isi detailnya.",
+        "Pilih templat, atau atur sendiri bentuk, warna, logo, dan bingkai. Pratinjau langsung berubah.",
+        "Pilih format dan ukuran, lalu klik “Unduh kode QR”."
+      ],
+      "faq": [
+        [
+          "Apakah kode QR-nya kedaluwarsa?",
+          "Tidak. Ini kode statis: semua isinya tertulis di dalam kode itu sendiri, jadi berfungsi selama tautan atau kata sandi Wi-Fi masih berlaku. Tidak ada akun, langganan, atau pengalihan yang bisa mematikannya."
+        ],
+        [
+          "Bisakah saya menghitung pindaian atau mengubah tautan nanti?",
+          "Tidak, sengaja. Menghitung pindaian dan kode yang bisa diubah (“dinamis”) butuh server yang dilewati setiap pindaian, yang bisa melihat siapa yang memindai kode Anda. Fizzdoc membuat kode di perangkat Anda dan tidak pernah melihatnya."
+        ],
+        [
+          "Apakah tetap bisa dipindai dengan logo?",
+          "Ya. Dengan logo, koreksi galat terkuat (H) dipakai sehingga kode tetap terbaca meski 30% tertutup. Pertahankan logo di ukuran bawaan atau lebih kecil, titik gelap di latar terang, dan coba dengan ponsel sebelum mencetak."
+        ],
+        [
+          "Ukuran cetak berapa?",
+          "Minimal 2 cm untuk kode yang dipindai dari dekat, dan sepersepuluh jarak pindai untuk poster (dari 3 m, kode 30 cm). Unduh SVG atau PDF untuk cetak: tetap tajam di ukuran apa pun."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "pembuat kode QR dengan logo",
+        "buat kode QR Wi-Fi",
+        "kode QR yang tidak kedaluwarsa",
+        "kode QR gratis tanpa daftar",
+        "kode QR untuk kartu nama"
+      ]
+    },
+    "qr-code-scanner": {
+      "name": "Pemindai Kode QR & Barcode",
+      "summary": "Baca kode QR atau barcode dengan kamera atau dari foto, bahkan offline.",
+      "action": "Pindai",
+      "title": "Pemindai Kode QR & Barcode Gratis — Kamera atau Foto | Fizzdoc",
+      "description": "Pindai kode QR atau barcode gratis dengan kamera atau dari foto dan tangkapan layar. Sambung Wi-Fi, buka tautan, simpan kontak. Berfungsi offline.",
+      "h1": "Pindai kode QR atau barcode dengan kamera atau foto",
+      "lede": "Arahkan kamera ke kode, pilih foto, atau tempel tangkapan layar. Fizzdoc membaca kode QR dan barcode (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec, dan lainnya), bahkan beberapa dalam satu gambar, dan menunjukkan isi masing-masing sebelum membuka apa pun. Berfungsi offline, dan tidak ada yang keluar dari perangkat Anda.",
+      "steps": [
+        "Klik “Pakai kamera” dan arahkan ke kode, atau pilih foto, atau tempel tangkapan layar.",
+        "Setiap kode yang ditemukan ditandai dan dicantumkan beserta isinya.",
+        "Buka tautan, salin kata sandi Wi-Fi, simpan kontak, atau bayar dengan UPI, atau cukup salin teksnya."
+      ],
+      "faq": [
+        [
+          "Amankah memindai kode QR yang tidak dikenal?",
+          "Fizzdoc menampilkan teks lengkap setiap kode dan tidak pernah membuka tautan sendiri, jadi Anda bisa memeriksa tujuannya dulu. Waspadai alamat yang meniru alamat lain dan kode pembayaran yang meminta Anda mengirim uang padahal Anda mengira akan menerima."
+        ],
+        [
+          "Kode apa saja yang bisa dibaca?",
+          "Kode QR (termasuk Micro QR), Data Matrix, Aztec, PDF417, dan barcode: EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, Codabar, ITF, dan DataBar. Bisa menemukan beberapa kode dalam satu gambar."
+        ],
+        [
+          "Apakah berfungsi offline?",
+          "Ya. Setelah halaman dibuka sekali dengan internet, pemindai bekerja tanpa koneksi, dengan kamera maupun foto."
+        ],
+        [
+          "Mengapa kamera tidak menyala?",
+          "Izinkan akses kamera saat peramban meminta. Jika sebelumnya ditolak, izinkan lagi lewat ikon gembok di samping alamat. Anda selalu bisa memilih foto."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "pindai kode QR dari gambar",
+        "pemindai QR online dengan kamera",
+        "pemindai barcode gratis online",
+        "baca QR dari tangkapan layar",
+        "pemindai QR offline tanpa aplikasi"
+      ]
+    },
+    "wifi-qr-code-generator": {
+      "name": "Pembuat Kode QR Wi-Fi",
+      "summary": "Tamu terhubung ke Wi-Fi Anda dengan memindai kode, tanpa mengetik kata sandi.",
+      "action": "Unduh kode QR",
+      "title": "Pembuat Kode QR Wi-Fi Gratis — Pindai dan Terhubung | Fizzdoc",
+      "description": "Buat kode QR Wi-Fi gratis: tamu memindainya dengan kamera ponsel dan terhubung tanpa mengetik kata sandi. Tambahkan logo dan bingkai. Tanpa unggah.",
+      "h1": "Buat kode QR Wi-Fi: pindai dan terhubung",
+      "lede": "Ketik nama jaringan dan kata sandi, lalu tamu terhubung dengan mengarahkan kamera ponsel ke kode. Beri gaya dengan logo Anda dan bingkai “Sambung ke Wi-Fi”, lalu cetak untuk kafe, kantor, toko, atau rumah. Kata sandi tidak pernah keluar dari perangkat Anda: kode dibuat di peramban Anda.",
+      "steps": [
+        "Ketik nama jaringan (SSID) dan kata sandi, lalu pilih keamanan (WPA hampir selalu benar).",
+        "Pilih templat, atau atur warna, logo, dan bingkai. Halaman memeriksa apakah kode bisa dipindai.",
+        "Unduh sebagai PNG atau PDF lalu cetak, atau bagikan."
+      ],
+      "faq": [
+        [
+          "Bagaimana tamu memakai kode QR Wi-Fi?",
+          "Mereka membuka kamera ponsel (atau Google Lens) dan mengarahkannya ke kode. iPhone dan Android menampilkan “Gabung ke jaringan”; sekali ketuk langsung terhubung, tanpa mengetik kata sandi."
+        ],
+        [
+          "Amankah menaruh kata sandi Wi-Fi di kode QR?",
+          "Kode berisi kata sandi: siapa pun yang bisa memindainya bisa terhubung, seperti membacanya. Pasang di tempat Anda memang akan membagikan kata sandi, dan pertimbangkan jaringan tamu terpisah. Fizzdoc tidak pernah melihat kata sandinya."
+        ],
+        [
+          "Keamanan mana yang dipilih?",
+          "WPA mencakup WPA, WPA2, dan WPA3 yang dipakai hampir semua router. Pilih WEP hanya untuk router yang sangat lama, dan “Tanpa kata sandi” untuk jaringan terbuka. Centang “Jaringan tersembunyi” jika nama jaringan tidak disiarkan."
+        ],
+        [
+          "Apakah kode QR-nya kedaluwarsa?",
+          "Tidak. Semua isi kode tertulis di dalamnya, jadi berfungsi selama detailnya masih berlaku. Tidak ada akun, langganan, atau pengalihan yang bisa mematikannya."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "pembuat kode QR Wi-Fi",
+        "bagikan kata sandi Wi-Fi lewat QR",
+        "pindai untuk sambung Wi-Fi",
+        "kode QR Wi-Fi tamu untuk kafe",
+        "kode QR WiFi dengan logo"
+      ]
+    },
+    "upi-qr-code-generator": {
+      "name": "Pembuat Kode QR UPI",
+      "summary": "Kode QR pembayaran untuk ID UPI Anda yang dibaca Google Pay, PhonePe, Paytm, dan BHIM.",
+      "action": "Unduh kode QR",
+      "title": "Pembuat Kode QR UPI Gratis — GPay, PhonePe, Paytm | Fizzdoc",
+      "description": "Buat kode QR pembayaran UPI gratis untuk toko di India: ID UPI, nama, dan jumlah tetap opsional. Berfungsi di semua aplikasi UPI. Tanpa daftar.",
+      "h1": "Buat kode QR pembayaran UPI, gratis",
+      "lede": "Masukkan ID UPI dan nama Anda, dan bila mau jumlah tetap dan catatan, lalu dapatkan kode QR pembayaran yang bisa dipindai Google Pay, PhonePe, Paytm, BHIM, dan semua aplikasi UPI. Tambahkan logo dan bingkai “Bayar dengan UPI” untuk kasir. Tanpa daftar bank atau aplikasi, dan data Anda tetap di perangkat Anda.",
+      "steps": [
+        "Masukkan ID UPI Anda (misalnya nama@okhdfcbank) dan nama yang dilihat pembayar. Tambahkan jumlah dan catatan jika setiap pembayaran sama.",
+        "Pilih templat “Bingkai pembayaran UPI” atau warna dan logo Anda sendiri.",
+        "Unduh sebagai PNG atau PDF lalu cetak untuk kasir, atau bagikan."
+      ],
+      "faq": [
+        [
+          "Apakah berfungsi dengan Google Pay, PhonePe, dan Paytm?",
+          "Ya. Kode ini memakai tautan pembayaran UPI standar (upi://pay) dari NPCI yang dibaca semua aplikasi UPI. Pembayaran langsung masuk ke ID UPI di dalam kode."
+        ],
+        [
+          "Bisakah jumlahnya ditetapkan?",
+          "Bisa: masukkan jumlah dan aplikasi terbuka dengan jumlah itu terisi. Biarkan kosong agar pembayar mengetik sendiri, cocok untuk kasir toko."
+        ],
+        [
+          "Apakah aman?",
+          "Kode hanya berisi ID UPI, nama, dan jumlah yang Anda tetapkan: tanpa PIN atau data bank. Pindai dengan aplikasi UPI Anda sebelum mencetak untuk memeriksa nama yang tampil. Fizzdoc tidak pernah melihat data Anda."
+        ],
+        [
+          "Apakah kode QR-nya kedaluwarsa?",
+          "Tidak. Semua isi kode tertulis di dalamnya, jadi berfungsi selama detailnya masih berlaku. Tidak ada akun, langganan, atau pengalihan yang bisa mematikannya."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "pembuat kode QR UPI gratis",
+        "kode QR Google Pay untuk toko",
+        "pembuat kode QR PhonePe",
+        "QR pembayaran UPI dengan jumlah",
+        "kode QR Paytm untuk usaha"
+      ]
+    },
+    "whatsapp-qr-code-generator": {
+      "name": "Pembuat Kode QR WhatsApp",
+      "summary": "Kode QR yang membuka chat WhatsApp dengan nomor Anda dan pesan siap kirim.",
+      "action": "Unduh kode QR",
+      "title": "Pembuat Kode QR WhatsApp Gratis — Chat Sekali Pindai | Fizzdoc",
+      "description": "Buat kode QR WhatsApp gratis yang membuka chat dengan nomor Anda dan pesan siap kirim. Cocok untuk toko, menu, dan kartu nama. Tanpa daftar.",
+      "h1": "Buat kode QR WhatsApp yang membuka chat",
+      "lede": "Masukkan nomor WhatsApp dengan kode negara dan, bila mau, pesan seperti “Halo, saya mau pesan”. Siapa pun yang memindai kode akan membuka chat dengan Anda dengan pesan yang sudah terketik. Beri gaya dengan logo dan bingkai untuk toko, menu, kartu, atau kemasan.",
+      "steps": [
+        "Masukkan nomor dengan kode negara (misalnya +62 812 3456 7890) dan pesan opsional.",
+        "Pilih templat, atau atur warna, ikon chat atau logo Anda, dan bingkai.",
+        "Unduh sebagai PNG, SVG, atau PDF lalu cetak atau bagikan."
+      ],
+      "faq": [
+        [
+          "Bagaimana kode QR WhatsApp bekerja?",
+          "Kode berisi tautan wa.me dengan nomor dan pesan Anda. Saat dipindai, WhatsApp (atau WhatsApp Business) membuka chat dengan Anda, pesan sudah terketik dan siap dikirim."
+        ],
+        [
+          "Apakah berfungsi dengan WhatsApp Business?",
+          "Ya. Tautan yang sama membuka chat dengan nomor WhatsApp maupun WhatsApp Business."
+        ],
+        [
+          "Perlukah kode negara?",
+          "Ya, selalu (62 untuk Indonesia). Spasi, tanda hubung, dan tanda plus dihapus otomatis."
+        ],
+        [
+          "Apakah kode QR-nya kedaluwarsa?",
+          "Tidak. Semua isi kode tertulis di dalamnya, jadi berfungsi selama detailnya masih berlaku. Tidak ada akun, langganan, atau pengalihan yang bisa mematikannya."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "pembuat kode QR WhatsApp",
+        "kode QR chat WhatsApp",
+        "kode QR wa.me",
+        "kode QR WhatsApp Business",
+        "QR untuk membuka chat WhatsApp"
+      ]
+    },
+    "vcard-qr-code-generator": {
+      "name": "Pembuat Kode QR Kartu Kontak (vCard)",
+      "summary": "Kode QR yang menyimpan nama, telepon, email, dan perusahaan Anda ke kontak ponsel.",
+      "action": "Unduh kode QR",
+      "title": "Pembuat Kode QR vCard Gratis — QR Kartu Kontak | Fizzdoc",
+      "description": "Buat kode QR vCard gratis untuk kartu nama: sekali pindai menyimpan nama, telepon, email, perusahaan, dan situs web ke kontak. Tanpa daftar, tanpa unggah.",
+      "h1": "Buat kode QR kartu kontak (vCard)",
+      "lede": "Isi nama, telepon, email, perusahaan, jabatan, situs web, dan alamat, lalu dapatkan kode QR yang menyimpan Anda ke kontak ponsel dengan sekali ketuk. Pasang di kartu nama, tanda tangan email, lencana, dan stan. Data Anda diubah menjadi kode di perangkat Anda dan tidak pernah diunggah.",
+      "steps": [
+        "Isi data yang ingin dibagikan: nama, telepon, email, perusahaan, jabatan, situs web, alamat.",
+        "Pilih templat, atau atur warna, logo, dan bingkai.",
+        "Unduh SVG atau PDF untuk dicetak di kartu, atau PNG untuk layar."
+      ],
+      "faq": [
+        [
+          "Apa yang terjadi saat kode QR vCard dipindai?",
+          "Ponsel menampilkan kartu kontak Anda dengan tombol “Tambahkan ke kontak”. Semua kamera iPhone dan Android membaca format vCard 3.0 yang dipakai di sini."
+        ],
+        [
+          "Mengapa kode QR vCard saya begitu padat?",
+          "Setiap data menambah teks ke kode. Hapus kolom yang tidak perlu, gunakan logo kecil, dan cetak selebar minimal 2,5 cm agar ponsel mudah membacanya."
+        ],
+        [
+          "Bisakah data diubah nanti?",
+          "Tidak pada kode yang sudah dicetak: datanya tertulis di dalamnya. Buat kode baru saat data berubah; gratis dan hanya semenit."
+        ],
+        [
+          "Apakah kode QR-nya kedaluwarsa?",
+          "Tidak. Semua isi kode tertulis di dalamnya, jadi berfungsi selama detailnya masih berlaku. Tidak ada akun, langganan, atau pengalihan yang bisa mematikannya."
+        ],
+        [
+          "Apakah Fizzdoc gratis?",
+          "Ya, dan akan tetap gratis: tanpa daftar, tanpa watermark, tanpa batas harian, dan tanpa paket berbayar. Fizzdoc adalah open source di bawah lisensi Apache-2.0, jadi siapa pun bisa menjalankan salinannya sendiri."
+        ]
+      ],
+      "keywords": [
+        "pembuat kode QR vCard",
+        "kode QR kartu nama",
+        "kode QR kontak",
+        "QR untuk menyimpan kontak",
+        "kartu nama digital dengan QR"
       ]
     }
   }

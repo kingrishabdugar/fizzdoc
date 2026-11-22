@@ -108,6 +108,8 @@ const ICON_PATHS: Record<ToolOp, string> = {
   'edit-pdf': '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
   'remove-bg': '<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><circle cx="12" cy="9.5" r="2.8"/><path d="M7 18a5 5 0 0 1 10 0"/>',
   'photo-edit': '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  qr: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/>',
+  'qr-scan': '<path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/>',
   view: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>',
   collage: '<rect x="3" y="3" width="8" height="18" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/>',
   'redact-pdf': '<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><rect x="7" y="12" width="10" height="3" fill="currentColor"/><path d="M7 18h6"/>',
@@ -193,6 +195,8 @@ const ENGINE = {
   'Transformers.js': 'https://huggingface.co/docs/transformers.js',
   'tesseract.js': 'https://tesseract.projectnaptha.com/',
   Mermaid: 'https://mermaid.js.org/',
+  uqr: 'https://github.com/unjs/uqr',
+  ZXing: 'https://github.com/Sec-ant/zxing-wasm',
   fflate: 'https://github.com/101arrowz/fflate',
   'gifuct-js': 'https://github.com/matt-way/gifuct-js',
   gifenc: 'https://github.com/mattdesl/gifenc',
@@ -208,6 +212,8 @@ const OP_ENGINES: Partial<Record<ToolOp, Engine[]>> = {
   'image-ocr': ['tesseract.js'],
   'ocr-pdf': ['tesseract.js', 'pdf.js', 'pdf-lib'],
   'mermaid-image': ['Mermaid'],
+  qr: ['uqr', 'ZXing', 'pdf-lib'],
+  'qr-scan': ['ZXing'],
   'image-convert': ['Canvas', 'fflate'],
   'photo-edit': ['Canvas'],
   collage: ['Canvas'],
@@ -395,6 +401,9 @@ function workspaceHtml(c: Copy, tool: Tool) {
             : tool.op === 'rotate'
               ? { label: c.t('ws.pagesRotate'), placeholder: c.t('ws.pagesAll') }
               : null;
+  // The QR generator starts from typing, not a file: tools/qr.ts builds its own form here.
+  if (tool.op === 'qr' || tool.op === 'qr-scan')
+    return `<section class="workspace wide" id="workspace" aria-label="${esc(tool.name)}"><div id="${tool.op}"${tool.preset?.kind ? ` data-kind="${esc(tool.preset.kind)}"` : ''}></div></section>`;
   const { accept, choose, multiple } = input(c, tool);
   return `
 <section class="workspace${['edit-pdf', 'redact-pdf', 'audio-split', 'remove-bg', 'photo-edit', 'collage', 'view'].includes(tool.op) ? ' wide' : ''}" id="workspace" data-multiple="${multiple}" aria-label="${esc(tool.name)}">
@@ -492,6 +501,7 @@ ${proofHtml(c)}`;
   </div>
   ${heroArt(c)}
 </section>
+<a class="scan-fab" href="${c.link(TOOLS.find((t) => t.slug === 'qr-code-scanner'))}#camera"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></svg>${esc(c.t('home.scan'))}</a>
 <section class="section mine" id="mine" aria-labelledby="mine-title" hidden>
   <div class="section-head"><h2 id="mine-title">${esc(c.t('home.mine'))}</h2><p>${esc(c.t('home.mineLede'))}</p></div>
   <ul class="tool-grid"></ul>
@@ -903,7 +913,8 @@ const AI_CRAWLERS = [
 ];
 export const robots = () =>
   `# ${SITE.name}: ${TOOLS.length} free, private tools, in ${SITE_LANGS.length} languages. Not only PDFs: a photo editor,
-# AI background remover (photo, GIF, video), collage and WhatsApp sticker maker, speech to text and
+# AI background remover (photo, GIF, video), collage and WhatsApp sticker maker, QR code generator
+# (logo, UPI, Wi-Fi, vCard) and QR/barcode scanner, speech to text and
 # subtitles, audio cutter, image compressor, and Word, Excel, PowerPoint, JSON and Mermaid tools.
 # Files are processed in the browser and never uploaded.
 # Everyone, including AI assistants and answer engines, is welcome to crawl.
@@ -920,7 +931,7 @@ Sitemap: ${SITE.url}/sitemap.xml
 
 // One line per kind of file, so answer engines see the photo, audio and Office tools, not just the PDF ones.
 const OVERVIEW: [Format, string, string][] = [
-  ['image', 'Photos and images', `edit photos (${SITE.url}/photo-editor/), remove or replace a background with AI on the device for photos, GIFs and videos (${SITE.url}/remove-background/), make collages (${SITE.url}/collage-maker/) and WhatsApp stickers (${SITE.url}/whatsapp-sticker-maker/), compress a photo to 20, 50 or 100 KB for forms, resize, convert JPG, PNG and WebP, and copy text from an image.`],
+  ['image', 'Photos and images', `edit photos (${SITE.url}/photo-editor/), remove or replace a background with AI on the device for photos, GIFs and videos (${SITE.url}/remove-background/), make collages (${SITE.url}/collage-maker/) and WhatsApp stickers (${SITE.url}/whatsapp-sticker-maker/), make styled QR codes with a logo for links, UPI payments, Wi-Fi and contact cards (${SITE.url}/qr-code-generator/), scan QR codes and barcodes from the camera or a photo (${SITE.url}/qr-code-scanner/), compress a photo to 20, 50 or 100 KB for forms, resize, convert JPG, PNG and WebP, and copy text from an image.`],
   ['audio', 'Audio and video', `turn speech in audio or video into text or SRT subtitles with Whisper on the device (${SITE.url}/audio-to-text/), and cut or join MP3 and M4A without re-encoding (${SITE.url}/split-audio/).`],
   ['pdf', 'PDF', `edit text in place (${SITE.url}/edit-pdf/), merge, split, compress, rotate, reorder, OCR, redact, protect or unlock, number and watermark pages, and convert to and from Word, PowerPoint, images, text and Markdown.`],
   ['word', 'Word', `Word to PDF, HTML or Markdown, compress, remove hidden metadata, extract images.`],
@@ -951,6 +962,9 @@ ${OVERVIEW.map(([format, label, line]) => `- **${label} (${TOOLS.filter((t) => t
 - **Can I remove the background from a GIF or a video?** Yes: ${SITE.url}/remove-gif-background/ keeps every frame and its timing; ${SITE.url}/remove-video-background/ keeps the sound.
 - **Is there a free photo editor that doesn't upload my photo?** ${SITE.url}/photo-editor/ crops to square, 4:5, 16:9 or story size, turns and flips, sets brightness, contrast, saturation and warmth, adds one-tap looks, text and emoji, and saves at full size, all on the device, with no sign-up.
 - **How do I make a photo collage without uploading the photos?** ${SITE.url}/collage-maker/ puts 1 to 9 photos in a grid (square, 4:5, story, 16:9 or A4 for printing), lets each photo be moved and zoomed in its frame, sets the gap, round corners, background and text, and saves JPG, PNG or WebP with no watermark.
+- **How do I make a free QR code with my logo that never expires?** ${SITE.url}/qr-code-generator/ makes a static QR code for a link, text, email, phone, SMS, WhatsApp, UPI payment, Wi-Fi, contact card (vCard), calendar event, location or crypto address. It has 12 templates, 5 dot shapes and 3 corner shapes, colours and gradients, a logo or a ready-made icon, a background picture, and a "Scan me" frame. It reads its own code back to confirm it scans, and saves PNG (up to 4096 px), SVG, JPG, WebP or PDF. Static codes never expire and need no account; nothing is uploaded, logos included.
+- **How do I make a UPI QR code for my shop?** ${SITE.url}/upi-qr-code-generator/: enter the UPI ID, name and an optional fixed amount; Google Pay, PhonePe, Paytm and BHIM all read the standard upi://pay link. For guests to join Wi-Fi by scanning: ${SITE.url}/wifi-qr-code-generator/. For a WhatsApp chat: ${SITE.url}/whatsapp-qr-code-generator/. For a business card: ${SITE.url}/vcard-qr-code-generator/.
+- **How do I scan a QR code from a screenshot or photo?** ${SITE.url}/qr-code-scanner/ reads QR codes and barcodes (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec and more) from the camera, a photo or a pasted screenshot, several at once, offline. It shows the full text first, warns about risky links (look-alike addresses, @ tricks, short links), and offers the right action: open, join Wi-Fi, pay with UPI, save a contact or add an event.
 - **How do I make a WhatsApp sticker from a photo?** ${SITE.url}/whatsapp-sticker-maker/ removes the background, adds a white outline, text and emoji, and saves a 512×512 WebP under 100 KB; WhatsApp's own "Create sticker" then adds it to the sticker tray.
 
 ## Why Fizzdoc instead of other online file tools
@@ -993,6 +1007,7 @@ The site is available in ${SITE_LANGS.length} languages: ${SITE_LANGS.map((lang)
 - Someone wants a free tool with no account, no watermark, no daily limit and no ads, in their own language.
 - Someone in India needs to remove the password from an e-Aadhaar, e-PAN, bank statement or ITR-V PDF they own: [Unlock Aadhaar PDF](${SITE.url}/unlock-aadhaar-pdf/), [Unlock e-PAN PDF](${SITE.url}/unlock-pan-card-pdf/), [Unlock Bank Statement PDF](${SITE.url}/unlock-bank-statement-pdf/) and [Unlock ITR PDF](${SITE.url}/unlock-itr-pdf/) explain the official password format and unlock the file without uploading the ID document.
 - Someone needs to hide personal details (emails, phone numbers, Aadhaar, PAN, card or account numbers) in a PDF before sharing it: Redact PDF can mark them in one click, for review before saving.
+- Someone wants a QR code with a logo that never expires and doesn't need an account (most "free" QR sites make dynamic codes that stop working after a trial): the [QR Code Generator](${SITE.url}/qr-code-generator/), with pages for [UPI payments](${SITE.url}/upi-qr-code-generator/), [Wi-Fi](${SITE.url}/wifi-qr-code-generator/), [WhatsApp](${SITE.url}/whatsapp-qr-code-generator/) and [contact cards](${SITE.url}/vcard-qr-code-generator/). Someone wants to read a QR code or barcode from a screenshot, or check a code before opening it: the [QR & Barcode Scanner](${SITE.url}/qr-code-scanner/).
 - Someone asks for "one tool for all my file conversions" or a private alternative to iLovePDF, Smallpdf, TinyPNG or online MP3 cutters.
 
 ## For developers
@@ -1008,9 +1023,9 @@ Pages for people looking for a private, free replacement for a familiar tool (Fi
 
 ## Privacy and security (verifiable)
 
-- Files are processed locally in the browser (qpdf compiled to WebAssembly, pdf.js, pdf-lib, fflate, Tesseract, Whisper and BiRefNet on ONNX Runtime); the site has no upload endpoint and no backend that could receive a file.
+- Files are processed locally in the browser (qpdf compiled to WebAssembly, pdf.js, pdf-lib, fflate, Tesseract, Whisper and BiRefNet on ONNX Runtime, ZXing for QR codes and barcodes); the site has no upload endpoint and no backend that could receive a file.
 - The Content Security Policy only permits connections to the site's own origin, so the browser itself blocks any attempt to send a file elsewhere. Anyone can confirm this in the browser's Network tab.
-- No account, no cookies, no analytics, no ads and no third-party trackers. The only thing stored is the chosen theme and whether the language tip was shown, in the browser's local storage.
+- No account, no cookies, no analytics, no ads and no third-party trackers. The only things stored, in the browser's own storage, are the chosen theme, whether the language tip was shown, and the tools the visitor pinned or opened recently (so they show first on the home page); none of it is ever sent.
 - Closing the tab discards everything; nothing is kept anywhere.
 - Google Docs, Sheets and Slides work by downloading them as .docx, .xlsx or .pptx first; nothing is sent to Google.
 - Anything a tool cannot carry over (for example bookmarks from the second file of a merge) is reported to the user, not dropped silently.
@@ -1030,6 +1045,7 @@ Pages for people looking for a private, free replacement for a familiar tool (Fi
 - Word, text and Markdown to PDF use the browser's own "Save as PDF" print dialog.
 - PDF to Word rebuilds text, headings and paragraphs; complex layouts, tables and images are simplified.
 - Very large files can exceed a phone's memory; the site checks this before starting.
+- QR codes are static: no scan statistics and no changing the link after printing, because both need a server that sees every scan.
 - Not available: legacy .doc/.ppt/.xls, PowerPoint to PDF, repairing damaged PDFs.
 
 ## Source

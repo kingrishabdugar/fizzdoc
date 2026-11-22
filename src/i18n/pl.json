@@ -428,7 +428,184 @@
     "bg.gifNote": "Animowany GIF: każda klatka jest przetwarzana i zapisywana jako GIF. GIF nie ma miękkich krawędzi, więc przy „Brak” kontur jest nieco ostrzejszy.",
     "bg.videoNote": "To pierwsza klatka. Wybierz tło i zapisz: każda klatka jest robiona na tym urządzeniu, tutaj około {min} min. Nie zamykaj tej karty.",
     "bg.greenScreen": "Zielony ekran",
-    "ws.dpiLow": "Niska (najmniejszy plik, do internetu)"
+    "ws.dpiLow": "Niska (najmniejszy plik, do internetu)",
+    "ws.chooseAny": "Wybierz plik do otwarcia",
+    "vw.page": "Strona {n} z {total}",
+    "vw.firstRows": "Pokazano pierwsze {n} wierszy.",
+    "vw.showAll": "Pokaż wszystkie {n} wierszy",
+    "vw.cut": "Duży plik: pokazano tylko pierwszą część.",
+    "vw.unknown": "Tego typu pliku nie można jeszcze pokazać. Można pokazać PDF, Word (.docx), Excel (.xlsx), CSV, obrazy, tekst i Markdown.",
+    "rd.pageKeys": "Strona {n}. Enter dodaje ramkę, strzałki ją przesuwają, Shift ze strzałkami zmienia rozmiar, Delete usuwa.",
+    "bg.keys": "Klawiatura: przy wybranym narzędziu strzałki przesuwają pędzel po obrazie, a Spacja maluje.",
+    "st.keys": "Klawiatura: strzałki przesuwają wybrany tekst lub emoji, Page Up i Page Down wybierają inny, Delete go usuwa.",
+    "qr.content": "Co zawiera kod",
+    "qr.kind": "Rodzaj kodu",
+    "qr.k.url": "Link",
+    "qr.k.text": "Tekst",
+    "qr.k.email": "E-mail",
+    "qr.k.phone": "Połączenie",
+    "qr.k.sms": "SMS",
+    "qr.k.whatsapp": "WhatsApp",
+    "qr.k.upi": "Płatność UPI",
+    "qr.k.wifi": "Wi-Fi",
+    "qr.k.vcard": "Wizytówka",
+    "qr.k.event": "Wydarzenie",
+    "qr.k.location": "Lokalizacja",
+    "qr.k.crypto": "Krypto",
+    "qr.f.url": "Adres strony",
+    "qr.f.text": "Tekst",
+    "qr.f.to": "Adres e-mail",
+    "qr.f.subject": "Temat",
+    "qr.f.body": "Wiadomość",
+    "qr.f.phone": "Numer telefonu",
+    "qr.f.message": "Wiadomość",
+    "qr.f.pa": "UPI ID (np. nazwa@okhdfcbank)",
+    "qr.f.pn": "Nazwa widoczna dla płacącego",
+    "qr.f.am": "Kwota w ₹ (opcjonalnie)",
+    "qr.f.tn": "Notatka (opcjonalnie)",
+    "qr.f.ssid": "Nazwa sieci",
+    "qr.f.password": "Hasło",
+    "qr.f.security": "Zabezpieczenie",
+    "qr.f.hidden": "Ukryta sieć",
+    "qr.f.first": "Imię",
+    "qr.f.last": "Nazwisko",
+    "qr.f.email": "E-mail",
+    "qr.f.org": "Firma",
+    "qr.f.title": "Stanowisko",
+    "qr.f.website": "Strona internetowa",
+    "qr.f.address": "Adres",
+    "qr.f.summary": "Nazwa wydarzenia",
+    "qr.f.start": "Początek",
+    "qr.f.end": "Koniec",
+    "qr.f.location": "Miejsce",
+    "qr.f.lat": "Szerokość geograficzna",
+    "qr.f.lng": "Długość geograficzna",
+    "qr.f.coin": "Waluta",
+    "qr.f.wallet": "Adres portfela",
+    "qr.f.amount": "Kwota (opcjonalnie)",
+    "qr.o.WPA": "WPA / WPA2 / WPA3",
+    "qr.o.WEP": "WEP",
+    "qr.o.nopass": "Bez hasła",
+    "qr.o.bitcoin": "Bitcoin",
+    "qr.o.ethereum": "Ethereum",
+    "qr.o.litecoin": "Litecoin",
+    "qr.templates": "Szablony",
+    "qr.t.classic": "Klasyczny",
+    "qr.t.rounded": "Zaokrąglony",
+    "qr.t.dots": "Kropki",
+    "qr.t.ocean": "Gradient oceaniczny",
+    "qr.t.sunset": "Gradient zachodu słońca",
+    "qr.t.forest": "Las",
+    "qr.t.scan": "Etykieta „Zeskanuj mnie”",
+    "qr.t.upi": "Ramka płatności UPI",
+    "qr.t.wifi": "Etykieta Wi-Fi",
+    "qr.t.night": "Jasne na ciemnym",
+    "qr.t.radial": "Gradient kołowy",
+    "qr.t.clear": "Przezroczyste tło",
+    "qr.shapes": "Kształty",
+    "qr.dots": "Kropki",
+    "qr.eyeFrame": "Ramki narożników",
+    "qr.eyeBall": "Środki narożników",
+    "qr.s.square": "Kwadrat",
+    "qr.s.rounded": "Zaokrąglony",
+    "qr.s.extra": "Mocno zaokrąglony",
+    "qr.s.classy": "Elegancki",
+    "qr.s.dots": "Kropki",
+    "qr.s.circle": "Koło",
+    "qr.s.none": "Brak",
+    "qr.s.linear": "Liniowy",
+    "qr.s.radial": "Kołowy",
+    "qr.s.label": "Etykieta pod spodem",
+    "qr.s.box": "Ramka z etykietą",
+    "qr.s.L": "Niska (7%)",
+    "qr.s.M": "Średnia (15%)",
+    "qr.s.Q": "Wysoka (25%)",
+    "qr.s.H": "Najwyższa (30%)",
+    "qr.colors": "Kolory",
+    "qr.color": "Kropki",
+    "qr.gradient": "Gradient",
+    "qr.color2": "Koniec gradientu",
+    "qr.eyeColor": "Narożniki",
+    "qr.background": "Tło",
+    "qr.clear": "Przezroczyste tło",
+    "qr.logoTitle": "Logo",
+    "qr.logo": "Dodaj swoje logo",
+    "qr.logoRemove": "Usuń logo",
+    "qr.logoSize": "Rozmiar logo",
+    "qr.logoBad": "Nie udało się otworzyć obrazu. Spróbuj PNG lub JPG.",
+    "qr.logoHint": "Twoje logo zostaje na tym urządzeniu. Przy logo używana jest najsilniejsza korekcja błędów, by kod dalej się skanował.",
+    "qr.frameTitle": "Ramka",
+    "qr.frame": "Ramka",
+    "qr.frameText": "Tekst ramki",
+    "qr.frameColor": "Kolor ramki",
+    "qr.more": "Więcej",
+    "qr.margin": "Margines",
+    "qr.ecc": "Korekcja błędów",
+    "qr.format": "Format",
+    "qr.size": "Rozmiar",
+    "qr.name": "Nazwa pliku",
+    "qr.download": "Pobierz kod QR",
+    "qr.copy": "Kopiuj obraz",
+    "qr.share": "Udostępnij",
+    "qr.empty": "Wypełnij dane, a kod pojawi się tutaj.",
+    "qr.tooLong": "Za dużo tekstu na jeden kod QR. Skróć go.",
+    "qr.previewOf": "Kod QR dla: {text}",
+    "qr.lowContrast": "Słaby kontrast: niektóre telefony mogą nie odczytać kodu. Użyj ciemniejszych kropek lub jaśniejszego tła.",
+    "qr.inverted": "Jasne kropki na ciemnym tle: wiele aparatów tego nie odczyta. Sprawdź przed drukiem.",
+    "qr.saved": "Zapisano {name}.",
+    "qr.copied": "Skopiowano. Wklej, gdzie chcesz.",
+    "qr.copyFailed": "Ta przeglądarka nie mogła skopiować obrazu. Użyj Pobierz.",
+    "qr.scanOk": "Sprawdzone: ten kod się skanuje.",
+    "qr.scanBad": "Ten kod nie zeskanował się w naszym teście. Spróbuj ciemniejszych kropek, mniejszego logo lub szablonu Klasyczny.",
+    "qr.icons": "Gotowe ikony",
+    "qr.i.wifi": "Ikona Wi-Fi",
+    "qr.i.upi": "Ikona rupii",
+    "qr.i.chat": "Ikona czatu",
+    "qr.i.phone": "Ikona telefonu",
+    "qr.i.email": "Ikona e-maila",
+    "qr.i.location": "Ikona lokalizacji",
+    "qr.i.link": "Ikona linku",
+    "qr.imageTitle": "Obraz tła",
+    "qr.image": "Dodaj obraz tła",
+    "qr.imageRemove": "Usuń obraz tła",
+    "qr.imageHint": "Obraz jest delikatnie widoczny za kodem. Trzymaj kropki ciemne; test obok podglądu powie, czy kod nadal się skanuje.",
+    "scan.camera": "Użyj aparatu",
+    "scan.stop": "Zatrzymaj aparat",
+    "scan.photo": "Wybierz zdjęcie",
+    "scan.hint": "Albo wklej zrzut ekranu (Ctrl+V) lub upuść tu obraz.",
+    "scan.cameraView": "Widok aparatu",
+    "scan.results": "Znalezione kody",
+    "scan.reading": "Odczytywanie obrazu…",
+    "scan.looking": "Skieruj aparat na kod.",
+    "scan.found": "Znaleziono: {n}.",
+    "scan.none": "Nie znaleziono kodu. Spróbuj ostrzejszego lub bliższego zdjęcia.",
+    "scan.noCamera": "Aparat się nie włączył. Zezwól na dostęp do aparatu lub wybierz zdjęcie.",
+    "scan.open": "Otwórz",
+    "scan.copy": "Kopiuj tekst",
+    "scan.copied": "Skopiowano",
+    "scan.copyPassword": "Kopiuj hasło",
+    "scan.wifi": "Sieć Wi-Fi: {name}",
+    "scan.upi": "Zapłać {name} ({id}) {amount}",
+    "scan.pay": "Zapłać aplikacją UPI",
+    "scan.contact": "Zapisz kontakt",
+    "scan.event": "Dodaj do kalendarza",
+    "scan.csv": "Pobierz listę (CSV)",
+    "scan.torch": "Latarka",
+    "scan.flip": "Zmień aparat",
+    "scan.zoom": "Powiększenie",
+    "scan.warnHttp": "Bez szyfrowania (http): każdy w sieci może zobaczyć lub zmienić tę stronę.",
+    "scan.warnLookalike": "Adres zawiera litery udające inne. Sprawdź go dokładnie przed otwarciem.",
+    "scan.warnIp": "Link prowadzi do adresu z samych cyfr, a nie do nazwy strony.",
+    "scan.warnAt": "Prawdziwa strona to {host}: część przed @ ma tylko wprowadzić w błąd.",
+    "scan.warnShort": "Skrócony link: nie widać, dokąd prowadzi, dopóki go nie otworzysz.",
+    "home.scan": "Skanuj",
+    "home.mine": "Twoje narzędzia",
+    "home.mineLede": "Przypięte i ostatnio używane narzędzia. Zapisane tylko w tej przeglądarce.",
+    "home.filter": "Pokaż narzędzia dla",
+    "home.all": "Wszystkie",
+    "pin.add": "Przypnij {name}",
+    "pin.page": "Przypnij na stronie głównej",
+    "pin.pageOn": "Przypięte na stronie głównej"
   },
   "home": {
     "title": "Fizzdoc — Darmowe narzędzia PDF, edytor zdjęć i usuwanie tła",
@@ -3352,6 +3529,264 @@
         "dodaj napis do zdjęcia",
         "filtry do zdjęć online",
         "edycja zdjęć bez wysyłania"
+      ]
+    },
+    "qr-code-generator": {
+      "name": "Generator kodów QR",
+      "summary": "Stwórz stylowy kod QR z logo dla linku, Wi-Fi, kontaktu lub WhatsAppa.",
+      "action": "Pobierz kod QR",
+      "title": "Darmowy Generator Kodów QR z Logo — Wi-Fi, vCard | Fizzdoc",
+      "description": "Stwórz za darmo kod QR z logo, kolorami i ramką dla linku, Wi-Fi, wizytówki lub WhatsAppa. Nie wygasa, bez konta i bez przesyłania plików.",
+      "h1": "Stwórz kod QR z własnym logo, za darmo",
+      "lede": "Wpisz link, dane Wi-Fi, wizytówkę lub numer WhatsApp i nadaj kodowi styl: kształty kropek i narożników, kolory i gradienty, logo oraz ramkę „Zeskanuj mnie”. Pobierz jako PNG, SVG, JPG, WebP lub PDF. Kod nigdy nie wygasa, a nic, co wpiszesz lub dodasz, nie opuszcza twojego urządzenia.",
+      "steps": [
+        "Wybierz, co zawiera kod (link, Wi-Fi, kontakt, WhatsApp i więcej), i wypełnij pola.",
+        "Wybierz szablon albo sam ustaw kształty, kolory, logo i ramkę. Podgląd zmienia się od razu.",
+        "Wybierz format i rozmiar, a potem kliknij „Pobierz kod QR”."
+      ],
+      "faq": [
+        [
+          "Czy kod QR wygasa?",
+          "Nie. To kod statyczny: wszystko jest zapisane w samym kodzie, więc działa, dopóki link lub hasło Wi-Fi są aktualne. Nie ma konta, abonamentu ani przekierowania, które mogłoby go wyłączyć."
+        ],
+        [
+          "Czy mogę liczyć skany albo zmienić link później?",
+          "Nie, celowo. Liczenie skanów i kody edytowalne („dynamiczne”) wymagają serwera, przez który przechodzi każdy skan i który widzi, kto skanuje twój kod. Fizzdoc tworzy kod na twoim urządzeniu i nigdy go nie widzi."
+        ],
+        [
+          "Czy kod z logo da się zeskanować?",
+          "Tak. Przy logo używana jest najsilniejsza korekcja błędów (H), dzięki której kod da się odczytać nawet przy 30% zasłonięcia. Trzymaj logo w domyślnym rozmiarze lub mniejsze, ciemne kropki na jasnym tle i sprawdź telefonem przed drukiem."
+        ],
+        [
+          "W jakim rozmiarze drukować?",
+          "Co najmniej 2 cm dla kodu skanowanego z bliska i jedna dziesiąta odległości dla plakatów (z 3 m kod 30 cm). Do druku pobierz SVG lub PDF: są ostre w każdym rozmiarze."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "generator kodów QR z logo",
+        "kod QR do Wi-Fi",
+        "kod QR, który nie wygasa",
+        "darmowy kod QR bez rejestracji",
+        "kod QR na wizytówkę"
+      ]
+    },
+    "qr-code-scanner": {
+      "name": "Czytnik kodów QR i kreskowych",
+      "summary": "Odczytaj kod QR lub kreskowy aparatem albo ze zdjęcia, także offline.",
+      "action": "Skanuj",
+      "title": "Darmowy Czytnik Kodów QR i Kreskowych — Aparat lub Zdjęcie | Fizzdoc",
+      "description": "Skanuj za darmo kody QR i kreskowe aparatem albo ze zdjęcia lub zrzutu ekranu. Połącz z Wi-Fi, otwieraj linki, zapisuj kontakty. Działa offline.",
+      "h1": "Zeskanuj kod QR lub kreskowy aparatem albo ze zdjęcia",
+      "lede": "Skieruj aparat na kod, wybierz zdjęcie albo wklej zrzut ekranu. Fizzdoc odczytuje kody QR i kreskowe (EAN, UPC, Code 128, Data Matrix, PDF417, Aztec i inne), także kilka na jednym obrazie, i pokazuje, co zawiera każdy, zanim cokolwiek otworzy. Działa offline, a nic nie opuszcza twojego urządzenia.",
+      "steps": [
+        "Kliknij „Użyj aparatu” i skieruj go na kod albo wybierz zdjęcie lub wklej zrzut ekranu.",
+        "Każdy znaleziony kod jest obrysowany i wyświetlony z zawartością.",
+        "Otwórz link, skopiuj hasło Wi-Fi, zapisz kontakt lub zapłać przez UPI albo po prostu skopiuj tekst."
+      ],
+      "faq": [
+        [
+          "Czy skanowanie nieznanego kodu QR jest bezpieczne?",
+          "Fizzdoc pokazuje pełny tekst każdego kodu i nigdy sam nie otwiera linku, więc najpierw sprawdzisz, dokąd prowadzi. Uważaj na adresy udające inne i na kody płatności, które proszą o wysłanie pieniędzy, gdy miałeś je otrzymać."
+        ],
+        [
+          "Jakie kody odczytuje?",
+          "Kody QR (także Micro QR), Data Matrix, Aztec, PDF417 i kody kreskowe: EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, Codabar, ITF i DataBar. Znajduje kilka kodów na jednym obrazie."
+        ],
+        [
+          "Czy działa offline?",
+          "Tak. Po jednym otwarciu strony z internetem czytnik działa bez połączenia, z aparatem lub zdjęciami."
+        ],
+        [
+          "Dlaczego aparat się nie włącza?",
+          "Zezwól na dostęp do aparatu, gdy przeglądarka zapyta. Jeśli wcześniej odmówiłeś, zezwól ponownie przez kłódkę obok adresu. Zawsze możesz wybrać zdjęcie."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "skanowanie kodu QR ze zdjęcia",
+        "czytnik QR online aparatem",
+        "darmowy czytnik kodów kreskowych",
+        "odczyt QR ze zrzutu ekranu",
+        "czytnik QR offline bez aplikacji"
+      ]
+    },
+    "wifi-qr-code-generator": {
+      "name": "Generator kodu QR do Wi-Fi",
+      "summary": "Goście łączą się z Wi-Fi, skanując kod, bez wpisywania hasła.",
+      "action": "Pobierz kod QR",
+      "title": "Darmowy Generator Kodu QR do Wi-Fi — Skanuj i Połącz | Fizzdoc",
+      "description": "Stwórz za darmo kod QR do Wi-Fi: goście skanują go aparatem i łączą się bez wpisywania hasła. Z logo i ramką. Nic nie jest przesyłane.",
+      "h1": "Stwórz kod QR do Wi-Fi: zeskanuj i połącz",
+      "lede": "Wpisz nazwę sieci i hasło, a goście połączą się, kierując aparat telefonu na kod. Dodaj logo i ramkę „Połącz z Wi-Fi” i wydrukuj dla kawiarni, biura, sklepu lub domu. Hasło nigdy nie opuszcza twojego urządzenia: kod powstaje w przeglądarce.",
+      "steps": [
+        "Wpisz nazwę sieci (SSID) i hasło oraz wybierz zabezpieczenie (WPA prawie zawsze jest właściwe).",
+        "Wybierz szablon albo ustaw kolory, logo i ramkę. Strona sprawdza, czy kod się skanuje.",
+        "Pobierz jako PNG lub PDF i wydrukuj albo udostępnij."
+      ],
+      "faq": [
+        [
+          "Jak goście używają kodu QR do Wi-Fi?",
+          "Otwierają aparat (lub Google Lens) i kierują na kod. iPhone i Android pokazują „Połącz z siecią”; jedno dotknięcie i gotowe, bez wpisywania hasła."
+        ],
+        [
+          "Czy umieszczanie hasła Wi-Fi w kodzie QR jest bezpieczne?",
+          "Kod zawiera hasło: kto może go zeskanować, ten się połączy, jakby je przeczytał. Umieść go tam, gdzie i tak podałbyś hasło, i rozważ osobną sieć dla gości. Fizzdoc nigdy nie widzi hasła."
+        ],
+        [
+          "Jakie zabezpieczenie wybrać?",
+          "WPA obejmuje WPA, WPA2 i WPA3, których używa niemal każdy router. WEP wybierz tylko dla bardzo starych routerów, a „Bez hasła” dla sieci otwartych. Zaznacz „Ukryta sieć”, jeśli nazwa nie jest rozgłaszana."
+        ],
+        [
+          "Czy kod QR wygasa?",
+          "Nie. Wszystko jest zapisane w samym kodzie, więc działa, dopóki dane są aktualne. Nie ma konta, abonamentu ani przekierowania, które mogłoby go wyłączyć."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "generator kodu QR Wi-Fi",
+        "udostępnij hasło Wi-Fi kodem QR",
+        "skanuj i połącz z Wi-Fi",
+        "kod QR Wi-Fi dla gości kawiarni",
+        "kod QR WiFi z logo"
+      ]
+    },
+    "upi-qr-code-generator": {
+      "name": "Generator kodu QR UPI",
+      "summary": "Kod QR płatności dla twojego UPI ID, czytany przez Google Pay, PhonePe, Paytm i BHIM.",
+      "action": "Pobierz kod QR",
+      "title": "Darmowy Generator Kodu QR UPI — GPay, PhonePe, Paytm | Fizzdoc",
+      "description": "Stwórz za darmo kod QR płatności UPI dla sklepu w Indiach: UPI ID, nazwa i opcjonalnie stała kwota. Działa w każdej aplikacji UPI. Bez rejestracji.",
+      "h1": "Stwórz kod QR płatności UPI, za darmo",
+      "lede": "Wpisz swoje UPI ID i nazwę, a jeśli chcesz stałą kwotę i notatkę, i otrzymaj kod QR płatności, który odczytają Google Pay, PhonePe, Paytm, BHIM i każda aplikacja UPI. Dodaj logo i ramkę „Zapłać przez UPI” na ladę. Bez rejestracji w banku ani aplikacji, a twoje dane zostają na urządzeniu.",
+      "steps": [
+        "Wpisz UPI ID (np. nazwa@okhdfcbank) i nazwę widoczną dla płacących. Dodaj kwotę i notatkę, jeśli każda płatność jest taka sama.",
+        "Wybierz szablon „Ramka płatności UPI” albo własne kolory i logo.",
+        "Pobierz jako PNG lub PDF i wydrukuj na ladę albo udostępnij."
+      ],
+      "faq": [
+        [
+          "Czy działa z Google Pay, PhonePe i Paytm?",
+          "Tak. Używa standardowego linku płatności UPI (upi://pay) określonego przez NPCI, który odczytuje każda aplikacja UPI. Płatność trafia bezpośrednio na UPI ID z kodu."
+        ],
+        [
+          "Czy mogę ustalić kwotę?",
+          "Tak: wpisz kwotę, a aplikacja otworzy się z nią. Zostaw puste, by płacący wpisał kwotę sam, co sprawdza się przy ladzie sklepu."
+        ],
+        [
+          "Czy to bezpieczne?",
+          "Kod zawiera tylko UPI ID, nazwę i ustaloną kwotę: bez PIN-u i danych bankowych. Przed drukiem zeskanuj go własną aplikacją UPI, by sprawdzić nazwę. Fizzdoc nigdy nie widzi twoich danych."
+        ],
+        [
+          "Czy kod QR wygasa?",
+          "Nie. Wszystko jest zapisane w samym kodzie, więc działa, dopóki dane są aktualne. Nie ma konta, abonamentu ani przekierowania, które mogłoby go wyłączyć."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "darmowy generator kodu QR UPI",
+        "kod QR Google Pay dla sklepu",
+        "generator kodu QR PhonePe",
+        "kod QR płatności UPI z kwotą",
+        "kod QR Paytm dla firmy"
+      ]
+    },
+    "whatsapp-qr-code-generator": {
+      "name": "Generator kodu QR do WhatsAppa",
+      "summary": "Kod QR, który otwiera czat WhatsApp z twoim numerem i gotową wiadomością.",
+      "action": "Pobierz kod QR",
+      "title": "Darmowy Generator Kodu QR do WhatsAppa — Czat Jednym Skanem | Fizzdoc",
+      "description": "Stwórz za darmo kod QR WhatsApp, który otwiera czat z twoim numerem i gotową wiadomością. Idealny dla sklepów, menu i wizytówek. Bez konta.",
+      "h1": "Stwórz kod QR do WhatsAppa, który otwiera czat",
+      "lede": "Wpisz numer WhatsApp z kierunkowym kraju i, jeśli chcesz, wiadomość w rodzaju „Dzień dobry, chcę złożyć zamówienie”. Każdy, kto zeskanuje kod, otworzy czat z tobą z gotową wiadomością. Dodaj logo i ramkę dla sklepu, menu, wizytówki lub opakowania.",
+      "steps": [
+        "Wpisz numer z kierunkowym kraju (np. +48 512 345 678) i opcjonalną wiadomość.",
+        "Wybierz szablon albo ustaw kolory, ikonę czatu lub logo oraz ramkę.",
+        "Pobierz jako PNG, SVG lub PDF i wydrukuj albo udostępnij."
+      ],
+      "faq": [
+        [
+          "Jak działa kod QR do WhatsAppa?",
+          "Zawiera link wa.me z twoim numerem i wiadomością. Po zeskanowaniu WhatsApp (lub WhatsApp Business) otwiera czat z tobą, z wpisaną wiadomością gotową do wysłania."
+        ],
+        [
+          "Czy działa z WhatsApp Business?",
+          "Tak. Ten sam link otwiera czaty z numerami WhatsApp i WhatsApp Business."
+        ],
+        [
+          "Czy potrzebny jest kierunkowy kraju?",
+          "Tak, zawsze (48 dla Polski). Spacje, myślniki i znak plus są usuwane automatycznie."
+        ],
+        [
+          "Czy kod QR wygasa?",
+          "Nie. Wszystko jest zapisane w samym kodzie, więc działa, dopóki dane są aktualne. Nie ma konta, abonamentu ani przekierowania, które mogłoby go wyłączyć."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "generator kodu QR WhatsApp",
+        "kod QR czatu WhatsApp",
+        "kod QR wa.me",
+        "kod QR WhatsApp Business",
+        "kod QR otwierający czat WhatsApp"
+      ]
+    },
+    "vcard-qr-code-generator": {
+      "name": "Generator kodu QR wizytówki (vCard)",
+      "summary": "Kod QR, który zapisuje imię, telefon, e-mail i firmę w kontaktach telefonu.",
+      "action": "Pobierz kod QR",
+      "title": "Darmowy Generator Kodu QR vCard — Wizytówka z QR | Fizzdoc",
+      "description": "Stwórz za darmo kod QR vCard na wizytówkę: skan zapisuje imię, telefon, e-mail, firmę i stronę w kontaktach. Bez konta i bez przesyłania.",
+      "h1": "Stwórz kod QR wizytówki (vCard)",
+      "lede": "Wpisz imię, telefon, e-mail, firmę, stanowisko, stronę i adres, a dostaniesz kod QR, który jednym dotknięciem zapisze cię w kontaktach telefonu. Umieść go na wizytówkach, w stopkach e-maili, na identyfikatorach i stoiskach. Twoje dane stają się kodem na twoim urządzeniu i nigdy nie są przesyłane.",
+      "steps": [
+        "Wpisz dane, które chcesz udostępnić: imię, telefon, e-mail, firma, stanowisko, strona, adres.",
+        "Wybierz szablon albo ustaw kolory, logo i ramkę.",
+        "Pobierz SVG lub PDF do druku na wizytówkach albo PNG na ekrany."
+      ],
+      "faq": [
+        [
+          "Co się dzieje po zeskanowaniu kodu QR vCard?",
+          "Telefon pokazuje twoją wizytówkę z przyciskiem „Dodaj do kontaktów”. Każdy aparat iPhone’a i Androida czyta używany tu format vCard 3.0."
+        ],
+        [
+          "Dlaczego mój kod vCard jest tak gęsty?",
+          "Każda informacja dodaje tekst do kodu. Pomiń zbędne pola, użyj małego logo i drukuj go na co najmniej 2,5 cm szerokości, by telefony łatwo go czytały."
+        ],
+        [
+          "Czy mogę później zmienić dane?",
+          "Nie w wydrukowanym kodzie: dane są w nim zapisane. Gdy się zmienią, stwórz nowy kod; to darmowe i trwa minutę."
+        ],
+        [
+          "Czy kod QR wygasa?",
+          "Nie. Wszystko jest zapisane w samym kodzie, więc działa, dopóki dane są aktualne. Nie ma konta, abonamentu ani przekierowania, które mogłoby go wyłączyć."
+        ],
+        [
+          "Czy Fizzdoc jest darmowy?",
+          "Tak, i zawsze będzie za darmo: bez rejestracji, bez znaku wodnego, bez dziennego limitu i bez płatnej wersji. Fizzdoc jest open source na licencji Apache-2.0, więc każdy może uruchomić własną kopię."
+        ]
+      ],
+      "keywords": [
+        "generator kodu QR vCard",
+        "kod QR na wizytówkę",
+        "kod QR kontaktu",
+        "kod QR do zapisania kontaktu",
+        "cyfrowa wizytówka z kodem QR"
       ]
     }
   }
