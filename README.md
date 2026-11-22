@@ -152,11 +152,7 @@ It's published on npm as [`fizzdoc-mcp`](https://www.npmjs.com/package/fizzdoc-m
 claude mcp add fizzdoc -- npx -y fizzdoc-mcp
 ```
 
-On Windows, use `claude mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp`. Setup for Codex and other clients, and the full tool list: [mcp/README.md](mcp/README.md). Image tools are on the way ([#61](https://github.com/kingrishabdugar/fizzdoc/issues/61)).
-
-### Use Fizzdoc in Codex
-
-Add the local server with `codex mcp add fizzdoc -- npx -y fizzdoc-mcp`, then ask Codex to use Fizzdoc for a PDF or audio task. The [Codex setup and project instructions](mcp/README.md#codex-cli) explain the configuration and how to keep Fizzdoc's local-only behavior clear to your agent.
+On Windows, use `claude mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp`. Setup for Codex and other clients, including `codex mcp add fizzdoc -- npx -y fizzdoc-mcp`, and the full tool list: [mcp/README.md](mcp/README.md). Image tools are on the way ([#61](https://github.com/kingrishabdugar/fizzdoc/issues/61)).
 
 ## 🔒 Private by design — verify it yourself
 
