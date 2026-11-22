@@ -51,13 +51,30 @@ claude mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp
 
 ### Codex CLI
 
-Add to `~/.codex/config.toml`:
+The Codex CLI and desktop app use the same MCP configuration. The CLI can add Fizzdoc for you:
+
+```sh
+codex mcp add fizzdoc -- npx -y fizzdoc-mcp
+codex mcp list
+```
+
+On Windows, run `npx` through `cmd`:
+
+```sh
+codex mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp
+```
+
+Or add the equivalent stdio server to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.fizzdoc]
 command = "npx"
 args = ["-y", "fizzdoc-mcp"]
 ```
+
+For Windows, use `command = "cmd"` with `args = ["/c", "npx", "-y", "fizzdoc-mcp"]`.
+
+Once connected, try a prompt such as “Merge these PDFs” or “Split this audio file at 30 seconds.” Codex can call Fizzdoc's local tools; the files stay on your computer. See [AGENTS.example.md](AGENTS.example.md) for a short instruction block you can copy into a project that uses Fizzdoc.
 
 ### Claude Desktop, Cursor, VS Code and others
 
