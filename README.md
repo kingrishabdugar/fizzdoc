@@ -8,7 +8,7 @@
 <h3 align="center">Free, private PDF, photo, audio and Office tools that never see your files.</h3>
 
 <p align="center">
-  81 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
+  81 tools — compress, convert, edit, redact, remove backgrounds, edit photos, make collages, make and scan QR codes, merge, split, cut, OCR, transcribe — running <strong>100% in your browser</strong>.<br>
   <strong>No uploads. No sign-up. No watermark. No limits. Free forever. 17 languages.</strong>
 </p>
 
