@@ -63,7 +63,7 @@
     "fflate": "^0.8.3",
     "gifenc": "^1.0.3",
     "gifuct-js": "^2.1.2",
-    "mediabunny": "^1.65.2",
+    "mediabunny": "^1.66.1",
     "mermaid": "12.3.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.5.438",
@@ -72,11 +72,11 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
-    "@playwright/test": "1.65.0",
+    "@playwright/test": "1.65.1",
     "@types/node": "^22.20.5",
     "typescript": "^7.0.2",
     "vite": "^8.3.8",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.1"
   },
   "overrides": {
     "lodash-es": "4.18.1",
