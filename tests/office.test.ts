@@ -14,6 +14,7 @@ import {
   type DocParagraph,
 } from '../src/engine/office';
 import { docxToMarkdown } from '../src/engine/office-markdown';
+import { xlsxToHtml } from '../src/engine/excel-to-pdf';
 
 const file = (name: string, type = '') =>
   new File([readFileSync(new URL(`./fixtures/${name}`, import.meta.url))], name, { type });
@@ -174,6 +175,27 @@ describe('docxToHtml', () => {
     expect(await output.blob.text()).toContain('[link](https://example.com/a_%28b%20c%29)');
   });
 
+});
+
+describe('xlsxToHtml', () => {
+  it('prints each workbook sheet as a separate table with a page break', async () => {
+    const { html, title } = await xlsxToHtml(file('rich.xlsx'));
+    expect(title).toBe('rich');
+    expect(html.match(/<table>/g)).toHaveLength(2);
+    expect(html.indexOf('<h1>Data</h1>')).toBeLessThan(html.indexOf('<h1>Notes</h1>'));
+    expect(html).toContain('break-before: page');
+    expect(html).toContain('<td>Alice</td>');
+    expect(html).not.toContain('<script');
+  });
+
+  it('escapes workbook cell values before putting them in HTML', async () => {
+    const entries = unzip(readFileSync(new URL('./fixtures/rich.xlsx', import.meta.url)));
+    entries['xl/sharedStrings.xml'] = strToU8(strFromU8(entries['xl/sharedStrings.xml']).replace('Alice', '&lt;img src=x onerror=alert(1)&gt;'));
+    const zipped = zipSync(entries);
+    const { html } = await xlsxToHtml(new File([zipped], 'unsafe.xlsx'));
+    expect(html).toContain('&lt;img src=x onerror=alert(1)&gt;');
+    expect(html).not.toContain('<img src=x');
+  });
 });
 
 describe('pdfToDocx text grouping (pure)', () => {
