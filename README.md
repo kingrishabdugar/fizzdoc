@@ -152,7 +152,7 @@ It's published on npm as [`fizzdoc-mcp`](https://www.npmjs.com/package/fizzdoc-m
 claude mcp add fizzdoc -- npx -y fizzdoc-mcp
 ```
 
-On Windows, use `claude mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp`. Setup for Codex and other clients, and the full tool list: [mcp/README.md](mcp/README.md). Image tools are on the way ([#61](https://github.com/kingrishabdugar/fizzdoc/issues/61)).
+On Windows, use `claude mcp add fizzdoc -- cmd /c npx -y fizzdoc-mcp`. Setup for Codex and other clients, including `codex mcp add fizzdoc -- npx -y fizzdoc-mcp`, and the full tool list: [mcp/README.md](mcp/README.md). Image tools are on the way ([#61](https://github.com/kingrishabdugar/fizzdoc/issues/61)).
 
 ## 🔒 Private by design — verify it yourself
 

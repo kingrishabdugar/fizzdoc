@@ -2,3 +2,6 @@
 *.onnx binary
 *.onnx.part* binary
 *.wasm binary
+# Model folders hold exact byte sizes in their manifests; Windows line endings would change them.
+public/whisper/** -text
+public/bg/** -text
