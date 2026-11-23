@@ -27,6 +27,7 @@ export type ToolOp =
   | 'text-to-pdf'
   | 'word-to-pdf'
   | 'word-export'
+  | 'excel-to-pdf'
   | 'excel-to-csv'
   | 'csv-to-excel'
   | 'excel-to-json'
@@ -972,6 +973,22 @@ TOOLS.push(
     ],
     input: { accept: '.docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document' },
     preset: { format: 'md' },
+  },
+  {
+    op: 'excel-to-pdf',
+    format: 'excel',
+    slug: 'excel-to-pdf',
+    name: 'Excel to PDF',
+    summary: 'Print every sheet of an Excel workbook to PDF.',
+    action: 'Convert to PDF',
+    title: 'Excel to PDF Free — XLSX to PDF, No Upload | Fizzdoc',
+    description:
+      'Convert every sheet in an Excel workbook to a printable PDF in your browser. Each sheet gets its own page; nothing is uploaded. Free.',
+    h1: 'Convert Excel to PDF',
+    lede: 'Print every sheet in an .xlsx workbook to PDF. Each sheet has its own heading and starts on a new page; your spreadsheet stays on your device.',
+    steps: ['Add one .xlsx workbook.', 'Click “Convert to PDF”.', 'Choose “Save as PDF” in the window that opens and click Save.'],
+    faq: [PRIVACY_FAQ[0], SAVE_AS_PDF, PRIVACY_FAQ[1]],
+    input: { accept: '.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' },
   },
   {
     op: 'excel-to-csv',
@@ -2172,6 +2189,13 @@ const KEYWORDS: Record<string, string[]> = {
     'DOCX Markdown converter',
     'export Word to Markdown',
     'convert Word document to Markdown'
+  ],
+  'excel-to-pdf': [
+    'convert XLSX to PDF',
+    'print Excel workbook to PDF',
+    'save Excel sheets as PDF',
+    'Google Sheets to PDF',
+    'Excel PDF converter free',
   ],
   'excel-to-csv': [
     'convert XLSX to CSV',
