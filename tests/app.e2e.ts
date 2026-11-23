@@ -868,6 +868,21 @@ test('prepares Word and Markdown documents for Save as PDF without running their
   expect(seen.violations).toEqual([]);
 });
 
+test('prepares every Excel sheet for Save as PDF', async ({ page }) => {
+  const seen = watch(page);
+  await page.goto('/excel-to-pdf/');
+  await page.locator('#file-input').setInputFiles(file('rich.xlsx'));
+  await page.getByRole('button', { name: 'Convert to PDF' }).click();
+  await expect(page.locator('#status')).toContainText('Save as PDF');
+  const frame = page.frameLocator('.print-frame');
+  await expect(frame.locator('.sheet h1')).toHaveText(['Data', 'Notes']);
+  await expect(frame.locator('table')).toHaveCount(2);
+  await expect(frame.locator('td').filter({ hasText: 'Alice' })).toHaveCount(1);
+  expect(await page.locator('.print-frame').getAttribute('srcdoc')).toContain('break-before: page');
+  expect(seen.violations).toEqual([]);
+  expect(seen.requests.filter((r) => !/^(http:\/\/localhost[:/]|blob:|data:)/.test(r.url))).toEqual([]);
+});
+
 test('exports Word documents to Markdown and standalone HTML', async ({ page }) => {
   const seen = watch(page);
   await page.goto('/word-to-markdown/');

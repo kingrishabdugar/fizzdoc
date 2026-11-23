@@ -157,6 +157,7 @@ function setUp(op: ToolOp) {
       }),
     'pdf-to-text': async (f, o) => (await import('./engine/convert')).pdfToText(f[0], { format: o.format === 'md' ? 'md' : 'txt' }),
     'text-to-pdf': async (f) => (await import('./engine/convert')).textToHtml(f[0]),
+    'excel-to-pdf': async (f) => (await import('./engine/excel-to-pdf')).xlsxToHtml(f[0]),
     'excel-to-csv': async (f) => (await import('./engine/convert')).xlsxToCsv(f[0]),
     'csv-to-excel': async (f) => (await import('./engine/convert')).csvToXlsx(f[0]),
     'excel-to-json': async (f, o) => (await import('./engine/convert')).xlsxToJson(f[0], { header: o.header !== 'false' }),
